@@ -1,16 +1,40 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule, HttpEventType,  HttpClient,  HttpRequest } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { routes } from './app.routes';
+import { AuthGuard } from './service/ZauthGuard';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ViewContainerRef } from '@angular/core';
+import { APIService } from './service/APIService';
+import { ProjectService } from './service/ProjectService';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    BrowserModule,
+    HttpClientModule,
+    RouterModule.forRoot(routes, { useHash: true })
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    APIService,
+    ProjectService
+   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
