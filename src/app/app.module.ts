@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule }    from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbSidebarModule, NbThemeModule, NbLayoutModule, NbSidebarService } from '@nebular/theme';
@@ -28,7 +29,9 @@ import { CreateUserComponent } from './main/create-user/create-user.component';
     NbThemeModule.forRoot({ name: 'cosmic' }),
     NbLayoutModule,
     NbSidebarModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [NbSidebarService],
   bootstrap: [AppComponent]

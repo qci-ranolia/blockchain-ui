@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiserviceService } from './service/apiservice.service'
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'blockchainUI';
+  username: any
+  password: any
+
+  constructor(private api: ApiserviceService) {
+  
+  }
+  login(){
+    this.api.loginuser(this.username,this.password)
+  }
+
 }
