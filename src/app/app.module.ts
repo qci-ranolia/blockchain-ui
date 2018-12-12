@@ -1,39 +1,43 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule }    from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbSidebarModule, NbThemeModule, NbLayoutModule, NbSidebarService } from '@nebular/theme';
 import { AppRoutingModule } from './app-routing.module';
-import { NavigationComponent } from './main/navigation/navigation.component';
+
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule, HttpEventType,  HttpClient,  HttpRequest } from '@angular/common/http';
+
+import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { ServiceComponent } from './service/service.component';
-import { MainViewComponent } from './main/main-view/main-view.component';
-import { SummaryComponent } from './main/summary/summary.component';
-import { CreateUserComponent } from './main/create-user/create-user.component';
+import { HomeComponent } from './home/home.component';
+import { routes } from './app.routes';
+import { AuthGuard } from './service/ZauthGuard';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ViewContainerRef } from '@angular/core';
+import { APIService } from './service/APIService';
+import { ProjectService } from './service/ProjectService';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavigationComponent,
     LoginComponent,
-    ServiceComponent,
-    MainViewComponent,
-    SummaryComponent,
-    CreateUserComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    NbThemeModule.forRoot({ name: 'cosmic' }),
-    NbLayoutModule,
-    NbSidebarModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserModule,
+    HttpClientModule,
+    RouterModule.forRoot(routes, { useHash: true })
   ],
-  providers: [NbSidebarService],
+  providers: [
+    AuthGuard,
+    APIService,
+    ProjectService
+   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

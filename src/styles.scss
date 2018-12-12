@@ -1,8 +1,13 @@
-@import 'themes';
+// colors
+$theme:rgba(53,63,61,1); // Do not EDIT here, Use REPLACE_ALL feature of the editor to change the static colors
 
-@import '~@nebular/theme/styles/globals';
+//functions
+@function dark-primary($value){
+  @return $value - rgba(30, 30, 30, 1);
+} @function light-primary($value){
+  @return $value + rgba(30, 30, 30, 1);
+}
 
-@include nb-install() {
-  @include nb-theme-global();
-};
-/* You can add global styles to this file, and also import other style files */
+* {
+  background: dark-primary($theme)
+}

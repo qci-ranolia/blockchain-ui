@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ApiserviceService } from './service/apiservice.service'
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +11,6 @@ export class AppComponent {
   username: any
   password: any
 
-  constructor(private api: ApiserviceService) {
-  
-  }
-  login(){
-    this.api.loginuser(this.username,this.password)
-  }
+  constructor() { }
 
 }
