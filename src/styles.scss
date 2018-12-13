@@ -1,5 +1,8 @@
 // colors
-$theme:rgba(53,63,61,1); // Do not EDIT here, Use REPLACE_ALL feature of the editor to change the static colors
+$theme:#177; // Do not EDIT here, Use REPLACE_ALL feature of the editor to change the static colors
+
+$inputW: 260px;
+$btnH: 36px;
 
 //functions
 @function dark-primary($value){
@@ -13,6 +16,7 @@ $theme:rgba(53,63,61,1); // Do not EDIT here, Use REPLACE_ALL feature of the edi
   font-size: 0.9rem;
   color: #aaa;
   box-sizing: border-box;
+  word-wrap: break-word;
 }
 .container {
   max-width:90%;
@@ -37,13 +41,13 @@ table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover{
   background: none !important;
   color: #fff !important;
-  border-color: rgba(01,13,11,1) !important;
-  box-shadow: 0px 0px 0px 1px inset rgba(41,53,51,1) !important;
+  border-color: dark-primary($theme - #111) !important;
+  box-shadow: 0px 0px 0px 1px inset light-primary($theme - #111) !important;
   padding: 1px 8px !important;
 }
 .dataTables_wrapper .dataTables_filter input{
   border: 1px solid dark-primary($theme);
-  box-shadow: 0px 0px 1px 1px inset light-primary($theme);
+  box-shadow: 0px 0px 1px 1px inset light-primary($theme - #111);
   color: #999;
   padding: 3px 12px;
 }
@@ -77,14 +81,14 @@ table.dataTable.row-border tbody th,
 table.dataTable.row-border tbody td,
 table.dataTable.display tbody th,
 table.dataTable.display tbody td {
-  border-top: 1px solid #111 !important;
+  border-top: 1px solid light-primary($theme - #111) !important;
 }
 .closed{
   // transition-timing-function: ease;
   // transition-duration: 0.7s;
-  border: 1px solid rgba(0,0,0,1);
+  border: 1px solid dark-primary($theme - #111);
   padding-bottom: 20px;
-  box-shadow: 0px 0px 1px 1px inset rgba(41,53,51,1);
+  box-shadow: 0px 0px 1px 1px inset light-primary($theme);
 }
 .toggled .closed{
   transition-timing-function: ease;
@@ -92,4 +96,31 @@ table.dataTable.display tbody td {
   border: none;
   padding-bottom: 20px;
   box-shadow: none;
+}
+#sidebar-wrapper{
+  box-shadow: 0px 0px 0px 1px light-primary($theme);
+  border-right: 1px solid dark-primary($theme)
+}
+.img {
+  &:before {
+		border-left:2px solid light-primary($theme)
+	}
+	&:after {
+		border-left:1px solid rgb(1, 5, 7)
+	}
+}
+button.submit {
+	border: none;
+	outline: none;
+	background: none;
+	display: block;
+	width: $inputW - 100px;
+	height: $btnH;
+	border-radius: 30px;
+	font-size: 15px;
+	cursor: pointer; 
+	margin: 20px auto 0;
+	background: #d4af7a;
+	text-transform: uppercase;
+	color:#fff;
 }
