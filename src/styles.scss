@@ -9,5 +9,58 @@ $theme:rgba(53,63,61,1); // Do not EDIT here, Use REPLACE_ALL feature of the edi
 }
 
 * {
-  background: dark-primary($theme)
+  background: dark-primary($theme);
+  font-size: 0.9rem;
+  color: #aaa;
+}
+table.dataTable.display tbody tr.odd > .sorting_1,
+table.dataTable.order-column.stripe tbody tr.odd > .sorting_1{
+  background-color: $theme
+}
+table.dataTable.display tbody tr.even > .sorting_1,
+table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
+  background-color: $theme
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button{
+  color: #888 !important;
+  padding: 1px 8px !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button:active,
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover{
+  background: none !important;
+  color: #fff !important;
+  border-color: rgba(01,13,11,1) !important;
+  box-shadow: 0px 0px 0px 1px inset rgba(41,53,51,1) !important;
+  padding: 1px 8px !important;
+}
+.dataTables_wrapper .dataTables_filter input{
+  border: 1px solid dark-primary($theme);
+  box-shadow: 0px 0px 1px 1px inset light-primary($theme);
+  color: #999;
+  padding: 3px 12px;
+}
+//Scrollbar
+::-webkit-scrollbar{
+  width:7px;
+  height:5px;
+  background-color:transparent;
+  border-radius:10px;
+}
+::-webkit-scrollbar-thumb{
+  background-color:light-primary($theme);
+  border-radius:10px;
+}
+::-webkit-scrollbar-track{
+  background-color:transparent;
+  border-radius:10px;
+}
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing,
+.dataTables_wrapper .dataTables_paginate {
+  color: #aaa;
 }
