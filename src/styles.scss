@@ -12,6 +12,11 @@ $theme:rgba(53,63,61,1); // Do not EDIT here, Use REPLACE_ALL feature of the edi
   background: dark-primary($theme);
   font-size: 0.9rem;
   color: #aaa;
+  box-sizing: border-box;
+}
+.container {
+  max-width:90%;
+  margin: 0 auto;
 }
 table.dataTable.display tbody tr.odd > .sorting_1,
 table.dataTable.order-column.stripe tbody tr.odd > .sorting_1{
@@ -63,4 +68,28 @@ table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
 .dataTables_wrapper .dataTables_processing,
 .dataTables_wrapper .dataTables_paginate {
   color: #aaa;
+}
+table.dataTable thead th,
+table.dataTable thead td{
+  border-bottom: 1px solid #888;
+}
+table.dataTable.row-border tbody th,
+table.dataTable.row-border tbody td,
+table.dataTable.display tbody th,
+table.dataTable.display tbody td {
+  border-top: 1px solid #111 !important;
+}
+.closed{
+  // transition-timing-function: ease;
+  // transition-duration: 0.7s;
+  border: 1px solid rgba(0,0,0,1);
+  padding-bottom: 20px;
+  box-shadow: 0px 0px 1px 1px inset rgba(41,53,51,1);
+}
+.toggled .closed{
+  transition-timing-function: ease;
+  transition-duration: 1.5s;
+  border: none;
+  padding-bottom: 20px;
+  box-shadow: none;
 }

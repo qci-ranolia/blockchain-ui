@@ -11,7 +11,8 @@ export class HomeComponent implements OnInit {
   constructor() {
     $(document).ready(function () {
       $('#table_id').DataTable({
-        scrollY: 380
+        // "fixedHeader":true,
+        "scrollY": 380
       })
       var trigger = $('.hamburger'),
           overlay = $('.overlay'),
@@ -20,7 +21,7 @@ export class HomeComponent implements OnInit {
         hamburger_cross()      
       })
       function hamburger_cross() {
-        if (isClosed == false) {          
+        if (isClosed == false) {
           overlay.hide()
           trigger.removeClass('is-open')
           trigger.addClass('is-closed')
@@ -33,7 +34,7 @@ export class HomeComponent implements OnInit {
         }
       } 
       $('[data-toggle="offcanvas"]').click(function () {
-            $('#wrapper').toggleClass('toggled')
+        $('#wrapper').toggleClass('toggled')
       })
     })
   }
