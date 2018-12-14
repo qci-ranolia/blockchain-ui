@@ -7,6 +7,8 @@ import {  HttpEvent, HttpEventType,  HttpClient,  HttpRequest} from '@angular/co
 @Injectable()
 export class ProjectService {
 
+  tableHeader: any = [];
+  tableData: any = [];
   month : any = '2017-10';
 
   constructor(private APIService: APIService,private route: ActivatedRoute, private router: Router,) {
@@ -20,6 +22,10 @@ export class ProjectService {
   emitToastMsg :  EventEmitter<any> = new EventEmitter<any>();
   emitUserLogin : EventEmitter<any> = new EventEmitter<any>();
   emitUI : EventEmitter<any> = new EventEmitter<any>();
+  emitTable : EventEmitter<any> = new EventEmitter<any>();
+  emitSummary: EventEmitter<any> = new EventEmitter<any>();
+  emitHideTable: EventEmitter<any> = new EventEmitter<any>();
+  emitHideSummary: EventEmitter<any> = new EventEmitter<any>();
 
   checkLogin() {
     let login = localStorage.getItem('login');
@@ -178,6 +184,71 @@ export class ProjectService {
     });
   }
 
+  get_organization_accounts() {
+    this.APIService.Get_Organization_Accounts().subscribe((event: HttpEvent<any>) =>{
+      let response = this.HttpEventResponse(event)
+      if(response){
+        console.log(response)
+
+        this.tableData = response.data;
+        this.tableHeader = response.headers;
+
+        this.emitTable.emit({header: this.tableHeader, data:this.tableData})
+
+      } else {
+        console.log("bep 05");
+      }
+    }, (err)=>{
+      console.log("Error 3");
+    })
+  }
+
+  get_float_accounts() {
+    this.emitHideSummary.emit({display:"false"});
+    this.emitHideTable.emit({display:"false"});
+    this.APIService.Get_Float_Accounts().subscribe((event: HttpEvent<any>) =>{
+      let response = this.HttpEventResponse(event)
+      if(response){
+        console.log(response)
+
+        this.tableData = response.data;
+        this.tableHeader = response.headers;
+
+        this.emitTable.emit({header: this.tableHeader, data:this.tableData})
+
+      } else {
+        console.log("bep 06");
+      }
+    }, (err)=>{
+      console.log("Error 4");
+    })
+  }
+
+  getSummary(i) {
+    this.emitSummary.emit({header:this.tableHeader, data:this.tableData[i]});
+    // let temp = this.tableData.data[i];
+  }
+
+  get_Children() {
+    this.emitHideSummary.emit({display:"false"});
+    this.emitHideTable.emit({display:"false"});
+    this.APIService.Get_Children().subscribe((event: HttpEvent<any>) =>{
+      let response = this.HttpEventResponse(event)
+      if(response){
+
+        console.log(response)
+        this.tableData = response.data;
+        this.tableHeader = response.headers;
+
+        this.emitTable.emit({header: this.tableHeader, data:this.tableData})
+
+      } else {
+        console.log("bep 06");
+      }
+    }, (err)=>{
+      console.log("Error 5");
+    })
+  }
 
   test2(data){
     this.APIService.Test2(data);

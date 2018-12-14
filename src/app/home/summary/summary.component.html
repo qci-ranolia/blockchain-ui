@@ -1,3 +1,9 @@
-<p>
-  summary works!
-</p>
+<div  class="container" *ngIf="showSummary">
+
+  <h4>Summary</h4>
+
+  <div *ngFor="let he of header; let m = index">
+    <b>{{he}}</b>: <span  > {{dataService(m)}} </span>  <br><br>
+  </div>
+
+</div>

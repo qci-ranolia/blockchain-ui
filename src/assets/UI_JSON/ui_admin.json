@@ -1,6 +1,12 @@
 {
-  "admin": "true",
-
+  "name": "Admin Dashboard",
+  "parent": {
+    "navigation" : [
+      {"data":"Assets", "click": ""},
+      {"data":"Child"},
+      {"data":"Search"}
+    ]
+  },
   "child":{
 
   }
