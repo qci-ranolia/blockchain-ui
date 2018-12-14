@@ -1,6 +1,5 @@
-
-<div class="cont">
-  <div class="form sign-in">
+<div class="cont" *ngIf="!claim">
+  <div class="form sign-in" *ngIf="show">
     <h2 class="img__text" style="color:#aaa;">Welcome back,</h2><br/><br/><br/>
     <label>
       <span>Email</span>
@@ -11,7 +10,24 @@
       <input type="password" [(ngModel)]="password" name="password" />
     </label>
     <button type="button" class="submit" (click)="login()">Sign In</button>
-    <p class="forgot-pass">Change password?</p>
+    <p class="forgot-pass" (click)="gotochange()" style="cursor:pointer">Change password?</p>
+  </div>
+  <div class="form sign-in pt-0" *ngIf="!show">
+    <h2 class="img__text" style="color:#aaa;position:relative;top:10px">Change Password</h2><br/><br/>
+    <label>
+      <span>old Password</span>
+      <input type="password" [(ngModel)]="old" name="old" />
+    </label>
+    <label>
+      <span>New Password</span>
+      <input type="password" [(ngModel)]="new" name="new" />
+    </label>
+    <label>
+      <span>Confirm Password</span>
+      <input type="password" [(ngModel)]="confirm" name="confirm" />
+    </label>
+    <button type="button" class="submit" (click)="change()">Change Password</button>
+    <p class="forgot-pass" (click)="goback()" style="cursor:pointer">Go Back</p>
   </div>
   <div class="sub-cont">
     <div class="img">
@@ -21,8 +37,53 @@
         <br />
         <br />
       </div>
-      <div class="img__btn">
+      <div class="img__btn" (click)="gotoclaim()">
         <span class="m--up" style="background:none;color:#f0f0f0">Claim account</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="cont mt-4" *ngIf="claim" style="height:564px;">
+  <div class="form sign-in pt-1">
+    <label>
+      <span>Organisation Name</span>
+      <input type="text" [(ngModel)]="org_name" name="org" />
+    </label>
+    <label>
+      <span>Email</span>
+      <input type="email" [(ngModel)]="email" name="email" />
+    </label>
+    <label>
+      <span>Pancard</span>
+      <input type="text" [(ngModel)]="pancard" name="pan" />
+    </label>
+    <label>
+      <span>GST No.</span>
+      <input type="Text" [(ngModel)]="gst_number" name="gst" />
+    </label>
+    <label>
+      <span>TAN No.</span>
+      <input type="text" [(ngModel)]="tan_number" name="tan" />
+    </label>
+    <label>
+      <span>Phone No.</span>
+      <input type="text" [(ngModel)]="phone_number" name="phone" />
+    </label>
+    <button type="button" class="submit" (click)="claimAcc()">Claim</button>
+    <!-- <p class="forgot-pass" (click)="gotochange()" style="cursor:pointer">Change password?</p> -->
+  </div>
+  <div class="sub-cont">
+    <div class="img">
+      <div class="img__text m--up"><br /><br />
+        <h2 style="background:none;color:#f0f0f0;">Have a account?</h2>
+        <p style="background:none;color:#f0f0f0;">Sign In and discover great amount of new opportunities!</p>
+        <br />
+        <br />
+      </div><br />
+      <br /><br />
+      <br />
+      <div class="img__btn mt-5" (click)="closeClaim()">
+        <span class="m--up" style="background:none;color:#f0f0f0" >Sign In</span>
       </div>
     </div>
   </div>
