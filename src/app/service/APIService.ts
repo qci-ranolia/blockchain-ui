@@ -13,9 +13,10 @@ export class APIService {
   token : string
   headers : any
   opts : any
-  url = "http://13.233.29.111:8000/";
+  url = "http://192.168.15.139:8000/";
   request : any
   
+  emitOTP = new EventEmitter<any>()
   
   projectURL: string = '../assets/APIData/';
   constructor(private http: HttpClient) {}
@@ -62,15 +63,38 @@ export class APIService {
       )
       .subscribe(resp => {console.log(resp)})
     }
+
+
+    sendOTP(email:string, phone_number:string){
+      let tmp : any = {
+        email       : email,
+        phone_number: phone_number
+      }
+      let data = JSON.stringify(tmp)
+      return this.http.post<any>( this.url+'accounts/get_otp', data )
+      // .subscribe(resp => {
+      //   // this.emitOTP
+      //   console.log(resp)
+
+      // })
+    }
+
+    submit_OTP(data:any){
+        let payload = JSON.stringify(data)
+        console.log(payload)
+        return this.http.post<any>( this.url+'accounts/claim_account', payload )
+    }
     handleError(error: HttpErrorResponse) {
       if (error.error instanceof ErrorEvent) {
         // A client-side or network error occurred. Handle it accordingly.
-        console.error('An error occurred:', error.error.message)
+        console.error('An error occurred:', error)
       } else {
         // The backend returned an unsuccessful response code.
         // The response body may contain clues as to what went wrong,
+
         console.error(
-          `Backend returned code ${error.status}, ` + `body was: ${error.error}`)
+          `Backend returned code ${error.status}, ` + `body was: ${error.error}`, 
+          `Backend returned code ${error.message}, ` + `body was: ${error.error}`)
       }
       // return an observable with a user-facing error message
       return throwError(

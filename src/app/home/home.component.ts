@@ -12,7 +12,10 @@ export class HomeComponent implements OnInit {
     $(document).ready(function () {
       $('#table_id').DataTable({
         // "fixedHeader":true,
-        "scrollY": 380
+        "scrollY"   : 380,
+        "paging"    : false,
+        "searching" : false,
+        "ordering"  : false
       })
       var trigger = $('.hamburger'),
           overlay = $('.overlay'),

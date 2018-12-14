@@ -16,12 +16,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ViewContainerRef } from '@angular/core';
 import { APIService } from './service/APIService';
 import { ProjectService } from './service/ProjectService';
+import { FloatuserComponent } from './home/floatuser/floatuser.component';
+import { ClaimaccountComponent } from './home/claimaccount/claimaccount.component';
+import { CreateassetComponent } from './home/createasset/createasset.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    FloatuserComponent,
+    ClaimaccountComponent,
+    CreateassetComponent
   ],
   imports: [
     BrowserModule,

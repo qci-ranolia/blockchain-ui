@@ -1,0 +1,53 @@
+<div class="container mt-3 col-sm-12"><!-- closed -->
+  <div class="row m-1">
+    <div class="col-lg-12 col-lg-offset-2 pl-0 pr-0 mt-5 ovf-y">
+      <div class="cont">
+        <div class="form sign-in">
+          <a href="" (click)="refresh()">Go back</a>
+          <br /><br />
+          <label>
+            <span>Organisation name</span>
+            <input type="text" [(ngModel)]="org_name" name="org" autocomplete="off" />
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" [(ngModel)]="email" name="email" autocomplete="off" />
+          </label>
+          <label>
+            <span>Phone</span>
+            <input type="text" [(ngModel)]="phone_number" name="phone" autocomplete="off" />
+          </label>
+          <label>
+            <span>PAN Card</span>
+            <input type="text" [(ngModel)]="pancard" name="pancard" autocomplete="off" />
+          </label>
+          <label>
+            <span>Role type</span>
+            <select [(ngModel)]="role_type">
+              <option value="MASTER">MASTER</option>
+              <option value="CHILD">CHILD</option>
+              <option value="USER">USER</option>
+              <option value="LAB">LAB</option>
+            </select>
+          </label>
+        </div>
+        <div class="sub-cont">
+          <div class="img">
+            <div class="img__text m--up"><br /><br />
+              <h2 style="background:none;color:#f0f0f0;">Add Float accounts ?</h2>
+              <p style="background:none;color:#f0f0f0;">Add Float account and discover great amount of new opportunities!</p>
+              <br />
+              <br />
+              <br />
+            </div>
+            <br />
+            <div class="img__btn mt-5" (click)="addFloatUser()">
+              <button type="button" class="submit text-white mt-0 mb-0">Add user</button>
+            </div>
+            <!-- <span class="m--up" style="background:none;color:#f0f0f0">Add account</span> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

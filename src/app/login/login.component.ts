@@ -23,7 +23,7 @@ export class LoginComponent {
   pancard:any;
   email:any;
   org_name:any;
-
+  
   constructor(private ProjectService: ProjectService, private router: Router, private _api:APIService ) {
     this.ProjectService.checkLogin()
     this.ProjectService.emitUserLogin.subscribe((res)=>{
@@ -41,11 +41,9 @@ export class LoginComponent {
     this.show = true
   }
   gotoclaim() {
-    console.log('ds')
     this.claim = true
   }
   closeClaim() {
-    console.log('ds')
     this.claim = false
   }
 

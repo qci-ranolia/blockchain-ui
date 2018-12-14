@@ -1,0 +1,33 @@
+<div class="container mt-3 col-sm-12"><!-- closed -->
+  <div class="row m-1">
+    <div class="col-lg-12 col-lg-offset-2 pl-0 pr-0 mt-5 ovf-y">
+      <div class="cont">
+        <div class="form sign-in" style="width:100%">
+          <a href="" (click)="refresh()">Go back</a>
+          <br /><br />
+          <label>
+            <span>Upload Asset</span>
+            <input type="file" id="file" (change)="getVal($event);" name="asset" autocomplete="off" />
+          </label>
+          <br />
+          <button type="button" class="submit text-white mt-0 mb-0" (click)="addAsset($)">Create Asset</button>
+        </div>
+        <!-- <div class="sub-cont" style="display:none">
+          <div class="img">
+            <div class="img__text m--up"><br /><br />
+              <h2 style="background:none;color:#f0f0f0;">Create Asset accounts ?</h2>
+              <p style="background:none;color:#f0f0f0;">Create Asset account and discover great amount of new opportunities!</p>
+              <br />
+              <br />
+              <br />
+            </div>
+            <br />
+            <div class="img__btn mt-5" (click)="createAsset()">
+              <button type="button" class="submit text-white mt-0 mb-0">Create Asset</button>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,11 +3,11 @@
     <h2 class="img__text" style="color:#aaa;">Welcome back,</h2><br/><br/><br/>
     <label>
       <span>Email</span>
-      <input type="email" [(ngModel)]="username" name="username" />
+      <input type="email" [(ngModel)]="username" name="username" autocomplete="off" />
     </label>
     <label>
       <span>Password</span>
-      <input type="password" [(ngModel)]="password" name="password" />
+      <input type="password" [(ngModel)]="password" name="password" autocomplete="off" />
     </label>
     <button type="button" class="submit" (click)="login()">Sign In</button>
     <p class="forgot-pass" (click)="gotochange()" style="cursor:pointer">Change password?</p>
@@ -16,15 +16,15 @@
     <h2 class="img__text" style="color:#aaa;position:relative;top:10px">Change Password</h2><br/><br/>
     <label>
       <span>old Password</span>
-      <input type="password" [(ngModel)]="old" name="old" />
+      <input type="password" [(ngModel)]="old" name="old" autocomplete="off" />
     </label>
     <label>
       <span>New Password</span>
-      <input type="password" [(ngModel)]="new" name="new" />
+      <input type="password" [(ngModel)]="new" name="new" autocomplete="off" />
     </label>
     <label>
       <span>Confirm Password</span>
-      <input type="password" [(ngModel)]="confirm" name="confirm" />
+      <input type="password" [(ngModel)]="confirm" name="confirm" autocomplete="off" />
     </label>
     <button type="button" class="submit" (click)="change()">Change Password</button>
     <p class="forgot-pass" (click)="goback()" style="cursor:pointer">Go Back</p>
@@ -47,27 +47,27 @@
   <div class="form sign-in pt-1">
     <label>
       <span>Organisation Name</span>
-      <input type="text" [(ngModel)]="org_name" name="org" />
+      <input type="text" [(ngModel)]="org_name" name="org" autocomplete="off" />
     </label>
     <label>
       <span>Email</span>
-      <input type="email" [(ngModel)]="email" name="email" />
+      <input type="email" [(ngModel)]="email" name="email" autocomplete="off" />
     </label>
     <label>
       <span>Pancard</span>
-      <input type="text" [(ngModel)]="pancard" name="pan" />
+      <input type="text" [(ngModel)]="pancard" name="pan" autocomplete="off" />
     </label>
     <label>
       <span>GST No.</span>
-      <input type="Text" [(ngModel)]="gst_number" name="gst" />
+      <input type="Text" [(ngModel)]="gst_number" name="gst" autocomplete="off" />
     </label>
     <label>
       <span>TAN No.</span>
-      <input type="text" [(ngModel)]="tan_number" name="tan" />
+      <input type="text" [(ngModel)]="tan_number" name="tan" autocomplete="off" />
     </label>
     <label>
       <span>Phone No.</span>
-      <input type="text" [(ngModel)]="phone_number" name="phone" />
+      <input type="text" [(ngModel)]="phone_number" name="phone" autocomplete="off" />
     </label>
     <button type="button" class="submit" (click)="claimAcc()">Claim</button>
     <!-- <p class="forgot-pass" (click)="gotochange()" style="cursor:pointer">Change password?</p> -->
