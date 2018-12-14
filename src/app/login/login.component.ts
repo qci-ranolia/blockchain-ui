@@ -31,7 +31,7 @@ export class LoginComponent {
     })
   }
   
-  login() {
+  Login() {
     this._api.loginuser( this.username, this.password )
   }
   gotochange() {
@@ -52,7 +52,15 @@ export class LoginComponent {
       this._api.change(this.old, this.new, this.confirm)
     } else alert ("Password does not match. Try again!")
   }
-
+  login() {
+    let formData = new FormData();
+    formData.append('email',this.email);
+    formData.append('password',this.password);
+    let data = { email: this.email, password:  this.password};
+    // this.ProjectService.login(formData);
+    this.ProjectService.login1(data);
+    localStorage.setItem('userEmail',this.email);
+  }
   claimAcc() {
     this._api.claimAcc(this.phone_number,this.tan_number,this.gst_number,this.pancard,this.email,this.org_name)
   }

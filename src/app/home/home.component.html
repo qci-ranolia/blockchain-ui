@@ -1,10 +1,10 @@
-<div id="wrapper" class="toggled">
+<div id="wrapper" class="toggled" *ngIf="UI_Info">
     <div class="overlay" style="display:block"></div>
     <!-- Sidebar -->
     <nav class="navbar navbar-inverse fixed-top" id="sidebar-wrapper" role="navigation">
         <ul class="nav sidebar-nav">
             <div class="sidebar-header">
-                <div class="sidebar-brand"><a href="#" style="font-size:20px">QCI</a></div>
+                <div class="sidebar-brand"><a href="#" style="font-size:20px">{{UI_Info.data.name}}</a></div>
             </div>
             <div class="sidebar-header">
                 <label>
@@ -12,10 +12,7 @@
                     <input type="text"  />
                 </label>
             </div>
-            <li><a href="#">Float Accounts</a></li>
-            <li><a href="#">Navigation</a></li>
-            <li><a href="#">Navigation</a></li>
-            <li><a href="#">Navigation</a></li>
+            <app-navigation [info]=UI_Info ></app-navigation>
         </ul>
     </nav>
     <!-- Page Content -->
@@ -25,116 +22,9 @@
             <span class="hamb-middle"></span>
             <span class="hamb-bottom"></span>
         </button>
-        <div class="container closed mt-3">
-            <div class="row m-1">
-                <h3 class="mt-3 col-sm-6 pl-0">Heading</h3>
-                <div class="col-sm-6 pr-0">
-                    <button type="button" class="submit float-right" [routerLink]="['/floatuser']">+ Create New</button>
-                </div>
-                <div class="col-lg-12 col-lg-offset-2 pl-0 pr-0 mt-5 ovf-y">
-                    <table class="display col-sm-12 p-0">
-                        <thead style="border-bottom: 1px solid #135;">
-                            <tr class="text-center">
-                                <th>Column 1</th>
-                                <th>Role Type</th>
-                                <th>Column 2</th>
-                                <th>Column 3</th>
-                                <th>Column 4</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="text-center border-bottom" >
-                                <td><a href="">Master 1</a></td>
-                                <td>Master</td>
-                                <td>Lorem Ipsum</td>
-                                <td>pablo sit</td>
-                                <td>Amor diablo</td>
-                            </tr>
-                            <tr class="text-center border-bottom" >
-                                <td><a href="">Master 1</a></td>
-                                <td>Master</td>
-                                <td>Lorem Ipsum</td>
-                                <td>pablo sit</td>
-                                <td>Amor diablo</td>
-                            </tr>
-                            <tr class="text-center border-bottom" >
-                                <td><a href="">Master 1</a></td>
-                                <td>Master</td>
-                                <td>Lorem Ipsum</td>
-                                <td>pablo sit</td>
-                                <td>Amor diablo</td>
-                            </tr>
-                            <tr class="text-center border-bottom" >
-                                <td><a href="">Master 1</a></td>
-                                <td>Master</td>
-                                <td>Lorem Ipsum</td>
-                                <td>pablo sit</td>
-                                <td>Amor diablo</td>
-                            </tr>
-                            <tr class="text-center border-bottom" >
-                                <td><a href="">Master 1</a></td>
-                                <td>Master</td>
-                                <td>Lorem Ipsum</td>
-                                <td>pablo sit</td>
-                                <td>Amor diablo</td>
-                            </tr>
-                            <tr class="text-center border-bottom" >
-                                <td><a href="">Master 1</a></td>
-                                <td>Master</td>
-                                <td>Lorem Ipsum</td>
-                                <td>pablo sit</td>
-                                <td>Amor diablo</td>
-                            </tr>
-                            <tr class="text-center border-bottom" >
-                                <td><a href="">Master 1</a></td>
-                                <td>Master</td>
-                                <td>Lorem Ipsum</td>
-                                <td>pablo sit</td>
-                                <td>Amor diablo</td>
-                            </tr>
-                            <tr class="text-center border-bottom" >
-                                <td><a href="">Master 1</a></td>
-                                <td>Master</td>
-                                <td>Lorem Ipsum</td>
-                                <td>pablo sit</td>
-                                <td>Amor diablo</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+        <app-table [info]=UI_Info ></app-table>
         <br />
-        <div class="container closed mt-3">
-            <div class="row m-1">
-                <h3 class="mt-3 col-sm-12 p-0">Summary</h3>
-                <h4 class="col-sm-12 p-0" ><a href="">Master 2</a><button type="button" class="submit float-right" style="position:relative;top:-50px">View All</button></h4>
-                <br /><br />
-                <div class="col-sm-12 row mb-2">
-                    <div class="col-sm-4 p-0">ID</div>
-                    <div class="col-sm-8 p-0">M00TR</div>
-                </div>
-                <div class="col-sm-12 row mb-2">
-                    <div class="col-sm-4 p-0">ADDRESS</div>
-                    <div class="col-sm-8 p-0">dasfqehej4g4iuh2u3hu2i3h24dasfqehej4g4iuh2u3hu2i3h24dasfqehej4g4iuh2u3hu2i3h24dasfqehej4g4iuh2u3hu2i3h24dasfqehej4g4iuh2u3hu2i3h2423vbc1u3h1c112x3b12b1ys313131522343256b7n68m7inu4b5v4rcex3ctvyb45yvtcrexe</div>
-                </div>
-                <div class="col-sm-12 row mb-2">
-                    <div class="col-sm-4 p-0">CREATED ON</div>
-                    <div class="col-sm-8 p-0">12:36:86AM, 14, Dec, 2018</div>
-                </div>
-                <div class="col-sm-12 row mb-2">
-                    <div class="col-sm-4 p-0">PHONE</div>
-                    <div class="col-sm-8 p-0">+91-959-989-2417</div>
-                </div>
-                <div class="col-sm-12 row mb-2">
-                    <div class="col-sm-4 p-0">EMAIL-ID</div>
-                    <div class="col-sm-8 p-0">info@ml.ai</div>
-                </div>
-                <button type="button" class="submit float-left ml-0 mr-0">B 1</button> 
-                <button type="button" class="submit float-left ml-3">B 2</button>
-            </div>
-        </div>
-        <br /><br />
+        <app-summary [info]=UI_Info ></app-summary>
     </div>
     <!-- /#page-content-wrapper -->
 </div>

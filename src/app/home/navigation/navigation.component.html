@@ -1,0 +1,10 @@
+<!--
+  <ul class="nav flex-column" *ngFor="let nav of navArray" >
+    <li class="nav-item">
+      <a class="nav-link active" (click)="navButton(nav.data)">{{nav.data}}</a>
+    </li>
+  </ul>
+-->
+<div *ngFor="let nav of navArray">
+  <li (click)="navButton(nav.data)">{{nav.data}}</li>
+</div>

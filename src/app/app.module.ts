@@ -19,6 +19,9 @@ import { ProjectService } from './service/ProjectService';
 import { FloatuserComponent } from './home/floatuser/floatuser.component';
 import { ClaimaccountComponent } from './home/claimaccount/claimaccount.component';
 import { CreateassetComponent } from './home/createasset/createasset.component';
+import { NavigationComponent } from './home/navigation/navigation.component';
+import { TableComponent } from './home/table/table.component';
+import { SummaryComponent } from './home/summary/summary.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { CreateassetComponent } from './home/createasset/createasset.component';
     HomeComponent,
     FloatuserComponent,
     ClaimaccountComponent,
-    CreateassetComponent
+    CreateassetComponent,
+    NavigationComponent,
+    TableComponent,
+    SummaryComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,41 @@
+<div class="container closed mt-3"  *ngIf="showSummary">
+  <div class="row m-1">
+      <h3 class="mt-3 col-sm-12 p-0">Summary</h3>
+      <h4 class="col-sm-12 p-0" ><a href="">Master 2</a><button type="button" class="submit float-right" style="position:relative;top:-50px">View All</button></h4>
+      <br /><br />
+      <div class="col-sm-12 row mb-2" *ngFor="let he of header; let m = index">
+          <div class="col-sm-4 p-0"><strong>{{he}}</strong></div>
+          <div class="col-sm-8 p-0">{{dataService(m)}}</div>
+      </div>
+      <!--<div class="col-sm-12 row mb-2">
+          <div class="col-sm-4 p-0">ADDRESS</div>
+          <div class="col-sm-8 p-0">dasfqehej4g4iuh2u3hu2i3h24dasfqehej4g4iuh2u3hu2i3h24dasfqehej4g4iuh2u3hu2i3h24dasfqehej4g4iuh2u3hu2i3h24dasfqehej4g4iuh2u3hu2i3h2423vbc1u3h1c112x3b12b1ys313131522343256b7n68m7inu4b5v4rcex3ctvyb45yvtcrexe</div>
+      </div>
+      <div class="col-sm-12 row mb-2">
+          <div class="col-sm-4 p-0">CREATED ON</div>
+          <div class="col-sm-8 p-0">12:36:86AM, 14, Dec, 2018</div>
+      </div>
+      <div class="col-sm-12 row mb-2">
+          <div class="col-sm-4 p-0">PHONE</div>
+          <div class="col-sm-8 p-0">+91-959-989-2417</div>
+      </div>
+      <div class="col-sm-12 row mb-2">
+          <div class="col-sm-4 p-0">EMAIL-ID</div>
+          <div class="col-sm-8 p-0">info@ml.ai</div>
+      </div>-->
+      <button type="button" class="submit float-left ml-0 mr-0">B 1</button> 
+      <button type="button" class="submit float-left ml-3">B 2</button>
+  </div>
+</div>
+<br /><br />
+
+
+<!--<div  class="container" *ngIf="showSummary">
+
+  <h4>Summary</h4>
+
+  <div *ngFor="let he of header; let m = index">
+    <b>{{he}}</b>: <span  > {{dataService(m)}} </span>  <br><br>
+  </div>
+
+</div>-->

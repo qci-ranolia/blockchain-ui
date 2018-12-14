@@ -137,5 +137,12 @@
       }
     }
   },
-  "defaultProject": "blockchainUI"
+  "defaultProject": "blockchainUI",
+  "schematics": {
+    "@schematics/angular": {
+      "component": {
+        "spec": false
+      }
+    }
+  }
 }
