@@ -10,7 +10,7 @@ export class APIService {
   localURL: string = 'http://192.168.15.139:8000';
   current_URL : string = this.localURL;
   Header: any;
-  appHeader: any = new HttpHeaders({ 'Autherization'  : 'true' }, {'Content-Type':'application/json'});
+  appHeader: any = new HttpHeaders({ 'Autherization'  : 'true' });
 
   constructor(private http: HttpClient) {}
 
