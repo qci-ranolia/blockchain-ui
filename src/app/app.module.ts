@@ -15,12 +15,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ViewContainerRef } from '@angular/core';
 import { APIService } from './service/APIService';
 import { ProjectService } from './service/ProjectService';
+import { NavigationComponent } from './home/navigation/navigation.component';
+import { TableComponent } from './home/table/table.component';
+import { SummaryComponent } from './home/summary/summary.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    NavigationComponent,
+    TableComponent,
+    SummaryComponent
   ],
   imports: [
     BrowserModule,

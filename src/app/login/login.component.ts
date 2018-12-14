@@ -30,8 +30,10 @@ export class LoginComponent implements OnInit {
   login() {
     let formData = new FormData();
     formData.append('email',this.email);
-    formData.append('pwd',this.password);
-    this.ProjectService.login(formData);
+    formData.append('password',this.password);
+    let data = { email: this.email, password:  this.password};
+    // this.ProjectService.login(formData);
+    this.ProjectService.login1(data);
     localStorage.setItem('userEmail',this.email);
 
   }
