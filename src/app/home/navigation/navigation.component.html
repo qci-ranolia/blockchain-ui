@@ -5,6 +5,6 @@
     </li>
   </ul>
 -->
-<div *ngFor="let nav of navArray">
+<div *ngFor="let nav of navArray" class="col-sm-12 p-0">
   <li (click)="navButton(nav.data)">{{nav.data}}</li>
 </div>

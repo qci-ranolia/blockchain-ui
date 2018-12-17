@@ -33,6 +33,7 @@ export class LoginComponent {
   
   Login() {
     this._api.loginuser( this.username, this.password )
+    localStorage.setItem('userEmail', this.username);
   }
   gotochange() {
     this.show = false

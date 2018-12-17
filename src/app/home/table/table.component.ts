@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ProjectService } from '../../service/ProjectService';
+declare var $
 
 @Component({
   selector: 'app-table',
@@ -11,26 +12,27 @@ export class TableComponent implements OnInit {
   @Input() info:any;
   tableArray: any;
   showTable= false;
+  sIndex: number = null;
 
+  
   constructor(private ProjectService: ProjectService) {
     this.ProjectService.emitTable.subscribe(res=>{
       console.log(res);
       this.showTable= true;
       this.tableArray= res;
     })
-
     this.ProjectService.emitHideTable.subscribe(res=>{
       this.showTable = false;
-    });
+    })
   }
 
   ngOnInit() {
   }
 
   getSummary(i) {
+    this.sIndex = i
     this.ProjectService.getSummary(i);
   }
-
   dataService(row, m) {
     // console.log(i);
     row = JSON.stringify(row);

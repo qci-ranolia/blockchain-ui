@@ -1,0 +1,41 @@
+table.display th {
+    height:30px;
+    line-height:30px;
+    color:#fff;
+}
+table.display tr {
+    height:30px;
+    line-height:30px;
+    border-color: #aaa !important;
+    opacity: 0.8;
+}
+table.display tr:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+th.fix-2, td.fix-2 {
+    max-width:8% !important;
+    width:8% !important;
+    padding: 10px 5px;
+}
+td div {
+    width: 100%;
+    max-width: 70px;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp:1;
+    max-height: 18px;
+    line-height: 18px;
+    -webkit-box-orient: vertical; 
+    overflow: hidden;
+    font-size: 13px;
+}
+.ovf-xy {
+    overflow:auto;
+    overflow-y:auto;
+    height: 340px;
+}
+th.fix{
+    width:4% !important;
+    max-width:4% !important;
+}

@@ -5,7 +5,6 @@ import { catchError, retry } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +12,9 @@ export class APIService {
   token : string
   headers : any
   opts : any
-  url = "http://192.168.15.139:8000/";
+  url = "http://13.233.29.111:8000/";
+  // url = "http://192.168.15.139:8000/";
+  // url: string = '../assets/UI_JSON/';
   request : any
   
   // emitOTP = new EventEmitter<any>()
@@ -22,7 +23,8 @@ export class APIService {
   UI_JSON: string = '../assets/UI_JSON/';
   proURL: string = 'http://13.233.29.111:8000';
   localURL: string = 'http://192.168.15.139:8000';
-  current_URL : string = this.localURL;
+  // current_URL : string = this.localURL;
+  current_URL : string = this.proURL;
   Header: any;
   appHeader: any = new HttpHeaders({ 'Autherization'  : 'true' });
 
