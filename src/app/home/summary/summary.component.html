@@ -2,8 +2,12 @@
 
   <h4>Summary</h4>
 
-  <div *ngFor="let he of header; let m = index">
-    <b>{{he}}</b>: <span  > {{dataService(m)}} </span>  <br><br>
+  <button class="btn btn-primary" type="submit" (click)='search()'>View all</button>
+
+
+  <div *ngFor="let he of header; let m = index" class="text-left">
+    <br>
+    <b>{{he}}</b>: <span  > {{dataService(m)}} </span>  
   </div>
 
 </div>

@@ -2,6 +2,7 @@
   "name": "Master Dashboard",
   "parent": {
     "navigation" : [
+      {"data":"Accounts", "click": ""},
       {"data":"Assets", "click": ""},
       {"data":"Child"},
       {"data":"Search"}

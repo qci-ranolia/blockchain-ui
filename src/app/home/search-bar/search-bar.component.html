@@ -1,0 +1,9 @@
+<div class="container" *ngIf="showSearchBar">
+  <p>
+    search-bar
+    <br>
+    <input type="text" class="form-control" name="address" placeholder="Address" required="" autofocus=""  [(ngModel)]='address' />
+    <br>
+    <button class="btn btn-primary" type="submit" (click)='search()'>Search</button>
+  </p>
+</div>

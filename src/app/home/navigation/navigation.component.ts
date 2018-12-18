@@ -28,12 +28,18 @@ export class NavigationComponent implements OnInit {
   }
 
   navButton(action) {
-    if(action=="Assets") {
+    if(action=="Accounts") {
       this.ProjectService.get_float_accounts();
+      this.ProjectService.setAction(action);
+    } if(action=="Assets") {
+      this.ProjectService.get_assets();
+      this.ProjectService.setAction(action);
     } if(action=="Child") {
       this.ProjectService.get_Children();
+      this.ProjectService.setAction(action);
     } if(action=="Search") {
-
+      this.ProjectService.get_search();
+      this.ProjectService.setAction(action);
     }
 
   }

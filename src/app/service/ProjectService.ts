@@ -10,6 +10,7 @@ export class ProjectService {
   tableHeader: any = [];
   tableData: any = [];
   month : any = '2017-10';
+  globalAction: string = "";
 
   constructor(private APIService: APIService,private route: ActivatedRoute, private router: Router,) {
     let d = new Date();
@@ -19,19 +20,29 @@ export class ProjectService {
     this.month = y+'-'+m;
   }
 
-  emitToastMsg :  EventEmitter<any> = new EventEmitter<any>();
-  emitUserLogin : EventEmitter<any> = new EventEmitter<any>();
   emitUI : EventEmitter<any> = new EventEmitter<any>();
   emitTable : EventEmitter<any> = new EventEmitter<any>();
   emitSummary: EventEmitter<any> = new EventEmitter<any>();
   emitHideTable: EventEmitter<any> = new EventEmitter<any>();
+  emitToastMsg :  EventEmitter<any> = new EventEmitter<any>();
+  emitUserLogin : EventEmitter<any> = new EventEmitter<any>();
   emitHideSummary: EventEmitter<any> = new EventEmitter<any>();
+  emitHideSearchBar:  EventEmitter<any> = new EventEmitter<any>();
 
   checkLogin() {
     let login = localStorage.getItem('login');
     if(login === 'true') {
       this.router.navigate(['./home']);
     }
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['./login']);
+  }
+
+  setAction(action: string) {
+    this.globalAction = action;
   }
 
   HttpEventResponse(event) {
@@ -52,27 +63,8 @@ export class ProjectService {
     }
   }
 
-  login(data) {
+  login(data){
     this.APIService.Login(data).subscribe((event: HttpEvent<any>) => {
-      switch (event.type) {
-        case HttpEventType.Sent:
-          console.log('Request started');
-          break;
-        case HttpEventType.ResponseHeader:
-          console.log('Headers received ->', event.headers);
-          break;
-        case HttpEventType.DownloadProgress:
-          const loaded = Math.round(event.loaded / 1024);
-          console.log(`Downloading ${ loaded } kb downloaded`);
-          break;
-        case HttpEventType.Response:
-          console.log('Finished -> ', event.body);
-      }
-    });
-  }
-
-  login1(data){
-    this.APIService.Login1(data).subscribe((event: HttpEvent<any>) => {
       let response = this.HttpEventResponse(event)
      if(response){
        if(response.authorization){
@@ -130,6 +122,10 @@ export class ProjectService {
     } else {
       console.log('Role not found');
     }
+  }
+
+  createNew() {
+    
   }
 
   get_admin_ui(parent_role, role){
@@ -204,8 +200,9 @@ export class ProjectService {
   }
 
   get_float_accounts() {
-    this.emitHideSummary.emit({display:"false"});
-    this.emitHideTable.emit({display:"false"});
+    // this.emitHideSummary.emit({display:"false"});
+    // this.emitHideTable.emit({display:"false"});
+    this.dashboardElements({table:0,summary:0,search:0});
     this.APIService.Get_Float_Accounts().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
@@ -230,8 +227,9 @@ export class ProjectService {
   }
 
   get_Children() {
-    this.emitHideSummary.emit({display:"false"});
-    this.emitHideTable.emit({display:"false"});
+    // this.emitHideSummary.emit({display:"false"});
+    // this.emitHideTable.emit({display:"false"});
+    this.dashboardElements({table:0,summary:0,search:0});
     this.APIService.Get_Children().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
@@ -250,16 +248,69 @@ export class ProjectService {
     })
   }
 
-  test2(data){
-    this.APIService.Test2(data);
+  get_search() {
+    this.dashboardElements({table:0,summary:0,search:1});
+
   }
 
-  test3(data) {
-    this.APIService.Test3(data).subscribe((res)=>{
-      console.log(res);
+  dashboardElements(elements: {table:number , summary:number, search:number}) {
+
+    if(elements.table==1) {
+      this.emitHideTable.emit({display:"true"});
+    }
+    if(elements.table==0) {
+      this.emitHideTable.emit({display:"false"});
+    }
+    if(elements.summary==1) {
+      this.emitHideSummary.emit({display:"true"});
+    }
+    if(elements.summary==0) {
+      this.emitHideSummary.emit({display:"false"});
+    }
+    if(elements.search==1) {
+      this.emitHideSearchBar.emit({display:"true"});
+    }
+    if(elements.search==0) {
+      this.emitHideSearchBar.emit({display:"false"});
+    }
+
+  }
+
+  search_by_address(data) {
+    this.APIService.Search_By_Address(data).subscribe((event: HttpEvent<any>) =>{
+      let response = this.HttpEventResponse(event)
+      if(response){
+
+        console.log(response)
+        console.log(response.headers)
+        this.emitSummary.emit({header:response.headers, data:response.data});
+
+      } else {
+        console.log("bep 07");
+      }
     }, (err)=>{
-      console.log(err);
+      console.log("Error 6");
     });
+  }
+
+  get_assets() {
+    this.dashboardElements({table:0,summary:0,search:0});
+    this.APIService.Get_Assets().subscribe((event: HttpEvent<any>) =>{
+      let response = this.HttpEventResponse(event)
+      if(response){
+        console.log(response)
+
+        this.tableData = response.data;
+        this.tableHeader = response.headers;
+
+        this.emitTable.emit({header: this.tableHeader, data:this.tableData})
+
+      } else {
+        console.log("bep 08");
+      }
+    }, (err)=>{
+      console.log("Error 7");
+    })
   }
 
 }

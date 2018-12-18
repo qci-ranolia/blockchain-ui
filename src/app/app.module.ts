@@ -18,6 +18,7 @@ import { ProjectService } from './service/ProjectService';
 import { NavigationComponent } from './home/navigation/navigation.component';
 import { TableComponent } from './home/table/table.component';
 import { SummaryComponent } from './home/summary/summary.component';
+import { SearchBarComponent } from './home/search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SummaryComponent } from './home/summary/summary.component';
     HomeComponent,
     NavigationComponent,
     TableComponent,
-    SummaryComponent
+    SummaryComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,

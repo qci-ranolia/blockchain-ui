@@ -45,4 +45,8 @@ export class TableComponent implements OnInit {
     return arr[m];
   }
 
+  createNew() {
+    this.ProjectService.createNew();
+  }
+
 }
