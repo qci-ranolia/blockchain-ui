@@ -28,6 +28,7 @@ export class ProjectService {
   emitUserLogin : EventEmitter<any> = new EventEmitter<any>();
   emitHideSummary: EventEmitter<any> = new EventEmitter<any>();
   emitHideSearchBar:  EventEmitter<any> = new EventEmitter<any>();
+  emitHideFormBuilder:  EventEmitter<any> = new EventEmitter<any>();
 
   checkLogin() {
     let login = localStorage.getItem('login');
@@ -124,8 +125,17 @@ export class ProjectService {
     }
   }
 
-  createNew() {
-    
+  createNewForm() {
+    this.dashboardElements({table:0, summary:0, search:0, form:1});
+  }
+
+  checkToken(res) {
+    console.log(res);
+    if(res.statusText) {
+      if(res.statusText==="Unauthorized" || res.status===401) {
+        this.logout();
+      }
+    }
   }
 
   get_admin_ui(parent_role, role){
@@ -176,6 +186,7 @@ export class ProjectService {
         console.log("bep 04");
       }
     }, (err)=>{
+      this.checkToken(err);
       console.log("Error 2");
     });
   }
@@ -195,6 +206,7 @@ export class ProjectService {
         console.log("bep 05");
       }
     }, (err)=>{
+      this.checkToken(err);
       console.log("Error 3");
     })
   }
@@ -202,7 +214,7 @@ export class ProjectService {
   get_float_accounts() {
     // this.emitHideSummary.emit({display:"false"});
     // this.emitHideTable.emit({display:"false"});
-    this.dashboardElements({table:0,summary:0,search:0});
+    this.dashboardElements({table:0,summary:0,search:0,form:0});
     this.APIService.Get_Float_Accounts().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
@@ -217,6 +229,7 @@ export class ProjectService {
         console.log("bep 06");
       }
     }, (err)=>{
+      this.checkToken(err);
       console.log("Error 4");
     })
   }
@@ -229,7 +242,7 @@ export class ProjectService {
   get_Children() {
     // this.emitHideSummary.emit({display:"false"});
     // this.emitHideTable.emit({display:"false"});
-    this.dashboardElements({table:0,summary:0,search:0});
+    this.dashboardElements({table:0,summary:0,search:0, form:0});
     this.APIService.Get_Children().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
@@ -244,17 +257,17 @@ export class ProjectService {
         console.log("bep 06");
       }
     }, (err)=>{
+      this.checkToken(err);
       console.log("Error 5");
     })
   }
 
   get_search() {
-    this.dashboardElements({table:0,summary:0,search:1});
+    this.dashboardElements({table:0,summary:0,search:1, form:0});
 
   }
 
-  dashboardElements(elements: {table:number , summary:number, search:number}) {
-
+  dashboardElements(elements: {table:number , summary:number, search:number, form:number}) {
     if(elements.table==1) {
       this.emitHideTable.emit({display:"true"});
     }
@@ -273,6 +286,12 @@ export class ProjectService {
     if(elements.search==0) {
       this.emitHideSearchBar.emit({display:"false"});
     }
+    if(elements.form==1) {
+      this.emitHideFormBuilder.emit({display:"true"});
+    }
+    if(elements.form==0) {
+      this.emitHideFormBuilder.emit({display:"false"});
+    }
 
   }
 
@@ -289,12 +308,13 @@ export class ProjectService {
         console.log("bep 07");
       }
     }, (err)=>{
+      this.checkToken(err);
       console.log("Error 6");
     });
   }
 
   get_assets() {
-    this.dashboardElements({table:0,summary:0,search:0});
+    this.dashboardElements({table:0,summary:0,search:0, form:0});
     this.APIService.Get_Assets().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
@@ -309,6 +329,7 @@ export class ProjectService {
         console.log("bep 08");
       }
     }, (err)=>{
+      this.checkToken(err);
       console.log("Error 7");
     })
   }

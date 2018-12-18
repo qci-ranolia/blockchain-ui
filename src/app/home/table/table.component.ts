@@ -46,7 +46,7 @@ export class TableComponent implements OnInit {
   }
 
   createNew() {
-    this.ProjectService.createNew();
+    this.ProjectService.createNewForm();
   }
 
 }
