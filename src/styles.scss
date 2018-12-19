@@ -123,9 +123,10 @@ button.submit {
 	font-size: 15px;
 	cursor: pointer; 
 	margin: 20px auto 0;
-	background: #d4af7a;
+	background:white;
 	text-transform: uppercase;
-	color:#fff;
+	color:dark-primary($theme);
+	box-shadow: 3px 2px 5px dark-primary($theme - #222)
 }
 
 input:-webkit-autofill,
