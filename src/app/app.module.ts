@@ -23,6 +23,7 @@ import { FormBuilderComponent } from './home/form-builder/form-builder.component
 import { InputTextComponent } from './home/form-builder/input-text/input-text.component';
 import { InputPasswordComponent } from './home/form-builder/input-password/input-password.component';
 import { InputDropdownComponent } from './home/form-builder/input-dropdown/input-dropdown.component';
+import { InputEmailComponent } from './home/form-builder/input-email/input-email.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { InputDropdownComponent } from './home/form-builder/input-dropdown/input
     FormBuilderComponent,
     InputTextComponent,
     InputPasswordComponent,
-    InputDropdownComponent
+    InputDropdownComponent,
+    InputEmailComponent
   ],
   imports: [
     BrowserModule,

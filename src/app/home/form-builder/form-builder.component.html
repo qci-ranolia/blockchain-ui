@@ -1,5 +1,19 @@
 <div class="container" *ngIf="showForm">
-  <p>
-    form-builder works!
-  </p>
+    <br><br>
+    <div *ngFor='let json of jsonArray; let i = index'>
+      <div *ngIf="json.type == 'text'" >
+        text : <app-input-text [json]=json  (responseData)="responseData($event)"></app-input-text><br><br>
+      </div>
+      <div *ngIf="json.type == 'password'" >
+        password : <app-input-password [json]=json  (responseData)="responseData($event)"></app-input-password><br><br>
+      </div>
+      <div *ngIf="json.type == 'email'" >
+        email : <app-input-email [json]=json  (responseData)="responseData($event)"></app-input-email><br><br>
+      </div>
+      <div *ngIf="json.type == 'dropdown'" >
+        dropdown : <app-input-dropdown [json]=json  (responseData)="responseData($event)"></app-input-dropdown><br><br>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" type="submit" (click)='submitForm()'>Submit</button>
 </div>
