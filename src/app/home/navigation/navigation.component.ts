@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProjectService } from '../../service/ProjectService';
 
 @Component({
@@ -11,7 +12,7 @@ export class NavigationComponent implements OnInit {
   @Input() info:any;
   navArray: any = [];
 
-  constructor(private ProjectService: ProjectService) {}
+  constructor(private ProjectService: ProjectService, private router: Router) {}
 
   ngOnInit() {
     console.log(this.info.data.parent.navigation);
@@ -26,14 +27,28 @@ export class NavigationComponent implements OnInit {
       this.navArray = this.info.data.child.navigation;
     }
   }
+  logout(){
+    localStorage.removeItem('login')
+    localStorage.removeItem('role')
+    localStorage.removeItem('token')
+    localStorage.removeItem('parent_role')
+    localStorage.removeItem('userEmail')
+    this.router.navigate(['login'])
+  }
 
   navButton(action) {
-    if(action=="Assets") {
+    if(action=="Accounts") {
       this.ProjectService.get_float_accounts();
+      this.ProjectService.setAction(action);
+    } if(action=="Assets") {
+      this.ProjectService.get_assets();
+      this.ProjectService.setAction(action);
     } if(action=="Child") {
       this.ProjectService.get_Children();
+      this.ProjectService.setAction(action);
     } if(action=="Search") {
-
+      this.ProjectService.get_search();
+      this.ProjectService.setAction(action);
     }
 
   }

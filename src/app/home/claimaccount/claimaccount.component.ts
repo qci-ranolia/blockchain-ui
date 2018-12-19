@@ -12,8 +12,7 @@ import { catchError, retry } from 'rxjs/operators';
 export class ClaimaccountComponent implements OnInit {
   email:string
   phone_number:string
-  otp_view:boolean = false
-  
+  otp_view:boolean = false  
 
   tan_number  : any = null;
   gst_number  : any = null;

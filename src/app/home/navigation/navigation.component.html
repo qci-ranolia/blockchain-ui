@@ -1,10 +1,4 @@
-<!--
-  <ul class="nav flex-column" *ngFor="let nav of navArray" >
-    <li class="nav-item">
-      <a class="nav-link active" (click)="navButton(nav.data)">{{nav.data}}</a>
-    </li>
-  </ul>
--->
+<i class="fa fa-power-off" (click)="logout()"></i>
 <div *ngFor="let nav of navArray" class="col-sm-12 p-0">
   <li (click)="navButton(nav.data)">{{nav.data}}</li>
 </div>

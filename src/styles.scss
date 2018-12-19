@@ -86,20 +86,23 @@ table.dataTable.display tbody td {
 .closed{
   // transition-timing-function: ease;
   // transition-duration: 0.7s;
-  border: 1px solid dark-primary($theme - #111);
+  border: 1px solid dark-primary($theme - #222);
   padding-bottom: 20px;
-  box-shadow: 0px 0px 1px 1px inset light-primary($theme);
+	box-shadow: 0px 0px 40px 10px dark-primary($theme - #222);
+	border-radius: 10px;
 }
 .toggled .closed{
+	border-radius: 10px;
   transition-timing-function: ease;
   transition-duration: 1.5s;
-  border: none;
+  border: 1px solid dark-primary($theme - #222);
   padding-bottom: 20px;
-  box-shadow: none;
+	box-shadow: 0px 0px 40px 10px dark-primary($theme - #222);
+	
 }
 #sidebar-wrapper{
-  box-shadow: 0px 0px 0px 1px light-primary($theme);
-  border-right: 1px solid dark-primary($theme)
+  box-shadow: 0px 0px 40px 10px dark-primary($theme - #222);
+  border-right: 1px solid dark-primary($theme - #222)
 }
 .img {
   &:before {

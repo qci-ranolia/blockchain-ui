@@ -99,10 +99,10 @@ export class APIService {
       } else {
         // The backend returned an unsuccessful response code.
         // The response body may contain clues as to what went wrong,
-
         console.error(
           `Backend returned code ${error.status}, ` + `body was: ${error.error}`, 
-          `Backend returned code ${error.message}, ` + `body was: ${error.error}`)
+          `Backend returned code ${error.message}, ` + `body was: ${error.error}`
+        )
       }
       // return an observable with a user-facing error message
       return throwError(
@@ -116,11 +116,6 @@ export class APIService {
   }
 
   Login(data) {
-    const request = new HttpRequest('GET', 'https://jsonplaceholder.typicode.com/todos/1', {}, { reportProgress: true });
-    return this.http.request(request)
-  }
-
-  Login1(data) {
     data = JSON.stringify(data);
     const request = new HttpRequest('POST', this.current_URL+"/users/login", data , { reportProgress: true, headers: this.appHeader });
     return this.http.request(request)
@@ -176,18 +171,11 @@ export class APIService {
     return this.http.request(request)
   }
 
+  Search_By_Address(data) {
+    let params = new HttpParams().set('address', data);
+    const request = new HttpRequest('GET', this.current_URL+'/accounts/address', { reportProgress: true, params: params, headers: this.appHeader });
+    return this.http.request(request)
 
-  Test2(data) {
-    let _URL = "https://jsonplaceholder.typicode.com/posts";
-    this.http.post(_URL,data,{}).subscribe((res) => {
-     console.log(res);
-    });
-  }
-
-  Test3(data) {
-    data = JSON.stringify(data);
-    let _URL = "http://13.233.29.111:8000/users/login";
-    return this.http.post(_URL,data, {})
   }
 
 }

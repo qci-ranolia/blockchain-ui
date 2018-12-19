@@ -1,4 +1,3 @@
-// line 193 , font awesome icon can be placed before anchor tag in sidebar navigation
 * {
   color: #fff
 }
@@ -6,9 +5,9 @@ body {
   position: relative;
   overflow-x: hidden;
   background-color: #CFD8DC;
-}
+}/* 
 body,
-html { height: 100%;}
+html { height: 100%;} */
 .nav .open > a, 
 .nav .open > a:hover, 
 .nav .open > a:focus {background-color: transparent;}
@@ -38,7 +37,6 @@ html { height: 100%;}
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
-  border-right: 1px solid #000;
 }
 #sidebar-wrapper::-webkit-scrollbar {
   display: none;
@@ -54,7 +52,7 @@ html { height: 100%;}
 #wrapper.toggled #page-content-wrapper {
   position: absolute;
   margin-right: -220px;
-  width: 83%;
+  width: 88%;
 }
 /*-------------------------------*/
 /*     Sidebar nav styles        */
@@ -176,57 +174,6 @@ html { height: 100%;}
 .dropdown-menu.show {
   top: 0;
 }
-/*Fontawesome icons*/
-/* .nav.sidebar-nav li a::before {
-    font-family: fontawesome;
-    content: "\f12e";
-    vertical-align: baseline;
-    display: inline-block;
-    padding-right: 5px;
-} */
-/* a[href*="#home"]::before {
-  content: "\f015" !important;
-}
-a[href*="#about"]::before {
-  content: "\f129" !important;
-}
-a[href*="#events"]::before {
-  content: "\f073" !important;
-}
-a[href*="#events"]::before {
-  content: "\f073" !important;
-}
-a[href*="#team"]::before {
-  content: "\f0c0" !important;
-}
-a[href*="#works"]::before {
-  content: "\f0b1" !important;
-}
-a[href*="#pictures"]::before {
-  content: "\f03e" !important;
-}
-a[href*="#videos"]::before {
-  content: "\f03d" !important;
-}
-a[href*="#books"]::before {
-  content: "\f02d" !important;
-}
-a[href*="#art"]::before {
-  content: "\f1fc" !important;
-}
-a[href*="#awards"]::before {
-  content: "\f02e" !important;
-}
-a[href*="#services"]::before {
-  content: "\f013" !important;
-}
-a[href*="#contact"]::before {
-  content: "\f086" !important;
-}
-a[href*="#followme"]::before {
-  content: "\f099" !important;
-  color: #0084b4;
-} */
 /*-------------------------------*/
 /*       Hamburger-Cross         */
 /*-------------------------------*/
@@ -237,7 +184,7 @@ a[href*="#followme"]::before {
   display: block;
   width: 32px;
   height: 32px;
-  margin-left: 15px;
+  margin-left: 20px;
   background: transparent;
   border: none;
 }

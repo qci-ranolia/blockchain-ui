@@ -14,7 +14,6 @@ export class TableComponent implements OnInit {
   showTable= false;
   sIndex: number = null;
 
-  
   constructor(private ProjectService: ProjectService) {
     this.ProjectService.emitTable.subscribe(res=>{
       console.log(res);
@@ -33,6 +32,7 @@ export class TableComponent implements OnInit {
     this.sIndex = i
     this.ProjectService.getSummary(i);
   }
+
   dataService(row, m) {
     // console.log(i);
     row = JSON.stringify(row);
@@ -45,6 +45,10 @@ export class TableComponent implements OnInit {
     }
     // console.log(arr);
     return arr[m];
+  }
+
+  createNew() {
+    this.ProjectService.createNew();
   }
 
 }

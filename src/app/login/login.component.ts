@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
 export class LoginComponent {
   username:any;
   password:any;
@@ -59,7 +60,7 @@ export class LoginComponent {
     formData.append('password',this.password);
     let data = { email: this.email, password:  this.password};
     // this.ProjectService.login(formData);
-    this.ProjectService.login1(data);
+    this.ProjectService.login(data);
     localStorage.setItem('userEmail',this.email);
   }
   claimAcc() {

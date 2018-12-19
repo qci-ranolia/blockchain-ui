@@ -37,3 +37,25 @@ li {
     background-color: transparent;
     cursor: pointer;
   }
+  .fa-power-off {
+    position:fixed;
+    top:20px;
+    right:-20px;
+    font-size:16px;
+    background:#005a59;
+    padding:10px 36px 10px 10px;
+    box-shadow:none;
+    border:1px solid #003a39;
+    box-sizing:border-box;
+    border-radius:10px 0px 0px 10px;
+    cursor:pointer;
+  }
+  .fa-power-off:hover {
+    -webkit-transition: all .2s ease-in;
+    -moz-transition: all .2s ease-in;
+    -ms-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+    right: -10px;
+    box-shadow: -1px 1px 0px 0px #003a39;
+    border: 1px solid #003a39;
+  }
