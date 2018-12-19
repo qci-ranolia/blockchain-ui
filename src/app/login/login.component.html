@@ -13,10 +13,10 @@
     <p class="forgot-pass" (click)="gotochange()" style="cursor:pointer">Change password?</p>
   </div>
   <div class="form sign-in pt-0" *ngIf="!show">
-    <h2 class="img__text" style="color:#aaa;position:relative;top:10px">Change Password</h2><br/><br/>
+    <h2 class="img__text" style="color:#aaa;position:relative;top:10px">Change Password</h2><br/>
     <label>
-      <span>old Password</span>
-      <input type="password" [(ngModel)]="old" name="old" autocomplete="off" />
+      <span>E-mail</span>
+      <input type="email" [(ngModel)]="mail" name="mail" autocomplete="off" />
     </label>
     <label>
       <span>New Password</span>

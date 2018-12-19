@@ -1,9 +1,9 @@
-<div class="container" *ngIf="showSearchBar">
-  <p>
-    search-bar
-    <br>
-    <input type="text" class="form-control" name="address" placeholder="Address" required="" autofocus=""  [(ngModel)]='address' />
-    <br>
-    <button class="btn btn-primary" type="submit" (click)='search()'>Search</button>
-  </p>
+<div class="container closed mt-3" *ngIf="showSearchBar">
+  <div class="form sign-in">
+    <label>
+      <span>Search here...</span>
+      <input type="text" name="address" placeholder="Address" required="" autofocus=""  [(ngModel)]='address' autocomplete="off" />
+    </label>
+    <button class="submit float-right" type="submit" (click)='search()'>Search</button>
+  </div>
 </div>

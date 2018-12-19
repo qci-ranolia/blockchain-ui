@@ -17,7 +17,9 @@ export class NavigationComponent implements OnInit {
   ngOnInit() {
     console.log(this.info.data.parent.navigation);
     this.setNav(this.info);
-    this.ProjectService.get_float_accounts();
+    // home page for the dashboard
+    // this.ProjectService.get_float_accounts();
+    this.ProjectService.createNewForm();
   }
 
   setNav(info){

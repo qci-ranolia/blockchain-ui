@@ -30,13 +30,15 @@ export class ProjectService {
   emitHideSearchBar:  EventEmitter<any> = new EventEmitter<any>();
   emitError:  EventEmitter<any> = new EventEmitter<any>();
 
+  emitHideFormBuilder:  EventEmitter<any> = new EventEmitter<any>();
+
   errorSnack(){
     $('.notification').toggleClass('active')
     setTimeout(() => {
       $('.notification').toggleClass('active')
-    }, 4500 )
+    }, 5000 )
   }
-
+  
   checkLogin() {
     let login = localStorage.getItem('login');
     if(login === 'true') {
@@ -96,6 +98,19 @@ export class ProjectService {
     });
   }
 
+  change(data){
+    this.APIService.change(data).subscribe((event: HttpEvent<any>) => {
+      let response = this.HttpEventResponse(event)
+      if(response){
+        console.log(response)
+      } else console.log(response)
+    }, (err:HttpErrorResponse)=>{
+      this.emitError.emit(err.error.message)
+      this.errorSnack()
+      console.log(err.error.message)
+    });
+  }
+
   getUI(){
     let role = localStorage.getItem('role');
     let parent_role = localStorage.getItem('parent_role');
@@ -129,8 +144,17 @@ export class ProjectService {
     }
   }
 
-  createNew() {
-    
+  createNewForm() {
+    this.dashboardElements({table:0, summary:0, search:0, form:1});
+  }
+
+  checkToken(res) {
+    console.log(res);
+    if(res.statusText) {
+      if(res.statusText==="Unauthorized" || res.status===401) {
+        this.logout();
+      }
+    }
   }
 
   get_admin_ui(parent_role, role){
@@ -190,6 +214,7 @@ export class ProjectService {
         console.log("bep 04");
       }
     }, (err:HttpErrorResponse)=>{
+      this.checkToken(err);
       console.log("Error 2");
       this.emitError.emit(err.error.message)
       this.errorSnack()
@@ -209,6 +234,7 @@ export class ProjectService {
         console.log("bep 05");
       }
     }, (err:HttpErrorResponse)=>{
+      this.checkToken(err);
       console.log("Error 3");
       this.emitError.emit(err.error.message)
       this.errorSnack()
@@ -219,7 +245,7 @@ export class ProjectService {
   get_float_accounts() {
     // this.emitHideSummary.emit({display:"false"});
     // this.emitHideTable.emit({display:"false"});
-    this.dashboardElements({table:0,summary:0,search:0});
+    this.dashboardElements({table:0,summary:0,search:0,form:0});
     this.APIService.Get_Float_Accounts().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
@@ -231,6 +257,7 @@ export class ProjectService {
         console.log("bep 06");
       }
     }, (err:HttpErrorResponse)=>{
+      this.checkToken(err);
       console.log("Error 4");
       this.emitError.emit(err.error.message)
       this.errorSnack()
@@ -246,7 +273,7 @@ export class ProjectService {
   get_Children() {
     // this.emitHideSummary.emit({display:"false"});
     // this.emitHideTable.emit({display:"false"});
-    this.dashboardElements({table:0,summary:0,search:0});
+    this.dashboardElements({table:0,summary:0,search:0, form:0});
     this.APIService.Get_Children().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
@@ -258,6 +285,7 @@ export class ProjectService {
         console.log("bep 06");
       }
     }, (err:HttpErrorResponse)=>{
+      this.checkToken(err);
       console.log("Error 5");
       this.emitError.emit(err.error.message)
       this.errorSnack()
@@ -266,10 +294,11 @@ export class ProjectService {
   }
 
   get_search() {
-    this.dashboardElements({table:0,summary:0,search:1});
+    this.dashboardElements({table:0,summary:0,search:1, form:0});
+
   }
 
-  dashboardElements(elements: {table:number , summary:number, search:number}) {
+  dashboardElements(elements: {table:number , summary:number, search:number, form:number}) {
     if(elements.table==1) {
       this.emitHideTable.emit({display:"true"});
     }
@@ -288,6 +317,13 @@ export class ProjectService {
     if(elements.search==0) {
       this.emitHideSearchBar.emit({display:"false"});
     }
+    if(elements.form==1) {
+      this.emitHideFormBuilder.emit({display:"true"});
+    }
+    if(elements.form==0) {
+      this.emitHideFormBuilder.emit({display:"false"});
+    }
+
   }
 
   search_by_address(data) {
@@ -301,6 +337,7 @@ export class ProjectService {
         console.log("bep 07");
       }
     }, (err:HttpErrorResponse)=>{
+      this.checkToken(err);
       console.log("Error 6");
       this.emitError.emit(err.error.message)
       this.errorSnack()
@@ -309,7 +346,7 @@ export class ProjectService {
   }
 
   get_assets() {
-    this.dashboardElements({table:0,summary:0,search:0});
+    this.dashboardElements({table:0,summary:0,search:0, form:0});
     this.APIService.Get_Assets().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
@@ -321,6 +358,7 @@ export class ProjectService {
         console.log("bep 08");
       }
     }, (err:HttpErrorResponse)=>{
+      this.checkToken(err);
       console.log("Error 7");
       this.emitError.emit(err.error.message)
       this.errorSnack()

@@ -47,15 +47,15 @@ export class APIService {
       )
     }
 
-    change(old : string, newPassword: string, oldPassword: string){
-      let tmp : any = { key1 : old, key2 : newPassword, key3 : oldPassword }
-      let data = JSON.stringify(tmp)
-      return this.http.post<any>( this.url+'', data )
-      .pipe(
-        catchError(this.handleError)
-      )
-      .subscribe(resp => {console.log(resp)})
-    }
+    // change(email : string, newPassword: string, new_password: string){
+    //   let tmp : any = { email : email, password : new_password, new_password : new_password }
+    //   let data = JSON.stringify(tmp)
+    //   return this.http.post<any>( 'http://192.168.15.139:8000/'+'users/change_password', data )
+    //   .pipe(
+    //     catchError(this.handleError)
+    //   )
+    //   .subscribe(resp => {console.log(resp)})
+    // }
     claimAcc(org_name : string, email : string,pancard : string,gst_number : string,tan_number : string,phone_number : string){
       let tmp : any = {
         org_name    : org_name,
@@ -81,10 +81,6 @@ export class APIService {
       }
       let data = JSON.stringify(tmp)
       return this.http.post<any>( this.url+'accounts/get_otp', data )
-      // .subscribe(resp => {
-        //   // this.emitOTP
-        //   console.log(resp)
-      // })
     }
 
     submit_OTP(data:any){
@@ -115,6 +111,12 @@ export class APIService {
     this.appHeader.append({'Content-Type':'application/json'});
   }
 
+  change(data) {
+    data = JSON.stringify(data);
+    const request = new HttpRequest('POST', this.current_URL+'users/change_password', data , { reportProgress: true, headers: this.appHeader });
+    return this.http.request(request)
+  }
+  
   Login(data) {
     data = JSON.stringify(data);
     const request = new HttpRequest('POST', this.current_URL+"/users/login", data , { reportProgress: true, headers: this.appHeader });

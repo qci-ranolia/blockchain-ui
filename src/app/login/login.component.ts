@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   username:any;
   password:any;
-  old:any;
+  mail:any;
   new:any;
   confirm:any;
   show : boolean = true
@@ -51,7 +51,12 @@ export class LoginComponent {
 
   change() {
     if (this.new == this.confirm) {
-      this._api.change(this.old, this.new, this.confirm)
+      let temp = {
+        'email' : this.mail,
+        'password' : this.new,
+        'new_password' : this.confirm
+      }
+      this.ProjectService.change(temp)
     } else alert ("Password does not match. Try again!")
   }
   login() {

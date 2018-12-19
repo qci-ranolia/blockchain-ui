@@ -23,6 +23,11 @@ import { NavigationComponent } from './home/navigation/navigation.component';
 import { TableComponent } from './home/table/table.component';
 import { SummaryComponent } from './home/summary/summary.component';
 import { SearchBarComponent } from './home/search-bar/search-bar.component';
+import { FormBuilderComponent } from './home/form-builder/form-builder.component';
+import { InputTextComponent } from './home/form-builder/input-text/input-text.component';
+import { InputPasswordComponent } from './home/form-builder/input-password/input-password.component';
+import { InputDropdownComponent } from './home/form-builder/input-dropdown/input-dropdown.component';
+import { InputEmailComponent } from './home/form-builder/input-email/input-email.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +40,12 @@ import { SearchBarComponent } from './home/search-bar/search-bar.component';
     NavigationComponent,
     TableComponent,
     SummaryComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    FormBuilderComponent,
+    InputTextComponent,
+    InputPasswordComponent,
+    InputDropdownComponent,
+    InputEmailComponent
   ],
   imports: [
     BrowserModule,

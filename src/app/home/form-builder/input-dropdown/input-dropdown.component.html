@@ -1,0 +1,5 @@
+<select [(ngModel)]="selectedValue" id="octane" name="octane" (change)='getVal()'  [disabled]='disabled' >
+
+  <option *ngFor='let opt of json.option; let i=i' [ngValue]=opt  [selected]="opt == json.value">{{opt}}</option>
+
+</select>
