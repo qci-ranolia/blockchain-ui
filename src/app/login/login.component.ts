@@ -15,7 +15,8 @@ export class LoginComponent {
   mail:any;
   new:any;
   confirm:any;
-  show : boolean = true
+  change_password : boolean = false
+  forgot_password : boolean = false
   claim : boolean = false
 
   phone_number:any;
@@ -37,10 +38,16 @@ export class LoginComponent {
     localStorage.setItem('userEmail', this.username);
   }
   gotochange() {
-    this.show = false
+    this.change_password = true
   }
-  goback() {
-    this.show = true
+  close_change() {
+    this.change_password = false
+  }
+  gotoforgot(){
+    this.forgot_password = true
+  }
+  close_forgot() {
+    this.forgot_password = false
   }
   gotoclaim() {
     this.claim = true
