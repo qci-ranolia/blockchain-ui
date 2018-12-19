@@ -37,17 +37,21 @@ export class FormBuilderComponent implements OnInit {
     let responsePosition: any;
     console.log(data);
     // check if responseArray is empty
-    if(this.responseArray.length) {
+    if(this.responseArray.length>1) {
 
-      //check if response id exists, then update response
       for(let i = 0; i<this.responseArray.length; i++) {
+
+        //check if response id exists, then update response
+        // if response already exits, update value
         if(this.responseArray[i].id+"" === data.id+"" ) {
-          responseExistFlag = true;
-          responsePosition = i;
+          this.responseArray[i].value = data.value;
           break;
         } else {
+
+          // else push in responseArray
           this.responseArray.push(data);
           console.log(this.responseArray);
+          break;
         }
       }
     } else {
@@ -55,17 +59,11 @@ export class FormBuilderComponent implements OnInit {
       console.log(this.responseArray);
     }
 
-    // if response already exits, update value
-    if(responseExistFlag) {
-      this.responseArray[responsePosition].value = data.value;
-      responseExistFlag = false;
-      responsePosition = null;
-      console.log(this.responseArray);
-    }
   }
 
   submitForm() {
     console.log(this.responseArray);
+    // this.responseArray = [];
   }
 
 }
