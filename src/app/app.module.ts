@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module';
 
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HttpEventType,  HttpClient,  HttpRequest } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -15,6 +16,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ViewContainerRef } from '@angular/core';
 import { APIService } from './service/APIService';
 import { ProjectService } from './service/ProjectService';
+import { FloatuserComponent } from './home/floatuser/floatuser.component';
+import { ClaimaccountComponent } from './home/claimaccount/claimaccount.component';
+import { CreateassetComponent } from './home/createasset/createasset.component';
 import { NavigationComponent } from './home/navigation/navigation.component';
 import { TableComponent } from './home/table/table.component';
 import { SummaryComponent } from './home/summary/summary.component';
@@ -24,12 +28,17 @@ import { InputTextComponent } from './home/form-builder/input-text/input-text.co
 import { InputPasswordComponent } from './home/form-builder/input-password/input-password.component';
 import { InputDropdownComponent } from './home/form-builder/input-dropdown/input-dropdown.component';
 import { InputEmailComponent } from './home/form-builder/input-email/input-email.component';
+import { InputFileUploadComponent } from './home/form-builder/input-file-upload/input-file-upload.component';
+import { InputDatePickerComponent } from './home/form-builder/input-date-picker/input-date-picker.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
+    FloatuserComponent,
+    ClaimaccountComponent,
+    CreateassetComponent,
     NavigationComponent,
     TableComponent,
     SummaryComponent,
@@ -38,11 +47,15 @@ import { InputEmailComponent } from './home/form-builder/input-email/input-email
     InputTextComponent,
     InputPasswordComponent,
     InputDropdownComponent,
-    InputEmailComponent
+    InputEmailComponent,
+    InputFileUploadComponent,
+    InputDatePickerComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
+    HttpClientModule,
     FormsModule,
     BrowserModule,
     HttpClientModule,

@@ -2,8 +2,8 @@ import { EventEmitter, Injectable, } from '@angular/core';
 import { APIService } from './APIService';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import {  HttpEvent, HttpEventType,  HttpClient,  HttpRequest} from '@angular/common/http';
-
+import { HttpEvent, HttpEventType, HttpClient, HttpRequest, HttpErrorResponse } from '@angular/common/http';
+declare var $
 @Injectable()
 export class ProjectService {
 
@@ -11,6 +11,7 @@ export class ProjectService {
   tableData: any = [];
   month : any = '2017-10';
   globalAction: string = "";
+  formElements: any = [];
 
   constructor(private APIService: APIService,private route: ActivatedRoute, private router: Router,) {
     let d = new Date();
@@ -28,7 +29,16 @@ export class ProjectService {
   emitUserLogin : EventEmitter<any> = new EventEmitter<any>();
   emitHideSummary: EventEmitter<any> = new EventEmitter<any>();
   emitHideSearchBar:  EventEmitter<any> = new EventEmitter<any>();
+  emitError:  EventEmitter<any> = new EventEmitter<any>();
+
   emitHideFormBuilder:  EventEmitter<any> = new EventEmitter<any>();
+
+  errorSnack(){
+    $('.notification').toggleClass('active')
+    setTimeout(() => {
+      $('.notification').toggleClass('active')
+    }, 5000 )
+  }
 
   checkLogin() {
     let login = localStorage.getItem('login');
@@ -44,6 +54,7 @@ export class ProjectService {
 
   setAction(action: string) {
     this.globalAction = action;
+    console.log(this.globalAction);
   }
 
   HttpEventResponse(event) {
@@ -67,28 +78,38 @@ export class ProjectService {
   login(data){
     this.APIService.Login(data).subscribe((event: HttpEvent<any>) => {
       let response = this.HttpEventResponse(event)
-     if(response){
-       if(response.authorization){
+      if(response){
+        if(response.authorization){
+          let role = ""+response.role;
+          let token = ""+response.authorization;
+          let parent_role = ""+response.parent_role;
+          console.log("Authorization Token => "+token);
+          localStorage.setItem('login',"true");
+          localStorage.setItem('role', role);
+          localStorage.setItem('token', token);
+          localStorage.setItem('parent_role', parent_role);
+          this.emitUserLogin.emit({login:'true', role: role});
+        } else {
+          console.log("Authorization Failed");
+        }
+      }
+    }, (err:HttpErrorResponse)=>{
+      this.emitError.emit(err.error.message)
+      this.errorSnack()
+      console.log(err.error.message)
+    });
+  }
 
-         let role = ""+response.role;
-         let token = ""+response.authorization;
-         let parent_role = ""+response.parent_role;
-
-         console.log("Authorization Token => "+token);
-
-         localStorage.setItem('login',"true");
-         localStorage.setItem('role', role);
-         localStorage.setItem('token', token);
-         localStorage.setItem('parent_role', parent_role);
-
-         this.emitUserLogin.emit({login:'true', role: role});
-       } else {
-        console.log("Authorization Failed");
-       }
-     }
-
-    }, (err)=>{
-    console.log(err);
+  change(data){
+    this.APIService.change(data).subscribe((event: HttpEvent<any>) => {
+      let response = this.HttpEventResponse(event)
+      if(response){
+        console.log(response)
+      } else console.log(response)
+    }, (err:HttpErrorResponse)=>{
+      this.emitError.emit(err.error.message)
+      this.errorSnack()
+      console.log(err.error.message)
     });
   }
 
@@ -129,6 +150,10 @@ export class ProjectService {
     this.dashboardElements({table:0, summary:0, search:0, form:1});
   }
 
+  createNewFormElements(formElement: any) {
+    this.formElements = formElement
+  }
+
   checkToken(res) {
     console.log(res);
     if(res.statusText) {
@@ -148,6 +173,9 @@ export class ProjectService {
       }
     }, (err)=>{
       console.log("Error 2");
+      this.emitError.emit(err.error.message)
+      this.errorSnack()
+      console.log(err);
     });
   }
 
@@ -159,8 +187,11 @@ export class ProjectService {
       } else {
         console.log("bep 02");
       }
-    }, (err)=>{
+    }, (err:HttpErrorResponse)=>{
       console.log("Error 2");
+      this.emitError.emit(err.error.message)
+      this.errorSnack()
+      console.log(err.error.message);
     });
   }
 
@@ -172,8 +203,11 @@ export class ProjectService {
       } else {
         console.log("bep 03");
       }
-    }, (err)=>{
+    }, (err:HttpErrorResponse)=>{
       console.log("Error 2");
+      this.emitError.emit(err.error.message)
+      this.errorSnack()
+      console.log(err.error.message);
     });
   }
 
@@ -185,9 +219,12 @@ export class ProjectService {
       } else {
         console.log("bep 04");
       }
-    }, (err)=>{
+    }, (err:HttpErrorResponse)=>{
       this.checkToken(err);
       console.log("Error 2");
+      this.emitError.emit(err.error.message)
+      this.errorSnack()
+      console.log(err.error.message);
     });
   }
 
@@ -196,18 +233,18 @@ export class ProjectService {
       let response = this.HttpEventResponse(event)
       if(response){
         console.log(response)
-
         this.tableData = response.data;
         this.tableHeader = response.headers;
-
         this.emitTable.emit({header: this.tableHeader, data:this.tableData})
-
       } else {
         console.log("bep 05");
       }
-    }, (err)=>{
+    }, (err:HttpErrorResponse)=>{
       this.checkToken(err);
       console.log("Error 3");
+      this.emitError.emit(err.error.message)
+      this.errorSnack()
+      console.log(err.error.message);
     })
   }
 
@@ -219,18 +256,18 @@ export class ProjectService {
       let response = this.HttpEventResponse(event)
       if(response){
         console.log(response)
-
         this.tableData = response.data;
         this.tableHeader = response.headers;
-
         this.emitTable.emit({header: this.tableHeader, data:this.tableData})
-
       } else {
         console.log("bep 06");
       }
-    }, (err)=>{
+    }, (err:HttpErrorResponse)=>{
       this.checkToken(err);
       console.log("Error 4");
+      this.emitError.emit(err.error.message)
+      this.errorSnack()
+      console.log(err.error.message);
     })
   }
 
@@ -246,19 +283,19 @@ export class ProjectService {
     this.APIService.Get_Children().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
-
         console.log(response)
         this.tableData = response.data;
         this.tableHeader = response.headers;
-
         this.emitTable.emit({header: this.tableHeader, data:this.tableData})
-
       } else {
         console.log("bep 06");
       }
-    }, (err)=>{
+    }, (err:HttpErrorResponse)=>{
       this.checkToken(err);
       console.log("Error 5");
+      this.emitError.emit(err.error.message)
+      this.errorSnack()
+      console.log(err.error.message);
     })
   }
 
@@ -299,17 +336,18 @@ export class ProjectService {
     this.APIService.Search_By_Address(data).subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
-
         console.log(response)
         console.log(response.headers)
         this.emitSummary.emit({header:response.headers, data:response.data});
-
       } else {
         console.log("bep 07");
       }
-    }, (err)=>{
+    }, (err:HttpErrorResponse)=>{
       this.checkToken(err);
       console.log("Error 6");
+      this.emitError.emit(err.error.message)
+      this.errorSnack()
+      console.log(err.error.message);
     });
   }
 
@@ -319,19 +357,35 @@ export class ProjectService {
       let response = this.HttpEventResponse(event)
       if(response){
         console.log(response)
-
         this.tableData = response.data;
         this.tableHeader = response.headers;
-
         this.emitTable.emit({header: this.tableHeader, data:this.tableData})
-
       } else {
         console.log("bep 08");
       }
-    }, (err)=>{
+    }, (err:HttpErrorResponse)=>{
       this.checkToken(err);
       console.log("Error 7");
+      this.emitError.emit(err.error.message)
+      this.errorSnack()
+      console.log(err.error.message);
     })
+  }
+
+  submitForm(response,url) {
+    this.APIService.SubmitForm(response, url).subscribe((event: HttpEvent<any>) =>{
+      let response = this.HttpEventResponse(event)
+      if(response){
+        console.log(response)
+        // this.tableData = response.data;
+        // this.tableHeader = response.headers;
+        // this.emitTable.emit({header: this.tableHeader, data:this.tableData})
+      } else {
+        console.log("bep 09");
+      }
+    }, (err)=>{
+      console.log(err);
+    });
   }
 
 }

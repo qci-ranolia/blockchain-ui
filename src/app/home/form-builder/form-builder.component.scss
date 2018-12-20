@@ -1,0 +1,32 @@
+// .container {
+//     max-width: 100%;
+// }
+$inputW:100%;
+$btnH: 36px;
+.form{
+	width: 100%;
+}
+.submit {
+	clear: both;
+	display: block;
+	margin: 0 auto;
+	width: $inputW - 70%;
+	height: $btnH;
+	border-radius: 30px;
+	font-size: 15px;
+	cursor: pointer;
+	margin-top: 40px;
+	margin-bottom: 20px;
+	background: #d4af7a;
+	text-transform: uppercase;
+	color:#fff;
+}
+.ovf-y, .cont {
+	height: auto;
+}
+.img__btn:after{
+	border: none;
+}
+.h50{
+	height: 76px;
+}

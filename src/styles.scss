@@ -1,1 +1,315 @@
-/* You can add global styles to this file, and also import other style files */
+// colors
+$theme:#177; // Do not EDIT here, Use REPLACE_ALL feature of the editor to change the static colors
+
+$inputW: 260px;
+$btnH: 36px;
+
+//functions
+@function dark-primary($value){
+  @return $value - rgba(30, 30, 30, 1);
+} @function light-primary($value){
+  @return $value + rgba(30, 30, 30, 1);
+}
+
+* {
+  background: dark-primary($theme);
+  font-size: 0.9rem;
+  color: #fff;
+  box-sizing: border-box;
+  word-wrap: break-word;
+}
+.container {
+  max-width:90%;
+  margin: 0 auto;
+}
+table.dataTable.display tbody tr.odd > .sorting_1,
+table.dataTable.order-column.stripe tbody tr.odd > .sorting_1{
+  background-color: $theme
+}
+table.dataTable.display tbody tr.even > .sorting_1,
+table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
+  background-color: $theme
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button{
+  color: #888 !important;
+  padding: 1px 8px !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button:active,
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover{
+  background: none !important;
+  color: #fff !important;
+  border-color: dark-primary($theme - #111) !important;
+  box-shadow: 0px 0px 0px 1px inset light-primary($theme - #111) !important;
+  padding: 1px 8px !important;
+}
+.dataTables_wrapper .dataTables_filter input{
+  border: 1px solid dark-primary($theme);
+  box-shadow: 0px 0px 1px 1px inset light-primary($theme - #111);
+  color: #999;
+  padding: 3px 12px;
+}
+//Scrollbar
+::-webkit-scrollbar{
+  width:7px;
+  height:5px;
+  background-color:transparent;
+  border-radius:10px;
+}
+::-webkit-scrollbar-thumb{
+  background-color:light-primary($theme);
+  border-radius:10px;
+}
+::-webkit-scrollbar-track{
+  background-color:transparent;
+  border-radius:10px;
+}
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing,
+.dataTables_wrapper .dataTables_paginate {
+  color: #aaa;
+}
+table.dataTable thead th,
+table.dataTable thead td{
+  border-bottom: 1px solid #888;
+}
+table.dataTable.row-border tbody th,
+table.dataTable.row-border tbody td,
+table.dataTable.display tbody th,
+table.dataTable.display tbody td {
+  border-top: 1px solid light-primary($theme - #111) !important;
+}
+.closed{
+  // transition-timing-function: ease;
+  // transition-duration: 0.7s;
+  border: 1px solid dark-primary($theme - #222);
+  padding-bottom: 20px;
+	box-shadow: 0px 0px 40px 10px dark-primary($theme - #222);
+	border-radius: 10px;
+}
+.toggled .closed{
+	border-radius: 10px;
+  transition-timing-function: ease;
+  transition-duration: 1.5s;
+  border: 1px solid dark-primary($theme - #222);
+  padding-bottom: 20px;
+	box-shadow: 0px 0px 40px 10px dark-primary($theme - #222);
+	
+}
+#sidebar-wrapper{
+  box-shadow: 0px 0px 40px 10px dark-primary($theme - #222);
+  border-right: 1px solid dark-primary($theme - #222)
+}
+.img {
+  &:before {
+		border-left:2px solid light-primary($theme)
+	}
+	&:after {
+		border-left:1px solid rgb(1, 5, 7)
+	}
+}
+button.submit {
+	border: none;
+	outline: none;
+	background: none;
+	display: block;
+	width: $inputW - 100px;
+	height: $btnH;
+	border-radius: 30px;
+	font-size: 15px;
+	cursor: pointer; 
+	margin: 20px auto 0;
+	background:white;
+	text-transform: uppercase;
+	color:dark-primary($theme);
+	box-shadow: 3px 2px 5px dark-primary($theme - #222)
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.ovf-y {
+  overflow:hidden;
+  overflow-y:auto;
+  height: 340px;
+}
+
+
+$contW: 100%;
+$imgW: 35%;
+$formW: $contW - $imgW;
+$switchAT: 1.2s;
+$inputW: 260px;
+
+$btnH: 36px;
+
+$diffRatio: ($contW - $imgW) / $contW;
+
+@mixin signUpActive {
+	.cont.s--signup & {
+		@content;
+	}
+}
+.cont {
+	overflow: hidden;
+	position: relative;
+	width: $contW;
+	height: 420px;
+	margin: 7% auto 0
+}
+.form {
+	position: relative;
+	width: $formW;
+	height: 100%;
+	transition: transform $switchAT ease-in-out;
+	padding: 50px 30px 0;
+}
+.sub-cont {
+	overflow: hidden;
+	position: absolute;
+	left: $formW;
+	top: 0;
+	width: $contW;
+	height: 100%;
+	padding-left: $imgW;
+	transition: transform $switchAT ease-in-out;
+	@include signUpActive {
+		transform: translate3d($formW * -1,0,0);
+	}
+}
+.img {
+	overflow: hidden;
+	z-index: 2;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: $imgW;
+	height: 100%;
+	padding-top: 360px;
+	&:before {
+		content: '';
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: $contW;
+		height: 100%;
+		background-size: cover;
+		transition: transform $switchAT ease-in-out;
+	}
+	&:after {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+	}
+	@include signUpActive {
+		&:before {
+			transform: translate3d($formW,0,0);
+		}
+	}
+	&__text {
+		z-index: 2;
+		position: absolute;
+		left: 0;
+		top: 50px;
+		width: 100%;
+		padding: 0 20px;
+		text-align: center;
+		background: none;
+		transition: transform $switchAT ease-in-out;
+		h2 {
+			margin-bottom: 10px;
+			font-weight: normal;
+		}
+		p {
+			font-size: 14px;
+			line-height: 1.5;
+		}
+		&.m--up {
+			@include signUpActive {
+				transform: translateX($imgW*2);
+			}
+		}
+		&.m--in {
+			transform: translateX($imgW * -2);
+			@include signUpActive {
+				transform: translateX(0);
+			}
+		}
+	}
+	&__btn {
+		overflow: hidden;
+		z-index: 2;
+		position: relative;
+		width: 84%;
+		height: $btnH;
+		margin: 0 auto;
+		background: transparent;
+		text-transform: uppercase;
+		font-size: 15px;
+		cursor: pointer;
+		&:after {
+			content: '';
+			z-index: 2;
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			border: 2px solid #fff;
+			border-radius: 30px;
+		}
+		span {
+			position: absolute;
+			left: 0;
+			top: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			height: 100%;
+			transition: transform $switchAT;
+			&.m--in {
+				transform: translateY($btnH*-2);
+				@include signUpActive {
+					transform: translateY(0);
+				}
+			}
+			&.m--up {
+				@include signUpActive {
+					transform: translateY($btnH*2);
+				}
+			}
+		}
+	}
+}
+.forgot-pass {
+	margin-top: 15px;
+	text-align: center;
+	font-size: 12px;
+	color: #cfcfcf;
+}
+.sign-in {
+	transition-timing-function: ease-out;
+	@include signUpActive {
+		transition-timing-function: ease-in-out;
+		transition-duration: $switchAT;
+		transform: translate3d($formW,0,0);
+	}
+}
+.sign-up {
+	transform: translate3d($contW * -1,0,0);
+	@include signUpActive {
+		transform: translate3d(0,0,0);
+	}
+}

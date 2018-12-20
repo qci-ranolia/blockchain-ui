@@ -2,10 +2,63 @@
   "name": "Admin Dashboard",
   "parent": {
     "navigation" : [
-      {"data":"Accounts", "click": ""},
-      {"data":"Assets", "click": ""},
-      {"data":"Child"},
-      {"data":"Search"}
+      {
+        "data":"Accounts",
+        "createNewForm":{
+          "formName": "Create New Org.",
+          "formSubmitUrl": "/accounts/create_organization_account",
+          "formElements": [
+            { "name": "Pancard", "parms":"pancard", "type": "text", "value":"", "id":1 },
+            { "name": "Phone No.", "parms":"phone_number", "type": "text", "value":"", "id":2 },
+            { "name": "org name", "parms":"org_name", "type": "text", "value":"", "id":3 },
+            { "name": "Email", "parms":"email", "type": "email", "value":"", "id":4 },
+            { "name": "Role", "parms":"role", "type": "dropdown", "option": ["ADMIN", "MASTER","LAB", "USER"], "value":"", "id":5 }
+          ]
+        }
+      },
+      {
+        "data":"Assets",
+        "createNewForm":{
+          "formName": "Create New Asset",
+          "formSubmitUrl": "/assets/create_asset",
+          "formElements": [
+            { "name": "Select file", "parms":"base64_file_bytes", "type": "file", "value":"", "file_name":"", "file_hash":"", "id":1 },
+            { "name": "Expires on", "parms":"expired_on", "type": "date", "value":"", "id":2 }
+          ]
+        },
+        "createForm":{
+          "formName": "Share Asset",
+          "formSubmitUrl": "/assets/create_asset",
+          "formElements": [
+            { "name": "Select file", "parms":"base64_file_bytes", "type": "file", "value":"", "file_name":"", "file_hash":"", "id":1 },
+            { "name": "Expires on", "parms":"expired_on", "type": "date", "value":"", "id":2 },
+            { "name": "Address", "parms":"address", "type": "text", "value":"", "id":3 }
+          ]
+        }
+      },
+      {
+        "data":"Child",
+        "createNewForm":{
+          "formName": "Create New Child",
+          "formSubmitUrl": "/accounts/create_child",
+          "formElements": [
+            { "name": "Phone No.", "parms":"phone_number", "type": "text", "value":"", "id":"2" },
+            { "name": "Password", "parms":"password", "type": "password", "value":"", "id":"3" },
+            { "name": "Email", "parms":"email", "type": "email", "value":"", "id":"4" },
+            { "name": "First name", "parms":"first_name", "type": "text", "value":"", "id":"5" },
+            { "name": "Last name", "parms":"last_name", "type": "text", "value":"", "id":"6" }
+
+          ]
+        }
+      },
+      {
+        "data":"Search",
+        "createNewForm":{
+          "formName": "Create New Search",
+          "formSubmitUrl": "/accounts/create_organization_account",
+          "formElements": []
+        }
+      }
     ]
   },
   "child":{
