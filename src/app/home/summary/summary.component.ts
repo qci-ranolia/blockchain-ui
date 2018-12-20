@@ -13,9 +13,15 @@ export class SummaryComponent implements OnInit {
   data: any;
   arr: any = [];
   showSummary= false;
+  showViewAll= false;
 
   constructor(private ProjectService: ProjectService) {
     this.ProjectService.emitSummary.subscribe(res=>{
+
+      if(this.ProjectService.globalAction === "Accounts" ) {
+        this.showViewAll= true;
+      }
+
       this.header = [];
       this.data = [];
       this.arr = [];
@@ -39,6 +45,12 @@ export class SummaryComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  viewAll() {
+    let temp = JSON.parse(this.data)
+    console.log(temp.email)
+    this.ProjectService.viewAll(temp.email);
   }
 
   dataService(m) {

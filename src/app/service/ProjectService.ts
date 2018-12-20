@@ -388,4 +388,21 @@ export class ProjectService {
     });
   }
 
+  viewAll(email) {
+    this.dashboardElements({table:0,summary:0,search:0, form:0});
+    this.APIService.ViewAll(email).subscribe((event: HttpEvent<any>) =>{
+      let response = this.HttpEventResponse(event)
+      if(response){
+        console.log(response)
+        // this.tableData = response.data;
+        // this.tableHeader = response.headers;
+        // this.emitTable.emit({header: this.tableHeader, data:this.tableData})
+      } else {
+        console.log("bep 08");
+      }
+    }, (err)=>{
+      console.log(err)
+    })
+  }
+
 }

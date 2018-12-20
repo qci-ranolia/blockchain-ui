@@ -3,7 +3,7 @@
         <h3 class="mt-3 col-sm-12 p-0">Summary</h3>
         <h4 class="col-sm-12 p-0" >
           <!-- <a href="">Master 2</a> -->
-          <button type="button" class="submit float-right" style="position:relative;top:-50px">
+          <button type="button" class="submit float-right" style="position:relative;top:-50px" *ngIf="showViewAll" (click)="viewAll()">
             View All
           </button>
         </h4>

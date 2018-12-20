@@ -32,9 +32,9 @@ export class InputFileUploadComponent implements OnInit {
     reader.readAsDataURL(file);
     reader.onload = (event:any) => {
       let temp : any = reader.result;
-      this.json.value = temp.split(',')[1]+"";
+      this.json.value = temp.split(',')[1];
       this.json.file_name = this.name;
-      this.json.file_hash = sha224.hex(sha224(this.json.value));
+      this.json.file_hash = sha224(reader.result);
       this.responseData.emit(this.json);
     }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common'
 import { APIService } from '../../service/APIService';
 import { catchError, retry } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-claimaccount',
@@ -22,7 +23,7 @@ export class ClaimaccountComponent implements OnInit {
   otp_mobile:string
   otp_email:string
 
-  constructor( private location : Location, private _api : APIService ){ }
+  constructor( private location : Location, private _api : APIService, private router: Router ){ }
 
   ngOnInit() { }
 

@@ -184,5 +184,10 @@ export class APIService {
     return this.http.request(request)
   }
 
+  ViewAll(email) {
+    let params = new HttpParams().set('email', email);
+    const request = new HttpRequest('GET', this.current_URL+'', { reportProgress: true, params: params, headers: this.appHeader });
+    return this.http.request(request)
+  }
 
 }
