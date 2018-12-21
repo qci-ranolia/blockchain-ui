@@ -1,6 +1,10 @@
 // .container {
 //     max-width: 100%;
 // }
+.backgroundVisual{
+  background: #f7f7f7e0 !important;
+
+}
 $inputW:100%;
 $btnH: 36px;
 .form{
@@ -17,9 +21,9 @@ $btnH: 36px;
 	cursor: pointer;
 	margin-top: 40px;
 	margin-bottom: 20px;
-	background: #d4af7a;
+	background: #5867c5;
 	text-transform: uppercase;
-	color:#fff;
+	color: white !important;
 }
 .ovf-y, .cont {
 	height: auto;

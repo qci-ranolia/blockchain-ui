@@ -1,3 +1,7 @@
+.backgroundVisual{
+  background: #f7f7f7e0 !important;
+
+}
 table.display th {
     height:30px;
     line-height:30px;
@@ -26,7 +30,7 @@ td div {
     -webkit-line-clamp:1;
     max-height: 18px;
     line-height: 18px;
-    -webkit-box-orient: vertical; 
+    -webkit-box-orient: vertical;
     overflow: hidden;
     font-size: 13px;
 }

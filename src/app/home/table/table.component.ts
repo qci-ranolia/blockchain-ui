@@ -14,11 +14,16 @@ export class TableComponent implements OnInit {
   showTable= false;
   sIndex: number = null;
   heading: any = "";
+  isAssets: any = false;
 
   constructor(private ProjectService: ProjectService) {
 
     this.ProjectService.emitTable.subscribe(res=>{
       this.heading = this.ProjectService.globalAction;
+      if(this.heading === "Assets")
+        this.isAssets = true;
+      else
+       this.isAssets = false;
       console.log(res);
       this.showTable= true;
       this.tableArray= res;
@@ -51,6 +56,13 @@ export class TableComponent implements OnInit {
   }
 
   createNew() {
+    this.ProjectService.createNewForm();
+  }
+
+  // only in share assets
+  createNewShareForm() {
+    // console.log(this.ProjectService.navigationData[1].createForm)
+    this.ProjectService.createNewFormElements(this.ProjectService.navigationData[1].createForm)
     this.ProjectService.createNewForm();
   }
 

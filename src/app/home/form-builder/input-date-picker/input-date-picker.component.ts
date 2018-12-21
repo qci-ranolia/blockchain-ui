@@ -17,7 +17,7 @@ export class InputDatePickerComponent implements OnInit {
   ngOnInit() {}
 
   getVal() {
-    this.json.value = new Date(this.value).getTime()+"";
+    this.json.value = new Date(this.value).getTime();
     this.responseData.emit(this.json);
   }
 

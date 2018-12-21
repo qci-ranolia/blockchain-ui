@@ -28,8 +28,10 @@ export class NavigationComponent implements OnInit {
   setNav(info){
     if(info.role) {
       this.navArray = this.info.data.parent.navigation;
+      this.ProjectService.navigationData = this.navArray;
     } else {
       this.navArray = this.info.data.child.navigation;
+      this.ProjectService.navigationData = this.navArray;
     }
   }
   logout(){
@@ -50,9 +52,12 @@ export class NavigationComponent implements OnInit {
 
 
       // this.ProjectService.createNewFormElements(this.navArray.createNewForm);
-
+      // get_receive_assets
     } if(action=="Assets") {
       this.ProjectService.get_assets();
+      this.ProjectService.setAction(action);
+    } if(action=="Receive") {
+      this.ProjectService.get_receive_assets();
       this.ProjectService.setAction(action);
     } if(action=="Child") {
       this.ProjectService.get_Children();

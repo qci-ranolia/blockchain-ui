@@ -20,6 +20,7 @@
   margin-left: -220px;
   overflow-y: auto;
   overflow-x: hidden;
+  background: #ffffff8c;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
@@ -65,7 +66,9 @@
 .sidebar-brand {
   height: 65px;
   position: relative;
-  background: linear-gradient(to right bottom, #2f3441 50%, #212531 50%);
+  color: white !important;
+  // background: linear-gradient(to right bottom, #2f3441 50%, #212531 50%);
+  background: #5867c5;
   padding-top: 1em;
 }
 .sidebar-brand a {
@@ -98,14 +101,15 @@
 /*-------------------------------*/
 .hamburger {
   position: fixed;
-  top: 20px;  
+  top: 20px;
   z-index: 999;
   display: block;
   width: 32px;
   height: 32px;
   margin-left: 15px;
-  background: transparent;
-  border: none;
+  background: #5867c5;
+  border:2px solid #5867c5;
+  border-radius: 6px;
 }
 .hamburger:hover,
 .hamburger:focus,
@@ -123,6 +127,7 @@
   opacity: 0;
   -webkit-transform: translate3d(0,0,0);
   -webkit-transition: all .35s ease-in-out;
+  border-radius: 5px
 }
 .hamburger.is-closed:hover:before {
   opacity: 1;
@@ -146,8 +151,8 @@
 .hamburger.is-closed .hamb-bottom {
   background-color: #fff;
 }
-.hamburger.is-closed .hamb-top { 
-  top: 5px; 
+.hamburger.is-closed .hamb-top {
+  top: 5px;
   -webkit-transition: all .35s ease-in-out;
 }
 .hamburger.is-closed .hamb-middle {
@@ -155,7 +160,7 @@
   margin-top: -2px;
 }
 .hamburger.is-closed .hamb-bottom {
-  bottom: 5px;  
+  bottom: 5px;
   -webkit-transition: all .35s ease-in-out;
 }
 .hamburger.is-closed:hover .hamb-top {
@@ -174,9 +179,9 @@
 .hamburger.is-open .hamb-top,
 .hamburger.is-open .hamb-bottom {
   top: 50%;
-  margin-top: -2px;  
+  margin-top: -2px;
 }
-.hamburger.is-open .hamb-top { 
+.hamburger.is-open .hamb-top {
   -webkit-transform: rotate(45deg);
   -webkit-transition: -webkit-transform .2s cubic-bezier(.73,1,.28,.08);
 }

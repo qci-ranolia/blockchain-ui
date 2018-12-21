@@ -1,7 +1,7 @@
 <div class="cont" *ngIf="!claim">
-  <div class="form sign-in" *ngIf="!change_password">
-    <div *ngIf="!forgot_password">
-      <h2 class="img__text" style="color:#aaa;">Welcome back,</h2><br/><br/><br/>
+  <div class="form sign-in " *ngIf="!change_password">
+    <div *ngIf="!forgot_password" class="">
+      <h2 class="img__text" style="">Welcome </h2><br/><br/><br/>
       <label>
         <span>Email</span>
         <input type="email" [(ngModel)]="email" name="email" autocomplete="off" />
@@ -10,14 +10,14 @@
         <span>Password</span>
         <input type="password" [(ngModel)]="password" name="password" autocomplete="off" />
       </label>
-      <button type="button" class="submit" (click)="login()">Sign In</button>
+      <button type="button" class="submit" (click)="login()">  Sign In  </button>
       <div class="row m-0">
-        <p class="forgot-pass col-sm-6 text-right" (click)="gotochange()" style="cursor:pointer">Change password ?</p>
-        <p class="forgot-pass col-sm-6 text-left" (click)="gotoforgot()" style="cursor:pointer">Forgot password ?</p>
+        <!-- <p class="forgot-pass col-sm-6 text-right" (click)="gotochange()" style="cursor:pointer">Change password ?</p>
+        <p class="forgot-pass col-sm-6 text-left" (click)="gotoforgot()" style="cursor:pointer">Forgot password ?</p> -->
       </div>
     </div>
     <div *ngIf="forgot_password">
-      <h2 class="img__text" style="color:#aaa;position:relative;top:10px">Forgot Password ?</h2><br/>
+      <!-- <h2 class="img__text" style="color:#aaa;position:relative;top:10px">Forgot Password ?</h2><br/> -->
       <label>
         <span>E-mail</span>
         <input type="email" [(ngModel)]="reset_mail" name="reset_mail" autocomplete="off" />
@@ -46,19 +46,19 @@
   <div class="sub-cont">
     <div class="img">
       <div class="img__text m--up"><br /><br />
-        <h2 style="background:none;color:#f0f0f0;">Claim account?</h2>
-        <p style="background:none;color:#f0f0f0;">Claim account and discover great amount of new opportunities!</p>
+        <h2 >Claim account?</h2>
+        <p >Claim account and discover great amount of new opportunities!</p>
         <br />
         <br />
       </div>
       <div class="img__btn" (click)="gotoclaim()">
-        <span class="m--up" style="background:none;color:#f0f0f0">Claim account</span>
+        <span class="m--up" >Claim account</span>
       </div>
     </div>
   </div>
 </div>
 <div class="cont mt-4" *ngIf="claim" style="height:564px;">
-  <div class="form sign-in pt-1">
+  <div class="form sign-in pt-1 ">
     <label>
       <span>Organisation Name</span>
       <input type="text" [(ngModel)]="org_name" name="org" autocomplete="off" />
@@ -97,7 +97,7 @@
       <br /><br />
       <br />
       <div class="img__btn mt-5" (click)="closeClaim()">
-        <span class="m--up" style="background:none;color:#f0f0f0" >Sign In</span>
+        <span class="m--up" style="background:none;color:#5867c5" >Sign In</span>
       </div>
     </div>
   </div>

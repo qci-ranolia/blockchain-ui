@@ -12,6 +12,7 @@ export class ProjectService {
   month : any = '2017-10';
   globalAction: string = "";
   formElements: any = [];
+  navigationData: any;
 
   constructor(private APIService: APIService,private route: ActivatedRoute, private router: Router,) {
     let d = new Date();
@@ -377,6 +378,7 @@ export class ProjectService {
       let response = this.HttpEventResponse(event)
       if(response){
         console.log(response)
+        alert("Success : " +response.success);
         // this.tableData = response.data;
         // this.tableHeader = response.headers;
         // this.emitTable.emit({header: this.tableHeader, data:this.tableData})
@@ -399,6 +401,23 @@ export class ProjectService {
         // this.emitTable.emit({header: this.tableHeader, data:this.tableData})
       } else {
         console.log("bep 08");
+      }
+    }, (err)=>{
+      console.log(err)
+    })
+  }
+
+  get_receive_assets() {
+    this.dashboardElements({table:0,summary:0,search:0, form:0});
+    this.APIService.Get_Receive_Assets().subscribe((event: HttpEvent<any>) =>{
+      let response = this.HttpEventResponse(event)
+      if(response){
+        console.log(response)
+        this.tableData = response.data;
+        this.tableHeader = response.headers;
+        this.emitTable.emit({header: this.tableHeader, data:this.tableData})
+      } else {
+        console.log("bep 09");
       }
     }, (err)=>{
       console.log(err)

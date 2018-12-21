@@ -179,6 +179,11 @@ export class APIService {
     return this.http.request(request)
   }
 
+  Get_Receive_Assets() {
+    const request = new HttpRequest('GET', this.current_URL+'/assets/receive_assets', { reportProgress: true, headers: this.appHeader });
+    return this.http.request(request)
+  }
+
   SubmitForm(response, url) {
     const request = new HttpRequest('POST', this.current_URL+url, response , { reportProgress: true, headers: this.appHeader });
     return this.http.request(request)
@@ -186,7 +191,7 @@ export class APIService {
 
   ViewAll(email) {
     let params = new HttpParams().set('email', email);
-    const request = new HttpRequest('GET', this.current_URL+'', { reportProgress: true, params: params, headers: this.appHeader });
+    const request = new HttpRequest('GET', this.current_URL+'/accounts/float_accounts_on_address', { reportProgress: true, params: params, headers: this.appHeader });
     return this.http.request(request)
   }
 
