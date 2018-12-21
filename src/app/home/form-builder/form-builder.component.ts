@@ -23,8 +23,11 @@ export class FormBuilderComponent implements OnInit {
   // ];
 
   constructor(private ProjectService: ProjectService) {
-
     this.ProjectService.emitHideFormBuilder.subscribe(res=>{
+
+      this.responseArray = [];
+      this.jsonArray = [];
+      this.formSubmitUrl="";
 
       this.jsonArray =  this.ProjectService.formElements.formElements;
       this.formName =  this.ProjectService.formElements.formName;
@@ -77,7 +80,6 @@ export class FormBuilderComponent implements OnInit {
     } else {
       this.responseArray.push(data);
     }
-
   }
 
   submitForm() {
@@ -91,9 +93,7 @@ export class FormBuilderComponent implements OnInit {
         this.responseArray.push({parms:"file_name", value: this.responseArray[i].file_name});
         this.responseArray.push({parms:"file_hash", value: this.responseArray[i].file_hash});
       }
-
     }
-
     let mapped;
 
     mapped = this.responseArray.map(item => ({ [item.parms]: item.value }) );
