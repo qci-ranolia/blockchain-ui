@@ -12,8 +12,8 @@ export class APIService {
   token : string
   headers : any
   opts : any
-  // url = "http://13.233.29.111:8000/";
-  url = "http://192.168.15.139:8000/";
+  url = "http://13.233.29.111:8000/";
+  // url = "http://192.168.15.139:8000/";
   // url: string = '../assets/UI_JSON/';
   request : any
 

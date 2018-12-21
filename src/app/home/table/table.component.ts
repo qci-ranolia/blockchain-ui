@@ -60,10 +60,15 @@ export class TableComponent implements OnInit {
   }
 
   // only in share assets
-  createNewShareForm() {
+  createNewIssueForm() {
     // console.log(this.ProjectService.navigationData[1].createForm)
     this.ProjectService.createNewFormElements(this.ProjectService.navigationData[1].createForm)
     this.ProjectService.createNewForm();
   }
-
+  // only in share assets
+  createNewShareForm() {
+    // console.log(this.ProjectService.navigationData[1].createForm)
+    this.ProjectService.createNewFormElements(this.ProjectService.navigationData[1].createForm2)
+    this.ProjectService.createNewForm();
+  }
 }
