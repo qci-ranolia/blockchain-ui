@@ -1,27 +1,21 @@
 // colors
 $theme:#5867c5; // Do not EDIT here, Use REPLACE_ALL feature of the editor to change the static colors
-
 $inputW: 260px;
 $btnH: 36px;
-
 $shadow: #727bb5;
 
-//functions
+// functions
 @function dark-primary($value){
   @return $value - rgba(30, 30, 30, 1);
 } @function light-primary($value){
   @return $value + rgba(30, 30, 30, 1);
 }
 
-// * {
-// }
-
-body{
+body {
   background-position: right top;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-image: url("./assets/pic/bg.jpg");
-  // background-image: url("https://i.pinimg.com/originals/25/62/95/256295e1474e10f417261fe2a4a84adb.jpg");
+  // background-image: url("./assets/pic/bg.jpg");
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -46,6 +40,7 @@ table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
   color: #888 !important;
   padding: 1px 8px !important;
 }
+
 .dataTables_wrapper .dataTables_paginate .paginate_button.current,
 .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover,
 .dataTables_wrapper .dataTables_paginate .paginate_button:active,
@@ -95,9 +90,7 @@ table.dataTable.display tbody td {
   border-top: 1px solid light-primary($theme - #111) !important;
 }
 .closed{
-  // transition-timing-function: ease;
-  // transition-duration: 0.7s;
-  border: 2px solid dark-primary($theme - #222);
+  border: 1px solid dark-primary($theme - #222);
   padding-bottom: 20px;
 	box-shadow: 5px 4px 7px 0px $shadow;
 	border-radius: 10px;
@@ -106,14 +99,14 @@ table.dataTable.display tbody td {
 	border-radius: 10px;
   transition-timing-function: ease;
   transition-duration: 1.5s;
-  border: 2px solid dark-primary($theme - #222);
+  border: 1px solid dark-primary($theme - #222);
   padding-bottom: 20px;
 	box-shadow: 5px 4px 7px 0px $shadow;
 
 }
 #sidebar-wrapper{
   box-shadow: 5px 4px 7px 0px $shadow;
-  border-right: 2px solid dark-primary($theme - #222)
+  border-right: 1px solid dark-primary($theme - #222)
 }
 .img {
   &:before {
@@ -181,16 +174,16 @@ $diffRatio: ($contW - $imgW) / $contW;
 	width: $formW;
 	height: 100%;
 	transition: transform $switchAT ease-in-out;
-	padding: 50px 30px 0;
+	padding: 40px 30px 0;
 }
 .sub-cont {
 	overflow: hidden;
 	position: absolute;
 	left: $formW;
 	top: 0;
-	width: $contW;
+	width: $contW - 67%;
 	height: 100%;
-	padding-left: $imgW;
+	padding-left: $imgW - 2%;
 	transition: transform $switchAT ease-in-out;
 	@include signUpActive {
 		transform: translate3d($formW * -1,0,0);
@@ -202,10 +195,10 @@ $diffRatio: ($contW - $imgW) / $contW;
 	position: absolute;
 	left: 0;
 	top: 0;
-	width: $imgW;
+	width: $imgW + 65%;
 	height: 100%;
-	padding-top: 360px;
-	&:before {
+	padding-top: 340px;
+	/* &:before {
 		content: '';
 		position: absolute;
 		right: 0;
@@ -227,7 +220,7 @@ $diffRatio: ($contW - $imgW) / $contW;
 		&:before {
 			transform: translate3d($formW,0,0);
 		}
-	}
+	} */
 	&__text {
 		z-index: 2;
 		position: absolute;

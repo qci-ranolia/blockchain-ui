@@ -1,8 +1,14 @@
 $inputW: 260px;
 $btnH: 36px;
+
 .backgroundVisual{
-  background: #f7f7f7e0 !important;
-  border-radius: 15px
+  background:rgba(247,247,247,0.2);
+  border-radius:15px;
+  box-shadow:3px 2px 15px 0px #ccc;
+  border-color:#5867c5;
+  box-sizing:border-box;
+  border:1px solid #5867c5;
+  z-index:9999;
 }
 input, button {
 	border: none;
@@ -20,7 +26,6 @@ label {
 	width: $inputW;
 	margin: 25px auto 0;
 	text-align: center;
-
 	span {
 		text-transform: uppercase;
 	}
@@ -47,5 +52,4 @@ input {
 	background: #5867c5;
 	color: white !important;
 	text-transform: uppercase;
-
 }

@@ -1,4 +1,3 @@
-
 /*-------------------------------*/
 /*           Wrappers            */
 /*-------------------------------*/
@@ -17,7 +16,7 @@
   left: 220px;
   width: 0;
   height: 100%;
-  margin-left: -220px;
+  margin-left: -230px;
   overflow-y: auto;
   overflow-x: hidden;
   background: #ffffff8c;
@@ -31,6 +30,7 @@
 }
 #wrapper.toggled #sidebar-wrapper {
     width: 220px;
+    margin-left: -220px;
 }
 #page-content-wrapper {
   width: 100%;
@@ -107,8 +107,8 @@
   width: 32px;
   height: 32px;
   margin-left: 15px;
-  background: #5867c5;
-  border:2px solid #5867c5;
+  background: transparent;
+  border:2px solid transparent;
   border-radius: 6px;
 }
 .hamburger:hover,
@@ -149,7 +149,7 @@
 .hamburger.is-closed .hamb-top,
 .hamburger.is-closed .hamb-middle,
 .hamburger.is-closed .hamb-bottom {
-  background-color: #fff;
+  background-color: #5867c5;
 }
 .hamburger.is-closed .hamb-top {
   top: 5px;
@@ -174,7 +174,7 @@
 .hamburger.is-open .hamb-top,
 .hamburger.is-open .hamb-middle,
 .hamburger.is-open .hamb-bottom {
-  background-color: #fff;
+  background-color: #5867c5;
 }
 .hamburger.is-open .hamb-top,
 .hamburger.is-open .hamb-bottom {

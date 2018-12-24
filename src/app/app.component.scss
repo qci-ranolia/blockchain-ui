@@ -1,5 +1,5 @@
 // Snackbar notifications
-.notification{
+.notification {
     z-index:99999;
 	max-width:50%;
 	position:fixed;
@@ -17,8 +17,8 @@
 	box-sizing:border-box;
 	animation:0.3s down ease 1; 
 	opacity:0;
-	display: none;
-	border: 1px solid #222;
+	display:none;
+	border:1px solid #222;
 }
 .notification.active{
 	bottom:10%;

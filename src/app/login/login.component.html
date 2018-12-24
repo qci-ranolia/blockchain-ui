@@ -1,8 +1,7 @@
 <div class="cont" *ngIf="!claim">
   <div class="form sign-in " *ngIf="!change_password">
     <div *ngIf="!forgot_password" class="backgroundVisual">
-
-      <h2 class="img__text" style="">Welcome </h2><br/><br/><br/>
+      <h2 class="img__text mt-4">Welcome </h2><br/><br/><br/>
       <label>
         <span>Email</span>
         <input type="email" [(ngModel)]="email" name="email" autocomplete="off" />
@@ -11,7 +10,7 @@
         <span>Password</span>
         <input type="password" [(ngModel)]="password" name="password" autocomplete="off" />
       </label>
-      <button type="button" class="submit" (click)="login()">  Sign In  </button>
+      <button type="button" class="submit" (click)="login()">Sign In</button>
       <div class="row m-0">
         <!-- <p class="forgot-pass col-sm-6 text-right" (click)="gotochange()" style="cursor:pointer">Change password ?</p>
         <p class="forgot-pass col-sm-6 text-left" (click)="gotoforgot()" style="cursor:pointer">Forgot password ?</p> -->
@@ -28,7 +27,7 @@
     </div>
   </div>
   <div class="form sign-in pt-0" *ngIf="change_password">
-    <h2 class="img__text" style="color:#aaa;position:relative;top:10px">Change Password ?</h2><br/>
+    <h2 class="img__text mt-3">Change Password ?</h2><br/>
     <label>
       <span>E-mail</span>
       <input type="email" [(ngModel)]="mail" name="mail" autocomplete="off" />
@@ -44,16 +43,16 @@
     <button type="button" class="submit" (click)="change()">Change Password</button>
     <p class="forgot-pass" (click)="close_change()" style="cursor:pointer">Go Back</p>
   </div>
-  <div class="sub-cont">
+  <div class="sub-cont backgroundVisual">
     <div class="img">
       <div class="img__text m--up"><br /><br />
-        <h2 >Claim account?</h2>
-        <p >Claim account and discover great amount of new opportunities!</p>
+        <h2>Claim account?</h2>
+        <p>Claim account and discover great amount of new opportunities!</p>
         <br />
         <br />
       </div>
       <div class="img__btn" (click)="gotoclaim()">
-        <span class="m--up" >Claim account</span>
+        <span class="m--up">Claim account</span>
       </div>
     </div>
   </div>
