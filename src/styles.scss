@@ -13,8 +13,10 @@ $shadow: #727bb5;
   @return $value + rgba(30, 30, 30, 1);
 }
 
-* {
+// * {
+// }
 
+body{
   background-position: right top;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -24,12 +26,7 @@ $shadow: #727bb5;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  color: #3a3838 !important;
-
-}
-
-body{
-
+  color: #3a3838;
 }
 
 .container {
