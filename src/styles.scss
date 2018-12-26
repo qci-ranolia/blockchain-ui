@@ -15,12 +15,13 @@ body {
   background-position: right top;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  // background-image: url("./assets/pic/bg.jpg");
+  background-image: url("https://theblockcrypt.com/beta/wp-content/uploads/2017/06/Bits-Blockchain-Visualization1.jpeg");
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   color: #3a3838;
+  background-color: #e8e8e8;
 }
 
 .container {
@@ -90,18 +91,18 @@ table.dataTable.display tbody td {
   border-top: 1px solid light-primary($theme - #111) !important;
 }
 .closed{
-  border: 1px solid dark-primary($theme - #222);
+  border: 1px solid light-primary($theme);
   padding-bottom: 20px;
-	box-shadow: 5px 4px 7px 0px $shadow;
+	box-shadow: 0px 0px 40px 0px $shadow;
 	border-radius: 10px;
 }
 .toggled .closed{
 	border-radius: 10px;
   transition-timing-function: ease;
   transition-duration: 1.5s;
-  border: 1px solid dark-primary($theme - #222);
+  border: 1px solid light-primary($theme);
   padding-bottom: 20px;
-	box-shadow: 5px 4px 7px 0px $shadow;
+	box-shadow: 0px 0px 40px 0px $shadow;
 
 }
 #sidebar-wrapper{
@@ -312,8 +313,23 @@ $diffRatio: ($contW - $imgW) / $contW;
 	}
 }
 .sign-up {
-	transform: translate3d($contW * -1,0,0);
+	transform: translate3d($contW * -1, 0, 0);
 	@include signUpActive {
 		transform: translate3d(0,0,0);
 	}
 }
+
+
+[type="text"], [type="email"] {
+	border-radius: 5px;
+	border: 1px solid #c4c4c4;
+	box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1);
+	padding:2px 7px;
+	margin-left: 5px;
+}
+// [type="date"]::-webkit-inner-spin-button {
+// 	display:none;
+// }
+// [type="date"]::-webkit-calendar-picker-indicator {
+// 	opacity:0;
+// }

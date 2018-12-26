@@ -1,3 +1,23 @@
 .backgroundVisual{
   background: #f7f7f7e0 !important;
 }
+input[type=file] {
+  cursor: pointer;
+  width: 250px;
+  height: 34px;
+  overflow: hidden;
+}
+input[type=file]:before {
+  width: 150px;
+  height: 32px;
+  font-size: 16px;
+  line-height: 32px;
+  content: 'Upload assets';
+  display: inline-block;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  padding: 0 10px;
+  text-align: center;
+}
+input[type=file]::-webkit-file-upload-button {
+  visibility: hidden;
+}
