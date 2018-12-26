@@ -1,5 +1,5 @@
 {
-  "name": "Admin Dashboard",
+  "name": "Master Dashboard",
   "parent": {
     "navigation" : [
       {
@@ -12,7 +12,7 @@
             { "name": "Phone No.", "parms":"phone_number", "type": "text", "value":"", "id":2 },
             { "name": "org name", "parms":"org_name", "type": "text", "value":"", "id":3 },
             { "name": "Email", "parms":"email", "type": "email", "value":"", "id":4 },
-            { "name": "Role", "parms":"role", "type": "dropdown", "option": ["ADMIN", "MASTER","LAB", "USER"], "value":"", "id":5 }
+            { "name": "Role", "parms":"role", "type": "dropdown", "option": ["CHILD", "LAB", "USER"], "value":"", "id":5 }
           ]
         }
       },
@@ -40,7 +40,7 @@
           "formSubmitUrl": "/assets/share_asset",
           "formElements": [
             { "name": "Asset Address", "parms":"asset_address", "type": "text", "value":"123", "id":3 },
-            { "name": "Receive Address", "parms":"receive_asset_address", "type": "text", "value":"34234453543", "id":2 },
+            { "name": "Receive Address", "parms":"receive_asset_address", "type": "text", "value":"", "id":2 },
             { "name": "Comments", "parms":"comments", "type": "text", "value":"", "id":1 },
             { "name": "Unique Code", "parms":"unique_code", "type": "text", "value":"", "id":4 },
             { "name": "Expires on", "parms":"revoked_on", "type": "date", "value":"", "id":5 }
@@ -82,14 +82,6 @@
             { "name": "Last name", "parms":"last_name", "type": "text", "value":"", "id":"6" }
 
           ]
-        }
-      },
-      {
-        "data":"Search",
-        "createNewForm":{
-          "formName": "Create New Search",
-          "formSubmitUrl": "/accounts/create_organization_account",
-          "formElements": []
         }
       }
     ]
