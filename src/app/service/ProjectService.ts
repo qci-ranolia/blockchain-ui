@@ -244,6 +244,7 @@ export class ProjectService {
         console.log("bep 05");
       }
     }, (err:HttpErrorResponse)=>{
+
       this.checkToken(err);
       console.log("Error 3");
       this.emitError.emit(err.error.message)
@@ -267,6 +268,9 @@ export class ProjectService {
         console.log("bep 06");
       }
     }, (err:HttpErrorResponse)=>{
+      this.tableData = [];
+      this.tableHeader = [];
+      this.emitTable.emit({header: this.tableHeader, data:this.tableData})
       this.checkToken(err);
       console.log("Error 4");
       this.emitError.emit(err.error.message)
@@ -399,9 +403,9 @@ export class ProjectService {
       let response = this.HttpEventResponse(event)
       if(response){
         console.log(response)
-        // this.tableData = response.data;
-        // this.tableHeader = response.headers;
-        // this.emitTable.emit({header: this.tableHeader, data:this.tableData})
+        this.tableData = response.data;
+        this.tableHeader = response.headers;
+        this.emitTable.emit({header: this.tableHeader, data:this.tableData})
       } else {
         console.log("bep 08");
       }
@@ -421,6 +425,23 @@ export class ProjectService {
         this.emitTable.emit({header: this.tableHeader, data:this.tableData})
       } else {
         console.log("bep 09");
+      }
+    }, (err)=>{
+      console.log(err)
+    })
+  }
+
+  viewAllReceiveAssets(address) {
+    this.dashboardElements({table:0,summary:0,search:0, form:0});
+    this.APIService.View_All_Receive_Assets(address).subscribe((event: HttpEvent<any>) =>{
+      let response = this.HttpEventResponse(event)
+      if(response){
+        console.log(response)
+        this.tableData = response.data;
+        this.tableHeader = response.headers;
+        this.emitTable.emit({header: this.tableHeader, data:this.tableData})
+      } else {
+        console.log("bep 10");
       }
     }, (err)=>{
       console.log(err)

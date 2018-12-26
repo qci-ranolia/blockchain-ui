@@ -45,12 +45,22 @@ export class SummaryComponent implements OnInit {
       if(this.ProjectService.globalAction === "Accounts" ) {
         this.showViewAll= true;
       }
+      if(this.ProjectService.globalAction === "Receive" ) {
+        this.showViewAll= true;
+        let tempData =  JSON.parse(this.data);
+        if(tempData.to_org_address) {
+          this.showViewAll= false;
+        }
+      }
       if(action === "Assets") {
         this.shareWithAddress= true;
         let tempData =  JSON.parse(this.data);
         if(tempData.address) {
           console.log(tempData.address)
           this.shareWithAddressData = tempData.address;
+        }
+        if(tempData.to_org_address) {
+          this.showViewAll= false;
         }
       }
 
@@ -66,9 +76,20 @@ export class SummaryComponent implements OnInit {
   }
 
   viewAll() {
-    let temp = JSON.parse(this.data)
-    // console.log(temp.email)
-    this.ProjectService.viewAll(temp.email);
+    if(this.ProjectService.globalAction === "Accounts") {
+      let temp = JSON.parse(this.data)
+      this.ProjectService.viewAll(temp.email);
+    }
+
+    if(this.ProjectService.globalAction === "Receive") {
+      let tempData =  JSON.parse(this.data);
+      if(tempData.address) {
+        console.log(tempData.address)
+        this.ProjectService.viewAllReceiveAssets(tempData.address);
+      }
+    }
+
+
   }
 
   dataService(m) {
