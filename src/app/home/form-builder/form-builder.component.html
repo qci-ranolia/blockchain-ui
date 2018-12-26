@@ -27,7 +27,7 @@
               <app-input-date-picker [json]=json  (responseData)="responseData($event)"></app-input-date-picker>
             </label>
             <label class="col-sm-12 p-0 backgroundVisual" *ngIf="json.type == 'file'">
-              <span>{{json.name}}</span>
+              <!-- <span>{{json.name}}</span> -->
               <app-input-file-upload [json]=json  (responseData)="responseData($event)"></app-input-file-upload>
             </label>
           </div>

@@ -1,1 +1,9 @@
-<input type="file" class="submit text-white text-left" (change)="getVal($event);" [accept]=json.fileTypes/>
+<!-- <input type="file" class=" text-white text-left" (change)="getVal($event);" [accept]=json.fileTypes/> -->
+
+<div class="fileUpload btn btn-primary">
+    <span>Select file</span>
+    <!-- <input type="file" class="" /> -->
+    <input type="file" class="upload submit" (change)="getVal($event);" [accept]=json.fileTypes/>
+</div>
+<br>
+{{name}}

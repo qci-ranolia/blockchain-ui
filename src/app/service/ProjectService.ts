@@ -23,6 +23,7 @@ export class ProjectService {
   }
 
   emitUI : EventEmitter<any> = new EventEmitter<any>();
+  emitError:  EventEmitter<any> = new EventEmitter<any>();
   emitTable : EventEmitter<any> = new EventEmitter<any>();
   emitSummary: EventEmitter<any> = new EventEmitter<any>();
   emitHideTable: EventEmitter<any> = new EventEmitter<any>();
@@ -30,7 +31,7 @@ export class ProjectService {
   emitUserLogin : EventEmitter<any> = new EventEmitter<any>();
   emitHideSummary: EventEmitter<any> = new EventEmitter<any>();
   emitHideSearchBar:  EventEmitter<any> = new EventEmitter<any>();
-  emitError:  EventEmitter<any> = new EventEmitter<any>();
+  emitNewFormSummary:  EventEmitter<any> = new EventEmitter<any>();
 
   emitHideFormBuilder:  EventEmitter<any> = new EventEmitter<any>();
 
@@ -153,6 +154,7 @@ export class ProjectService {
 
   createNewFormElements(formElement: any) {
     this.formElements = formElement
+    console.log(this.formElements)
   }
 
   checkToken(res) {
@@ -168,6 +170,7 @@ export class ProjectService {
     this.APIService.Get_Admin_UI().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
+
         this.emitUI.emit({role:parent_role, child:role, data:response})
       } else {
         console.log("bep 01");
