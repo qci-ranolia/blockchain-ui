@@ -20,7 +20,7 @@ export class SummaryComponent implements OnInit {
 
   constructor(private ProjectService: ProjectService) {
     this.ProjectService.emitSummary.subscribe(res=>{
-
+      this.showViewAll= false;
       this.shareWithAddress = false;
       this.header = [];
       this.data = [];
@@ -58,9 +58,6 @@ export class SummaryComponent implements OnInit {
         if(tempData.address) {
           console.log(tempData.address)
           this.shareWithAddressData = tempData.address;
-        }
-        if(tempData.to_org_address) {
-          this.showViewAll= false;
         }
       }
 
