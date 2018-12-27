@@ -14,7 +14,9 @@ export class InputTextComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.json.value = this.value;
+  }
 
   getVal() {
     console.log(this.value);

@@ -2,7 +2,7 @@
   <div class="row m-1">
     <div class="col-lg-12 col-lg-offset-2 pl-0 pr-0 mt-0">
       <div class="cont mt-5">
-        <div class="form sign-in" *ngIf="!otp_view">
+        <div class="form sign-in backgroundVisual" *ngIf="!otp_view">
           <a href="" (click)="refresh()">Go back</a>
           <br /><br />
           <label>
@@ -54,21 +54,21 @@
             <input type="text" [(ngModel)]="password" name="password" autocomplete="off" />
           </label>
         </div>
-        <div class="sub-cont">
+        <div class="sub-cont backgroundVisual">
           <div class="img">
             <div class="img__text m--up"><br /><br />
-              <h2 style="background:none;color:#f0f0f0;">Claim account ?</h2>
-              <p style="background:none;color:#f0f0f0;">Claim account and discover great amount of new opportunities!</p>
+              <h2>Claim account ?</h2>
+              <p>Claim account and discover great amount of new opportunities!</p>
               <br />
               <br />
               <br />
             </div>
             <br />
             <div class="img__btn mt-5" (click)="sendOTP()" *ngIf="!otp_view">
-              <button type="button" class="submit text-white mt-0 mb-0">Enter</button>
+              <button type="button" class="submit mt-0 mb-0">Enter</button>
             </div>
             <div class="img__btn mt-5" (click)="submit_OTP()" *ngIf="otp_view">
-              <button type="button" class="submit text-white mt-0 mb-0" >Submit</button>
+              <button type="button" class="submit mt-0 mb-0">Submit</button>
             </div>
           </div>
         </div>

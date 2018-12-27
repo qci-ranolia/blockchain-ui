@@ -39,8 +39,8 @@
           "formName": "Share Asset",
           "formSubmitUrl": "/assets/share_asset",
           "formElements": [
-            { "name": "Asset Address", "parms":"asset_address", "type": "text", "value":"", "id":3 },
-            { "name": "Receive Address", "parms":"receive_asset_address", "type": "text", "value":"", "id":2 },
+            { "name": "Asset Address", "parms":"asset_address", "type": "text", "value":"123", "id":3 },
+            { "name": "Receive Address", "parms":"receive_asset_address", "type": "text", "value":"34234453543", "id":2 },
             { "name": "Comments", "parms":"comments", "type": "text", "value":"", "id":1 },
             { "name": "Unique Code", "parms":"unique_code", "type": "text", "value":"", "id":4 },
             { "name": "Expires on", "parms":"revoked_on", "type": "date", "value":"", "id":5 }
