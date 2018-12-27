@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit {
         hamburger_cross()      
       })
       function hamburger_cross() {
+        alert('a')
         if (isClosed == false) {
           overlay.hide()
           trigger.removeClass('is-open')

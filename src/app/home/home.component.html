@@ -1,17 +1,11 @@
 <div id="wrapper" class="toggled" *ngIf="UI_Info">
     <div class="overlay" style="display:block"></div>
     <!-- Sidebar -->
-    <nav class="navbar navbar-inverse fixed-top" id="sidebar-wrapper" role="navigation">
-        <ul class="nav sidebar-nav">
-            <div class="sidebar-header">
-                <div class="sidebar-brand"><a href="#" style="font-size:20px;">{{UI_Info.data.name}}</a></div>
-            </div>
-            <!-- <div class="sidebar-header">
-                <label>
-                    <span>Search</span>
-                    <input type="text"  />
-                </label>
-            </div> -->
+    <nav class="navbar fixed-top ft">
+        <a class="navbar-brand theme" href="#">{{UI_Info.data.name}}</a>
+    </nav>
+    <nav class="navbar navbar-inverse fixed-top mt-5" id="sidebar-wrapper" role="navigation">
+        <ul class="nav sidebar-nav mt-1">
             <app-navigation class="col-sm-12 p-0" [info]=UI_Info ></app-navigation>
         </ul>
     </nav>
