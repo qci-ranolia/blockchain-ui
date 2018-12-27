@@ -195,4 +195,10 @@ export class APIService {
     return this.http.request(request)
   }
 
+  View_All_Receive_Assets(address) {
+    let params = new HttpParams().set('receive_address', address);
+    const request = new HttpRequest('GET', this.current_URL+'/assets/shared_on_receive_assets', { reportProgress: true, params: params, headers: this.appHeader });
+    return this.http.request(request)
+  }
+
 }

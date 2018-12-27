@@ -12,7 +12,7 @@
             { "name": "Phone No.", "parms":"phone_number", "type": "text", "value":"", "id":2 },
             { "name": "org name", "parms":"org_name", "type": "text", "value":"", "id":3 },
             { "name": "Email", "parms":"email", "type": "email", "value":"", "id":4 },
-            { "name": "Role", "parms":"role", "type": "dropdown", "option": ["ADMIN", "MASTER","LAB", "USER"], "value":"", "id":5 }
+            { "name": "Role", "parms":"role", "type": "dropdown", "option": ["CHILD", "LAB", "USER"], "value":"", "id":5 }
           ]
         }
       },
@@ -27,7 +27,40 @@
           ]
         },
         "createForm":{
+          "formName": "Issue Asset",
+          "formSubmitUrl": "/assets/upload",
+          "formElements": [
+            { "name": "Select file", "parms":"base64_file_bytes", "type": "file", "value":"", "file_name":"", "file_hash":"", "id":1 },
+            { "name": "Expires on", "parms":"expired_on", "type": "date", "value":"", "id":2 },
+            { "name": "Address", "parms":"address", "type": "text", "value":"", "id":3 }
+          ]
+        },
+        "createForm2":{
           "formName": "Share Asset",
+          "formSubmitUrl": "/assets/share_asset",
+          "formElements": [
+            { "name": "Asset Address", "parms":"asset_address", "type": "text", "value":"123", "id":3 },
+            { "name": "Receive Address", "parms":"receive_asset_address", "type": "text", "value":"", "id":2 },
+            { "name": "Comments", "parms":"comments", "type": "text", "value":"", "id":1 },
+            { "name": "Unique Code", "parms":"unique_code", "type": "text", "value":"", "id":4 },
+            { "name": "Expires on", "parms":"revoked_on", "type": "date", "value":"", "id":5 }
+          ]
+        }
+      },
+      {
+        "data":"Receive",
+        "createNewForm":{
+          "formName": "Create Receive Asset",
+          "formSubmitUrl": "/assets/create_receive_asset",
+          "formElements": [
+            { "name": "Id ", "parms":"_id_", "type": "text", "value":"", "id":1 },
+            { "name": "Name ", "parms":"name", "type": "text", "value":"", "id":2 },
+            { "name": "Description ", "parms":"description", "type": "text", "value":"", "id":3 },
+            { "name": "Expires on", "parms":"at_which_asset_expires", "type": "date", "value":"", "id":4 }
+          ]
+        },
+        "createForm":{
+          "formName": "Issue Asset",
           "formSubmitUrl": "/assets/upload",
           "formElements": [
             { "name": "Select file", "parms":"base64_file_bytes", "type": "file", "value":"", "file_name":"", "file_hash":"", "id":1 },
