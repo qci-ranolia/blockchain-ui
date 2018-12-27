@@ -244,7 +244,9 @@ export class ProjectService {
         console.log("bep 05");
       }
     }, (err:HttpErrorResponse)=>{
-
+      this.tableData = [];
+      this.tableHeader = [];
+      this.emitTable.emit({header: this.tableHeader, data:this.tableData})
       this.checkToken(err);
       console.log("Error 3");
       this.emitError.emit(err.error.message)
@@ -299,6 +301,9 @@ export class ProjectService {
         console.log("bep 06");
       }
     }, (err:HttpErrorResponse)=>{
+      this.tableData = [];
+      this.tableHeader = [];
+      this.emitTable.emit({header: this.tableHeader, data:this.tableData})
       this.checkToken(err);
       console.log("Error 5");
       this.emitError.emit(err.error.message)
@@ -372,6 +377,9 @@ export class ProjectService {
         console.log("bep 08");
       }
     }, (err:HttpErrorResponse)=>{
+      this.tableData = [];
+      this.tableHeader = [];
+      this.emitTable.emit({header: this.tableHeader, data:this.tableData})
       this.checkToken(err);
       console.log("Error 7");
       this.emitError.emit(err.error.message)
@@ -394,6 +402,9 @@ export class ProjectService {
       }
     }, (err)=>{
       console.log(err);
+      this.emitError.emit(err.error.message)
+      this.errorSnack()
+      console.log(err.error.message)
     });
   }
 
@@ -410,7 +421,13 @@ export class ProjectService {
         console.log("bep 08");
       }
     }, (err)=>{
+      this.tableData = [];
+      this.tableHeader = [];
+      this.emitTable.emit({header: this.tableHeader, data:this.tableData})
       console.log(err)
+      this.emitError.emit(err.error.message)
+      this.errorSnack()
+      console.log(err.error.message)
     })
   }
 
@@ -427,7 +444,13 @@ export class ProjectService {
         console.log("bep 09");
       }
     }, (err)=>{
+      this.tableData = [];
+      this.tableHeader = [];
+      this.emitTable.emit({header: this.tableHeader, data:this.tableData})
       console.log(err)
+      this.emitError.emit(err.error.message)
+      this.errorSnack()
+      console.log(err.error.message)
     })
   }
 
@@ -444,7 +467,13 @@ export class ProjectService {
         console.log("bep 10");
       }
     }, (err)=>{
+      this.tableData = [];
+      this.tableHeader = [];
+      this.emitTable.emit({header: this.tableHeader, data:this.tableData})
       console.log(err)
+      this.emitError.emit(err.error.message)
+      this.errorSnack()
+      console.log(err.error.message)
     })
   }
 
