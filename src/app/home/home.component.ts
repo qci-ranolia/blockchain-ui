@@ -34,8 +34,8 @@ export class HomeComponent implements OnInit {
         hamburger_cross()      
       })
       function hamburger_cross() {
-        alert('a')
-        if (isClosed == false) {
+        console.log('hamburger triggered')
+        if ( isClosed == false ) {
           overlay.hide()
           trigger.removeClass('is-open')
           trigger.addClass('is-closed')
