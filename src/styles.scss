@@ -36,14 +36,14 @@ body {
   color:#444;
   height: 80vh;
   background:linear-gradient(90deg, $theme-1, $theme-2);
-  background:#e7e7e7;
+  background:$theme-1 - #050201; //#e0e4ec //ebeef5
 }
 .theme {
   color:#444
 }
 .ft {
   background:white;
-  box-shadow: 0px 11px 30px -20px dark-primary($theme-1 - #444);
+  box-shadow:0px 2px 12px 0px dark-primary($theme-1 - #070300);
   padding:4px 10px 4px 70px !important;
 }
 .container {
@@ -110,24 +110,24 @@ table.dataTable.display tbody th,
 table.dataTable.display tbody td {
   border-top: 1px solid light-primary($theme-1 - #111) !important;
 }
-.closed{
-  border: 1px solid light-primary($theme-1);
-  padding-bottom: 20px;
-	box-shadow: 0px 51px 30px -50px dark-primary($theme-1 - #444);
-	border-radius: 10px;
-}
-.toggled .closed{
-	border-radius: 10px;
-  transition-timing-function: ease;
-  transition-duration: 1.5s;
-  border: 1px solid light-primary($theme-1);
-  padding-bottom: 20px;
-	box-shadow: 0px 51px 30px -50px dark-primary($theme-1 - #444);
+// .closed{
+//   // border: 1px solid light-primary($theme-1);
+//   padding-bottom: 20px;
+// 	// box-shadow: 0px 51px 30px -50px dark-primary($theme-1 - #444);
+// 	border-radius: 10px;
+// }
+// .toggled .closed{
+// 	// border-radius: 10px;
+//   transition-timing-function: ease;
+//   transition-duration: 1.5s;
+//   // border: 1px solid light-primary($theme-1);
+//   padding-bottom: 20px;
+// 	// box-shadow: 0px 51px 30px -50px dark-primary($theme-1 - #444);
 
-}
+// }
 #sidebar-wrapper{
-  box-shadow: 0px 0px 20px 0px dark-primary($theme-1 - #444);
-  border-right: 1px solid dark-primary($theme-1 - #222)
+  box-shadow: 2px 0px 12px 0px dark-primary($theme-1 - #100c04);
+  // border-right: 1px solid dark-primary($theme-1 - #222)
 }
 .img {
   &:before {
@@ -494,8 +494,8 @@ $diffRatio: ($contW - $imgW) / $contW;
 .backgroundVisual{
 	background:#fff !important;
 	border-radius:10px;
-  box-shadow:0px 51px 30px -50px dark-primary($theme-1 - #444);
-  border: 1px solid $theme-1 - #111
+  box-shadow:0px 2px 12px 0px dark-primary($theme-1 - #070300);//#dfe3eb
+  // border: 1px solid $theme-1 - #111
 }
 
 
@@ -585,9 +585,24 @@ input {
 	width: 100%;
 	margin-top: 5px;
 	padding-bottom: 5px;
-	font-size: 16px;
+  font-size: 15px;
+  color: #575454;
 }
 .summary .dyn {
   word-break : break-all;
   font-size : 13px;
+}
+
+
+// dashboard
+.progress {
+  height: 0.8rem;
+  // box-shadow: 0px 2px 12px 0px dark-primary($theme-1 - #070300);
+  background: dark-primary($theme-1 - #070300);
+  .approved {
+    background: linear-gradient(to right,#40dcb2,#40dc7e);
+  }
+  .failed{
+    background: linear-gradient(to right,#ff4ca6,#ff4c6a);
+  }
 }

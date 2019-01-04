@@ -1,18 +1,15 @@
-<div class="container closed mt-4 backgroundVisual summary" *ngIf="showSummary" style="overflow-x: auto">
+<h6 class="mt-3 p-0 text-left" *ngIf="showSummary">Summary</h6>
+<div class="container closed mt-2 backgroundVisual summary" *ngIf="showSummary" style="overflow-x: auto">
     <div class="row m-1" >
-        <h3 class="mt-3 col-sm-12 p-0">Summary</h3>
-        <h4 class="col-sm-12 p-0" >
-          <!-- <a href="">Master 2</a> -->
-          <button type="button" class="submit float-right" style="position:relative;top:-50px" *ngIf="showViewAll" (click)="viewAll()">
-            View All
-          </button>
-        </h4>
-        <br /><br />
+        <div class="col-sm-12 pr-0 text-right">
+            <button type="button" class="submit d-inline-block" *ngIf="showViewAll" (click)="viewAll()">View All</button>
+            <button type="button" class="submit d-inline-block" (click)='createNewShareForm()' *ngIf="shareWithAddress">+ Share</button>
+            <!-- <br /><br /> -->
+        </div>
         <div class="col-sm-12 row mb-2 dyn" *ngFor="let he of header; let m = index ">
             <div class="col-sm-4 p-0" ><strong>{{he}}</strong></div>
             <div class="col-sm-8 p-0">{{dataService(m)}}</div>
         </div>
     </div>
-    <button type="button" class="submit " style="float: right; margin-left:10px; margin-right:10px" (click)='createNewShareForm()' *ngIf="shareWithAddress">+ Share</button>
 </div>
 <br /><br />

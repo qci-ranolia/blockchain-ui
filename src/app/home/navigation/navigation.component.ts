@@ -34,9 +34,6 @@ export class NavigationComponent implements OnInit {
       this.ProjectService.navigationData = this.navArray;
     }
   }
-  logout(){
-    this.ProjectService.logout();
-  }
 
   navButton(action) {
 

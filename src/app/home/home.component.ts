@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { ProjectService } from '../service/ProjectService';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import * as d3 from "d3"
 declare var $
 
 @Component({
@@ -10,7 +11,7 @@ declare var $
   styleUrls: ['./home.component.scss']
 })
 
-export class HomeComponent implements OnInit { 
+export class HomeComponent implements OnInit, AfterContentInit { 
   UI_Info: any;
 
   constructor(private ProjectService: ProjectService, private router: Router) {
@@ -54,5 +55,24 @@ export class HomeComponent implements OnInit {
   }
   ngOnInit() {
     this.ProjectService.getUI();
+  }
+
+  logout(){
+    this.ProjectService.logout();
+  }
+
+
+  ngAfterContentInit() {
+    // console.log('s')
+    // d3.select(“p”).style(“color”, “red”);
+  }
+
+  clicked(event:any){
+    d3.select(event.target).
+      append('circle')
+      .attr('cx', event.x)
+      .attr('cy', event.y)
+      .attr('r', '10px')
+      .attr('fill', '#f44')
   }
 }
