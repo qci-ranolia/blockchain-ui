@@ -1,39 +1,13 @@
-$inputW: 260px;
-$btnH: 36px;
-.backgroundVisual{
-  background: #f7f7f7e0 !important;
-  border-radius: 15px
-}
-input, button {
-	border: none;
-	outline: none;
-	background: none;
-	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-}
-h2 {
-	width: 100%;
-	font-size: 26px;
-	text-align: center;
-}
-label {
-	display: block;
-	width: $inputW;
-	margin: 25px auto 0;
-	text-align: center;
 
-	span {
-		text-transform: uppercase;
-	}
-}
-input {
-	display: block;
-	width: 100%;
-	margin-top: 5px;
-	padding-bottom: 5px;
-	font-size: 16px;
-	border-bottom: 1px solid rgba(0,0,0,0.4);
-	text-align: center;
-}
+/* .backgroundVisual{
+  background:rgba(247,247,247,0.2);
+  border-radius:15px;
+  box-shadow:3px 2px 15px 0px #ccc;
+  border-color:#5867c5;
+  box-sizing:border-box;
+  border:1px solid #5867c5;
+  z-index:9999;
+} 
 .submit {
 	display: block;
 	margin: 0 auto;
@@ -47,5 +21,5 @@ input {
 	background: #5867c5;
 	color: white !important;
 	text-transform: uppercase;
-
 }
+*/

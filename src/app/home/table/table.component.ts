@@ -38,7 +38,7 @@ export class TableComponent implements OnInit {
 
   getSummary(i) {
     this.sIndex = i
-    this.ProjectService.getSummary(i);
+    this.ProjectService.getSummary(i)
   }
 
   dataService(row, m) {

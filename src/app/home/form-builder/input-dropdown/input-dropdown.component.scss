@@ -1,10 +1,11 @@
-$inputW:62%;
+$inputW: 62%;
 $btnH: 36px;
+
 input, button {
-	border: none;
-	outline: none;
-	background: none;
-	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+	border : none;
+	outline : none;
+	background : none;
+	font-family : 'Open Sans', Helvetica, Arial, sans-serif;
 }
 label {
 	display: block;
@@ -12,15 +13,15 @@ label {
     margin: 25px auto 0;
 	text-align: center;
 	span {
-		font-size: 12px;
-		color: #cfcfcf;
 		text-transform: uppercase;
 	}
 }
 select {
-    width: $inputW;
-	margin-left:15px;
-	height: 26px;
-	line-height: 26px;
+    width: $inputW + 38%;
+	margin-left: 5px;
+	margin-top: 4px;
+	height: 30px;
+	line-height: 30px;
 	border-bottom: 1px solid rgba(0,0,0,0.4);
+	background: transparent;
 }

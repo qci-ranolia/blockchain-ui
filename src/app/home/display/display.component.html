@@ -1,0 +1,77 @@
+<h6 class="mt-3 pl-0 text-left">{{heading}}</h6>
+<div *ngIf="account_display" >
+  <div class="col-sm-12 p-0 row ml-0 mr-0 mt-1">
+    <div class="col-sm-3 pl-0">
+        <div class="backgroundVisual p-4">
+            <h1 class="text-left mb-0">2,46,700</h1>
+            <h6 class="mb-2">Admin accounts</h6>
+            <div class="col-sm-5 p-0 progress">
+                <div class="progress-bar approved" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <h6 class="text-success mb-3"><small>Claimed: 25%</small></h6>
+            <div class="col-sm-5 p-0 progress">
+                <div class="progress-bar failed" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <h6 class="text-danger mb-0"><small>Unclaimed: 75%</small></h6>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="backgroundVisual p-4">
+            <h1 class="text-left mb-0">5,72,172</h1>
+            <h6 class="mb-2">Master accounts</h6>
+            <div class="col-sm-5 p-0 progress">
+                <div class="progress-bar approved" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <h6 class="text-success mb-3"><small>Claimed: 50%</small></h6>
+            <div class="col-sm-5 p-0 progress">
+                <div class="progress-bar failed" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <h6 class="text-danger mb-0"><small>Unclaimed: 50%</small></h6>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="backgroundVisual p-4">
+            <h1 class="text-left mb-0">10,08,258</h1>
+            <h6 class="mb-2">Lab accounts</h6>
+            <div class="col-sm-5 p-0 progress">
+                <div class="progress-bar approved" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <h6 class="text-success mb-3"><small>Claimed: 100%</small></h6>
+            <div class="col-sm-5 p-0 progress">
+                <div class="progress-bar failed" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <h6 class="text-danger mb-0"><small>Unclaimed: 0%</small></h6>
+        </div>
+    </div>
+    <div class="col-sm-3 pr-0">
+        <div class="backgroundVisual p-4">
+            <h1 class="text-left mb-0">7,12,440</h1>
+            <h6 class="mb-2">User accounts</h6>
+            <div class="col-sm-5 p-0 progress">
+                <div class="progress-bar approved" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <h6 class="text-success mb-3"><small>Claimed: 75%</small></h6>
+            <div class="col-sm-5 p-0 progress">
+                <div class="progress-bar failed" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <h6 class="text-danger mb-0"><small>Unclaimed: 25%</small></h6>
+        </div>
+    </div>
+</div>
+</div>
+
+<div *ngIf="share_asset_display" >
+  share_asset_display = {{share_asset_display}}
+</div>
+
+<div *ngIf="receive_asset_display" >
+  receive_asset_display = {{receive_asset_display}}
+</div>
+
+<div *ngIf="child_display" >
+  child_display = {{child_display}}
+</div>
+
+<div *ngIf="graph1_display" >
+  graph1_display = {{graph1_display}}
+</div>

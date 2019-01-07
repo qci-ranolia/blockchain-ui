@@ -1,26 +1,23 @@
-<div class="container closed mt-3 backgroundVisual " *ngIf="showTable">
 
-  <div class="row m-1 backgroundVisual">
-    <h3 class="mt-3 col-sm-6 pl-0 backgroundVisual">{{heading}}</h3>
-    <div class="col-sm-6 pr-0 backgroundVisual">
-      <button type="button" class="submit  backgroundVisual" style="float: right" (click)='createNew()'>+ Create</button>
-
-      <button type="button" class="submit  backgroundVisual" style="float: right; margin-left:10px; margin-right:10px" (click)='createNewIssueForm()' *ngIf="isAssets">+ Issue</button>
+<div class="container closed mt-2 backgroundVisual" *ngIf="showTable">
+  <div class="row m-1">
+    <div class="col-sm-12 pr-0 text-right">
+      <button type="button" class="submit d-inline-block ml-0 mr-0" (click)='createNew()'>+ Create</button>
+      <button type="button" class="submit d-inline-block ml-4" (click)='createNewIssueForm()' *ngIf="isAssets">+ Issue</button>
     </div>
-
-    <div class="col-lg-12 col-lg-offset-2 pl-0 pr-0 mt-5 ovf-xy backgroundVisual">
-      <table class="display col-sm-12 p-0 backgroundVisual">
+    <div class="col-lg-12 col-lg-offset-2 pl-0 pr-0 mt-5 ovf-xy">
+      <table class="display col-sm-12 p-0">
         <thead style="border-bottom: 1px solid #135;">
-          <tr class="text-left ">
-            <th scope="col" class="col-sm-1 fix backgroundVisual">#</th>
-            <th scope="col" class="col-sm-1 fix-2 backgroundVisual" *ngFor="let head of tableArray.header">{{head}}</th>
+          <tr class="text-left">
+            <th scope="col" class="col-sm-1 fix">#</th>
+            <th scope="col" class="col-sm-1 fix-2" *ngFor="let head of tableArray.header">{{head}}</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="text-left border-bottom backgroundVisual" *ngFor="let row of tableArray.data; let i = index" [class.active]="sIndex === i" (click)="getSummary(i)">
-            <th scope="row" class="col-sm-1 fix backgroundVisual">{{i+1}}</th>
-            <td class="col-sm-1 fix-2 backgroundVisual" *ngFor="let head of tableArray.header; let m = index">
-              <div class="backgroundVisual" data-toggle="tooltip" data-placement="top" title="{{dataService(row,m)}}">{{dataService(row,m)}}</div>
+          <tr class="text-left border-bottom" *ngFor="let row of tableArray.data; let i = index" [class.active]="sIndex === i" (click)="getSummary(i)">
+            <th scope="row" class="col-sm-1 fix">{{i+1}}</th>
+            <td class="col-sm-1 fix-2" *ngFor="let head of tableArray.header; let m = index">
+              <div class="" data-toggle="tooltip" data-placement="top" title="{{dataService(row,m)}}">{{dataService(row,m)}}</div>
             </td>
           </tr>
         </tbody>

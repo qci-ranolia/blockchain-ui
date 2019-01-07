@@ -1,12 +1,12 @@
 .backgroundVisual{
   background: #f7f7f7e0 !important;
-
 }
+
 .fileUpload {
     position: relative;
     overflow: hidden;
-    margin: 10px;
-    border-radius: 10px;
+    width: 180px;
+    border-radius: 5px;
     background: #5867c5 !important;
     border-color:#5867c5 !important;
 }
@@ -22,5 +22,5 @@
     filter: alpha(opacity=0);
     background: #5867c5 !important;
     border-color:#5867c5 !important;
-    border-radius: 10px;
+    border-radius: 5px;
 }
