@@ -16,12 +16,15 @@ export class DisplayComponent implements OnInit {
   graph1_display = false;
   graph2_display = false;
   heading = "";
-  account = {};
+  account = [];
 
   constructor(private ProjectService: ProjectService) {
-    this.account = {
-      
-    }
+    this.account = [
+      {"total": "2,46,880", "name": "Admin account", "per1": "25", "per2": "75"},
+      {"total": "2,46,880", "name": "Admin account", "per1": "25", "per2": "75"},
+      {"total": "2,46,880", "name": "Admin account", "per1": "25", "per2": "75"},
+      {"total": "2,46,880", "name": "Admin account", "per1": "25", "per2": "75"}
+    ]
 
     this.ProjectService.emitNavData.subscribe(res=>{
       this.heading = "";
