@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { ProjectService } from '../service/ProjectService';
 import { APIService } from '../service/APIService';
 import { Router } from '@angular/router';
@@ -26,6 +26,13 @@ export class LoginComponent {
   email:any;
   org_name:any;
 
+  @HostListener('document:keypress', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (event.charCode == 13){
+      this.login()
+    }
+  }
+
   constructor(private ProjectService: ProjectService, private router: Router, private _api:APIService ) {
     this.ProjectService.checkLogin()
     this.ProjectService.emitUserLogin.subscribe((res)=>{
@@ -33,10 +40,10 @@ export class LoginComponent {
     })
   }
 
-  Login() {
+  /* Login() {
     this._api.loginuser( this.username, this.password )
     localStorage.setItem('userEmail', this.username);
-  }
+  } */
   gotochange() {
     this.change_password = true
   }
