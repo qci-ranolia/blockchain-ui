@@ -125,10 +125,10 @@ export class ProjectService {
       this.get_master_ui(role, null);
     }
     if(role==="LAB"){
-      this.get_admin_ui(role, null);
+      this.get_lab_ui(role, null);
     }
     if(role==="USER"){
-      this.get_admin_ui(role, null);
+      this.get_user_ui(role, null);
     }
     if(role==="CHILD"){
       if(parent_role==="ADMIN"){
