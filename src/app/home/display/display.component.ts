@@ -19,15 +19,14 @@ export class DisplayComponent implements OnInit {
   account = [];
   startUX : any;
 
-  constructor(private ProjectService: ProjectService) {
+  constructor( private ProjectService: ProjectService ) {
     this.account = [
-      { "total" : "5,72,172", "name" : "Master accounts", "per1": "50", "per2" : "50" },
-      { "total" : "10,08,258", "name" : "Lab accounts", "per1" : "100", "per2" : "100" },
-      { "total" : "7,12,440", "name" : "User accounts", "per1" : "75", "per2" : "25" },
-      { "total" : "2,46,880", "name" : "Admin accounts", "per1" : "25", "per2" : "75" }/* , 
-      { "total" : "5,72,172", "name" : "Assets accounts", "per1" : "50", "per2" : "50" },
-      { "total" : "10,08,258", "name": "Receive accounts", "per1": "100", "per2" : "100" },
-      { "total" : "7,12,440", "name" : "Child accounts", "per1" : "75", "per2" : "25" } */
+      { "total" : "5,72,172", "name" : "Master account", "per1": "50", "per2" : "50" },
+      { "total" : "10,08,258", "name" : "Lab account", "per1" : "100", "per2" : "100" },
+      { "total" : "7,12,440", "name" : "User account", "per1" : "75", "per2" : "25" },
+      { "total" : "2,46,880", "name" : "Asset account", "per1" : "25", "per2" : "75" },
+      { "total" : "10,08,258", "name": "Receive account", "per1": "100", "per2" : "100" },
+      { "total" : "7,12,440", "name" : "Child account", "per1" : "75", "per2" : "25" }
     ]
 
     this.ProjectService.emitNavData.subscribe(res=>{
