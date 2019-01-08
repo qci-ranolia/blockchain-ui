@@ -36,12 +36,16 @@
 <div class="asset float-left col-sm-6 pl-0 mt-1 mb-3" *ngIf="share_asset_display">
   <div class="col-sm-12 p-0">
     <div class="backgroundVisual p-2 row m-0">
-      <div class="col-sm-2 p-0">
-        <div class="imgg"><img src="../../assets/pic/document.png" width="100%" height="100%" /></div>
+      <div class="col-sm-3 p-0">
+        <div class="imgg text-center text-white">
+          <img src="../../assets/pic/document.png" />
+          <h5 class="mb-0">Assets Shared</h5>
+          <h6 class="mb-2">3,57,412</h6>
+        </div>
+
       </div>
-      <div class="col-sm-10">
-        <h5 class="mb-0">Assets Shared</h5>
-        <h6 class="text-muted mb-2">3,57,412</h6>
+      <div class="col-sm-8 ml-4">
+        Graph Area
       </div>
     </div>
   </div>
@@ -50,12 +54,15 @@
 <div class="receive float-left col-sm-6 pl-0 pr-0 mt-1 mb-3" *ngIf="receive_asset_display" >
   <div class="col-sm-12 p-0">
     <div class="backgroundVisual p-2 row m-0">
-      <div class="col-sm-2 p-0">
-        <div class="imgg"><img src="../../assets/pic/files.png" width="100%" height="100%" /></div>
+      <div class="col-sm-3 p-0">
+        <div class="imgg text-center text-white">
+          <img src="../../assets/pic/files.png" />
+          <h5 class="mb-0">Receive Assets</h5>
+          <h6 class="mb-2">57,412</h6>
+        </div>
       </div>
-      <div class="col-sm-10">
-        <h5 class="mb-0">Receive Assets</h5>
-        <h6 class="text-muted mb-2">57,412</h6>
+      <div class="col-sm-8 ml-4">
+        Graph Area
       </div>
     </div>
   </div>
@@ -64,14 +71,13 @@
 <div class="child float-left col-sm-4 pl-0 mt-1 mb-3" *ngIf="child_display" >
   <div class="col-sm-12 p-0">
     <div class="backgroundVisual p-2 row m-0">
-      <div class="col-sm-2 p-0">
-        <div class="imgg"><img src="../../assets/pic/baby.png" width="100%" height="100%" /></div>
+      <div class="col-sm-5 p-0">
+        <div class="imgg"><img src="../../assets/pic/baby.png" /></div>
       </div>
-      <div class="col-sm-10">
-        <h5 class="mb-0">Child</h5>
-        <h6 class="text-muted mb-2">11,7,412</h6>
-        <!-- <hr />
-        <p>Lorem ipsum</p> -->
+      <div class="col-sm-7">
+        <h1 class="mb-0 text-left">Child</h1>
+        <h5 class="text-muted mb-2">11,7,412</h5>
+        <img src="../../assets/pic/quality.png" style="width:26%;height:34%" />
       </div>
     </div>
   </div>
@@ -96,7 +102,7 @@
   </div>
 </div>
 
-<div class="child float-left col-sm-8 pl-0 pr-0 mt-1 mb-3" *ngIf="!graph1_display" >
+<div class="child float-left col-sm-8 pl-0 pr-0 mt-1 mb-3" *ngIf="graph1_display" >
   <div class="col-sm-12 p-0">
     <div class="card card-accent-info">
       <div class="card-body">
