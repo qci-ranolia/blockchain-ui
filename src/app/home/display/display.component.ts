@@ -16,13 +16,26 @@ export class DisplayComponent implements OnInit {
   graph1_display = false;
   graph2_display = false;
   heading = "";
-  
+
   account = [{}];
   shared = "";
   received = "";
   child = "";
-  
-  
+  options: any;
+
+  data =
+  {
+   "name": "flare",
+   "children": [
+    {
+      "name": "cluster",
+      "children": [
+       {"name": "AgglomerativeCluster", "value": 3938}
+      ]
+    }
+   ]
+  }
+
   constructor(private ProjectService: ProjectService) {
 
     this.account = this.ProjectService.displayDataArray.account;
@@ -70,6 +83,19 @@ export class DisplayComponent implements OnInit {
     })
   }
 
+  public barChartOptions = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
+
+  public barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  public barChartType = 'bar';
+  public barChartLegend = true;
+  public barChartData = [
+    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
+    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
+  ];
+
   hideAllDisplay() {
     this.account_display = false;
     this.share_asset_display = false;
@@ -90,6 +116,51 @@ export class DisplayComponent implements OnInit {
 
   ngOnInit() {
     this.ProjectService.getDisplayDataRefresh();
+
+    this.options = {
+      tooltip: {
+            trigger: 'item',
+            triggerOn: 'mousemove'
+        },
+        series:
+        [
+          {
+              type: 'tree',
+
+              data: [this.data],
+
+              left: '2%',
+              right: '2%',
+              top: '8%',
+              bottom: '20%',
+              symbol: 'emptyCircle',
+              orient: 'vertical',
+              expandAndCollapse: true,
+              label: {
+                  normal: {
+                      position: 'top',
+
+                      verticalAlign: 'right',
+                      align: 'right',
+                      fontSize: 9
+                  }
+              },
+              leaves: {
+                  label: {
+                      normal: {
+                          position: 'bottom',
+
+                          verticalAlign: 'right',
+                          align: 'center'
+                      }
+                  }
+              },
+
+              animationDurationUpdate: 750
+          }
+      ]
+
+    };
   }
 
 }
