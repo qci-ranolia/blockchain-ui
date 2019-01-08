@@ -44,13 +44,39 @@ body {
   color:#444
 }
 .imgg{
-  height: 64px;
-  width: 64px;
-  padding: 10px;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  min-width: 150px;
+  min-height: 150px;
+  padding: 8px;
   border-radius: 8px;
   & img{
-  animation: swing ease-in-out 1s 5 alternate;
-  transform-origin: center -20px;
+    position: absolute;
+    top: 12%;
+    left: 0;
+    right: 0;
+    width: 48%;
+    height: 48%;
+    margin: 0 auto;
+    padding: 8%;
+    animation: swing ease-in-out 1s 5 alternate;
+    transform-origin: center -20px;
+  }
+  & h5 {
+    position: absolute;
+    bottom: 35px;
+    left: 0;
+    right: 0;
+    margin: auto
+  }
+  & h6 {
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    right: 0;
+    margin: auto
+    
   }
 }
 .asset .imgg{
@@ -67,6 +93,11 @@ body {
   background: linear-gradient(to right, #0090da, #0094e1);
   box-shadow: 0px 0px 5px 0px inset #0092dd;
   border:1px solid #0092dd;
+  & img {
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
 }
 @keyframes swing {
   0% { transform: rotate(4deg); }
@@ -188,7 +219,7 @@ button.submit {
   &:hover {
     @include transition(all 150ms ease-in-out 50ms);
     // transition:all 150ms ease-in-out 50ms;
-    transform:scale(0.97);
+    // transform:scale(0.97);
     background-image: linear-gradient(to right,#5be1bd,#5be190);
   }
 }
@@ -624,7 +655,7 @@ input {
 }
 .summary .dyn {
   word-break : break-all;
-  font-size : 13px;
+  font-size : 14px;
 }
 
 // dashboard
