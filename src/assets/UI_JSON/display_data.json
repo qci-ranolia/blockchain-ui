@@ -1,0 +1,11 @@
+{
+  "account" : [
+    {"total": "2,46,880", "name": "Admin account", "per1": "25", "per2": "75"},
+    {"total": "2,46,880", "name": "Admin account", "per1": "25", "per2": "75"},
+    {"total": "2,46,880", "name": "Admin account", "per1": "25", "per2": "75"},
+    {"total": "2,46,880", "name": "Admin account", "per1": "25", "per2": "75"}
+  ],
+  "shared" : "1,456",
+  "received" : "3,001",
+  "child" : "09"
+}

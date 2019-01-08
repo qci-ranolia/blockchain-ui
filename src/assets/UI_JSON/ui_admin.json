@@ -3,6 +3,15 @@
   "parent": {
     "navigation" : [
       {
+        "data":"Home",
+        "Display":{
+          "Account_Display": "true",
+          "Share_Asset_Display": "true",
+          "Receive_Asset_Display": "true",
+          "Child_Display": "true"
+        }
+      },
+      {
         "data":"Accounts",
         "Display":{
           "Account_Display": "true"
@@ -80,6 +89,9 @@
       },
       {
         "data":"Child",
+        "Display":{
+          "Child_Display": "true"
+        },
         "createNewForm":{
           "formName": "Create New Child",
           "formSubmitUrl": "/accounts/create_child",

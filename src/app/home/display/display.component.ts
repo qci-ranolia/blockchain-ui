@@ -16,25 +16,30 @@ export class DisplayComponent implements OnInit {
   graph1_display = false;
   graph2_display = false;
   heading = "";
-  account = [];
+  account = [{}];
+  shared = "";
+  received = "";
+  child = "";
 
   constructor(private ProjectService: ProjectService) {
-    this.account = [
-      {"total": "2,46,880", "name": "Admin account", "per1": "25", "per2": "75"},
-      {"total": "2,46,880", "name": "Admin account", "per1": "25", "per2": "75"},
-      {"total": "2,46,880", "name": "Admin account", "per1": "25", "per2": "75"},
-      {"total": "2,46,880", "name": "Admin account", "per1": "25", "per2": "75"}
-    ]
+
+    this.account = this.ProjectService.displayDataArray.account;
+    this.shared = this.ProjectService.displayDataArray.shared;
+    this.received = this.ProjectService.displayDataArray.received;
+    this.child = this.ProjectService.displayDataArray.child;
+
+    this.ProjectService.emitHideDisplay.subscribe(res=>{
+      console.log(res)
+      if(res.display === "false") {
+        this.hideAllDisplay();
+      }
+    })
 
     this.ProjectService.emitNavData.subscribe(res=>{
+      this.ProjectService.getDisplayDataRefresh()
+      this.ProjectService.emitDisplayDataFun();
       this.heading = "";
-      this.account_display = false;
-      this.share_asset_display = false;
-      this.receive_asset_display = false;
-      this.child_display = false;
-      this.graph1_display = false;
-      this.graph2_display = false;
-      console.log(res.display);
+      this.hideAllDisplay();
 
       this.heading = res.action;
 
@@ -59,14 +64,30 @@ export class DisplayComponent implements OnInit {
           this.graph2_display = true;
 
         }
-
       }
-
     })
+  }
 
+  hideAllDisplay() {
+    this.account_display = false;
+    this.share_asset_display = false;
+    this.receive_asset_display = false;
+    this.child_display = false;
+    this.graph1_display = false;
+    this.graph2_display = false;
+  }
+
+  showAllDisplay() {
+    this.account_display = true;
+    this.share_asset_display = true;
+    this.receive_asset_display = true;
+    this.child_display = true;
+    this.graph1_display = true;
+    this.graph2_display = true;
   }
 
   ngOnInit() {
+    this.ProjectService.getDisplayDataRefresh();
   }
 
 }
