@@ -21,9 +21,13 @@ export class NavigationComponent implements OnInit {
     this.setNav(this.info);
 
     // home page for the dashboard
-    this.ProjectService.get_float_accounts();
-    this.ProjectService.setAction("Accounts");
-    this.ProjectService.createNewFormElements(this.info.data.parent.navigation[0].createNewForm);
+    this.ProjectService.setAction("Home");
+    this.ProjectService.showHomePage();
+    // this.ProjectService.get_float_accounts();
+    // this.ProjectService.setAction("Accounts");
+    // this.ProjectService.createNewFormElements(this.info.data.parent.navigation[0].createNewForm);
+
+
 
   }
 
@@ -45,7 +49,11 @@ export class NavigationComponent implements OnInit {
       }
     }
 
-    if(action=="Accounts") {
+    if(action=="Home") {
+      this.ProjectService.setAction(action);
+      this.ProjectService.showHomePage();
+
+    } if(action=="Accounts") {
       this.ProjectService.get_float_accounts();
       this.ProjectService.setAction(action);
 

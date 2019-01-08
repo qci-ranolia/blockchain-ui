@@ -24,18 +24,18 @@ export class FormBuilderComponent implements OnInit {
 
   constructor(private ProjectService: ProjectService) {
     this.ProjectService.emitHideFormBuilder.subscribe(res=>{
+      // console.log(res)
 
       this.responseArray = [];
       this.jsonArray = [];
       this.formSubmitUrl="";
 
-      this.jsonArray =  this.ProjectService.formElements.formElements;
-      this.formName =  this.ProjectService.formElements.formName;
-      this.formSubmitUrl = this.ProjectService.formElements.formSubmitUrl;
-
-      console.log(this.jsonArray);
-      console.log(res);
+      // console.log(this.jsonArray);
+      // console.log(res);
       if(res.display==="true") {
+        this.jsonArray =  this.ProjectService.formElements.formElements;
+        this.formName =  this.ProjectService.formElements.formName;
+        this.formSubmitUrl = this.ProjectService.formElements.formSubmitUrl;
         this.showForm = true;
       } else {
         this.showForm = false;

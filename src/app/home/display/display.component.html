@@ -30,83 +30,57 @@
             <h6 class="text-danger mb-0 d-none"><small>Unclaimed: {{amt.per2}}%</small></h6>
         </div>
     </div>
-    <div class="col-sm-6 pl-0 mb-3">
-      <div class="backgroundVisual p-3">
-        Graph Area
+  </div>
+</div>
+
+<div class="asset float-left col-sm-6 pl-0 mt-1 mb-3" *ngIf="share_asset_display">
+  <div class="col-sm-12 p-0">
+    <div class="backgroundVisual p-2 row m-0">
+      <div class="col-sm-2 p-0">
+        <div class="imgg"><img src="../../assets/pic/document.png" width="100%" height="100%" /></div>
+      </div>
+      <div class="col-sm-10">
+        <h5 class="mb-0">Assets Shared</h5>
+        <h6 class="text-muted mb-2">3,57,412</h6>
       </div>
     </div>
   </div>
 </div>
 
-<div class="asset" *ngIf="share_asset_display">
-  <div class="col-sm-12 p-0 row ml-0 mr-0 mt-1">
-    <div class="col-sm-3 mb-3 pl-0">
-      <div class="backgroundVisual p-2 row m-0">
-        <div class="col-sm-3 p-0">
-          <div class="imgg"><img src="../../assets/pic/document.png" width="100%" height="100%" /></div>
-        </div>
-        <div class="col-sm-9">
-          <h5 class="mb-0">Assets Shared</h5>
-          <h6 class="text-muted mb-2">3,57,412</h6>
-          <hr />
-          <p>Lorem ipsum</p>
-        </div>
+<div class="receive float-left col-sm-6 pl-0 pr-0 mt-1 mb-3" *ngIf="receive_asset_display" >
+  <div class="col-sm-12 p-0">
+    <div class="backgroundVisual p-2 row m-0">
+      <div class="col-sm-2 p-0">
+        <div class="imgg"><img src="../../assets/pic/files.png" width="100%" height="100%" /></div>
       </div>
-    </div>
-    <div class="col-sm-9 mb-3 pl-0 pr-0">
-      <div class="backgroundVisual p-2 row m-0">
-        Graph<br />Area of <br />assets shared
+      <div class="col-sm-10">
+        <h5 class="mb-0">Receive Assets</h5>
+        <h6 class="text-muted mb-2">57,412</h6>
       </div>
     </div>
   </div>
 </div>
 
-<div class="receive" *ngIf="receive_asset_display" >
-  <div class="col-sm-12 p-0 row ml-0 mr-0 mt-1">
-    <div class="col-sm-3 mb-3 pl-0">
-      <div class="backgroundVisual p-2 row m-0">
-        <div class="col-sm-3 p-0">
-          <div class="imgg"><img src="../../assets/pic/files.png" width="100%" height="100%" /></div>
-        </div>
-        <div class="col-sm-9">
-          <h5 class="mb-0">Receive Assets</h5>
-          <h6 class="text-muted mb-2">57,412</h6>
-          <hr />
-          <p>Lorem ipsum</p>
-        </div>
+<div class="child float-left col-sm-4 pl-0 mt-1 mb-3" *ngIf="child_display" >
+  <div class="col-sm-12 p-0">
+    <div class="backgroundVisual p-2 row m-0">
+      <div class="col-sm-2 p-0">
+        <div class="imgg"><img src="../../assets/pic/baby.png" width="100%" height="100%" /></div>
       </div>
-    </div>
-    <div class="col-sm-9 mb-3 pl-0 pr-0">
-      <div class="backgroundVisual p-2 row m-0">
-        Graph<br />Area of <br />Receive assets
+      <div class="col-sm-10">
+        <h5 class="mb-0">Child</h5>
+        <h6 class="text-muted mb-2">11,7,412</h6>
+        <!-- <hr />
+        <p>Lorem ipsum</p> -->
       </div>
     </div>
   </div>
 </div>
 
-<div class="child" *ngIf="child_display" >
-  <div class="col-sm-12 p-0 row ml-0 mr-0 mt-1">
-    <div class="col-sm-3 mb-3 pl-0">
-      <div class="backgroundVisual p-2 row m-0">
-        <div class="col-sm-3 p-0">
-          <div class="imgg"><img src="../../assets/pic/baby.png" width="100%" height="100%" /></div>
-        </div>
-        <div class="col-sm-9">
-          <h5 class="mb-0">Child</h5>
-          <h6 class="text-muted mb-2">11,7,412</h6>
-          <hr />
-          <p>Lorem ipsum</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-9 mb-3 pl-0 pr-0">
-      <div class="backgroundVisual p-2 row m-0">
-        Graph<br />Area of <br />child
-      </div>
+<div class="child float-left col-sm-8 pl-0 pr-0 mt-1 mb-3" *ngIf="!graph1_display" >
+  <div class="col-sm-12 p-0">
+    <div class="backgroundVisual p-2 row m-0">
+      graph1_display = {{graph1_display}}
     </div>
   </div>
-</div>
-
-<div *ngIf="graph1_display" >
-  graph1_display = {{graph1_display}}
 </div>

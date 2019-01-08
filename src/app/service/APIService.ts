@@ -1,4 +1,3 @@
-// import {Response, Headers, RequestOptions,RequestOptions, RequestMethod} from '@angular/http';
 import { HttpClient, HttpRequest, HttpEvent, HttpEventType, HttpErrorResponse, HttpResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { catchError, retry } from 'rxjs/operators';
@@ -12,27 +11,18 @@ export class APIService {
   token : string
   headers : any
   opts : any
-  url = "http://13.233.29.111:8000/";
-  // url = "http://192.168.15.139:8000/";
-  // url: string = '../assets/UI_JSON/';
   request : any
-
-  // emitOTP = new EventEmitter<any>()
 
   projectURL: string = '../assets/APIData/';
   UI_JSON: string = '../assets/UI_JSON/';
   proURL: string = 'http://13.233.29.111:8000';
   localURL: string = 'http://192.168.15.139:8000';
+  // current_URL : string = this.localURL;
   current_URL : string = this.proURL;
-  // current_URL : string = this.proURL;
   Header: any;
   appHeader: any = new HttpHeaders({ 'Autherization'  : 'true' });
 
   constructor(private http: HttpClient) {}
-    // Login(data) {
-    //   const request = new HttpRequest('GET', 'https://jsonplaceholder.typicode.com/todos/1', {}, { reportProgress: true });
-    //   return this.http.request(request)
-    // }
 
     loginuser(uname : string, pwd : string){
       this.ser(uname,pwd)
@@ -47,15 +37,6 @@ export class APIService {
       )
     }
 
-    // change(email : string, newPassword: string, new_password: string){
-    //   let tmp : any = { email : email, password : new_password, new_password : new_password }
-    //   let data = JSON.stringify(tmp)
-    //   return this.http.post<any>( 'http://192.168.15.139:8000/'+'users/change_password', data )
-    //   .pipe(
-    //     catchError(this.handleError)
-    //   )
-    //   .subscribe(resp => {console.log(resp)})
-    // }
     claimAcc(org_name : string, email : string,pancard : string,gst_number : string,tan_number : string,phone_number : string){
       let tmp : any = {
         org_name    : org_name,
@@ -141,6 +122,11 @@ export class APIService {
 
   Get_User_UI() {
     const request = new HttpRequest('GET', this.UI_JSON+'/ui_user.json', {}, { reportProgress: true });
+    return this.http.request(request)
+  }
+
+  GetDisplayData() {
+    const request = new HttpRequest('GET', this.UI_JSON+'/display_data.json', {}, { reportProgress: true });
     return this.http.request(request)
   }
 

@@ -13,6 +13,13 @@ export class ProjectService {
   globalAction: string = "";
   formElements: any = [];
   navigationData: any;
+  displayData = {};
+  displayDataArray = {
+    "account": [],
+    "shared" : "0",
+    "received" : "0",
+    "child" : "0"
+  };
 
   constructor(private APIService: APIService,private route: ActivatedRoute, private router: Router,) {
     let d = new Date();
@@ -20,7 +27,12 @@ export class ProjectService {
     m += 1;
     let y = d.getFullYear();
     this.month = y+'-'+m;
+    if(localStorage.getItem("displayDataArray")) {
+      let temp1 = localStorage.getItem("displayDataArray");
+      this.displayDataArray = JSON.parse(temp1)
+    }
   }
+
 
   emitUI : EventEmitter<any> = new EventEmitter<any>();
   emitError:  EventEmitter<any> = new EventEmitter<any>();
@@ -30,6 +42,8 @@ export class ProjectService {
   emitHideTable: EventEmitter<any> = new EventEmitter<any>();
   emitToastMsg :  EventEmitter<any> = new EventEmitter<any>();
   emitUserLogin : EventEmitter<any> = new EventEmitter<any>();
+  emitDisplayData: EventEmitter<any> = new EventEmitter<any>();
+  emitHideDisplay: EventEmitter<any> = new EventEmitter<any>();
   emitHideSummary: EventEmitter<any> = new EventEmitter<any>();
   emitHideSearchBar:  EventEmitter<any> = new EventEmitter<any>();
   emitNewFormSummary:  EventEmitter<any> = new EventEmitter<any>();
@@ -60,6 +74,7 @@ export class ProjectService {
     for(let i = 0; i< this.navigationData.length; i++) {
       if(action === this.navigationData[i].data) {
         this.emitNavData.emit({"action":action, "display": this.navigationData[i].Display})
+        // this.emitDisplayDataFun();
       }
     }
   }
@@ -95,7 +110,9 @@ export class ProjectService {
           localStorage.setItem('role', role);
           localStorage.setItem('token', token);
           localStorage.setItem('parent_role', parent_role);
-          this.emitUserLogin.emit({login:'true', role: role});
+          this.getDisplayData(role);
+          // get data for display first then emit login
+          // this.emitUserLogin.emit({login:'true', role: role});
         } else {
           console.log("Authorization Failed");
         }
@@ -105,6 +122,61 @@ export class ProjectService {
       this.errorSnack()
       console.log(err.error.message)
     });
+  }
+
+  getDisplayData(role) {
+
+    this.APIService.GetDisplayData().subscribe((event: HttpEvent<any>) =>{
+      let response = this.HttpEventResponse(event)
+      if(response){
+        console.log(response)
+        this.displayDataArray = response;
+        let temp = JSON.stringify(response)
+        localStorage.setItem("displayDataArray", ""+temp);
+        this.emitUserLogin.emit({login:'true', role: role});
+      } else {
+        console.log("bep 00.00");
+      }
+    }, (err:HttpErrorResponse)=>{
+      this.checkToken(err);
+      console.log("Error 4");
+      this.emitError.emit(err.error.message)
+      this.errorSnack()
+      console.log(err.error.message);
+    })
+  }
+
+  getDisplayDataOnly() {
+
+    this.APIService.GetDisplayData().subscribe((event: HttpEvent<any>) =>{
+      let response = this.HttpEventResponse(event)
+      if(response){
+        console.log(response)
+        this.displayDataArray = response;
+        let temp = JSON.stringify(response)
+        localStorage.setItem("displayDataArray", ""+temp);
+      } else {
+        console.log("bep 00.00");
+      }
+    }, (err:HttpErrorResponse)=>{
+      this.checkToken(err);
+      console.log("Error 4");
+      this.emitError.emit(err.error.message)
+      this.errorSnack()
+      console.log(err.error.message);
+    })
+  }
+
+  getDisplayDataRefresh() {
+    // this.displayDataArray = localStorage.getItem("displayDataArray");
+    // this.displayDataArray = JSON.parse(this.displayDataArray)
+    // let role  = localStorage.getItem(role);
+    this.getDisplayDataOnly();
+
+  }
+
+  emitDisplayDataFun() {
+    this.emitDisplayData.emit(this.displayDataArray);
   }
 
   change(data){
@@ -154,7 +226,7 @@ export class ProjectService {
   }
 
   createNewForm() {
-    this.dashboardElements({table:0, summary:0, search:0, form:1});
+    this.dashboardElements({table:0, summary:0, search:0, form:1, display:0});
   }
 
   createNewFormElements(formElement: any) {
@@ -237,6 +309,10 @@ export class ProjectService {
     });
   }
 
+  showHomePage() {
+    this.dashboardElements({table:0,summary:0,search:0, form:0, display:1});
+  }
+
   get_organization_accounts() {
     this.APIService.Get_Organization_Accounts().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
@@ -263,7 +339,7 @@ export class ProjectService {
   get_float_accounts() {
     // this.emitHideSummary.emit({display:"false"});
     // this.emitHideTable.emit({display:"false"});
-    this.dashboardElements({table:0,summary:0,search:0,form:0});
+    this.dashboardElements({table:0,summary:0,search:0,form:0, display:1});
     this.APIService.Get_Float_Accounts().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
@@ -294,7 +370,7 @@ export class ProjectService {
   get_Children() {
     // this.emitHideSummary.emit({display:"false"});
     // this.emitHideTable.emit({display:"false"});
-    this.dashboardElements({table:0,summary:0,search:0, form:0});
+    this.dashboardElements({table:0,summary:0,search:0, form:0, display:1});
     this.APIService.Get_Children().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
@@ -318,11 +394,11 @@ export class ProjectService {
   }
 
   get_search() {
-    this.dashboardElements({table:0,summary:0,search:1, form:0});
+    this.dashboardElements({table:0,summary:0,search:1, form:0, display:0});
 
   }
 
-  dashboardElements(elements: {table:number , summary:number, search:number, form:number}) {
+  dashboardElements(elements: {table:number , summary:number, search:number, form:number, display:number}) {
     if(elements.table==1) {
       this.emitHideTable.emit({display:"true"});
     }
@@ -347,7 +423,12 @@ export class ProjectService {
     if(elements.form==0) {
       this.emitHideFormBuilder.emit({display:"false"});
     }
-
+    if(elements.display==1) {
+      this.emitHideDisplay.emit({display:"true"});
+    }
+    if(elements.display==0) {
+      this.emitHideDisplay.emit({display:"false"});
+    }
   }
 
   search_by_address(data) {
@@ -370,7 +451,7 @@ export class ProjectService {
   }
 
   get_assets() {
-    this.dashboardElements({table:0,summary:0,search:0, form:0});
+    this.dashboardElements({table:0,summary:0,search:0, form:0, display:1});
     this.APIService.Get_Assets().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
@@ -414,7 +495,7 @@ export class ProjectService {
   }
 
   viewAll(email) {
-    this.dashboardElements({table:0,summary:0,search:0, form:0});
+    this.dashboardElements({table:0,summary:0,search:0, form:0, display:0});
     this.APIService.ViewAll(email).subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
@@ -437,7 +518,7 @@ export class ProjectService {
   }
 
   get_receive_assets() {
-    this.dashboardElements({table:0,summary:0,search:0, form:0});
+    this.dashboardElements({table:0,summary:0,search:0, form:0, display:1});
     this.APIService.Get_Receive_Assets().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
@@ -460,7 +541,7 @@ export class ProjectService {
   }
 
   viewAllReceiveAssets(address) {
-    this.dashboardElements({table:0,summary:0,search:0, form:0});
+    this.dashboardElements({table:0,summary:0,search:0, form:0, display:1});
     this.APIService.View_All_Receive_Assets(address).subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
