@@ -13,6 +13,7 @@ export class ProjectService {
   globalAction: string = "";
   formElements: any = [];
   navigationData: any;
+  displayData = {};
 
   constructor(private APIService: APIService,private route: ActivatedRoute, private router: Router,) {
     let d = new Date();
@@ -20,6 +21,14 @@ export class ProjectService {
     m += 1;
     let y = d.getFullYear();
     this.month = y+'-'+m;
+    this.displayData = {
+      "account":[
+      {"total": "2,46,880", "name": "Admin account", "per1": "25", "per2": "75"},
+      {"total": "2,46,880", "name": "Admin account", "per1": "25", "per2": "75"},
+      {"total": "2,46,880", "name": "Admin account", "per1": "25", "per2": "75"},
+      {"total": "2,46,880", "name": "Admin account", "per1": "25", "per2": "75"}
+    ]
+  }
   }
 
   emitUI : EventEmitter<any> = new EventEmitter<any>();
@@ -30,6 +39,7 @@ export class ProjectService {
   emitHideTable: EventEmitter<any> = new EventEmitter<any>();
   emitToastMsg :  EventEmitter<any> = new EventEmitter<any>();
   emitUserLogin : EventEmitter<any> = new EventEmitter<any>();
+  emitDisplayData: EventEmitter<any> = new EventEmitter<any>();
   emitHideSummary: EventEmitter<any> = new EventEmitter<any>();
   emitHideSearchBar:  EventEmitter<any> = new EventEmitter<any>();
   emitNewFormSummary:  EventEmitter<any> = new EventEmitter<any>();
