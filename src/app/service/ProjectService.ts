@@ -26,13 +26,13 @@ export class ProjectService {
   emitError:  EventEmitter<any> = new EventEmitter<any>();
   emitTable : EventEmitter<any> = new EventEmitter<any>();
   emitSummary: EventEmitter<any> = new EventEmitter<any>();
+  emitNavData:  EventEmitter<any> = new EventEmitter<any>();
   emitHideTable: EventEmitter<any> = new EventEmitter<any>();
   emitToastMsg :  EventEmitter<any> = new EventEmitter<any>();
   emitUserLogin : EventEmitter<any> = new EventEmitter<any>();
   emitHideSummary: EventEmitter<any> = new EventEmitter<any>();
   emitHideSearchBar:  EventEmitter<any> = new EventEmitter<any>();
   emitNewFormSummary:  EventEmitter<any> = new EventEmitter<any>();
-
   emitHideFormBuilder:  EventEmitter<any> = new EventEmitter<any>();
 
   errorSnack(){
@@ -57,6 +57,11 @@ export class ProjectService {
   setAction(action: string) {
     this.globalAction = action;
     console.log(this.globalAction);
+    for(let i = 0; i< this.navigationData.length; i++) {
+      if(action === this.navigationData[i].data) {
+        this.emitNavData.emit({"action":action, "display": this.navigationData[i].Display})
+      }
+    }
   }
 
   HttpEventResponse(event) {
@@ -125,10 +130,10 @@ export class ProjectService {
       this.get_master_ui(role, null);
     }
     if(role==="LAB"){
-      this.get_admin_ui(role, null);
+      this.get_lab_ui(role, null);
     }
     if(role==="USER"){
-      this.get_admin_ui(role, null);
+      this.get_user_ui(role, null);
     }
     if(role==="CHILD"){
       if(parent_role==="ADMIN"){

@@ -16,8 +16,10 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.info);
+
     // console.log(this.info.data.parent.navigation);
     this.setNav(this.info);
+
     // home page for the dashboard
     this.ProjectService.get_float_accounts();
     this.ProjectService.setAction("Accounts");
@@ -36,7 +38,7 @@ export class NavigationComponent implements OnInit {
   }
 
   navButton(action) {
-
+    let details : any;
     for(let i = 0; i< this.navArray.length; i++) {
       if(action === this.navArray[i].data) {
         this.ProjectService.createNewFormElements(this.navArray[i].createNewForm);
@@ -47,21 +49,22 @@ export class NavigationComponent implements OnInit {
       this.ProjectService.get_float_accounts();
       this.ProjectService.setAction(action);
 
-
-      // this.ProjectService.createNewFormElements(this.navArray.createNewForm);
-      // get_receive_assets
     } if(action=="Assets") {
       this.ProjectService.get_assets();
       this.ProjectService.setAction(action);
+
     } if(action=="Receive") {
       this.ProjectService.get_receive_assets();
       this.ProjectService.setAction(action);
+
     } if(action=="Child") {
       this.ProjectService.get_Children();
       this.ProjectService.setAction(action);
+
     } if(action=="Search") {
       this.ProjectService.get_search();
       this.ProjectService.setAction(action);
+
     }
 
   }

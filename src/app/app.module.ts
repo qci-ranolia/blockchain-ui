@@ -30,6 +30,7 @@ import { InputDropdownComponent } from './home/form-builder/input-dropdown/input
 import { InputEmailComponent } from './home/form-builder/input-email/input-email.component';
 import { InputFileUploadComponent } from './home/form-builder/input-file-upload/input-file-upload.component';
 import { InputDatePickerComponent } from './home/form-builder/input-date-picker/input-date-picker.component';
+import { DisplayComponent } from './home/display/display.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { InputDatePickerComponent } from './home/form-builder/input-date-picker/
     InputDropdownComponent,
     InputEmailComponent,
     InputFileUploadComponent,
-    InputDatePickerComponent
+    InputDatePickerComponent,
+    DisplayComponent
   ],
   imports: [
     BrowserModule,

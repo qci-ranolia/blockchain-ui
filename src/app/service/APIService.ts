@@ -23,8 +23,8 @@ export class APIService {
   UI_JSON: string = '../assets/UI_JSON/';
   proURL: string = 'http://13.233.29.111:8000';
   localURL: string = 'http://192.168.15.139:8000';
-  // current_URL : string = this.localURL;
   current_URL : string = this.proURL;
+  // current_URL : string = this.proURL;
   Header: any;
   appHeader: any = new HttpHeaders({ 'Autherization'  : 'true' });
 
@@ -41,7 +41,7 @@ export class APIService {
     ser( uname : string, pwd : string ):Observable<HttpResponse<any>>{
       let tmp : any = { email : uname, password : pwd }
       let data = JSON.stringify(tmp)
-      return this.http.post<any>( this.url+'users/login', data )
+      return this.http.post<any>( this.current_URL+'users/login', data )
       .pipe(
         catchError(this.handleError)
       )
@@ -66,7 +66,7 @@ export class APIService {
         phone_number: phone_number
       }
       let data = JSON.stringify(tmp)
-      return this.http.post<any>( this.url+'', data )
+      return this.http.post<any>( this.current_URL+'', data )
       .pipe(
         catchError(this.handleError)
       )
@@ -80,13 +80,13 @@ export class APIService {
         phone_number: phone_number
       }
       let data = JSON.stringify(tmp)
-      return this.http.post<any>( this.url+'accounts/get_otp', data )
+      return this.http.post<any>( this.current_URL+'accounts/get_otp', data )
     }
 
     submit_OTP(data:any){
         let payload = JSON.stringify(data)
         console.log(payload)
-        return this.http.post<any>( this.url+'accounts/claim_account', payload )
+        return this.http.post<any>( this.current_URL+'accounts/claim_account', payload )
     }
     handleError(error: HttpErrorResponse) {
       if (error.error instanceof ErrorEvent) {

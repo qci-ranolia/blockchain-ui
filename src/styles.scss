@@ -4,6 +4,7 @@ $theme-2:#23D5AD;
 $inputW: 260px;
 $btnH: 36px;
 $shadow: $theme-1 + #432;
+@import url('https://fonts.googleapis.com/css?family=Mallanna|Roboto+Slab|News+Cycle|Arsenal|Rufina');
 
 // functions
 @function dark-primary($value){
@@ -37,6 +38,7 @@ body {
   height: 80vh;
   background:linear-gradient(90deg, $theme-1, $theme-2);
   background:$theme-1 - #050201; //#e0e4ec //ebeef5
+  font-family: 'Mallanna', 'Rufina', 'Arsenal', 'News Cycle', 'Roboto Slab', Helvetica, Arial, sans-serif;
 }
 .theme {
   color:#444
@@ -44,11 +46,31 @@ body {
 .imgg{
   height: 64px;
   width: 64px;
-  background: #f0f0f0;
-  padding: 14px;
-  border-radius: 40px;
-  box-shadow: 3px 2px 1px 0px inset #fff;
-  border: 1px solid #e0e0e0;
+  padding: 10px;
+  border-radius: 8px;
+  & img{
+  animation: swing ease-in-out 1s 5 alternate;
+  transform-origin: center -20px;
+  }
+}
+.asset .imgg{
+  background: linear-gradient(to right,#40dcb2,#40dc7e);
+  box-shadow: 0px 0px 5px 0px inset #40dcb2;
+  border:1px solid #40dc7e;
+}
+.receive .imgg{
+  background: linear-gradient(to right,#ff4ca6,#ff4c6a);
+  box-shadow: 0px 0px 5px 0px inset #ff4ca6;
+  border:1px solid #ff4c6a;
+}
+.child .imgg{
+  background: linear-gradient(to right, #0090da, #0094e1);
+  box-shadow: 0px 0px 5px 0px inset #0092dd;
+  border:1px solid #0092dd;
+}
+@keyframes swing {
+  0% { transform: rotate(4deg); }
+  100% { transform: rotate(-4deg); }
 }
 .ft {
   background:white;
@@ -353,11 +375,11 @@ $diffRatio: ($contW - $imgW) / $contW;
   @include transition(all 0.5s ease 0s);
 }
 #wrapper.toggled {
-  padding-left: 220px;
+  padding-left: 175px;
 }
 #sidebar-wrapper {
   z-index: 1000;
-  left: 220px;
+  left: 175px;
   width: 0;
   height: 100%;
   margin-left: -230px;
@@ -370,8 +392,8 @@ $diffRatio: ($contW - $imgW) / $contW;
   display: none;
 }
 #wrapper.toggled #sidebar-wrapper {
-    width: 220px;
-    margin-left: -220px;
+    width: 175px;
+    margin-left: -175px;
 }
 #page-content-wrapper {
   width: 97%;
@@ -391,7 +413,7 @@ $diffRatio: ($contW - $imgW) / $contW;
 .sidebar-nav {
   position:absolute;
   top:0;
-  width:220px;
+  width:175px;
   margin:0;
   padding:0;
   list-style:none;
@@ -576,7 +598,6 @@ input, button {
 	border: none;
 	outline: none;
 	background: none;
-	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 }
 h2 {
 	width: 100%;

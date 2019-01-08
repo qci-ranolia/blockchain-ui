@@ -11,7 +11,7 @@ declare var $
   styleUrls: ['./home.component.scss']
 })
 
-export class HomeComponent implements OnInit, AfterContentInit { 
+export class HomeComponent implements OnInit, AfterContentInit {
   UI_Info: any;
 
   constructor(private ProjectService: ProjectService, private router: Router) {
@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit, AfterContentInit {
       console.log(res);
       this.UI_Info = res;
     });
-    
+
     $(document).ready(function () {
       $('#table_id').DataTable({
         // "fixedHeader":true,
@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit, AfterContentInit {
           overlay = $('.overlay'),
           isClosed = false
       trigger.click(function () {
-        hamburger_cross()      
+        hamburger_cross()
       })
       function hamburger_cross() {
         console.log('hamburger triggered')
@@ -41,13 +41,13 @@ export class HomeComponent implements OnInit, AfterContentInit {
           trigger.removeClass('is-open')
           trigger.addClass('is-closed')
           isClosed = true
-        } else {   
+        } else {
           overlay.show()
           trigger.removeClass('is-closed')
           trigger.addClass('is-open')
           isClosed = false
         }
-      } 
+      }
       $('[data-toggle="offcanvas"]').click(function () {
         $('#wrapper').toggleClass('toggled')
       })
@@ -75,4 +75,5 @@ export class HomeComponent implements OnInit, AfterContentInit {
       .attr('r', '10px')
       .attr('fill', '#f44')
   }
+
 }
