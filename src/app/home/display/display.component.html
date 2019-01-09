@@ -1,32 +1,32 @@
-<h6 class="mt-0 pl-0 text-left">{{heading}}</h6>
+<h6 class="mt-4 pl-0 text-left">{{heading}}</h6>
 <div *ngIf="account_display">
   <div class="justify-content-center col-sm-12 p-0 row ml-0 mr-0 mt-1">
     <div class="child col-sm-3 pl-0 mb-3" *ngIf="child_display" >
-      <div class="backgroundVisual p-2 row m-0">
-        <div class="col-sm-5 p-0">
+      <div class="backgroundVisual pl-2 pr-2 pt-4 pb-4 row m-0">
+        <div class="col-sm-6 pr-0">
           <div class="imgg text-center text-white">
             <img src="../../assets/pic/baby.png" />
           </div>
         </div>
-        <div class="col-sm-7 pt-2">
-          <h2 class="mb-0 text-left">11,7,412</h2>
+        <div class="col-sm-6 pt-1">
+          <h2 class="mb-0 text-left">11,07,412</h2>
           <h6 class="mb-2">Child Account</h6>
-          <img src="../../assets/pic/quality.png" style="display:none;" />
+          <img src="../../assets/pic/quality.png" />
         </div>
       </div>
     </div>
     <div class="col-sm-3 pl-0 mb-3" *ngFor="let amt of account; let i = index">
-      <div class="backgroundVisual p-3">
+      <div class="backgroundVisual pl-3 pr-3 pt-4 pb-4">
         <h2 class="text-left mb-0">{{amt.total}}</h2>
         <h6 class="mb-2">{{amt.name}}</h6>
         <div class="col-sm-12 p-0 row m-0">
-          <div class="col-sm-6 pl-0 pr-1">
+          <div class="col-sm-10 pl-0 pr-1">
             <div class="progress">
               <div class="progress-bar approved" role="progressbar" [style.width]="amt.per1 +'%'" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
-            <h6 class="text-success mb-0"><small>Claimed: {{amt.per1}}%</small></h6>
+            <h6 class="text-success mb-3"><small>Claimed: {{amt.per1}}%</small></h6>
           </div>
-          <div class="col-sm-6 pl-1 pr-0">
+          <div class="col-sm-10 pl-0 pr-0">
             <div class="progress">
               <div class="progress-bar failed" role="progressbar" [style.width]="amt.per2 +'%'" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
@@ -38,36 +38,40 @@
   </div>
 </div>
 
-<div class="justify-content-center col-sm-6 pl-0">
-  <div class="asset col-sm-12 p-0 mt-1 mb-3" *ngIf="share_asset_display">
+<div class="justify-content-center col-sm-12 pl-0">
+  <div class="asset float-left col-sm-6 pl-0 mt-1 mb-3" *ngIf="share_asset_display" style="padding-right:7px;">
     <div class="backgroundVisual p-2 row m-0">
-      <div class="col-sm-3 p-0">
+      <div class="col-sm-3 pt-3 pb-3">
         <div class="imgg text-center text-white">
           <img src="../../assets/pic/document.png" />
           <h5 class="mb-0">Assets Shared</h5>
-          <h6 class="mb-2">3,57,412</h6>
+          <h6 class="mb-2">{{shared}}</h6>
         </div>
       </div>
-      <div class="col-sm-8 ml-4 pr-0">
-        <div style="height:140px;overflow-y:auto" echarts [options]="option1" class="demo-chart"></div>
+      <div class="col-sm-9 pl-5 pr-0">
+        <div style="height:200px;overflow-y:auto" echarts [options]="option1" class="demo-chart"></div>
       </div>
     </div>
   </div>
-  <div class="receive col-sm-12 p-0 mt-1 mb-3" *ngIf="receive_asset_display" >
+  <div class="receive float-left col-sm-6 pr-0 mt-1 mb-3" *ngIf="receive_asset_display" style="padding-left:7px;" >
     <div class="backgroundVisual p-2 row m-0">
-      <div class="col-sm-3 p-0">
+      <div class="col-sm-3 pt-3 pb-3">
         <div class="imgg text-center text-white">
           <img src="../../assets/pic/files.png" />
           <h5 class="mb-0">Receive Assets</h5>
-          <h6 class="mb-2">57,412</h6>
+          <h6 class="mb-2">{{received}}</h6>
         </div>
       </div>
-      <div class="col-sm-8 ml-4 pr-0">
+      <div class="col-sm-8 ml-4 pr-0 pt-4">
         <div style="display: block" style="height:175px; overflow:hidden">
           <canvas style="height:150px; overflow-y:auto" baseChart
-            [datasets]="barChartData" [labels]="barChartLabels"
-            [options]="barChartOptions" [legend]="barChartLegend"
-            [chartType]="barChartType" [colors] = "lineChartColors">
+                  [datasets]="received_graph.barChartData"
+                  [labels]="received_graph.barChartLabels"
+                  [options]="received_graph.barChartOptions"
+                  [legend]="received_graph.barChartLegend"
+                  [chartType]="received_graph.barChartType"
+                  [colors] = "received_graph.lineChartColors"
+                  >
           </canvas>
         </div>
       </div>
@@ -92,19 +96,6 @@
                   [legend]="barChartLegend"
                   [chartType]="barChartType">
           </canvas>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="child float-left col-sm-8 pl-0 pr-0 mt-1 mb-3" *ngIf="graph1_display" >
-  <div class="col-sm-12 p-0">
-    <div class="card card-accent-info">
-      <div class="card-body">
-        <h4 class="card-title">Use [options] to draw chart</h4>
-        <div class="mt-4">
-          <div echarts [options]="options" class="demo-chart"></div>
         </div>
       </div>
     </div>

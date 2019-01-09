@@ -48,16 +48,16 @@ body {
   height: 100%;
   width: 100%;
   min-width: 150px;
-  min-height: 150px;
+  min-height: 200px;
   padding: 8px;
   border-radius: 8px;
   & img{
     position: absolute;
-    top: 12%;
+    top: 18%;
     left: 0;
     right: 0;
     width: 48%;
-    height: 48%;
+    height: 40%;
     margin: 0 auto;
     padding: 8%;
     animation: swing ease-in-out 1s 5 alternate;
@@ -65,14 +65,14 @@ body {
   }
   & h5 {
     position: absolute;
-    bottom: 35px;
+    bottom: 45px;
     left: 0;
     right: 0;
     margin: auto
   }
   & h6 {
     position: absolute;
-    bottom: 8px;
+    bottom: 18px;
     left: 0;
     right: 0;
     margin: auto
@@ -94,7 +94,7 @@ body {
   box-shadow: 0px 0px 5px 0px inset #0092dd;
   border:1px solid #0092dd;
   min-width: 100px;
-  min-height: 100px;
+  min-height: 128px;
   & img {
     width: 50%;
     height: 52%;
@@ -423,7 +423,7 @@ $diffRatio: ($contW - $imgW) / $contW;
   overflow-x: hidden;
   background: white;
   @include transition(all 0.5s ease 0s);
-  top: 32px;
+  top: 29px;
   border-radius: 0 8px 8px 0;
   @include transition(margin-left 0.2s ease 0s);
   @include transition(overflow 0.5s ease 0s);
@@ -698,4 +698,7 @@ input {
   .failed{
     background: linear-gradient(to right,#ff4ca6,#ff4c6a);
   }
+}
+.h60 {
+  height: 60vh;
 }

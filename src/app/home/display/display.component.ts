@@ -16,23 +16,49 @@ export class DisplayComponent implements OnInit {
   graph1_display = false;
   graph2_display = false;
   heading = "";
-
   account = [{}];
   shared = "";
   received = "";
   child = "";
   options: any;
   option1: any;
+  received_graph:{};
+  chartJSColor = [
+    { // grey
+      backgroundColor: 'rgba(255,111,136, 0.47)',
+      borderColor: 'rgba(255,76,107, 0.8)',
+      pointBackgroundColor: 'rgba(232,62,140,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: 'pink',
+      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    },
+    { // dark grey
+      backgroundColor: 'rgba(77,83,96,0.2)',
+      borderColor: 'rgba(77,83,96,1)',
+      pointBackgroundColor: 'rgba(77,83,96,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(77,83,96,1)'
+    },
+    { // grey
+      backgroundColor: 'rgba(148,159,177,0.2)',
+      borderColor: 'rgba(148,159,177,1)',
+      pointBackgroundColor: 'rgba(148,159,177,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    }
+  ];
 
   data =
   {
-   "name": "flare",
+   "name": "The Agricultural and Processed Food Products",
    "children": [
     {
-      "name": "cluster",
+      "name": "The Agricultural and Processed         Food Products Export Development",
       "children": [
        {
-         "name": "AgglomerativeCluster", "value": 3938
+         "name": "Quality council of India", "value": 3938
        }
       ]
     }
@@ -41,9 +67,24 @@ export class DisplayComponent implements OnInit {
 
   constructor(private ProjectService: ProjectService) {
 
+    this.received_graph = {
+      barChartOptions : {
+        scaleShowVerticalLines: false,
+        responsive: true,
+      },
+      barChartLabels : this.ProjectService.displayDataArray.received.chart_Label,
+      barChartType : 'line',
+      barChartLegend : false,
+      barChartData : [
+        {data: this.ProjectService.displayDataArray.received.chart_Data, label: 'Received'}
+      ],
+      lineChartColors : this.chartJSColor
+
+    }
+
     this.account = this.ProjectService.displayDataArray.account;
     this.shared = this.ProjectService.displayDataArray.shared;
-    this.received = this.ProjectService.displayDataArray.received;
+    this.received = this.ProjectService.displayDataArray.received.count;
     this.child = this.ProjectService.displayDataArray.child;
 
     this.ProjectService.emitHideDisplay.subscribe(res=>{
@@ -86,44 +127,6 @@ export class DisplayComponent implements OnInit {
     })
   }
 
-  public barChartOptions = {
-    scaleShowVerticalLines: false,
-    responsive: true,
-  };
-
-  public barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-  public barChartType = 'line';
-  public barChartLegend = false;
-  public barChartData = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'}
-  ];
-  public lineChartColors:Array<any> = [
-    { // grey
-      backgroundColor: 'rgba(255,111,136, 0.47)',
-      borderColor: 'rgba(255,76,107, 0.8)',
-      pointBackgroundColor: 'rgba(232,62,140,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    },
-    { // dark grey
-      backgroundColor: 'rgba(77,83,96,0.2)',
-      borderColor: 'rgba(77,83,96,1)',
-      pointBackgroundColor: 'rgba(77,83,96,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(77,83,96,1)'
-    },
-    { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    }
-  ];
-
   hideAllDisplay() {
     this.account_display = false;
     this.share_asset_display = false;
@@ -160,19 +163,9 @@ export class DisplayComponent implements OnInit {
               left: '2%',
               right: '2%',
               top: '8%',
-              bottom: '20%',
               symbol: 'emptyCircle',
               orient: 'vertical',
               expandAndCollapse: true,
-              label: {
-                  normal: {
-                      position: 'top',
-
-                      verticalAlign: 'right',
-                      align: 'right',
-                      fontSize: 9
-                  }
-              },
               leaves: {
                   label: {
                       normal: {
@@ -184,6 +177,27 @@ export class DisplayComponent implements OnInit {
                   }
               },
 
+              symbolSize: 10,
+              label: {
+                normal: {
+                  position: 'left',
+                  verticalAlign: 'middle',
+                  align: 'right',
+                  fontSize: 13
+                }
+              },
+              itemStyle:{
+                color:'#7C90DB',
+                borderColor:'#7C90DB'
+              },
+              lineStyle:{
+                color:'#ffa02c',
+                curveness:0.6
+              },/*
+              tooltip:{
+                backgroundColor:'rgba(0,0,0,0.7)',
+                borderColor:'#000'
+              }, */
               animationDurationUpdate: 750
           }
       ]
@@ -196,9 +210,11 @@ export class DisplayComponent implements OnInit {
         formatter: "{a} <br/>{b}: {c} ({d}%)"
     },
       legend: {
-          orient: 'vertical',
-          x: 'left',
-          data:['Self','Others']
+          // orient: 'vertical',
+          // x: 'left',
+          bottom: -2,
+          left: 'center',
+          data: ['Self','Others']
       },
       series: [
           {

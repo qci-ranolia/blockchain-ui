@@ -17,7 +17,11 @@ export class ProjectService {
   displayDataArray = {
     "account": [],
     "shared" : "0",
-    "received" : "0",
+    "received" : {
+      "count": "",
+      "chart_Label":[],
+      "chart_Data":[]
+    },
     "child" : "0"
   };
 
@@ -42,6 +46,7 @@ export class ProjectService {
   emitHideTable: EventEmitter<any> = new EventEmitter<any>();
   emitToastMsg :  EventEmitter<any> = new EventEmitter<any>();
   emitUserLogin : EventEmitter<any> = new EventEmitter<any>();
+  emitTrailView : EventEmitter<any> = new EventEmitter<any>();
   emitDisplayData: EventEmitter<any> = new EventEmitter<any>();
   emitHideDisplay: EventEmitter<any> = new EventEmitter<any>();
   emitHideSummary: EventEmitter<any> = new EventEmitter<any>();
@@ -556,6 +561,27 @@ export class ProjectService {
       this.tableData = [];
       this.tableHeader = [];
       this.emitTable.emit({header: this.tableHeader, data:this.tableData})
+      console.log(err)
+      this.emitError.emit(err.error.message)
+      this.errorSnack()
+      console.log(err.error.message)
+    })
+  }
+
+  get_trail(address) {
+    this.APIService.Get_Trail(address).subscribe((event: HttpEvent<any>) =>{
+      let response = this.HttpEventResponse(event)
+      if(response){
+        console.log(response)
+
+        if(response.success) {
+          this.emitTrailView.emit(response.data);
+        }
+
+      } else {
+        console.log("bep 13");
+      }
+    }, (err)=>{
       console.log(err)
       this.emitError.emit(err.error.message)
       this.errorSnack()

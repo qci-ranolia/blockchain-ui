@@ -16,9 +16,12 @@ export class SummaryComponent implements OnInit {
   showViewAll= false;
   shareWithAddress = false;
   shareWithAddressData : any;
-
+  trail_view= false;
+  options= {};
+  trail_data = []
 
   constructor(private ProjectService: ProjectService) {
+    trail_view: false;
     this.ProjectService.emitSummary.subscribe(res=>{
       this.showViewAll= false;
       this.shareWithAddress = false;
@@ -65,7 +68,17 @@ export class SummaryComponent implements OnInit {
 
     this.ProjectService.emitHideSummary.subscribe(res=>{
       this.showSummary = false;
+      this.trail_view= false;
     });
+
+    this.ProjectService.emitTrailView.subscribe(res=>{
+      this.trail_view = true;
+      this.trail_data = res;
+      console.log(this.trail_data);
+      // console.log(this.data1);
+      // this.displayTrailView(trail_data);
+    })
+
   }
 
   ngOnInit() {
@@ -85,8 +98,6 @@ export class SummaryComponent implements OnInit {
         this.ProjectService.viewAllReceiveAssets(tempData.address);
       }
     }
-
-
   }
 
   dataService(m) {
@@ -100,6 +111,62 @@ export class SummaryComponent implements OnInit {
 
     this.ProjectService.createNewFormElements(this.ProjectService.navigationData[1].createForm2);
     this.ProjectService.createNewForm();
+  }
+
+  displayTrailView(trail_data) {
+    this.options = {
+      tooltip: {
+            trigger: 'item',
+            triggerOn: 'mousemove'
+        },
+        series:
+        [
+          {
+            type: 'tree',
+
+            data: [trail_data],
+
+            left: '2%',
+            right: '2%',
+            top: '8%',
+            orient: 'vertical',
+            expandAndCollapse: true,
+            leaves: {
+                label: {
+                    normal: {
+                        position: 'bottom',
+                        verticalAlign: 'center',
+                        align: 'center'
+                    }
+                }
+            },
+
+            symbolSize: 12,
+            label: {
+              normal: {
+                position: 'center',
+                verticalAlign: 'center',
+                align: 'center',
+                fontSize: 12
+              }
+            },
+            itemStyle:{
+              color:'#ff4ca6',
+              borderColor:'#ff4ca6'
+            },
+            lineStyle:{
+              color:'#ff4ca6',
+              curveness:0.9
+            },/*
+            tooltip:{
+              backgroundColor:'rgba(0,0,0,0.7)',
+              borderColor:'#000'
+            }, */
+            animationDurationUpdate: 750
+          }
+      ]
+
+    };
   }
 
 }
