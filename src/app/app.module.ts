@@ -32,6 +32,9 @@ import { InputFileUploadComponent } from './home/form-builder/input-file-upload/
 import { InputDatePickerComponent } from './home/form-builder/input-date-picker/input-date-picker.component';
 import { DisplayComponent } from './home/display/display.component';
 
+import { ChartsModule } from 'ng2-charts';
+import { NgxEchartsModule } from 'ngx-echarts';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +64,9 @@ import { DisplayComponent } from './home/display/display.component';
     FormsModule,
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(routes, { useHash: true })
+    RouterModule.forRoot(routes, { useHash: true }),
+    ChartsModule,
+    NgxEchartsModule
   ],
   providers: [
     AuthGuard,

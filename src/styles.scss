@@ -94,9 +94,11 @@ body {
   box-shadow: 0px 0px 5px 0px inset #0092dd;
   border:1px solid #0092dd;
   & img {
-    top: 0;
-    bottom: 0;
-    margin: auto;
+    width: 52%;
+    height: 56%;
+  //   top: 0;
+  //   bottom: 0;
+  //   margin: auto;
   }
 }
 @keyframes swing {
@@ -106,7 +108,7 @@ body {
 .ft {
   background:white;
   box-shadow:0px 2px 12px 0px dark-primary($theme-1 - #070300);
-  padding:4px 10px 4px 70px !important;
+  padding:0px 10px 0px 70px !important;
 }
 .container {
   max-width: 100%;
@@ -418,13 +420,35 @@ $diffRatio: ($contW - $imgW) / $contW;
   overflow-x: hidden;
   background: white;
   @include transition(all 0.5s ease 0s);
+  top: 32px;
+  border-radius: 0 8px 8px 0;
+  @include transition(margin-left 0.2s ease 0s);
+  @include transition(overflow 0.5s ease 0s);
+  & a.navbar-brand {
+    position: absolute;
+    top: -16px;
+    z-index: 9030;
+    color: #fff;
+    background: linear-gradient(to right,#40dcb2,#40dc7e);
+    width: 90%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 6px;
+    font-size: 16px;
+  }
 }
 #sidebar-wrapper::-webkit-scrollbar {
   display: none;
 }
 #wrapper.toggled #sidebar-wrapper {
-    width: 175px;
-    margin-left: -175px;
+    width : 175px;
+    margin-left : -175px;
+    @include transition(margin-left 0.4s ease 0s);
+    @include transition(width 0.4s ease 0s);
+    @include transition(overflow 0.5s ease 0s);
+    overflow: visible;   
 }
 #page-content-wrapper {
   width: 97%;
@@ -577,6 +601,7 @@ div.navigation li {
   padding: 15px 12px 15px 20px;
   margin: 3px 0px;
   font-size: 14px;
+  font-weight: 600;
   background: #f7f7f76e !important;
   &:before {
     content: '';
@@ -598,7 +623,7 @@ div.navigation li {
   &:hover{
     @include transition(all .15s ease-in);
     transform: scale(1.00);
-    font-size: 110%;
+    font-size: 105%;
     text-decoration: none;
     cursor: pointer;
   }

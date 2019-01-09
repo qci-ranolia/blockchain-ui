@@ -16,6 +16,7 @@ export class TableComponent implements OnInit {
   heading: any = "";
   isAssets: any = false;
 
+  table_view : any
   constructor(private ProjectService: ProjectService) {
 
     this.ProjectService.emitTable.subscribe(res=>{
@@ -30,6 +31,17 @@ export class TableComponent implements OnInit {
     })
     this.ProjectService.emitHideTable.subscribe(res=>{
       this.showTable = false;
+    })
+
+    $(function () {
+      $('#table_view').DataTable()
+      // alert("e")
+      // this.table_view = $('#table_view').DataTable({
+      //   paging: true,
+      //   searching: false,
+      //   ordering: false,
+      //   scrollY: 335
+      // })
     })
   }
 
