@@ -10,7 +10,7 @@
         <thead style="border-bottom: 1px solid #135;">
           <tr class="text-left">
             <th scope="col" class="col-sm-1 fix">#</th>
-            <th scope="col" class="col-sm-1 fix-2" *ngFor="let head of tableArray.header">{{head}}</th>
+            <th scope="col" class="col-sm-1 fix-2" *ngFor="let head of tableArray.header; let m = index">{{tableService(m)}}</th>
           </tr>
         </thead>
         <tbody>
