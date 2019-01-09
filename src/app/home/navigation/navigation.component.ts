@@ -52,13 +52,13 @@ export class NavigationComponent implements OnInit {
 
     } if(action=="Accounts") {
       this.status = false
-      alert(this.status)
+      // alert(this.status)
       this.ProjectService.get_float_accounts();
       this.ProjectService.setAction(action);
 
     } if(action=="Assets") {
       this.status = !this.status
-      alert(this.status)
+      // alert(this.status)
       this.ProjectService.get_assets();
       this.ProjectService.setAction(action);
 
