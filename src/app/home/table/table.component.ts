@@ -37,8 +37,15 @@ export class TableComponent implements OnInit {
   }
 
   getSummary(i) {
+    console.log(this.tableArray.data[i]);
     this.sIndex = i
-    this.ProjectService.getSummary(i)
+    this.ProjectService.getSummary(i);
+
+    if(this.heading==="Receive") {
+      if(this.tableArray.data[i].address){
+        this.ProjectService.get_trail(this.tableArray.data[i].address);
+      }
+    }
   }
 
   dataService(row, m) {

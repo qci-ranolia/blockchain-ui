@@ -17,8 +17,8 @@ export class APIService {
   UI_JSON: string = '../assets/UI_JSON/';
   proURL: string = 'http://13.233.29.111:8000';
   localURL: string = 'http://192.168.15.139:8000';
-  // current_URL : string = this.localURL;
-  current_URL : string = this.proURL;
+  current_URL : string = this.localURL;
+  // current_URL : string = this.proURL;
   Header: any;
   appHeader: any = new HttpHeaders({ 'Autherization'  : 'true' });
 
@@ -80,7 +80,7 @@ export class APIService {
           `Backend returned code ${error.status}, ` + `body was: ${error.error}`,
           `Backend returned code ${error.message}, ` + `body was: ${error.error}`
         )
-        
+
       }
       // return an observable with a user-facing error message
       return throwError(
@@ -89,8 +89,10 @@ export class APIService {
 
   setHeader() {
     let token = localStorage.getItem('token');
+    console.log(token);
     this.appHeader = new HttpHeaders({'token': ""+token});
     this.appHeader.append({'Content-Type':'application/json'});
+    console.log(token);
   }
 
   change(data) {
@@ -167,24 +169,35 @@ export class APIService {
   }
 
   Get_Receive_Assets() {
+    this.setHeader();
     const request = new HttpRequest('GET', this.current_URL+'/assets/receive_assets', { reportProgress: true, headers: this.appHeader });
     return this.http.request(request)
   }
 
   SubmitForm(response, url) {
+    this.setHeader();
     const request = new HttpRequest('POST', this.current_URL+url, response , { reportProgress: true, headers: this.appHeader });
     return this.http.request(request)
   }
 
   ViewAll(email) {
+    this.setHeader();
     let params = new HttpParams().set('email', email);
     const request = new HttpRequest('GET', this.current_URL+'/accounts/float_accounts_on_address', { reportProgress: true, params: params, headers: this.appHeader });
     return this.http.request(request)
   }
 
   View_All_Receive_Assets(address) {
+    this.setHeader();
     let params = new HttpParams().set('receive_address', address);
     const request = new HttpRequest('GET', this.current_URL+'/assets/shared_on_receive_assets', { reportProgress: true, params: params, headers: this.appHeader });
+    return this.http.request(request)
+  }
+
+  Get_Trail(address) {
+    this.setHeader();
+    let params = new HttpParams().set('address', address);
+    const request = new HttpRequest('GET', this.current_URL+'/assets/trail', { reportProgress: true, params: params, headers: this.appHeader });
     return this.http.request(request)
   }
 

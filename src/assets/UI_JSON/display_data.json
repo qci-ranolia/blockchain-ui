@@ -6,6 +6,10 @@
     {"total": "2,46,880", "name": "Admin account", "per1": "25", "per2": "75"}
   ],
   "shared" : "1,456",
-  "received" : "3,001",
+  "received" : {
+    "count": "3,001",
+    "chart_Label":["July", "Sept", "Oct", "Nov", "Dec", "Jan"],
+    "chart_Data":[65, 59, 80, 81, 56, 155]
+  },
   "child" : "09"
 }
