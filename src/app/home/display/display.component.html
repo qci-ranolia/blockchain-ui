@@ -33,7 +33,7 @@
   </div>
 </div>
 
-<div class="asset float-left col-sm-6 pl-0 mt-1 mb-3" *ngIf="share_asset_display">
+<div class="asset float-left col-sm-6 pl-0 mt-1 mb-3" *ngIf="share_asset_display" >
   <div class="col-sm-12 p-0">
     <div class="backgroundVisual p-2 row m-0">
       <div class="col-sm-3 p-0">
@@ -44,8 +44,8 @@
         </div>
 
       </div>
-      <div class="col-sm-8 ml-4">
-        Graph Area
+      <div class="col-sm-8 ml-4" >
+        <div style="height:150px; overflow-y:auto" echarts [options]="option1" class="demo-chart"></div>
       </div>
     </div>
   </div>
@@ -62,7 +62,17 @@
         </div>
       </div>
       <div class="col-sm-8 ml-4">
-        Graph Area
+        <div style="display: block" style="height:150px; overflow-y:hidden">
+          <canvas style="height:150px; overflow-y:auto" baseChart
+                  [datasets]="barChartData"
+                  [labels]="barChartLabels"
+                  [options]="barChartOptions"
+                  [legend]="barChartLegend"
+                  [chartType]="barChartType"
+                  [colors] = "lineChartColors"
+                  >
+          </canvas>
+        </div>
       </div>
     </div>
   </div>
