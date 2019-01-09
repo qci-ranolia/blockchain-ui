@@ -1,4 +1,4 @@
-<div id="wrapper" class="toggled" *ngIf="UI_Info">
+<div id="wrapper" class="toggled" [ngClass]="status ? 'remain':'change'" *ngIf="UI_Info">
     <div class="overlay" style="display:block"></div>
     <!-- Sidebar -->
     <nav class="navbar fixed-top ft">

@@ -1,9 +1,8 @@
 {
   "account" : [
-    {"total": "2,46,880", "name": "Admin account", "per1": "25", "per2": "75"},
-    {"total": "2,46,880", "name": "Admin account", "per1": "25", "per2": "75"},
-    {"total": "2,46,880", "name": "Admin account", "per1": "25", "per2": "75"},
-    {"total": "2,46,880", "name": "Admin account", "per1": "25", "per2": "75"}
+    {"total": "2,46,880", "name": "Master account", "per1": "25", "per2": "75"},
+    {"total": "10,02,117", "name": "Lab account", "per1": "100", "per2": "0"},
+    {"total": "7,85,332", "name": "Child account", "per1": "75", "per2": "25"}
   ],
   "shared" : "1,456",
   "received" : "3,001",
