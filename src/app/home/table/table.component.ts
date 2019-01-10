@@ -15,6 +15,8 @@ export class TableComponent implements OnInit {
   sIndex: number = null;
   heading: any = "";
   isAssets: any = false;
+  f_headers: any = [];
+  tempArray: any = [];
 
   table_view : any
   constructor(private ProjectService: ProjectService) {
@@ -25,9 +27,22 @@ export class TableComponent implements OnInit {
         this.isAssets = true;
       else
        this.isAssets = false;
-      console.log(res);
+
+      // console.log(res);
       this.showTable= true;
       this.tableArray= res;
+      this.f_headers = res.f_Headers;
+      // console.log(this.f_headers);
+
+      this.f_headers = JSON.stringify(this.f_headers);
+      let tempArr = JSON.parse(this.f_headers);
+
+      for(let x in tempArr) {
+        this.tempArray.push(tempArr[x])
+      }
+
+      // console.log(this.tempArray);
+
     })
     this.ProjectService.emitHideTable.subscribe(res=>{
       this.showTable = false;
@@ -45,6 +60,10 @@ export class TableComponent implements OnInit {
     })
   }
 
+  tableService(m) {
+    return this.tempArray[m];
+  }
+
   ngOnInit() {
   }
 
@@ -54,8 +73,10 @@ export class TableComponent implements OnInit {
     this.ProjectService.getSummary(i);
 
     if(this.heading==="Receive") {
-      if(this.tableArray.data[i].address){
-        this.ProjectService.get_trail(this.tableArray.data[i].address);
+      if(this.tableArray.data[i].file_name){
+        if(this.tableArray.data[i].address){
+          this.ProjectService.get_trail(this.tableArray.data[i].address);
+        }
       }
     }
   }

@@ -18,7 +18,9 @@ export class SummaryComponent implements OnInit {
   shareWithAddressData : any;
   trail_view= false;
   options= {};
-  trail_data = []
+  trail_data = [];
+  f_headers: any = [];
+  tempArray: any = [];
 
   constructor(private ProjectService: ProjectService) {
     trail_view: false;
@@ -49,7 +51,18 @@ export class SummaryComponent implements OnInit {
         this.showViewAll= true;
       }
       if(this.ProjectService.globalAction === "Receive" ) {
-        this.showViewAll= true;
+        console.log(res);
+
+        if(res.data) {
+
+          if(res.data.shared_assets_count) {
+
+            if(res.data.shared_assets_count>0) {
+              this.showViewAll= true;
+            }
+          }
+        }
+
         let tempData =  JSON.parse(this.data);
         if(tempData.to_org_address) {
           this.showViewAll= false;
@@ -63,6 +76,18 @@ export class SummaryComponent implements OnInit {
           this.shareWithAddressData = tempData.address;
         }
       }
+
+      this.f_headers = res.f_Headers;
+      console.log(this.f_headers);
+
+      this.f_headers = JSON.stringify(this.f_headers);
+      let tempArr = JSON.parse(this.f_headers);
+
+      for(let x in tempArr) {
+        this.tempArray.push(tempArr[x])
+      }
+
+      console.log(this.tempArray);
 
     })
 
@@ -98,6 +123,10 @@ export class SummaryComponent implements OnInit {
         this.ProjectService.viewAllReceiveAssets(tempData.address);
       }
     }
+  }
+
+  tableService(m) {
+    return this.tempArray[m];
   }
 
   dataService(m) {

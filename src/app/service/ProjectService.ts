@@ -14,6 +14,7 @@ export class ProjectService {
   formElements: any = [];
   navigationData: any;
   displayData = {};
+  f_Headers: any = [];
   displayDataArray = {
     "account": [],
     "shared" : "0",
@@ -325,14 +326,16 @@ export class ProjectService {
         console.log(response)
         this.tableData = response.data;
         this.tableHeader = response.headers;
-        this.emitTable.emit({header: this.tableHeader, data:this.tableData})
+        this.f_Headers = response.f_headers;
+        this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
       } else {
         console.log("bep 05");
       }
     }, (err:HttpErrorResponse)=>{
       this.tableData = [];
       this.tableHeader = [];
-      this.emitTable.emit({header: this.tableHeader, data:this.tableData})
+      this.f_Headers = [];
+      this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
       this.checkToken(err);
       console.log("Error 3");
       this.emitError.emit(err.error.message)
@@ -351,14 +354,16 @@ export class ProjectService {
         console.log(response)
         this.tableData = response.data;
         this.tableHeader = response.headers;
-        this.emitTable.emit({header: this.tableHeader, data:this.tableData})
+        this.f_Headers = response.f_headers;
+        this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
       } else {
         console.log("bep 06");
       }
     }, (err:HttpErrorResponse)=>{
       this.tableData = [];
       this.tableHeader = [];
-      this.emitTable.emit({header: this.tableHeader, data:this.tableData})
+      this.f_Headers = [];
+      this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
       this.checkToken(err);
       console.log("Error 4");
       this.emitError.emit(err.error.message)
@@ -368,7 +373,7 @@ export class ProjectService {
   }
 
   getSummary(i) {
-    this.emitSummary.emit({header:this.tableHeader, data:this.tableData[i]});
+    this.emitSummary.emit({header:this.tableHeader, data:this.tableData[i], f_Headers: this.f_Headers });
     // let temp = this.tableData.data[i];
   }
 
@@ -382,14 +387,16 @@ export class ProjectService {
         console.log(response)
         this.tableData = response.data;
         this.tableHeader = response.headers;
-        this.emitTable.emit({header: this.tableHeader, data:this.tableData})
+        this.f_Headers = response.f_headers;
+        this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
       } else {
         console.log("bep 06");
       }
     }, (err:HttpErrorResponse)=>{
       this.tableData = [];
       this.tableHeader = [];
-      this.emitTable.emit({header: this.tableHeader, data:this.tableData})
+      this.f_Headers = [];
+      this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
       this.checkToken(err);
       console.log("Error 5");
       this.emitError.emit(err.error.message)
@@ -442,7 +449,7 @@ export class ProjectService {
       if(response){
         console.log(response)
         console.log(response.headers)
-        this.emitSummary.emit({header:response.headers, data:response.data});
+        this.emitSummary.emit({header:response.headers, data:response.data, f_Headers: this.f_Headers});
       } else {
         console.log("bep 07");
       }
@@ -463,14 +470,16 @@ export class ProjectService {
         console.log(response)
         this.tableData = response.data;
         this.tableHeader = response.headers;
-        this.emitTable.emit({header: this.tableHeader, data:this.tableData})
+        this.f_Headers = response.f_headers;
+        this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
       } else {
         console.log("bep 08");
       }
     }, (err:HttpErrorResponse)=>{
       this.tableData = [];
       this.tableHeader = [];
-      this.emitTable.emit({header: this.tableHeader, data:this.tableData})
+      this.f_Headers = [];
+      this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
       this.checkToken(err);
       console.log("Error 7");
       this.emitError.emit(err.error.message)
@@ -507,14 +516,17 @@ export class ProjectService {
         console.log(response)
         this.tableData = response.data;
         this.tableHeader = response.headers;
-        this.emitTable.emit({header: this.tableHeader, data:this.tableData})
+        this.f_Headers = response.f_headers;
+        this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
+
       } else {
         console.log("bep 08");
       }
     }, (err)=>{
       this.tableData = [];
       this.tableHeader = [];
-      this.emitTable.emit({header: this.tableHeader, data:this.tableData})
+      this.f_Headers = [];
+      this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
       console.log(err)
       this.emitError.emit(err.error.message)
       this.errorSnack()
@@ -530,14 +542,16 @@ export class ProjectService {
         console.log(response)
         this.tableData = response.data;
         this.tableHeader = response.headers;
-        this.emitTable.emit({header: this.tableHeader, data:this.tableData})
+        this.f_Headers = response.f_headers;
+        this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
       } else {
         console.log("bep 09");
       }
     }, (err)=>{
       this.tableData = [];
       this.tableHeader = [];
-      this.emitTable.emit({header: this.tableHeader, data:this.tableData})
+      this.f_Headers = [];
+      this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
       console.log(err)
       this.emitError.emit(err.error.message)
       this.errorSnack()
@@ -553,14 +567,16 @@ export class ProjectService {
         console.log(response)
         this.tableData = response.data;
         this.tableHeader = response.headers;
-        this.emitTable.emit({header: this.tableHeader, data:this.tableData})
+        this.f_Headers = response.f_headers;
+        this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
       } else {
         console.log("bep 10");
       }
     }, (err)=>{
       this.tableData = [];
       this.tableHeader = [];
-      this.emitTable.emit({header: this.tableHeader, data:this.tableData})
+      this.f_Headers = [];
+      this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
       console.log(err)
       this.emitError.emit(err.error.message)
       this.errorSnack()
