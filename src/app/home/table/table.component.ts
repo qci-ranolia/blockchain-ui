@@ -19,8 +19,9 @@ export class TableComponent implements OnInit {
   tempArray: any = [];
 
   table_view : any
+  show_table:boolean = true
   constructor(private ProjectService: ProjectService) {
-
+    // console.log(this.tableArray)
     this.ProjectService.emitTable.subscribe(res=>{
       this.heading = this.ProjectService.globalAction;
       if(this.heading === "Assets")
@@ -32,7 +33,9 @@ export class TableComponent implements OnInit {
       this.showTable= true;
       this.tableArray= res;
       this.f_headers = res.f_Headers;
-      // console.log(this.f_headers);
+      if ( this.f_headers == null ){
+        this.show_table = false
+      } else this.show_table = true
 
       this.f_headers = JSON.stringify(this.f_headers);
       let tempArr = JSON.parse(this.f_headers);

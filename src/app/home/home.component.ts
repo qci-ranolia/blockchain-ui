@@ -13,6 +13,7 @@ declare var $
 
 export class HomeComponent implements OnInit, AfterContentInit {
   UI_Info: any;
+  email_user : string;
 
   constructor(private ProjectService: ProjectService, private router: Router) {
     this.ProjectService.emitUI.subscribe((res)=>{
@@ -55,6 +56,7 @@ export class HomeComponent implements OnInit, AfterContentInit {
   }
   ngOnInit() {
     this.ProjectService.getUI();
+    this.email_user = localStorage.getItem('userEmail')
   }
 
   logout(){

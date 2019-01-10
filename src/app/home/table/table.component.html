@@ -1,10 +1,13 @@
 <div class="container closed backgroundVisual" *ngIf="showTable">
   <div class="col-sm-12 p-0 row m-0">
-    <div class="col-sm-12 pr-0 text-right" style="height:60px">
-      <button type="button" class="submit d-inline-block ml-0 mr-0" (click)='createNew()'>+ Create</button>
-      <button type="button" class="submit d-inline-block ml-4" (click)='createNewIssueForm()' *ngIf="isAssets">+ Issue</button>
+    <div class="col-sm-12 p-5 mt-5 text-center" *ngIf="!show_table">
+      <h5 class="text-muted">Kindly provide/upload data</h5>
     </div>
-    <div class="col-lg-12 col-lg-offset-2 pl-0 pr-0 mt-5 ovf-xy">
+    <div class="justify-content-center col-sm-12 row m-0" style="height:60px">
+      <button type="button" class="submit col-sm-2" (click)='createNew()'>+ Create</button>&nbsp;&nbsp;
+      <button type="button" class="submit col-sm-2" (click)='createNewIssueForm()' *ngIf="isAssets">+ Issue</button>
+    </div>
+    <div class="col-lg-12 col-lg-offset-2 pl-0 pr-0 mt-5 ovf-xy" *ngIf="show_table">
       <table class="display col-sm-12 p-0">
         <thead style="border-bottom: 1px solid #135;">
           <tr class="text-left">
