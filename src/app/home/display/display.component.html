@@ -6,7 +6,7 @@
       <div class="child col-sm-4 pl-0 mb-3" *ngIf="child_display" >
         <div class="backgroundVisual pl-2 pr-2 pt-4 pb-4 row m-0" >
           <div class="col-sm-6 pr-0">
-            <div class="imgg text-center text-white">
+            <div class="imgg text-center text-white" style="max-width:150px">
               <img src="../../assets/pic/baby.png" />
             </div>
           </div>
@@ -45,7 +45,7 @@
     <div class="asset float-left col-sm-6 pl-0 mt-1 mb-3" *ngIf="share_asset_display" style="padding-right:7px;">
       <div class="backgroundVisual p-2 row m-0">
         <div class="col-sm-3 pt-3 pb-3">
-          <div class="imgg text-center text-white">
+          <div class="imgg text-center text-white" >
             <img src="../../assets/pic/document.png" />
             <h5 class="mb-0">Assets</h5>
             <h6 class="mb-2">{{shared}}</h6>
@@ -59,7 +59,7 @@
     <div class="receive float-left col-sm-6 pr-0 mt-1 mb-3" *ngIf="receive_asset_display" style="padding-left:7px;" >
       <div class="backgroundVisual p-2 row m-0">
         <div class="col-sm-3 pt-3 pb-3">
-          <div class="imgg text-center text-white">
+          <div class="imgg text-center text-white" >
             <img src="../../assets/pic/files.png" />
             <h5 class="mb-0">Receive Assets</h5>
             <h6 class="mb-2">{{received}}</h6>
