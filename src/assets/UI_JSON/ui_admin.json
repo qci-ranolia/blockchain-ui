@@ -31,6 +31,7 @@
       {
         "data":"Assets",
         "Display":{
+          "Child_Display": "true",
           "Share_Asset_Display": "true"
         },
         "createNewForm":{

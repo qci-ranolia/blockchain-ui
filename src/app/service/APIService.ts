@@ -17,8 +17,8 @@ export class APIService {
   UI_JSON: string = '../assets/UI_JSON/';
   proURL: string = 'http://13.233.29.111:8000';
   localURL: string = 'http://192.168.15.139:8000';
-  current_URL : string = this.localURL;
-  // current_URL : string = this.proURL;
+  // current_URL : string = this.localURL;
+  current_URL : string = this.proURL;
   Header: any;
   appHeader: any = new HttpHeaders({ 'Autherization'  : 'true' });
 
@@ -128,7 +128,9 @@ export class APIService {
   }
 
   GetDisplayData() {
-    const request = new HttpRequest('GET', this.UI_JSON+'/display_data.json', {}, { reportProgress: true });
+    this.setHeader();
+    const request = new HttpRequest('GET', this.current_URL+'/accounts/display_data', {}, { reportProgress: true, headers: this.appHeader });
+    // const request = new HttpRequest('GET', this.UI_JSON+'/display_data.json', {}, { reportProgress: true });
     return this.http.request(request)
   }
 

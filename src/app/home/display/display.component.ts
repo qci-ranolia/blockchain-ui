@@ -16,13 +16,19 @@ export class DisplayComponent implements OnInit {
   graph1_display = false;
   graph2_display = false;
   heading = "";
-  account = [{}];
+  account = [];
   shared = "";
   received = "";
   child = "";
   options: any;
   option1: any;
+  option2: any;
+  assets_Count1:any;
+  assets_Count2:any;
+  received_Count1:any;
+  received_Count2:any;
   received_graph:{};
+  showRefresh:any;
   chartJSColor = [
     { // grey
       backgroundColor: 'rgba(255,111,136, 0.47)',
@@ -67,25 +73,44 @@ export class DisplayComponent implements OnInit {
 
   constructor(private ProjectService: ProjectService) {
 
-    this.received_graph = {
-      barChartOptions : {
-        scaleShowVerticalLines: false,
-        responsive: true,
-      },
-      barChartLabels : this.ProjectService.displayDataArray.received.chart_Label,
-      barChartType : 'line',
-      barChartLegend : false,
-      barChartData : [
-        {data: this.ProjectService.displayDataArray.received.chart_Data, label: 'Received'}
-      ],
-      lineChartColors : this.chartJSColor
+    // this.received_graph = {
+    //   barChartOptions : {
+    //     scaleShowVerticalLines: false,
+    //     responsive: true,
+    //   },
+    //   barChartLabels : this.ProjectService.displayDataArray.received.chart_Label,
+    //   barChartType : 'line',
+    //   barChartLegend : false,
+    //   barChartData : [
+    //     {data: this.ProjectService.displayDataArray.received.chart_Data, label: 'Received'}
+    //   ],
+    //   lineChartColors : this.chartJSColor
+    //
+    // }
+
+    console.log(this.ProjectService.displayDataArray.data)
+
+    if(!this.ProjectService.displayDataArray.data) {
+
+    } else {
+
+      if(this.ProjectService.displayDataArray.data.accounts) {
+
+        if(this.ProjectService.displayDataArray.data.accounts.length>0) {
+          this.account = this.ProjectService.displayDataArray.data.accounts;
+        }
+      }
+
+      this.shared = this.ProjectService.displayDataArray.data.assets.count+"";
+      this.assets_Count1 = this.ProjectService.displayDataArray.data.assets.self+"";
+      this.assets_Count2 = this.ProjectService.displayDataArray.data.assets.other+"";
+      this.received = this.ProjectService.displayDataArray.data.received.count+"";
+      this.received_Count1 = this.ProjectService.displayDataArray.data.received.received_assets_count+"";
+      this.received_Count2 = this.ProjectService.displayDataArray.data.received.receive_address_count+"";
+      this.child = this.ProjectService.displayDataArray.data.child_count+"";
 
     }
 
-    this.account = this.ProjectService.displayDataArray.account;
-    this.shared = this.ProjectService.displayDataArray.shared;
-    this.received = this.ProjectService.displayDataArray.received.count;
-    this.child = this.ProjectService.displayDataArray.child;
 
     this.ProjectService.emitHideDisplay.subscribe(res=>{
       console.log(res)
@@ -208,7 +233,7 @@ export class DisplayComponent implements OnInit {
       tooltip: {
         trigger: 'item',
         formatter: "{a} <br/>{b}: {c} ({d}%)"
-    },
+      },
       legend: {
           // orient: 'vertical',
           // x: 'left',
@@ -218,7 +243,7 @@ export class DisplayComponent implements OnInit {
       },
       series: [
           {
-              name:'asd',
+              name:'Shared',
               type:'pie',
               radius: ['50%', '70%'],
               avoidLabelOverlap: false,
@@ -242,12 +267,57 @@ export class DisplayComponent implements OnInit {
                   }
               },
               data:[
-                  {value:335, name:'Self'},
-                  {value:210, name:'Others'}
+                  {value:this.assets_Count1, name:'Self'},
+                  {value:this.assets_Count2, name:'Others'}
+              ]
+            }
+          ]
+      }
+
+
+    this.option2 = {
+      tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b}: {c} ({d}%)"
+      },
+      legend: {
+          // orient: 'vertical',
+          // x: 'left',
+          bottom: -2,
+          left: 'center',
+          data: ['Self','Others']
+      },
+      series: [
+          {
+              name:'Received',
+              type:'pie',
+              radius: ['50%', '70%'],
+              avoidLabelOverlap: false,
+              color: ['#ff4c6a','#c1c1c1'],
+              label: {
+                  normal: {
+                      show: false,
+                      position: 'center'
+                  },
+                  emphasis: {
+                      show: true,
+                      textStyle: {
+                          fontSize: '30',
+                          fontWeight: 'bold'
+                      }
+                  }
+              },
+              labelLine: {
+                  normal: {
+                      show: false
+                  }
+              },
+              data:[
+                  {value:this.received_Count1, name:'Self'},
+                  {value:this.received_Count2, name:'Others'}
               ]
             }
           ]
       }
     }
-
 }
