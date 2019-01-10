@@ -83,6 +83,7 @@ export class ProjectService {
   setAction(action: string) {
     this.globalAction = action;
     console.log(this.globalAction);
+    console.log(this.navigationData);
     for(let i = 0; i< this.navigationData.length; i++) {
       if(action === this.navigationData[i].data) {
         this.emitNavData.emit({"action":action, "display": this.navigationData[i].Display})

@@ -30,8 +30,8 @@ export class FormBuilderComponent implements OnInit {
       this.jsonArray = [];
       this.formSubmitUrl="";
 
-      // console.log(this.jsonArray);
-      // console.log(res);
+      console.log(this.ProjectService.formElements);
+      console.log(res);
       if(res.display==="true") {
         this.jsonArray =  this.ProjectService.formElements.formElements;
         this.formName =  this.ProjectService.formElements.formName;
