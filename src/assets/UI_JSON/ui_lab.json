@@ -14,6 +14,9 @@
       {
         "data":"Accounts",
         "createNewForm":{
+          "Display":{
+            "Account_Display": "true"
+          },
           "formName": "Create New Org.",
           "formSubmitUrl": "/accounts/create_organization_account",
           "formElements": [
@@ -27,6 +30,9 @@
       },
       {
         "data":"Assets",
+        "Display":{
+          "Share_Asset_Display": "true"
+        },
         "createNewForm":{
           "formName": "Create New Asset",
           "formSubmitUrl": "/assets/create_asset",
@@ -58,6 +64,9 @@
       },
       {
         "data":"Receive",
+        "Display":{
+          "Receive_Asset_Display": "true"
+        },
         "createNewForm":{
           "formName": "Create Receive Asset",
           "formSubmitUrl": "/assets/create_receive_asset",
@@ -80,6 +89,9 @@
       },
       {
         "data":"Child",
+        "Display":{
+          "Child_Display": "true"
+        },
         "createNewForm":{
           "formName": "Create New Child",
           "formSubmitUrl": "/accounts/create_child",

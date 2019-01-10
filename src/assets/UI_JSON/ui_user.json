@@ -71,6 +71,9 @@
       },
       {
         "data":"Child",
+        "Display":{
+          "Child_Display": "true"
+        },
         "createNewForm":{
           "formName": "Create New Child",
           "formSubmitUrl": "/accounts/create_child",

@@ -25,7 +25,7 @@ body {
   // -moz-background-size: cover;
   // -o-background-size: cover;
 	// background-size: cover;
-	
+
 	background-position:left top;
 	background-repeat:repeat;
   background-attachment:fixed;
@@ -76,7 +76,7 @@ body {
     left: 0;
     right: 0;
     margin: auto
-    
+
   }
 }
 .asset .imgg {
@@ -90,7 +90,7 @@ body {
   border:1px solid #ff4c6a;
 }
 .child .imgg {
-  background: linear-gradient(to right, #0090da, #0094e1);
+  background: linear-gradient(to right, #b9a4ff, #0094e1);
   box-shadow: 0px 0px 5px 0px inset #0092dd;
   border:1px solid #0092dd;
   min-width: 100px;
@@ -100,7 +100,7 @@ body {
     height: 52%;
     top: 0;
     bottom: 0;
-    padding: 2%; 
+    padding: 2%;
     margin: auto;
   }
 }
@@ -451,7 +451,7 @@ $diffRatio: ($contW - $imgW) / $contW;
     @include transition(margin-left 0.4s ease 0s);
     @include transition(width 0.4s ease 0s);
     @include transition(overflow 0.5s ease 0s);
-    overflow: visible;   
+    overflow: visible;
 }
 #page-content-wrapper {
   width: 97%;

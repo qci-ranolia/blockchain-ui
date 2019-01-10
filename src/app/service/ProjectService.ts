@@ -16,14 +16,20 @@ export class ProjectService {
   displayData = {};
   f_Headers: any = [];
   displayDataArray = {
-    "account": [],
-    "shared" : "0",
-    "received" : {
-      "count": "",
-      "chart_Label":[],
-      "chart_Data":[]
-    },
-    "child" : "0"
+    "data": {
+      "accounts": [],
+      "assets" : {
+        "count":0,
+        "self":0,
+        "other":0
+      },
+      "received" : {
+        "count": 0,
+        "received_assets_count":0,
+        "receive_address_count":0
+      },
+      "child_count" : "0"
+    }
   };
 
   constructor(private APIService: APIService,private route: ActivatedRoute, private router: Router,) {
@@ -136,11 +142,12 @@ export class ProjectService {
       let response = this.HttpEventResponse(event)
       if(response){
         console.log(response)
-        this.displayDataArray = response;
+        this.displayDataArray = response.data;
         let temp = JSON.stringify(response)
         localStorage.setItem("displayDataArray", ""+temp);
         this.emitUserLogin.emit({login:'true', role: role});
       } else {
+        this.displayDataArray = response;
         console.log("bep 00.00");
       }
     }, (err:HttpErrorResponse)=>{
@@ -158,7 +165,7 @@ export class ProjectService {
       let response = this.HttpEventResponse(event)
       if(response){
         console.log(response)
-        this.displayDataArray = response;
+        this.displayDataArray = response.data;
         let temp = JSON.stringify(response)
         localStorage.setItem("displayDataArray", ""+temp);
       } else {
@@ -494,6 +501,7 @@ export class ProjectService {
       if(response){
         console.log(response)
         alert("Success : " +response.success);
+        window.location.reload();
         // this.tableData = response.data;
         // this.tableHeader = response.headers;
         // this.emitTable.emit({header: this.tableHeader, data:this.tableData})
