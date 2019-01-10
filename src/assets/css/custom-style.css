@@ -1,0 +1,611 @@
+/*-------------------------------------
+NABH Testing and Calibration 
+Laboratories: custom stylesheet 
+Created By: Anova Tech
+-------------------------------------*/
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: 'titilliumregular';
+  src: url('../fonts/titillium-regular-webfont.woff2') format('woff2'), url('../fonts/titillium-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html,
+body {
+  font: normal 13px 'titilliumregular', sans-serif;
+  color: #333;
+  background: #fff;
+  line-height: 1.5;
+  overflow-x:hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #262626;
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+p {
+  color: #7f7e7e;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+a:focus {
+  outline: 0 solid;
+}
+
+a,
+a:hover,
+a:focus {
+  -webkit-transition: all 500ms ease 0s;
+  transition: all 500ms ease 0s;
+  text-decoration: none;
+  outline: none;
+  font-size: 14px;
+  color: #5f5f5f;
+  font-weight: 600;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0
+}
+
+ol li,
+ul li {
+  list-style: none;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+
+/*-----------------------------------------------------------
+  |                 Custom Navbar                         |
+------------------------------------------------------------*/
+.top-header-area {
+  background: #329bde;
+  min-height: 24px;
+}
+
+.fa {
+  margin-right: 3px;
+}
+
+.qci-custom-navR {
+  padding: 0;
+  margin: 0;
+}
+.noHover input,
+button {
+  background: transparent;
+  border: 0;
+}
+
+.brand-info img {
+  float: left;
+  margin-top: 4px;
+}
+
+.blueText {
+  color: #187cd2;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.brand-info {
+  line-height: 17px;
+  position: relative;
+  top: 24px;
+  left: 5px;
+  color: #222222;
+}
+
+.logoTextCnt {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.logo-irda>div {
+  float: left;
+  margin-top: 4px;
+  margin-right: 4px;
+}
+
+.logoHeight {
+  height: 60px;
+}
+
+.no-padding-right {
+  padding-right: 0px;
+}
+
+.main-container {
+  margin-bottom: 30px;
+  width: 100%;
+}
+.btn-blue {
+  color: #fff;
+    background-color: #0171df;
+    border-color: #0171df;
+    text-transform: uppercase;
+    margin: 12px 0 0 60px;
+    padding: 4px 12px;
+    font-weight: 600;
+    font-size: 14px;
+}
+.btn-blue:hover{
+  background-color: #008CBA;
+  border-color: #008CBA;
+  color: white;
+}
+.banner-button {
+  background-color: #0171df;
+    border: none;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 6px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.bannerBtn-blue {padding: 10px 20px;}
+.bannerBtn-blue:hover {
+  background-color: #008CBA;
+  color: white;
+}
+/*------------------------------------------
+          Carousel--styles
+-------------------------------------------*/
+.carousel-control {
+  position: absolute;
+  top: 45%;
+  /* pushes the icon in the middle of the height */
+  z-index: 5;
+  display: inline-block;
+}
+
+.carousel-control img {
+  height: 34px;
+}
+
+.carousel-control.left,
+.carousel-control.right {
+  background: none;
+
+}
+
+.carousel-inner>.item>img {
+  max-height: 500px;
+}
+
+.qci-log,
+.logo-irda {
+  margin-bottom: 4px;
+}
+
+.carousel-indicators {
+  bottom: 10px;
+}
+
+/* To mantain the navbar at the bottom*/
+
+/* Note: Try to remove the following lines to see the effect of CSS positioning */
+.affix {
+  top: 0;
+  width: 100%;
+  z-index: 9999 !important;
+}
+
+.affix+.main-container {
+  padding-top: 70px;
+}
+.caption-custom{
+  text-align: left;
+    right: 0;
+    left: 12%;
+    width: 34%;
+    padding-bottom: 80px;
+}
+.caption-custom h1, p{
+  color: #fff;
+}
+.caption-custom h1{
+  font-weight: bold;
+}
+.caption-custom p{
+  text-align: justify;
+  margin-bottom: 20px;
+}
+.rightBtnIcon{
+  margin-left: 10px;
+  position: relative;
+  top: 1px;
+}
+/*------------------------------------------
+          content-section-style
+-------------------------------------------*/
+.aboutUs-title{
+  margin-top: 10px;
+  font-size: 36px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 0;
+  
+}
+.bottom-hborder{
+  height: 4px;
+  background-color: #30e38e;
+  width: 150px;
+  text-align: center;
+  display: inline-block
+}
+.page-header {
+  padding-bottom: 9px;
+  margin: 10px 0 20px;
+  border-bottom: 0;
+}
+
+
+/*--------------------------------------
+           quickInfoBox
+--------------------------------------*/
+.quickInfoBox{
+  text-align: center;
+    box-shadow: 0px 0px 8px rgba(0,0,0,.5);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.image-Box{
+  width: 85px;
+  padding: 20px;
+  border-radius: 50%;
+  background-color: #0171df;
+  margin: 20px auto;
+  top: -40px;
+  position: relative;
+}
+.quickInfo-title{
+  position: relative;
+  top: -40px;
+  padding: 10px 40px;
+}
+
+/*------Key feature slider------*/
+.key-feature-section{
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+.indicatorCustom li {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 1px;
+  text-indent: -999px;
+  cursor: pointer;
+  background-color: rgba(0,0,0,0);
+  border: 1px solid #0171df;
+  border-radius:10px
+}
+.indicatorCustom .active{
+  width:12px;
+  height:12px;
+  margin:0;
+  background-color: #0171df;
+}
+.Itemlist-inner{
+    position: relative;
+    width: 100%;
+    overflow: unset;
+}
+
+/*---------------------------------------
+              howItWork-section
+-----------------------------------------*/
+.howItWork-section{
+  background: #f5f3f4;
+    padding: 30px;
+}
+.howItWork-pgcontent{
+  padding: 0px 0px 20px;
+}
+.staticImageArea{
+  background-color: #30e38e;
+  padding: 30px 0 0 30px
+}
+/* Blue Flat Button
+==================================================*/
+.btn-xlarge{
+  position: relative;
+  vertical-align: center;
+  margin: 0 40px 10px;
+  color: white;
+  background: #62b1d0;
+  border: 0;
+  border-bottom: 3px solid #9FE8EF;
+  cursor: pointer;
+  padding: 0;
+  
+}
+.btn-xlarge:active {
+  top: 2px;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.btn-xlarge:hover {
+  background: #45E1E8;
+}
+.textVertics{
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-size: 7px;
+  margin-left: -20px;
+  text-transform: uppercase;
+}
+.numCount{
+  font-size: 24px !important;
+    font-weight: bold;
+    position: relative;
+    top: -11px;
+    left: 5px;
+}
+.btn-count {
+  color: #fff;
+    background-color: #0171df;
+    border-color: #0171df;
+    text-transform: uppercase;
+    margin: 0px 0 0 60px;
+    padding: 0px 0px;
+    font-weight: 600;
+    font-size: 14px;
+    width: 60px;
+    height: 45px;
+}
+.btn-count:hover{
+  background-color: #008CBA;
+  border-color: #008CBA;
+  color: white;
+}
+.WorkdetailsText p{
+  color: #222222;
+  margin-top: 0px;
+  margin-bottom: 0;
+}
+.space-4{
+  margin-bottom: 20px;
+}
+
+/*--------------------------------------
+           bottomBxList
+--------------------------------------*/
+.arrow_box {
+	position: relative;
+	background: #30e38e;
+	border: 1px solid #30e38e;
+}
+.arrow_box:after, .arrow_box:before {
+	left: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow_box:after {
+	border-color: rgba(136, 183, 213, 0);
+	border-left-color: #30e38e;
+	border-width: 30px;
+	margin-top: -30px;
+}
+.arrow_box:before {
+	border-color: rgba(194, 225, 245, 0);
+	border-left-color: #30e38e;
+	border-width: 31px;
+	margin-top: -31px;
+}
+.bottomBxList{
+  margin-top: 60px;
+    margin-bottom: 60px;
+}
+.dt-box{
+  width: 150px;
+  height: 130px;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0px 0px 8px rgba(0,0,0,.5);
+  text-align: center;
+}
+.dt-box .box-text{
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #222222;
+  font-weight: bolder;
+  line-height: 27px;
+}
+.arrowText{
+  color: #fff !important;
+}
+.margin-top-5{
+  margin-top: 5px !important;
+}
+/*------------------------------
+    page-animation
+---------------------------------*/
+.slideanim {visibility:hidden;}
+  .slide {
+      animation-name: slide;
+      -webkit-animation-name: slide;
+      animation-duration: 1s;
+      -webkit-animation-duration: 1s;
+      visibility: visible;
+  }
+  @keyframes slide {
+    0% {
+      opacity: 0;
+      transform: translateY(70%);
+    } 
+    100% {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+  }
+  @-webkit-keyframes slide {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateY(0%);
+    }
+  }
+
+/*--------------------------------------
+           Footer Style
+--------------------------------------*/
+
+
+
+.secondary-footer{
+  background: #f5f3f4;
+  padding: 30px;
+  border-top: 1px solid #f5f3f4;
+  text-transform: uppercase;
+}
+.copyrightText p{
+  font-size: 14px;
+    margin-bottom: 0;
+    color: #888888 !important;
+  font-weight: 400;
+}
+.termsText ul > li > a{
+  font-size: 14px;
+    color: #888888;
+    font-weight: normal;
+}
+.SeperateFT{
+  border: 1px solid #888;
+    float: right;
+    height: 14px;
+    padding: 2;
+    margin-right: 15px;
+    margin-left: 15px;
+    position: relative;
+    top: 5px;
+}
+.footer-text-area p a{
+  color: #888888;
+  font-weight: 400;
+  
+} 
+.btn-blue-bottom{
+  color: #fff;
+    background-color: #0171df;
+    border-color: #0171df;
+    padding: 7px 10px;
+    border-radius: 6px;
+    text-align: center;
+}
+.btn-blue-bottom:hover{
+  background-color: #008CBA;
+  border-color: #008CBA;
+  color: white;
+}
+.btn-blue-bottom a{
+  color: #fff;
+}
+/*--------------------------------------------------------------
+                    Responsive Media Query
+---------------------------------------------------------------*/
+@media screen and (min-width : 320px) and (max-width: 667px){
+  
+  .logoHeight {
+    height: 44px;
+   }
+
+   .logoTextCnt {
+    font-size: 14px;
+    font-weight: 600;
+   }
+   .blueText {
+    color: #187cd2;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  .qci-log, .logo-irda {
+    margin-bottom: 4px;
+    float: left;
+    margin-right: 10px;
+}
+.brand-info {
+  line-height: 14px;
+  position: relative;
+  top: 6px;
+  left: 5px;
+}
+.qci-custom-navR>li>a {
+  color: #f4fbff;
+  font-weight: 400;
+  display: inline-block;
+  padding: 3px 8px;
+  font-size: 13px;
+}
+.aboutUs-title {
+  color: #337ab7;
+    line-height: 1.2;
+    font-weight: 500;
+    margin-bottom: 0;
+    margin-top: 0;
+    font-size: 18px;
+}
+.MenuBorderBox{
+  display: none;
+}
+
+}
+
+
+
+@media screen and (max-width : 767px){
+  
+
+}
+
+
+@media screen and (max-width : 991px){
+  
+  
+}
