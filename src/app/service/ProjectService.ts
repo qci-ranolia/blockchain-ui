@@ -208,6 +208,9 @@ export class ProjectService {
   getUI(){
     let role = localStorage.getItem('role');
     let parent_role = localStorage.getItem('parent_role');
+
+    console.log(role)
+
     if(role==="ADMIN"){
       this.get_admin_ui(role, null);
     }
