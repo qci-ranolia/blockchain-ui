@@ -108,8 +108,8 @@ export class TableComponent implements OnInit {
 
   // only in share assets
   createNewIssueForm() {
-    // console.log(this.ProjectService.navigationData[1].createForm)
-    this.ProjectService.createNewFormElements(this.ProjectService.navigationData[1].createForm)
+    console.log(this.ProjectService.navigationData);
+    this.ProjectService.createNewFormElements(this.ProjectService.navigationData[2].createForm)
     this.ProjectService.createNewForm();
   }
 

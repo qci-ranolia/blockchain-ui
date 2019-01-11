@@ -24,7 +24,7 @@
             { "name": "Phone No.", "parms":"phone_number", "type": "text", "value":"", "id":2 },
             { "name": "org name", "parms":"org_name", "type": "text", "value":"", "id":3 },
             { "name": "Email", "parms":"email", "type": "email", "value":"", "id":4 },
-            { "name": "Role", "parms":"role", "type": "dropdown", "option": ["CHILD", "MASTER","LAB", "USER"], "value":"", "id":5 }
+            { "name": "Role", "parms":"role", "type": "dropdown", "option": ["CHILD", "USER"], "value":"", "id":5 }
           ]
         }
       },
