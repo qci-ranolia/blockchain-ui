@@ -13,6 +13,7 @@ export class FormBuilderComponent implements OnInit {
   jsonArray : any = [];
   formName: any = "";
   formSubmitUrl: any="";
+  hidebutton = false;
 
   // jsonArray : any = [
   //   { name: "Name", type: "text", value:"", id:"1" },
@@ -23,6 +24,7 @@ export class FormBuilderComponent implements OnInit {
   // ];
 
   constructor(private ProjectService: ProjectService) {
+    this.hidebutton = false;
     this.ProjectService.emitHideFormBuilder.subscribe(res=>{
       // console.log(res)
 
@@ -83,6 +85,7 @@ export class FormBuilderComponent implements OnInit {
   }
 
   submitForm() {
+    this.hidebutton = true;
     let res = [];
     let responseData : any ={};
     for(let i=0; i<this.responseArray.length; i++) {

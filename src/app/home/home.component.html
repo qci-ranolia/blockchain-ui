@@ -3,7 +3,10 @@
     <!-- Sidebar -->
     <nav class="navbar fixed-top ft">
         <a class="navbar-brand"><img src="http://qcin.org/images/qci-logo.jpg" style="width:47%;" /></a>
-        <i class="fa fa-power-off" (click)="logout()"></i>
+        <div class="col-sm-5 float-right text-right text-muted">
+            <i class="fa fa-user" aria-hidden="true"></i>&nbsp;{{email_user}}
+            <i class="fa fa-power-off" (click)="logout()"></i>
+        </div>
     </nav>
     <nav class="navbar navbar-inverse fixed-top mt-5" id="sidebar-wrapper" role="navigation">
         <a class="navbar-brand" href="#">{{UI_Info.data.name}}</a>

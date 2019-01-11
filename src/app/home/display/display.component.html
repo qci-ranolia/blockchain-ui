@@ -1,6 +1,5 @@
-<h6 class="mt-4 pl-0 text-left">{{heading}}</h6>
-
-<div  >
+<h6 class="mt-4 pl-0 text-left" *ngIf="account_display">{{heading}}</h6>
+<div *ngIf="account_display">
   <div *ngIf="account_display">
     <div class="justify-content-center col-sm-12 p-0 row ml-0 mr-0 mt-1">
       <div class="child col-sm-4 pl-0 mb-3" *ngIf="child_display" >

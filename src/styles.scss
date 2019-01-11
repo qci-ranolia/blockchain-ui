@@ -633,22 +633,26 @@ div.navigation li {
   }
 }
 .fa-power-off {
-  position:fixed;
-  top:7px;
-  right:-20px;
   font-size:15px;
-  background:$theme-1 !important;
-  padding:8px 36px 8px 10px;
-  box-shadow:none;
-  border:1px solid $theme-1 - #444;
+  padding:8px;
+  box-shadow:0px 0px 5px 0px $theme-1 - #080808;
+  border:1px solid $theme-1 - #000;
+  border-color: transparent;
   box-sizing:border-box;
-  border-radius:10px 0px 0px 10px;
+  border-radius:8px;
+  box-sizing: border-box;
   cursor:pointer;
-  color: $theme-1 - #666;
+  color:#40dcb2;
+  margin-left: 12px;
   &:hover {
     @include transition(all .2s ease-in);
-    right: -10px;
-    border: 1px solid dark-primary($theme-1 - #111);
+    box-shadow:none;
+    border:1px solid $theme-1 - #040504;
+  }
+  &:active {
+    @include transition(all .2s ease-in);
+    box-shadow:0px 0px 5px 0px inset $theme-1 - #080808;
+    border:1px solid $theme-1 - #040504;
   }
 }
 
