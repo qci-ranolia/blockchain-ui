@@ -17,6 +17,7 @@ export class APIService {
   UI_JSON: string = '../assets/UI_JSON/';
   proURL: string = 'http://13.233.29.111:8000';
   localURL: string = 'http://192.168.15.139:8000';
+  proURL2: string = 'http://13.233.242.93';
   // current_URL : string = this.localURL;
   current_URL : string = this.proURL;
   Header: any;

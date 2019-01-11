@@ -1,4 +1,13 @@
+
 <div class="container closed backgroundVisual" *ngIf="showTable">
+
+  <div *ngIf="f_headers.length>0" >
+    data present {{f_headers.length}}
+  </div>
+  <div *ngIf="f_headers.length<=0" >
+    data not present {{f_headers.length}}
+  </div>
+
   <div class="col-sm-12 p-0 row m-0">
     <div class="col-sm-12 pr-0 text-right" style="height:60px">
       <button type="button" class="submit d-inline-block ml-0 mr-0" (click)='createNew()'>+ Create</button>

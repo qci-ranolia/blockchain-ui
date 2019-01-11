@@ -29,7 +29,14 @@ export class SummaryComponent implements OnInit {
       this.shareWithAddress = false;
       this.header = [];
       this.data = [];
+      this.f_headers = [];
+      this.trail_data = [];
       this.arr = [];
+      this.tempArray = [];
+      this.options= {};
+      this.arr= [];
+      this.header = [];
+
       // console.log(res);
       this.showSummary = true;
       this.header = res.header;

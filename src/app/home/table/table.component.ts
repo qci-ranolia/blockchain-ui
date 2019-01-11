@@ -22,6 +22,9 @@ export class TableComponent implements OnInit {
   constructor(private ProjectService: ProjectService) {
 
     this.ProjectService.emitTable.subscribe(res=>{
+      this.f_headers = [];
+      this.tempArray = [];
+
       this.heading = this.ProjectService.globalAction;
       if(this.heading === "Assets")
         this.isAssets = true;
@@ -31,7 +34,10 @@ export class TableComponent implements OnInit {
       // console.log(res);
       this.showTable= true;
       this.tableArray= res;
-      this.f_headers = res.f_Headers;
+      if(res.f_Header){
+        this.f_headers = res.f_Headers;
+      }
+      console.log(this.f_headers);
       // console.log(this.f_headers);
 
       this.f_headers = JSON.stringify(this.f_headers);
