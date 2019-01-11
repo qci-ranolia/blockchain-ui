@@ -313,9 +313,9 @@ export class DisplayComponent implements OnInit {
                   }
               },
               data:[
-                  {value:this.received_Count1, name:'Self'},
-                  {value:this.received_Count2, name:'Others'}
-              ]
+                {value:this.received_Count1, name:'Self'},
+                {value:this.received_Count2, name:'Others'}
+            ]
             }
           ]
       }

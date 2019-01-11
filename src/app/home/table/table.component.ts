@@ -20,6 +20,7 @@ export class TableComponent implements OnInit {
 
   table_view : any
   show_table:boolean = true
+
   constructor(private ProjectService: ProjectService) {
     // console.log(this.tableArray)
     this.ProjectService.emitTable.subscribe(res=>{
@@ -27,8 +28,9 @@ export class TableComponent implements OnInit {
       this.tempArray = [];
 
       this.heading = this.ProjectService.globalAction;
-      if(this.heading === "Assets")
+      if(this.heading === "Assets") {
         this.isAssets = true;
+      }
       else
        this.isAssets = false;
 
@@ -109,7 +111,7 @@ export class TableComponent implements OnInit {
   // only in share assets
   createNewIssueForm() {
     // console.log(this.ProjectService.navigationData[1].createForm)
-    this.ProjectService.createNewFormElements(this.ProjectService.navigationData[1].createForm)
+    this.ProjectService.createNewFormElements(this.ProjectService.navigationData[2].createForm)
     this.ProjectService.createNewForm();
   }
 

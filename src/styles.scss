@@ -706,3 +706,10 @@ input {
 .h60 {
   height: 60vh;
 }
+.btn-primary{
+  background: linear-gradient(to right,#40dcb2,#40dc7e);
+  border:none;
+  &:hover{
+    background: linear-gradient(to right,#40dcb2,#40dc7e);
+  }
+}
