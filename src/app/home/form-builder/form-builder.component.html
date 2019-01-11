@@ -28,7 +28,7 @@
             </label>
             <label class="col-sm-12 p-0 row ml-0 mr-0" *ngIf="json.type == 'file'">
               <!-- <span>{{json.name}}</span> -->
-              <app-input-file-upload class="col-sm-12 p-0" [json]=json  (responseData)="responseData($event)"></app-input-file-upload>
+              <app-input-file-upload class="text-left col-sm-12 p-0" [json]=json  (responseData)="responseData($event)"></app-input-file-upload>
             </label>
           </div>
         </div>
