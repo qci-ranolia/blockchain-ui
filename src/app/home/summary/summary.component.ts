@@ -144,6 +144,8 @@ export class SummaryComponent implements OnInit {
 
   // only in share assets
   createNewShareForm() {
+    this.ProjectService.shareWithAddressData = true;
+    localStorage.setItem("shareWithAddressData", this.shareWithAddressData+"")
     console.log(this.ProjectService.navigationData);
     this.ProjectService.createNewFormElements(this.ProjectService.navigationData[2].createForm2);
     this.ProjectService.createNewForm();

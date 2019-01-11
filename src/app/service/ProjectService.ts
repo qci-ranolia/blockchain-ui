@@ -15,6 +15,7 @@ export class ProjectService {
   navigationData: any;
   displayData = {};
   f_Headers: any = [];
+  shareWithAddressData = false;
   displayDataArray = {
     "data": {
       "accounts": [],
@@ -81,6 +82,7 @@ export class ProjectService {
   }
 
   setAction(action: string) {
+    this.shareWithAddressData = false;
     this.globalAction = action;
     console.log(this.globalAction);
     console.log(this.navigationData);

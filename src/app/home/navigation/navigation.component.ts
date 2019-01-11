@@ -46,6 +46,7 @@ export class NavigationComponent implements OnInit {
     }
 
     if(action=="Home") {
+      
       this.status = false
       this.ProjectService.setAction(action);
       this.ProjectService.showHomePage();

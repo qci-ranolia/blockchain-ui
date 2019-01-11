@@ -60,7 +60,9 @@ export class HomeComponent implements OnInit, AfterContentInit {
   }
 
   logout(){
-    this.ProjectService.logout();
+    if (window.confirm(" Are you sure to logout? ")) { 
+      this.ProjectService.logout();
+    }
   }
 
 
