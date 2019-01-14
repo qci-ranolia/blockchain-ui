@@ -17,6 +17,7 @@ export class FormBuilderComponent implements OnInit {
   shareWithAddressData="";
   shareWithAddressDataShow= false;
   emt1 : any;
+  emt2 : any;
   // jsonArray : any = [
   //   { name: "Name", type: "text", value:"", id:"1" },
   //   { name: "Password", type: "password", value:"", id:"2" },
@@ -26,8 +27,15 @@ export class FormBuilderComponent implements OnInit {
   // ];
 
   constructor(private ProjectService: ProjectService) {
+
     this.hidebutton = false;
     this.shareWithAddressDataShow = false;
+
+    this.emt2 = this.ProjectService.emitShowSubmitFormButton.subscribe(res=>{
+      this.hidebutton = false;
+      console.log(res);
+    });
+
     this.emt1 = this.ProjectService.emitHideFormBuilder.subscribe(res=>{
 
       if(this.ProjectService.shareWithAddressData) {
@@ -126,7 +134,7 @@ export class FormBuilderComponent implements OnInit {
 
   ngOnDestroy() {
     this.emt1.unsubscribe();
-
+    this.emt2.unsubscribe();
   }
 
 }

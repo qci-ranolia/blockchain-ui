@@ -61,6 +61,7 @@ export class ProjectService {
   emitHideSearchBar:  EventEmitter<any> = new EventEmitter<any>();
   emitNewFormSummary:  EventEmitter<any> = new EventEmitter<any>();
   emitHideFormBuilder:  EventEmitter<any> = new EventEmitter<any>();
+  emitShowSubmitFormButton : EventEmitter<any> = new EventEmitter<any>();
 
   errorSnack(){
     $('.notification').toggleClass('active')
@@ -519,7 +520,8 @@ export class ProjectService {
       console.log(err);
       this.emitError.emit(err.error.message)
       this.errorSnack()
-      console.log(err.error.message)
+      console.log(err.error.message);
+      this.emitShowSubmitFormButton.emit({show:true});
     });
   }
 

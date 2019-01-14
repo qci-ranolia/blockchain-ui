@@ -91,10 +91,10 @@ export class APIService {
 
   setHeader() {
     let token = localStorage.getItem('token');
-    console.log(token);
+    // console.log(token);
     this.appHeader = new HttpHeaders({'token': ""+token});
     this.appHeader.append({'Content-Type':'application/json'});
-    console.log(token);
+    // console.log(token);
   }
 
   change(data) {
