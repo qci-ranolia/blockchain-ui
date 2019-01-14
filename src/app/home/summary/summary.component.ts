@@ -21,10 +21,13 @@ export class SummaryComponent implements OnInit {
   trail_data = [];
   f_headers: any = [];
   tempArray: any = [];
+  emt1: any;
+  emt2: any;
+  emt3: any;
 
   constructor(private ProjectService: ProjectService) {
     trail_view: false;
-    this.ProjectService.emitSummary.subscribe(res=>{
+    this.emt1 = this.ProjectService.emitSummary.subscribe(res=>{
       this.showViewAll= false;
       this.shareWithAddress = false;
       this.header = [];
@@ -98,12 +101,12 @@ export class SummaryComponent implements OnInit {
 
     })
 
-    this.ProjectService.emitHideSummary.subscribe(res=>{
+    this.emt2 = this.ProjectService.emitHideSummary.subscribe(res=>{
       this.showSummary = false;
       this.trail_view= false;
     });
 
-    this.ProjectService.emitTrailView.subscribe(res=>{
+    this.emt3 = this.ProjectService.emitTrailView.subscribe(res=>{
       this.trail_view = true;
       this.trail_data = res;
       console.log(this.trail_data);
@@ -113,9 +116,7 @@ export class SummaryComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   viewAll() {
     if(this.ProjectService.globalAction === "Accounts") {
@@ -205,6 +206,12 @@ export class SummaryComponent implements OnInit {
       ]
 
     };
+  }
+
+  ngOnDestroy() {
+    this.emt1.unsubscribe();
+    this.emt3.unsubscribe();
+    this.emt2.unsubscribe();
   }
 
 }

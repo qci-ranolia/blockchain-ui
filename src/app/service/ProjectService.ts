@@ -171,6 +171,7 @@ export class ProjectService {
         this.displayDataArray = response.data;
         let temp = JSON.stringify(response)
         localStorage.setItem("displayDataArray", ""+temp);
+        this.emitDisplayData.emit(response);
       } else {
         console.log("bep 00.00");
       }

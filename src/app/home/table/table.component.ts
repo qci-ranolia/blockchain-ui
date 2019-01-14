@@ -20,9 +20,13 @@ export class TableComponent implements OnInit {
 
   table_view : any
   show_table:boolean = true
+
+  emt1: any;
+  emt2: any;
+
   constructor(private ProjectService: ProjectService) {
     // console.log(this.tableArray)
-    this.ProjectService.emitTable.subscribe(res=>{
+    this.emt1 = this.ProjectService.emitTable.subscribe(res=>{
       this.f_headers = [];
       this.tempArray = [];
 
@@ -51,7 +55,7 @@ export class TableComponent implements OnInit {
       // console.log(this.tempArray);
 
     })
-    this.ProjectService.emitHideTable.subscribe(res=>{
+    this.emt2 = this.ProjectService.emitHideTable.subscribe(res=>{
       this.showTable = false;
     })
 
@@ -111,6 +115,11 @@ export class TableComponent implements OnInit {
     console.log(this.ProjectService.navigationData);
     this.ProjectService.createNewFormElements(this.ProjectService.navigationData[2].createForm)
     this.ProjectService.createNewForm();
+  }
+
+  ngOnDestroy() {
+    this.emt1.unsubscribe();
+    this.emt2.unsubscribe();
   }
 
 }

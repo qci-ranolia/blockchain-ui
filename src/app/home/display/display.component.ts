@@ -55,7 +55,9 @@ export class DisplayComponent implements OnInit {
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     }
   ];
-
+  emt1: any;
+  emt2: any;
+  emt3: any;
   data =
   {
    "name": "The Agricultural and Processed Food Products",
@@ -90,38 +92,36 @@ export class DisplayComponent implements OnInit {
 
     console.log(this.ProjectService.displayDataArray.data)
 
-    if(!this.ProjectService.displayDataArray.data) {
+    // if(!this.ProjectService.displayDataArray.data) {
+    //
+    //   } else {
+    //
+    //   if(this.ProjectService.displayDataArray.data.accounts) {
+    //
+    //     if(this.ProjectService.displayDataArray.data.accounts.length>0) {
+    //       this.account = this.ProjectService.displayDataArray.data.accounts;
+    //     }
+    //   }
+    //
+    //   this.shared = this.ProjectService.displayDataArray.data.assets.count+"";
+    //   this.assets_Count1 = this.ProjectService.displayDataArray.data.assets.self+"";
+    //   this.assets_Count2 = this.ProjectService.displayDataArray.data.assets.other+"";
+    //   this.received = this.ProjectService.displayDataArray.data.received.count+"";
+    //   this.received_Count1 = this.ProjectService.displayDataArray.data.received.received_assets_count+"";
+    //   this.received_Count2 = this.ProjectService.displayDataArray.data.received.receive_address_count+"";
+    //   this.child = this.ProjectService.displayDataArray.data.child_count+"";
+    //
+    // }
 
-    } else {
-
-      if(this.ProjectService.displayDataArray.data.accounts) {
-
-        if(this.ProjectService.displayDataArray.data.accounts.length>0) {
-          this.account = this.ProjectService.displayDataArray.data.accounts;
-        }
-      }
-
-      this.shared = this.ProjectService.displayDataArray.data.assets.count+"";
-      this.assets_Count1 = this.ProjectService.displayDataArray.data.assets.self+"";
-      this.assets_Count2 = this.ProjectService.displayDataArray.data.assets.other+"";
-      this.received = this.ProjectService.displayDataArray.data.received.count+"";
-      this.received_Count1 = this.ProjectService.displayDataArray.data.received.received_assets_count+"";
-      this.received_Count2 = this.ProjectService.displayDataArray.data.received.receive_address_count+"";
-      this.child = this.ProjectService.displayDataArray.data.child_count+"";
-
-    }
-
-
-    this.ProjectService.emitHideDisplay.subscribe(res=>{
+    this.emt1 = this.ProjectService.emitHideDisplay.subscribe(res=>{
       console.log(res)
       if(res.display === "false") {
         this.hideAllDisplay();
       }
     })
 
-    this.ProjectService.emitNavData.subscribe(res=>{
-      this.ProjectService.getDisplayDataRefresh()
-      this.ProjectService.emitDisplayDataFun();
+    this.emt2 = this.ProjectService.emitNavData.subscribe(res=>{
+      this.ProjectService.getDisplayDataRefresh();
       this.heading = "";
       this.hideAllDisplay();
 
@@ -150,6 +150,32 @@ export class DisplayComponent implements OnInit {
         }
       }
     })
+
+    this.emt3 = this.ProjectService.emitDisplayData.subscribe(res=>{
+      console.log(res);
+
+      if(res.data) {
+        if(res.data.accounts) {
+
+          if(res.data.accounts.length>0) {
+            this.account = res.data.accounts;
+          }
+        }
+
+        this.shared = res.data.assets.count;
+        this.assets_Count1 = res.data.assets.self;
+        this.assets_Count2 = res.data.assets.other;
+        this.received = res.data.received.count;
+        this.received_Count1 = res.data.received.received_assets_count;
+        this.received_Count2 = res.data.received.receive_address_count;
+        this.child = res.data.child_count;
+
+        this.getGraph1();
+        this.getGraph2();
+      }
+
+    })
+
   }
 
   hideAllDisplay() {
@@ -171,153 +197,174 @@ export class DisplayComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.ProjectService.getDisplayDataOnly();
+
+    // this.ProjectService.emitDisplayDataFun();
+
     this.ProjectService.getDisplayDataRefresh();
 
-    this.options = {
-      tooltip: {
+      this.options = {
+        tooltip: {
+              trigger: 'item',
+              triggerOn: 'mousemove'
+          },
+          series:
+          [
+            {
+                type: 'tree',
+
+                data: [this.data],
+
+                left: '2%',
+                right: '2%',
+                top: '8%',
+                symbol: 'emptyCircle',
+                orient: 'vertical',
+                expandAndCollapse: true,
+                leaves: {
+                    label: {
+                        normal: {
+                            position: 'bottom',
+
+                            verticalAlign: 'right',
+                            align: 'center'
+                        }
+                    }
+                },
+
+                symbolSize: 10,
+                label: {
+                  normal: {
+                    position: 'left',
+                    verticalAlign: 'middle',
+                    align: 'right',
+                    fontSize: 13
+                  }
+                },
+                itemStyle:{
+                  color:'#7C90DB',
+                  borderColor:'#7C90DB'
+                },
+                lineStyle:{
+                  color:'#ffa02c',
+                  curveness:0.6
+                },/*
+                tooltip:{
+                  backgroundColor:'rgba(0,0,0,0.7)',
+                  borderColor:'#000'
+                }, */
+                animationDurationUpdate: 750
+            }
+        ]
+
+      };
+   }
+
+  getGraph1() {
+
+
+        this.option2 = {
+          tooltip: {
             trigger: 'item',
-            triggerOn: 'mousemove'
-        },
-        series:
-        [
-          {
-              type: 'tree',
-
-              data: [this.data],
-
-              left: '2%',
-              right: '2%',
-              top: '8%',
-              symbol: 'emptyCircle',
-              orient: 'vertical',
-              expandAndCollapse: true,
-              leaves: {
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+          },
+          legend: {
+              // orient: 'vertical',
+              // x: 'left',
+              bottom: -2,
+              left: 'center',
+              data: ['Self','Others']
+          },
+          series: [
+              {
+                  name:'Received',
+                  type:'pie',
+                  radius: ['50%', '70%'],
+                  avoidLabelOverlap: false,
+                  color: ['#ff4c6a','#c1c1c1'],
                   label: {
                       normal: {
-                          position: 'bottom',
-
-                          verticalAlign: 'right',
-                          align: 'center'
+                          show: false,
+                          position: 'center'
+                      },
+                      emphasis: {
+                          show: true,
+                          textStyle: {
+                              fontSize: '30',
+                              fontWeight: 'bold'
+                          }
                       }
-                  }
-              },
-
-              symbolSize: 10,
-              label: {
-                normal: {
-                  position: 'left',
-                  verticalAlign: 'middle',
-                  align: 'right',
-                  fontSize: 13
+                  },
+                  labelLine: {
+                      normal: {
+                          show: false
+                      }
+                  },
+                  data:[
+                      {value:this.received_Count1, name:'Self'},
+                      {value:this.received_Count2, name:'Others'}
+                  ]
                 }
-              },
-              itemStyle:{
-                color:'#7C90DB',
-                borderColor:'#7C90DB'
-              },
-              lineStyle:{
-                color:'#ffa02c',
-                curveness:0.6
-              },/*
-              tooltip:{
-                backgroundColor:'rgba(0,0,0,0.7)',
-                borderColor:'#000'
-              }, */
-              animationDurationUpdate: 750
+              ]
           }
-      ]
 
-    };
+  }
 
-    this.option1 = {
-      tooltip: {
-        trigger: 'item',
-        formatter: "{a} <br/>{b}: {c} ({d}%)"
-      },
-      legend: {
-          // orient: 'vertical',
-          // x: 'left',
-          bottom: -2,
-          left: 'center',
-          data: ['Self','Others']
-      },
-      series: [
-          {
-              name:'Shared',
-              type:'pie',
-              radius: ['50%', '70%'],
-              avoidLabelOverlap: false,
-              color: ['#40dc80','#c1c1c1'],
-              label: {
-                  normal: {
-                      show: false,
-                      position: 'center'
-                  },
-                  emphasis: {
-                      show: true,
-                      textStyle: {
-                          fontSize: '30',
-                          fontWeight: 'bold'
+  getGraph2() {
+
+        this.option1 = {
+          tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+          },
+          legend: {
+              // orient: 'vertical',
+              // x: 'left',
+              bottom: -2,
+              left: 'center',
+              data: ['Self','Others']
+          },
+          series: [
+              {
+                  name:'Shared',
+                  type:'pie',
+                  radius: ['50%', '70%'],
+                  avoidLabelOverlap: false,
+                  color: ['#40dc80','#c1c1c1'],
+                  label: {
+                      normal: {
+                          show: false,
+                          position: 'center'
+                      },
+                      emphasis: {
+                          show: true,
+                          textStyle: {
+                              fontSize: '30',
+                              fontWeight: 'bold'
+                          }
                       }
-                  }
-              },
-              labelLine: {
-                  normal: {
-                      show: false
-                  }
-              },
-              data:[
-                  {value:this.assets_Count1, name:'Self'},
-                  {value:this.assets_Count2, name:'Others'}
-              ]
-            }
-          ]
-      }
-
-
-    this.option2 = {
-      tooltip: {
-        trigger: 'item',
-        formatter: "{a} <br/>{b}: {c} ({d}%)"
-      },
-      legend: {
-          // orient: 'vertical',
-          // x: 'left',
-          bottom: -2,
-          left: 'center',
-          data: ['Self','Others']
-      },
-      series: [
-          {
-              name:'Received',
-              type:'pie',
-              radius: ['50%', '70%'],
-              avoidLabelOverlap: false,
-              color: ['#ff4c6a','#c1c1c1'],
-              label: {
-                  normal: {
-                      show: false,
-                      position: 'center'
                   },
-                  emphasis: {
-                      show: true,
-                      textStyle: {
-                          fontSize: '30',
-                          fontWeight: 'bold'
+                  labelLine: {
+                      normal: {
+                          show: false
                       }
-                  }
-              },
-              labelLine: {
-                  normal: {
-                      show: false
-                  }
-              },
-              data:[
-                  {value:this.received_Count1, name:'Self'},
-                  {value:this.received_Count2, name:'Others'}
+                  },
+                  data:[
+                      {value:this.assets_Count1, name:'Self'},
+                      {value:this.assets_Count2, name:'Others'}
+                  ]
+                }
               ]
-            }
-          ]
-      }
-    }
+          }
+
+  }
+
+  ngOnDestroy() {
+    this.emt1.unsubscribe();
+    this.emt2.unsubscribe();
+    this.emt3.unsubscribe();
+
+  }
+
 }

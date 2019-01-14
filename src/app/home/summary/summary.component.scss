@@ -40,9 +40,15 @@ p:first-child {
   border-top: 0;
   border-top-right-radius:0;
   border-top-left-radius:0;
+  // border-top-right-radius:30px;
+  // border-top-left-radius:30px;
+  // border-top: 2px dashed;
 }
 
 p:last-child {
   border-bottom-right-radius:0;
   border-bottom-left-radius:0;
+  border-bottom-right-radius:30px;
+  border-bottom-left-radius:30px;
+  border-top: 2px dashed;
 }
