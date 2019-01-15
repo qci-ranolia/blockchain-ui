@@ -15,7 +15,7 @@ export class NavigationComponent implements OnInit {
   constructor( private ProjectService: ProjectService, private router: Router ) { }
 
   ngOnInit() {
-    console.log(this.info);
+    // console.log(this.info);
     // console.log(this.info.data.parent.navigation);
     this.setNav(this.info);
 

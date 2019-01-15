@@ -98,17 +98,17 @@ export class ProjectService {
   HttpEventResponse(event) {
     switch (event.type) {
       case HttpEventType.Sent:
-        console.log('Request started');
+        // console.log('Request started');
         break;
       case HttpEventType.ResponseHeader:
-        console.log('Headers received ->', event.headers);
+        // console.log('Headers received ->', event.headers);
         break;
       case HttpEventType.DownloadProgress:
         const loaded = Math.round(event.loaded / 1024);
-        console.log(`Downloading ${ loaded } kb downloaded`);
+        // console.log(`Downloading ${ loaded } kb downloaded`);
         break;
       case HttpEventType.Response:
-        console.log('Finished -> ', event.body);
+        // console.log('Finished -> ', event.body);
         return event.body;
     }
   }
@@ -145,14 +145,14 @@ export class ProjectService {
     this.APIService.GetDisplayData().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
-        console.log(response)
+        // console.log(response)
         this.displayDataArray = response.data;
         let temp = JSON.stringify(response)
         localStorage.setItem("displayDataArray", ""+temp);
         this.emitUserLogin.emit({login:'true', role: role});
       } else {
         this.displayDataArray = response;
-        console.log("bep 00.00");
+        // console.log("bep 00.00");
       }
     }, (err:HttpErrorResponse)=>{
       this.checkToken(err);
@@ -168,13 +168,13 @@ export class ProjectService {
     this.APIService.GetDisplayData().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
-        console.log(response)
+        // console.log(response)
         this.displayDataArray = response.data;
         let temp = JSON.stringify(response)
         localStorage.setItem("displayDataArray", ""+temp);
         this.emitDisplayData.emit(response);
       } else {
-        console.log("bep 00.00");
+        // console.log("bep 00.00");
       }
     }, (err:HttpErrorResponse)=>{
       this.checkToken(err);
@@ -201,7 +201,7 @@ export class ProjectService {
     this.APIService.change(data).subscribe((event: HttpEvent<any>) => {
       let response = this.HttpEventResponse(event)
       if(response){
-        console.log(response)
+        // console.log(response)
       } else console.log(response)
     }, (err:HttpErrorResponse)=>{
       this.emitError.emit(err.error.message)
@@ -214,7 +214,7 @@ export class ProjectService {
     let role = localStorage.getItem('role');
     let parent_role = localStorage.getItem('parent_role');
 
-    console.log(role)
+    // console.log(role)
 
     if(role==="ADMIN"){
       this.get_admin_ui(role, null);
@@ -242,7 +242,7 @@ export class ProjectService {
         this.get_user_ui(parent_role, role);
       }
     } else {
-      console.log('Role not found');
+      // console.log('Role not found');
     }
   }
 
@@ -252,11 +252,11 @@ export class ProjectService {
 
   createNewFormElements(formElement: any) {
     this.formElements = formElement
-    console.log(this.formElements)
+    // console.log(this.formElements)
   }
 
   checkToken(res) {
-    console.log(res);
+    // console.log(res);
     if(res.statusText) {
       if(res.statusText==="Unauthorized" || res.status===401) {
         this.logout();
@@ -338,7 +338,7 @@ export class ProjectService {
     this.APIService.Get_Organization_Accounts().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
-        console.log(response)
+        // console.log(response)
         this.tableData = response.data;
         this.tableHeader = response.headers;
         this.f_Headers = response.f_headers;
@@ -366,7 +366,7 @@ export class ProjectService {
     this.APIService.Get_Float_Accounts().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
-        console.log(response)
+        // console.log(response)
         this.tableData = response.data;
         this.tableHeader = response.headers;
         this.f_Headers = response.f_headers;
@@ -399,7 +399,7 @@ export class ProjectService {
     this.APIService.Get_Children().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
-        console.log(response)
+        // console.log(response)
         this.tableData = response.data;
         this.tableHeader = response.headers;
         this.f_Headers = response.f_headers;
@@ -462,8 +462,8 @@ export class ProjectService {
     this.APIService.Search_By_Address(data).subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
-        console.log(response)
-        console.log(response.headers)
+        // console.log(response)
+        // console.log(response.headers)
         this.emitSummary.emit({header:response.headers, data:response.data, f_Headers: this.f_Headers});
       } else {
         console.log("bep 07");
@@ -482,7 +482,7 @@ export class ProjectService {
     this.APIService.Get_Assets().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
-        console.log(response)
+        // console.log(response)
         this.tableData = response.data;
         this.tableHeader = response.headers;
         this.f_Headers = response.f_headers;
@@ -507,7 +507,7 @@ export class ProjectService {
     this.APIService.SubmitForm(response, url).subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
-        console.log(response)
+        // console.log(response)
         alert("Success : " +response.success);
         window.location.reload();
         // this.tableData = response.data;
@@ -530,7 +530,7 @@ export class ProjectService {
     this.APIService.ViewAll(email).subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
-        console.log(response)
+        // console.log(response)
         this.tableData = response.data;
         this.tableHeader = response.headers;
         this.f_Headers = response.f_headers;
@@ -556,7 +556,7 @@ export class ProjectService {
     this.APIService.Get_Receive_Assets().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
-        console.log(response)
+        // console.log(response)
         this.tableData = response.data;
         this.tableHeader = response.headers;
         this.f_Headers = response.f_headers;
@@ -581,7 +581,7 @@ export class ProjectService {
     this.APIService.View_All_Receive_Assets(address).subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
-        console.log(response)
+        // console.log(response)
         this.tableData = response.data;
         this.tableHeader = response.headers;
         this.f_Headers = response.f_headers;
@@ -605,7 +605,7 @@ export class ProjectService {
     this.APIService.Get_Trail(address).subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
-        console.log(response)
+        // console.log(response)
 
         if(response.success) {
           this.emitTrailView.emit(response.data);

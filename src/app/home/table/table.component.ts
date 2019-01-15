@@ -79,7 +79,7 @@ export class TableComponent implements OnInit {
   }
 
   getSummary(i) {
-    console.log(this.tableArray.data[i]);
+    // console.log(this.tableArray.data[i]);
     this.sIndex = i
     this.ProjectService.getSummary(i);
 
@@ -112,7 +112,7 @@ export class TableComponent implements OnInit {
 
   // only in share assets
   createNewIssueForm() {
-    console.log(this.ProjectService.navigationData);
+    // console.log(this.ProjectService.navigationData);
     this.ProjectService.createNewFormElements(this.ProjectService.navigationData[2].createForm)
     this.ProjectService.createNewForm();
   }

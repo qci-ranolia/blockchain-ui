@@ -1,4 +1,4 @@
-<h6 class="mt-4 pl-0 text-left" *ngIf="account_display">{{ProjectService.globalAction}}</h6>
+<h6 class="mt-4 pl-0 text-left" *ngIf="account_display"></h6>
 <div *ngIf="account_display">
   <div *ngIf="account_display">
     <div class="justify-content-center col-sm-12 p-0 row ml-0 mr-0 mt-1">
@@ -19,7 +19,7 @@
       <div class="col-sm-6 pl-0 mb-3" *ngFor="let amt of account; let i = index">
         <div class="backgroundVisual pl-3 pr-3 pt-4 pb-4">
           <h2 class="text-left mb-0">{{amt.total}}</h2>
-          <h6 class="mb-2">{{amt.name}}</h6>
+          <h6 class="mb-2">{{amt.name}}/s</h6>
           <div class="col-sm-12 p-0 row m-0">
             <div class="col-sm-10 pl-0 pr-1">
               <div class="progress">

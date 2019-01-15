@@ -67,7 +67,7 @@ export class APIService {
 
   submit_OTP(data:any){
       let payload = JSON.stringify(data)
-      console.log(payload)
+      // console.log(payload)
       return this.http.post<any>( this.current_URL+'/accounts/claim_account', payload )
   }
   handleError(error: HttpErrorResponse) {

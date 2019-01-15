@@ -14,6 +14,7 @@ declare var $
 export class HomeComponent implements OnInit, AfterContentInit {
   UI_Info: any;
   email_user : string;
+  heading: "";
 
   constructor(private ProjectService: ProjectService, private router: Router) {
     this.ProjectService.emitUI.subscribe((res)=>{
@@ -54,13 +55,14 @@ export class HomeComponent implements OnInit, AfterContentInit {
       })
     })
   }
+
   ngOnInit() {
     this.ProjectService.getUI();
     this.email_user = localStorage.getItem('userEmail')
   }
 
   logout(){
-    if (window.confirm(" Are you sure to logout? ")) { 
+    if (window.confirm(" Are you sure to logout? ")) {
       this.ProjectService.logout();
     }
   }

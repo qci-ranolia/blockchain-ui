@@ -90,7 +90,7 @@ export class DisplayComponent implements OnInit {
     //
     // }
 
-    console.log(this.ProjectService.displayDataArray.data)
+    // console.log(this.ProjectService.displayDataArray.data)
 
     // if(!this.ProjectService.displayDataArray.data) {
     //
@@ -114,7 +114,7 @@ export class DisplayComponent implements OnInit {
     // }
 
     this.emt1 = this.ProjectService.emitHideDisplay.subscribe(res=>{
-      console.log(res)
+      // console.log(res)
       if(res.display === "false") {
         this.hideAllDisplay();
       }
@@ -152,7 +152,7 @@ export class DisplayComponent implements OnInit {
     })
 
     this.emt3 = this.ProjectService.emitDisplayData.subscribe(res=>{
-      console.log(res);
+      // console.log(res);
 
       if(res.data) {
         if(res.data.accounts) {
@@ -274,7 +274,7 @@ export class DisplayComponent implements OnInit {
               // x: 'left',
               bottom: -2,
               left: 'center',
-              data: ['Self','Others']
+              data: ['Assets','Address']
           },
           series: [
               {
@@ -302,8 +302,8 @@ export class DisplayComponent implements OnInit {
                       }
                   },
                   data:[
-                      {value:this.received_Count1, name:'Self'},
-                      {value:this.received_Count2, name:'Others'}
+                      {value:this.received_Count1, name:'Assets'},
+                      {value:this.received_Count2, name:'Address'}
                   ]
                 }
               ]

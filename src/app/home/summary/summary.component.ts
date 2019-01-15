@@ -61,7 +61,7 @@ export class SummaryComponent implements OnInit {
         this.showViewAll= true;
       }
       if(this.ProjectService.globalAction === "Receive" ) {
-        console.log(res);
+        // console.log(res);
 
         if(res.data) {
 
@@ -82,13 +82,13 @@ export class SummaryComponent implements OnInit {
         this.shareWithAddress= true;
         let tempData =  JSON.parse(this.data);
         if(tempData.address) {
-          console.log(tempData.address)
+          // console.log(tempData.address)
           this.shareWithAddressData = tempData.address;
         }
       }
 
       this.f_headers = res.f_Headers;
-      console.log(this.f_headers);
+      // console.log(this.f_headers);
 
       this.f_headers = JSON.stringify(this.f_headers);
       let tempArr = JSON.parse(this.f_headers);
@@ -97,7 +97,7 @@ export class SummaryComponent implements OnInit {
         this.tempArray.push(tempArr[x])
       }
 
-      console.log(this.tempArray);
+      // console.log(this.tempArray);
 
     })
 
@@ -109,7 +109,7 @@ export class SummaryComponent implements OnInit {
     this.emt3 = this.ProjectService.emitTrailView.subscribe(res=>{
       this.trail_view = true;
       this.trail_data = res;
-      console.log(this.trail_data);
+      // console.log(this.trail_data);
       // console.log(this.data1);
       // this.displayTrailView(trail_data);
     })
@@ -127,7 +127,7 @@ export class SummaryComponent implements OnInit {
     if(this.ProjectService.globalAction === "Receive") {
       let tempData =  JSON.parse(this.data);
       if(tempData.address) {
-        console.log(tempData.address)
+        // console.log(tempData.address)
         this.ProjectService.viewAllReceiveAssets(tempData.address);
       }
     }
@@ -147,7 +147,7 @@ export class SummaryComponent implements OnInit {
   createNewShareForm() {
     this.ProjectService.shareWithAddressData = true;
     localStorage.setItem("shareWithAddressData", this.shareWithAddressData+"")
-    console.log(this.ProjectService.navigationData);
+    // console.log(this.ProjectService.navigationData);
     this.ProjectService.createNewFormElements(this.ProjectService.navigationData[2].createForm2);
     this.ProjectService.createNewForm();
   }
