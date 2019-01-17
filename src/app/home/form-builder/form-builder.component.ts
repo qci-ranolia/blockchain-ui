@@ -14,7 +14,8 @@ export class FormBuilderComponent implements OnInit {
   formName: any = "";
   formSubmitUrl: any="";
   hidebutton = false;
-
+  shareWithAddressData="";
+  shareWithAddressDataShow= false;
   // jsonArray : any = [
   //   { name: "Name", type: "text", value:"", id:"1" },
   //   { name: "Password", type: "password", value:"", id:"2" },
@@ -25,7 +26,16 @@ export class FormBuilderComponent implements OnInit {
 
   constructor(private ProjectService: ProjectService) {
     this.hidebutton = false;
+    this.shareWithAddressDataShow = false;
     this.ProjectService.emitHideFormBuilder.subscribe(res=>{
+
+      if(this.ProjectService.shareWithAddressData) {
+        this.shareWithAddressDataShow = true;
+        this.shareWithAddressData = localStorage.getItem("shareWithAddressData");
+      } else {
+        this.shareWithAddressDataShow = false;
+      }
+
       // console.log(res)
 
       this.responseArray = [];
@@ -45,7 +55,8 @@ export class FormBuilderComponent implements OnInit {
     })
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   responseData(data: any) {
 
@@ -86,6 +97,8 @@ export class FormBuilderComponent implements OnInit {
 
   submitForm() {
     this.hidebutton = true;
+    localStorage.removeItem("shareWithAddressData");
+
     let res = [];
     let responseData : any ={};
     for(let i=0; i<this.responseArray.length; i++) {

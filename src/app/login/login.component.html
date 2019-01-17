@@ -13,14 +13,9 @@
       <button type="button" class="submit" (click)="login()">Sign In</button>
       <div class="row m-0">
         <p class="forgot-pass col-sm-12 text-center" (click)="gotoclaim()" style="cursor:pointer">Claim Account ?</p>
-        <!-- 
-          <p class="forgot-pass col-sm-6 text-left" (click)="gotochange()" style="cursor:pointer">Change password ?</p>
-          <p class="forgot-pass col-sm-6 text-left" (click)="gotoforgot()" style="cursor:pointer">Forgot password ?</p>
-        -->
       </div>
     </div>
     <div *ngIf="forgot_password" class="backgroundVisual pb-5">
-      <!-- <h2 class="img__text" style="color:#aaa;position:relative;top:10px">Forgot Password ?</h2><br/> -->
       <label>
         <span>E-mail</span>
         <input type="email" [(ngModel)]="reset_mail" name="reset_mail" autocomplete="off" />
@@ -47,7 +42,7 @@
     <p class="forgot-pass" (click)="close_change()" style="cursor:pointer">Go Back</p>
   </div>
 </div>
-<div class="cont mt-4  justify-content-center" *ngIf="claim" style="height:564px;">
+<div class="cont mt-4 justify-content-center d-none" *ngIf="claim" style="height:564px;">
   <div class="form sign-in pt-1 col-sm-8">
     <label>4
       <span>Organisation Name</span>
@@ -74,21 +69,5 @@
       <input type="text" [(ngModel)]="phone_number" name="phone" autocomplete="off" />
     </label>
     <button type="button" class="submit" (click)="claimAcc()">Claim</button>
-    <!-- <p class="forgot-pass" (click)="gotochange()" style="cursor:pointer">Change password?</p> -->
   </div>
-  <!-- <div class="sub-cont backgroundVisual d-none">
-    <div class="img">
-      <div class="img__text m--up"><br /><br />
-        <h2>Have a account?</h2>
-        <p>Sign In and discover great amount of new opportunities!</p>
-        <br />
-        <br />
-      </div><br />
-      <br /><br />
-      <br />
-      <div class="img__btn mt-5" (click)="closeClaim()">
-        <span class="m--up" style="background:none;color:#5867c5" >Sign In</span>
-      </div>
-    </div>
-  </div> -->
 </div>
