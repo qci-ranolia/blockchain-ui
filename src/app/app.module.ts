@@ -34,6 +34,11 @@ import { DisplayComponent } from './home/display/display.component';
 
 import { ChartsModule } from 'ng2-charts';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { LandingComponent } from './landing/landing.component';
+
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+
 
 @NgModule({
   declarations: [
@@ -54,7 +59,8 @@ import { NgxEchartsModule } from 'ngx-echarts';
     InputEmailComponent,
     InputFileUploadComponent,
     InputDatePickerComponent,
-    DisplayComponent
+    DisplayComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +72,9 @@ import { NgxEchartsModule } from 'ngx-echarts';
     HttpClientModule,
     RouterModule.forRoot(routes, { useHash: true }),
     ChartsModule,
-    NgxEchartsModule
+    NgxEchartsModule,
+    NgxExtendedPdfViewerModule,
+    PdfViewerModule
   ],
   providers: [
     AuthGuard,

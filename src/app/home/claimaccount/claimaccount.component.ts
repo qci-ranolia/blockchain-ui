@@ -18,6 +18,10 @@ export class ClaimaccountComponent implements OnInit {
 
   tan_number  : any = null;
   gst_number  : any = null;
+  
+  hideEnter = false;
+  hideSubmit = false;
+
   pancard     : any;
   org_name    : any;
   password    : any;
@@ -41,6 +45,8 @@ export class ClaimaccountComponent implements OnInit {
   }
 
   sendOTP() {
+    // if ( this.email !== null && this.phone_number !== null ) { }
+    this.hideEnter = true
     this._api.sendOTP(this.email,this.phone_number)
     .pipe(
       catchError(this._api.handleError)
@@ -50,11 +56,13 @@ export class ClaimaccountComponent implements OnInit {
         this.otp_view = true
       } else {
         this.otp_view = false
+        this.hideEnter = false
       }
     })
   }
 
   submit_OTP(){
+    this.hideSubmit = true
     const data = {"pancard":this.pancard,
       "otp_email":this.otp_email,
       "otp_mobile":this.otp_mobile,
@@ -74,6 +82,7 @@ export class ClaimaccountComponent implements OnInit {
         this.router.navigate(['./login']);
       } else {
         alert("Error");
+        this.hideSubmit = false
       }
     })
   }

@@ -13,7 +13,8 @@
             <span>Phone</span>
             <input type="text" [(ngModel)]="phone_number" name="phone" autocomplete="off" />
           </label>
-          <button type="button" class="submit" (click)="sendOTP()">Enter</button>
+          <button type="button" class="submit" *ngIf="!hideEnter" (click)="sendOTP()">Enter</button>
+          <button type="button" class="submit" *ngIf="hideEnter" style="cursor:wait;">Please wait...</button>
         </div>
         <div class="form sign-in ovf-y backgroundVisual col-sm-8" *ngIf="otp_view">
           <div class="col-sm-12 row ml-0 mr-0">
@@ -73,7 +74,8 @@
               </label>
             </div>
           </div>
-          <button type="button" class="submit" (click)="submit_OTP()">Submit</button>
+          <button type="button" class="submit" *ngIf="!hideSubmit" (click)="submit_OTP()">Submit</button>
+          <button type="button" class="submit" *ngIf="hideSubmit" style="cursor:wait;">Please wait...</button>
         </div>
         <!-- <div class="sub-cont backgroundVisual d-none">
           <div class="img">

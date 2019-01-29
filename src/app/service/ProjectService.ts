@@ -126,7 +126,8 @@ export class ProjectService {
           localStorage.setItem('role', role);
           localStorage.setItem('token', token);
           localStorage.setItem('parent_role', parent_role);
-          this.getDisplayData(role);
+          // this.getDisplayData(role);
+          this.emitUserLogin.emit({login:'true', role: role});
           // get data for display first then emit login
           // this.emitUserLogin.emit({login:'true', role: role});
         } else {

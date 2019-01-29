@@ -6,6 +6,7 @@ import { FloatuserComponent } from './home/floatuser/floatuser.component';
 import { ClaimaccountComponent } from './home/claimaccount/claimaccount.component';
 import { CreateassetComponent } from './home/createasset/createasset.component';
 import { LoginComponent } from './login/login.component';
+import { LandingComponent } from './landing/landing.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent ,canActivate: [AuthGuard]},
@@ -13,5 +14,6 @@ export const routes: Routes = [
   { path: 'floatuser', component: FloatuserComponent },
   { path: 'claimaccount', component: ClaimaccountComponent },
   { path: 'createasset', component: CreateassetComponent },
-  { path: '**', redirectTo:'/login' }
+  { path: '', component: LandingComponent },
+  { path: '**', redirectTo:'' }
 ]

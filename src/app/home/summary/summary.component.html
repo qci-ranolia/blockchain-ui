@@ -8,12 +8,13 @@
         </div>
         <div class="col-sm-12 row m-0 p-0 mt-3">
             <div class="col-sm-8 p-0">
+                <!-- <pdf-viewer src="../../../../assets/pdf/1.pdf" [render-text]="true" style="display: block;"></pdf-viewer>       -->
                 <div class="col-sm-12 row mb-2 dyn" *ngFor="let he of header; let m = index ">
                     <div class="col-sm-4 p-0" ><strong>{{tableService(m)}}</strong></div>
                     <div class="col-sm-8 p-0">{{dataService(m)}}</div>
                 </div>
             </div>
-            <div class="col-sm-4 p-0 text-center" >
+            <div class="col-sm-4 p-0 text-center">
                 <div *ngIf="trail_view">
                   <h5>Certificate Trail</h5>
                       <div *ngIf="trail_data.length" >
