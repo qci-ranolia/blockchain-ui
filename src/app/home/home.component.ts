@@ -14,6 +14,7 @@ declare var $
 export class HomeComponent implements OnInit, AfterContentInit {
   UI_Info: any;
   email_user : string;
+  heading: "";
 
   constructor(private ProjectService: ProjectService, private router: Router) {
     this.ProjectService.emitUI.subscribe((res)=>{
@@ -30,13 +31,13 @@ export class HomeComponent implements OnInit, AfterContentInit {
         "ordering"  : false
       })
       var trigger = $('.hamburger'),
-          overlay = $('.overlay'),
-          isClosed = false
+        overlay = $('.overlay'),
+        isClosed = false
       trigger.click(function () {
         hamburger_cross()
       })
       function hamburger_cross() {
-        console.log('hamburger triggered')
+        // console.log('hamburger triggered')
         if ( isClosed == false ) {
           overlay.hide()
           trigger.removeClass('is-open')
@@ -54,30 +55,29 @@ export class HomeComponent implements OnInit, AfterContentInit {
       })
     })
   }
+
   ngOnInit() {
     this.ProjectService.getUI();
     this.email_user = localStorage.getItem('userEmail')
   }
 
   logout(){
-    if (window.confirm(" Are you sure to logout? ")) { 
+    if (window.confirm(" Are you sure to logout? ")) {
       this.ProjectService.logout();
     }
   }
-
 
   ngAfterContentInit() {
     // console.log('s')
     // d3.select(“p”).style(“color”, “red”);
   }
 
-  clicked(event:any){
-    d3.select(event.target).
-      append('circle')
-      .attr('cx', event.x)
-      .attr('cy', event.y)
-      .attr('r', '10px')
-      .attr('fill', '#f44')
-  }
-
+  // clicked(event:any){
+  //   d3.select(event.target).
+  //     append('circle')
+  //     .attr('cx', event.x)
+  //     .attr('cy', event.y)
+  //     .attr('r', '10px')
+  //     .attr('fill', '#f44')
+  // }
 }

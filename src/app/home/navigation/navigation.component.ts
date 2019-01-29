@@ -7,6 +7,7 @@ import { ProjectService } from '../../service/ProjectService';
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })
+
 export class NavigationComponent implements OnInit {
   @Input() info:any;
   navArray: any = [];
@@ -15,7 +16,7 @@ export class NavigationComponent implements OnInit {
   constructor( private ProjectService: ProjectService, private router: Router ) { }
 
   ngOnInit() {
-    console.log(this.info);
+    // console.log(this.info);
     // console.log(this.info.data.parent.navigation);
     this.setNav(this.info);
 
@@ -44,42 +45,32 @@ export class NavigationComponent implements OnInit {
         this.ProjectService.createNewFormElements(this.navArray[i].createNewForm);
       }
     }
-
     if(action=="Home") {
-      
-      this.status = false
+      // this.status = false
       this.ProjectService.setAction(action);
       this.ProjectService.showHomePage();
-
     } if(action=="Accounts") {
-      this.status = false
+      // this.status = false
       // alert(this.status)
       this.ProjectService.get_float_accounts();
       this.ProjectService.setAction(action);
-
     } if(action=="Assets") {
-      this.status = !this.status
+      // this.status = !this.status
       // alert(this.status)
       this.ProjectService.get_assets();
       this.ProjectService.setAction(action);
-
     } if(action=="Receive") {
-      this.status = !this.status
+      // this.status = !this.status
       this.ProjectService.get_receive_assets();
       this.ProjectService.setAction(action);
-
     } if(action=="Child") {
       this.status = false
       this.ProjectService.get_Children();
       this.ProjectService.setAction(action);
-
     } if(action=="Search") {
       this.status = false
       this.ProjectService.get_search();
       this.ProjectService.setAction(action);
-
     }
-
   }
-
 }

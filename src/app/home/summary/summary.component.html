@@ -6,7 +6,7 @@
             <button type="button" class="submit d-inline-block" (click)='createNewShareForm()' *ngIf="shareWithAddress">+ Share</button>
             <!-- <br /><br /> -->
         </div>
-        <div class="col-sm-12 row m-0 p-0">
+        <div class="col-sm-12 row m-0 p-0 mt-3">
             <div class="col-sm-8 p-0">
                 <div class="col-sm-12 row mb-2 dyn" *ngFor="let he of header; let m = index ">
                     <div class="col-sm-4 p-0" ><strong>{{tableService(m)}}</strong></div>
@@ -16,64 +16,47 @@
             <div class="col-sm-4 p-0 text-center" >
                 <div *ngIf="trail_view">
                   <h5>Certificate Trail</h5>
-
                       <div *ngIf="trail_data.length" >
-
                         <p *ngFor="let data of trail_data; let i = index" >
                             <span *ngIf="data.name">
                               <b> {{data.name}} </b> <br>
                             </span>
-
                             <span *ngIf="data.role">
                               Role : {{data.role}} <br>
                             </span>
-
                             <span *ngIf="data.email">
                               Email : {{data.email}} <br>
                             </span>
-
-                            <span  *ngIf="data.time">
+                            <span *ngIf="data.time">
                               Time : {{data.time}} <br>
                             </span>
-
-                            <span  *ngIf="data.file_name">
+                            <span *ngIf="data.file_name">
                               File name : {{data.file_name}}<br>
                             </span>
-
-                            <span  *ngIf="data.scope">
+                            <span *ngIf="data.scope">
                               <b>Scope</b>
                               <hr>
-
                                 <span *ngIf="data.scope.description" >
                                   Desc: {{data.scope.description}} <br>
                                 </span>
-
                                 <span *ngIf="data.scope.field" >
                                   Feild: {{data.scope.field}} <br>
                                 </span>
-
                                 <span *ngIf="data.scope.group" >
                                   Group: {{data.scope.group}} <br>
                                 </span>
-
                                 <span *ngIf="data.scope.nature" >
                                   Nature: {{data.scope.nature}} <br>
                                 </span>
-
                                 <span *ngIf="data.scope.operations" >
                                   Opts : {{data.scope.operations}} <br>
                                 </span>
-
                                 <span *ngIf="data.scope.sub_group" >
                                   Group: {{data.scope.sub_group}} <br>
                                 </span>
                             </span>
-
-
                         </p>
-
                       </div>
-
                 </div>
             </div>
         </div>

@@ -16,6 +16,8 @@ export class FormBuilderComponent implements OnInit {
   hidebutton = false;
   shareWithAddressData="";
   shareWithAddressDataShow= false;
+  emt1 : any;
+  emt2 : any;
   // jsonArray : any = [
   //   { name: "Name", type: "text", value:"", id:"1" },
   //   { name: "Password", type: "password", value:"", id:"2" },
@@ -25,9 +27,16 @@ export class FormBuilderComponent implements OnInit {
   // ];
 
   constructor(private ProjectService: ProjectService) {
+
     this.hidebutton = false;
     this.shareWithAddressDataShow = false;
-    this.ProjectService.emitHideFormBuilder.subscribe(res=>{
+
+    this.emt2 = this.ProjectService.emitShowSubmitFormButton.subscribe(res=>{
+      this.hidebutton = false;
+      // console.log(res);
+    });
+
+    this.emt1 = this.ProjectService.emitHideFormBuilder.subscribe(res=>{
 
       if(this.ProjectService.shareWithAddressData) {
         this.shareWithAddressDataShow = true;
@@ -42,8 +51,8 @@ export class FormBuilderComponent implements OnInit {
       this.jsonArray = [];
       this.formSubmitUrl="";
 
-      console.log(this.ProjectService.formElements);
-      console.log(res);
+      // console.log(this.ProjectService.formElements);
+      // console.log(res);
       if(res.display==="true") {
         this.jsonArray =  this.ProjectService.formElements.formElements;
         this.formName =  this.ProjectService.formElements.formName;
@@ -63,8 +72,8 @@ export class FormBuilderComponent implements OnInit {
     let exists = false;
     let pos = null;
 
-    console.log(data);
-    console.log(this.responseArray);
+    // console.log(data);
+    // console.log(this.responseArray);
     // check if responseArray is empty
     if(this.responseArray.length>0) {
 
@@ -81,8 +90,8 @@ export class FormBuilderComponent implements OnInit {
       }
     } else {
       this.responseArray.push(data);
-      console.log("first entry");
-      console.log(this.responseArray);
+      // console.log("first entry");
+      // console.log(this.responseArray);
       exists = true;
     }
 
@@ -116,11 +125,16 @@ export class FormBuilderComponent implements OnInit {
     responseData = Object.assign({}, ...mapped );
     responseData = JSON.stringify(responseData);
 
-    console.log(responseData);
-    console.log(this.responseArray);
-    console.log(this.formSubmitUrl);
+    // console.log(responseData);
+    // console.log(this.responseArray);
+    // console.log(this.formSubmitUrl);
     this.ProjectService.submitForm(responseData, this.formSubmitUrl);
 
+  }
+
+  ngOnDestroy() {
+    this.emt1.unsubscribe();
+    this.emt2.unsubscribe();
   }
 
 }

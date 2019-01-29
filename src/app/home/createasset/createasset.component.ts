@@ -24,7 +24,7 @@ export class CreateassetComponent implements OnInit {
     this.location.back()
   }
   addAsset(event){
-    console.log(this.asset)
+    // console.log(this.asset)
   }
   getVal($event){
     this.formData.delete('file')
@@ -38,9 +38,9 @@ export class CreateassetComponent implements OnInit {
     var shaObj = new jsSHA("SHA-224", "TEXT")
     shaObj.update(reader.result)
     var hash = shaObj.getHash("HEX")
-    console.log(reader.result)
-    console.log(this.name)
-    console.log(hash)
+    // console.log(reader.result)
+    // console.log(this.name)
+    // console.log(hash)
     // reader.onload = (event:any) => {
     //   this.json.value = reader.result;
     //   this.json.fileName = this.name;

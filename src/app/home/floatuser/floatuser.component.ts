@@ -24,10 +24,10 @@ export class FloatuserComponent implements OnInit {
 
   addFloatUser(){
     // this._api
-    console.log(this.org_name)
-    console.log(this.email)
-    console.log(this.phone_number)
-    console.log(this.pancard)
-    console.log(this.role_type)
+    // console.log(this.org_name)
+    // console.log(this.email)
+    // console.log(this.phone_number)
+    // console.log(this.pancard)
+    // console.log(this.role_type)
   }
 }

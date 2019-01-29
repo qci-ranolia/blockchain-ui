@@ -713,3 +713,14 @@ input {
     background: linear-gradient(to right,#40dcb2,#40dc7e);
   }
 }
+
+.tableButtons {
+  height:60px;
+  position:fixed;
+  top:0;
+  z-index:9999;
+  width:76%;
+  button.submit {
+    margin: 7px auto 0;
+  }
+}

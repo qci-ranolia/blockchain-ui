@@ -45,7 +45,6 @@ export class ProjectService {
     }
   }
 
-
   emitUI : EventEmitter<any> = new EventEmitter<any>();
   emitError:  EventEmitter<any> = new EventEmitter<any>();
   emitTable : EventEmitter<any> = new EventEmitter<any>();
@@ -61,6 +60,7 @@ export class ProjectService {
   emitHideSearchBar:  EventEmitter<any> = new EventEmitter<any>();
   emitNewFormSummary:  EventEmitter<any> = new EventEmitter<any>();
   emitHideFormBuilder:  EventEmitter<any> = new EventEmitter<any>();
+  emitShowSubmitFormButton : EventEmitter<any> = new EventEmitter<any>();
 
   errorSnack(){
     $('.notification').toggleClass('active')
@@ -95,19 +95,20 @@ export class ProjectService {
   }
 
   HttpEventResponse(event) {
+    console.log(event)
     switch (event.type) {
       case HttpEventType.Sent:
-        console.log('Request started');
+        // console.log('Request started');
         break;
       case HttpEventType.ResponseHeader:
-        console.log('Headers received ->', event.headers);
+        // console.log('Headers received ->', event.headers);
         break;
       case HttpEventType.DownloadProgress:
         const loaded = Math.round(event.loaded / 1024);
-        console.log(`Downloading ${ loaded } kb downloaded`);
+        // console.log(`Downloading ${ loaded } kb downloaded`);
         break;
       case HttpEventType.Response:
-        console.log('Finished -> ', event.body);
+        // console.log('Finished -> ', event.body);
         return event.body;
     }
   }
@@ -140,18 +141,17 @@ export class ProjectService {
   }
 
   getDisplayData(role) {
-
     this.APIService.GetDisplayData().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
-        console.log(response)
+        // console.log(response)
         this.displayDataArray = response.data;
         let temp = JSON.stringify(response)
         localStorage.setItem("displayDataArray", ""+temp);
         this.emitUserLogin.emit({login:'true', role: role});
       } else {
         this.displayDataArray = response;
-        console.log("bep 00.00");
+        // console.log("bep 00.00");
       }
     }, (err:HttpErrorResponse)=>{
       this.checkToken(err);
@@ -163,16 +163,16 @@ export class ProjectService {
   }
 
   getDisplayDataOnly() {
-
     this.APIService.GetDisplayData().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
-        console.log(response)
+        // console.log(response)
         this.displayDataArray = response.data;
         let temp = JSON.stringify(response)
         localStorage.setItem("displayDataArray", ""+temp);
+        this.emitDisplayData.emit(response);
       } else {
-        console.log("bep 00.00");
+        // console.log("bep 00.00");
       }
     }, (err:HttpErrorResponse)=>{
       this.checkToken(err);
@@ -188,7 +188,6 @@ export class ProjectService {
     // this.displayDataArray = JSON.parse(this.displayDataArray)
     // let role  = localStorage.getItem(role);
     this.getDisplayDataOnly();
-
   }
 
   emitDisplayDataFun() {
@@ -199,7 +198,7 @@ export class ProjectService {
     this.APIService.change(data).subscribe((event: HttpEvent<any>) => {
       let response = this.HttpEventResponse(event)
       if(response){
-        console.log(response)
+        // console.log(response)
       } else console.log(response)
     }, (err:HttpErrorResponse)=>{
       this.emitError.emit(err.error.message)
@@ -211,9 +210,7 @@ export class ProjectService {
   getUI(){
     let role = localStorage.getItem('role');
     let parent_role = localStorage.getItem('parent_role');
-
-    console.log(role)
-
+    // console.log(role)
     if(role==="ADMIN"){
       this.get_admin_ui(role, null);
     }
@@ -240,7 +237,7 @@ export class ProjectService {
         this.get_user_ui(parent_role, role);
       }
     } else {
-      console.log('Role not found');
+      // console.log('Role not found');
     }
   }
 
@@ -250,11 +247,11 @@ export class ProjectService {
 
   createNewFormElements(formElement: any) {
     this.formElements = formElement
-    console.log(this.formElements)
+    // console.log(this.formElements)
   }
 
   checkToken(res) {
-    console.log(res);
+    // console.log(res);
     if(res.statusText) {
       if(res.statusText==="Unauthorized" || res.status===401) {
         this.logout();
@@ -266,7 +263,6 @@ export class ProjectService {
     this.APIService.Get_Admin_UI().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
-
         this.emitUI.emit({role:parent_role, child:role, data:response})
       } else {
         console.log("bep 01");
@@ -336,7 +332,7 @@ export class ProjectService {
     this.APIService.Get_Organization_Accounts().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
-        console.log(response)
+        // console.log(response)
         this.tableData = response.data;
         this.tableHeader = response.headers;
         this.f_Headers = response.f_headers;
@@ -364,7 +360,7 @@ export class ProjectService {
     this.APIService.Get_Float_Accounts().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
-        console.log(response)
+        // console.log(response)
         this.tableData = response.data;
         this.tableHeader = response.headers;
         this.f_Headers = response.f_headers;
@@ -388,6 +384,7 @@ export class ProjectService {
   getSummary(i) {
     this.emitSummary.emit({header:this.tableHeader, data:this.tableData[i], f_Headers: this.f_Headers });
     // let temp = this.tableData.data[i];
+    console.log(this.tableData[i])
   }
 
   get_Children() {
@@ -397,7 +394,7 @@ export class ProjectService {
     this.APIService.Get_Children().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
-        console.log(response)
+        // console.log(response)
         this.tableData = response.data;
         this.tableHeader = response.headers;
         this.f_Headers = response.f_headers;
@@ -420,7 +417,6 @@ export class ProjectService {
 
   get_search() {
     this.dashboardElements({table:0,summary:0,search:1, form:0, display:0});
-
   }
 
   dashboardElements(elements: {table:number , summary:number, search:number, form:number, display:number}) {
@@ -460,8 +456,8 @@ export class ProjectService {
     this.APIService.Search_By_Address(data).subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
-        console.log(response)
-        console.log(response.headers)
+        // console.log(response)
+        // console.log(response.headers)
         this.emitSummary.emit({header:response.headers, data:response.data, f_Headers: this.f_Headers});
       } else {
         console.log("bep 07");
@@ -480,7 +476,7 @@ export class ProjectService {
     this.APIService.Get_Assets().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
-        console.log(response)
+        // console.log(response)
         this.tableData = response.data;
         this.tableHeader = response.headers;
         this.f_Headers = response.f_headers;
@@ -505,7 +501,7 @@ export class ProjectService {
     this.APIService.SubmitForm(response, url).subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
-        console.log(response)
+        // console.log(response)
         alert("Success : " +response.success);
         window.location.reload();
         // this.tableData = response.data;
@@ -518,7 +514,8 @@ export class ProjectService {
       console.log(err);
       this.emitError.emit(err.error.message)
       this.errorSnack()
-      console.log(err.error.message)
+      console.log(err.error.message);
+      this.emitShowSubmitFormButton.emit({show:true});
     });
   }
 
@@ -527,7 +524,7 @@ export class ProjectService {
     this.APIService.ViewAll(email).subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
-        console.log(response)
+        // console.log(response)
         this.tableData = response.data;
         this.tableHeader = response.headers;
         this.f_Headers = response.f_headers;
@@ -553,7 +550,7 @@ export class ProjectService {
     this.APIService.Get_Receive_Assets().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
-        console.log(response)
+        // console.log(response)
         this.tableData = response.data;
         this.tableHeader = response.headers;
         this.f_Headers = response.f_headers;
@@ -578,13 +575,14 @@ export class ProjectService {
     this.APIService.View_All_Receive_Assets(address).subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
-        console.log(response)
+        // console.log(response)
         this.tableData = response.data;
         this.tableHeader = response.headers;
         this.f_Headers = response.f_headers;
         this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
       } else {
         console.log("bep 10");
+        console.log(response)
       }
     }, (err)=>{
       this.tableData = [];
@@ -602,7 +600,7 @@ export class ProjectService {
     this.APIService.Get_Trail(address).subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
-        console.log(response)
+        // console.log(response)
 
         if(response.success) {
           this.emitTrailView.emit(response.data);
@@ -610,6 +608,7 @@ export class ProjectService {
 
       } else {
         console.log("bep 13");
+        console.log(response)
       }
     }, (err)=>{
       console.log(err)

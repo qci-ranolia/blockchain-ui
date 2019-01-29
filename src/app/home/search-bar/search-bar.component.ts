@@ -11,10 +11,11 @@ export class SearchBarComponent implements OnInit {
   @Input() info:any;
   showSearchBar = false;
   address: string = "";
+  emt1: any;
 
   constructor(private ProjectService: ProjectService) {
 
-    this.ProjectService.emitHideSearchBar.subscribe(res=>{
+    this.emt1 = this.ProjectService.emitHideSearchBar.subscribe(res=>{
       if(res.display=="true")
         this.showSearchBar = true;
       else
@@ -29,6 +30,11 @@ export class SearchBarComponent implements OnInit {
     let temp = this.address;
     this.ProjectService.search_by_address(temp);
     this.address = "";
+  }
+
+  ngOnDestroy() {
+    this.emt1.unsubscribe();
+
   }
 
 }

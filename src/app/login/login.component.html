@@ -1,73 +1,587 @@
-<div class="cont justify-content-center" style="overflow:visible" *ngIf="!claim">
-  <div class="form sign-in col-sm-8" *ngIf="!change_password">
-    <div *ngIf="!forgot_password" class="backgroundVisual pb-5">
-      <h2 class="img__text pt-4">Welcome </h2><br />
+<div *ngIf="showLoginScreen">
+  <div class="cont justify-content-center" style="overflow:visible;" *ngIf="!claim">
+    <div class="form sign-in col-sm-8" *ngIf="!change_password">
+      <div *ngIf="!forgot_password" class="backgroundVisual pb-5">
+        <h2 class="img__text pt-4">Welcome </h2><br />
+        <label>
+          <span>Email</span>
+          <input type="email" [(ngModel)]="email" name="email" autocomplete="off" />
+        </label>
+        <label>
+          <span>Password</span>
+          <input type="password" [(ngModel)]="password" name="password" autocomplete="off" />
+        </label>
+        <button type="button" class="submit" (click)="login()">Sign In</button>
+        <div class="row m-0">
+          <p class="forgot-pass col-sm-12 text-center" (click)="gotoclaim()" style="cursor:pointer">Claim Account ?</p>
+        </div>
+      </div>
+      <div *ngIf="forgot_password" class="backgroundVisual pb-5">
+        <label>
+          <span>E-mail</span>
+          <input type="email" [(ngModel)]="reset_mail" name="reset_mail" autocomplete="off" />
+        </label>
+        <button type="button" class="submit">Enter</button>
+        <p class="forgot-pass" (click)="close_forgot()" style="cursor:pointer">Go Back</p>
+      </div>
+    </div>
+    <div class="form sign-in pt-0 col-sm-8" *ngIf="change_password">
+      <h2 class="img__text mt-3">Change Password ?</h2><br/>
+      <label>
+        <span>E-mail</span>
+        <input type="email" [(ngModel)]="mail" name="mail" autocomplete="off" />
+      </label>
+      <label>
+        <span>New Password</span>
+        <input type="password" [(ngModel)]="new" name="new" autocomplete="off" />
+      </label>
+      <label>
+        <span>Confirm Password</span>
+        <input type="password" [(ngModel)]="confirm" name="confirm" autocomplete="off" />
+      </label>
+      <button type="button" class="submit" (click)="change()">Change Password</button>
+      <p class="forgot-pass" (click)="close_change()" style="cursor:pointer">Go Back</p>
+    </div>
+  </div>
+  <div class="cont mt-4 justify-content-center d-none" *ngIf="claim" style="height:564px;">
+    <div class="form sign-in pt-1 col-sm-8">
+      <label>4
+        <span>Organisation Name</span>
+        <input type="text" [(ngModel)]="org_name" name="org" autocomplete="off" />
+      </label>
       <label>
         <span>Email</span>
         <input type="email" [(ngModel)]="email" name="email" autocomplete="off" />
       </label>
       <label>
-        <span>Password</span>
-        <input type="password" [(ngModel)]="password" name="password" autocomplete="off" />
+        <span>Pancard</span>
+        <input type="text" [(ngModel)]="pancard" name="pan" autocomplete="off" />
       </label>
-      <button type="button" class="submit" (click)="login()">Sign In</button>
-      <div class="row m-0">
-        <p class="forgot-pass col-sm-12 text-center" (click)="gotoclaim()" style="cursor:pointer">Claim Account ?</p>
-      </div>
-    </div>
-    <div *ngIf="forgot_password" class="backgroundVisual pb-5">
       <label>
-        <span>E-mail</span>
-        <input type="email" [(ngModel)]="reset_mail" name="reset_mail" autocomplete="off" />
+        <span>GST No.</span>
+        <input type="Text" [(ngModel)]="gst_number" name="gst" autocomplete="off" />
       </label>
-      <button type="button" class="submit">Enter</button>
-      <p class="forgot-pass" (click)="close_forgot()" style="cursor:pointer">Go Back</p>
+      <label>
+        <span>TAN No.</span>
+        <input type="text" [(ngModel)]="tan_number" name="tan" autocomplete="off" />
+      </label>
+      <label>
+        <span>Phone No.</span>
+        <input type="text" [(ngModel)]="phone_number" name="phone" autocomplete="off" />
+      </label>
+      <button type="button" class="submit" (click)="claimAcc()">Claim</button>
     </div>
   </div>
-  <div class="form sign-in pt-0 col-sm-8" *ngIf="change_password">
-    <h2 class="img__text mt-3">Change Password ?</h2><br/>
-    <label>
-      <span>E-mail</span>
-      <input type="email" [(ngModel)]="mail" name="mail" autocomplete="off" />
-    </label>
-    <label>
-      <span>New Password</span>
-      <input type="password" [(ngModel)]="new" name="new" autocomplete="off" />
-    </label>
-    <label>
-      <span>Confirm Password</span>
-      <input type="password" [(ngModel)]="confirm" name="confirm" autocomplete="off" />
-    </label>
-    <button type="button" class="submit" (click)="change()">Change Password</button>
-    <p class="forgot-pass" (click)="close_change()" style="cursor:pointer">Go Back</p>
-  </div>
 </div>
-<div class="cont mt-4 justify-content-center d-none" *ngIf="claim" style="height:564px;">
-  <div class="form sign-in pt-1 col-sm-8">
-    <label>4
-      <span>Organisation Name</span>
-      <input type="text" [(ngModel)]="org_name" name="org" autocomplete="off" />
-    </label>
-    <label>
-      <span>Email</span>
-      <input type="email" [(ngModel)]="email" name="email" autocomplete="off" />
-    </label>
-    <label>
-      <span>Pancard</span>
-      <input type="text" [(ngModel)]="pancard" name="pan" autocomplete="off" />
-    </label>
-    <label>
-      <span>GST No.</span>
-      <input type="Text" [(ngModel)]="gst_number" name="gst" autocomplete="off" />
-    </label>
-    <label>
-      <span>TAN No.</span>
-      <input type="text" [(ngModel)]="tan_number" name="tan" autocomplete="off" />
-    </label>
-    <label>
-      <span>Phone No.</span>
-      <input type="text" [(ngModel)]="phone_number" name="phone" autocomplete="off" />
-    </label>
-    <button type="button" class="submit" (click)="claimAcc()">Claim</button>
-  </div>
-</div>
+
+<!-- '.' -->
+<!-- <script src="https://use.fontawesome.com/8824112a14.js"></script>
+<link href="https://use.fontawesome.com/8824112a14.css" media="all" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Overpass:400,400i,700,700i,900,900i|PT+Mono" rel="stylesheet"> -->
+<!-- <script async="" src="https://fullstory.com/s/fs.js"></script> -->
+<!-- <link href="assets/css/how-it-works.css" rel="stylesheet"> -->
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> -->
+<!-- <body cz-shortcut-listen="true"> -->
+        <div id="root" *ngIf="!showLoginScreen">
+            <div id="app">
+                <div id="header" class="visible">
+                    <ul class="header-items">
+                        <li class="logo">
+                            <a href="http://qcin.org/structure.php" class="brand-info">
+                                <img src="assets/images/logo_qci.png" alt="logo NABH" class="logoHeight">
+                                <span class="logoTextCnt">National Accreditation Board for Testing and Calibration Laboratories</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="social-media text-left">
+                        <div>
+                            <a href="https://www.nabh.co/"><img src="assets/images/logo_nabh.png" alt="logo QCI" class="logoHeight"></a>
+                        </div>
+                        <div class="loginBtnRight">
+                            <button type="button" class="btn btn-sm btn-blue btn-primary" (click)="showLogin()">Login</button>
+                        </div>
+                    </ul>
+                </div>
+                <div id="content">
+                    <div id="homepage">
+                        <div id="hero">
+                            <div class="background-gradient" style="background: url(&quot;https://openmined.org/static/media/background-gradient.bd2e1d32.svg&quot;) center center / cover no-repeat; background-blend-mode: normal; filter: none;"></div>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="column small-12" style="margin-top:18%;">
+                                        <!-- <img src="" id="logo" alt="QCI" > -->
+                                        <h1 class="heading" id="tagline">Blockchain-based Certification Authentication System</h1>
+                                        <p id="description">
+                                            Certification authentication system based on decentralize ledger technology to check authenticity of the certificates issued and consumed by any organisation or party.
+                                        </p>
+                                        <p class="cta">
+                                            <button type="button" class="btn btn-sm btn-blue btn-primary" (click)="showLogin()">Login</button>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div id="steps" class="row justify-content-center"></div>
+                            </div>
+                        </div>
+                        <div id="mission" class="section-padding">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="column small-12 xlarge-10 xlarge-offset-1">
+                                        <div class="section-heading black">
+                                            <h3 class="heading">Vision &amp; Mission</h3><span class="line"></span>
+                                        </div>
+                                        <p>Quality Council of India proposes to prepare a common portal which would facilitate the workings of all technical regulations at a single window of various industries and sectors.</p>
+                                        <p><strong>Integrated portal, will validate data using blockchain, artificial intelligence & machine learning.</strong></p>
+                                        <p>The portal will be capable of maintaining a common database and the dashboard of this portal would be helping all the regulatiry organisation in arresting the issues and preparing for instant action</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="pillars">
+                            <style>
+                                @keyframes move-dots-vertical-forwards {
+                                    from {
+                                        transform: translateY(0px);
+                                    }
+                                    to {
+                                        transform: translateY(24px);
+                                    }
+                                }
+                            </style>
+                            <div class="container">
+                                <div class="pillar row">
+                                    <div class="column large-2 xlarge-offset-1">
+                                        <div class="icon-dots">
+                                            <svg width="0" height="0" xmlns="http://www.w3.org/2000/svg">
+                                                <defs>
+                                                    <filter id="yellow-green-icon" color-interpolation-filters="sRGB">
+                                                        <feColorMatrix type="matrix" values="0 0 0 0 0.9450980392156862
+                         0 0 0 0 0.7490196078431373
+                         0 0 0 0 0.47843137254901963
+                         0 0 0 1 0"></feColorMatrix>
+                                                    </filter>
+                                                </defs>
+                                            </svg><img src="https://openmined.org/static/media/computer.397d579c.svg" class="icon yellow" alt="Private" style="filter: url(&quot;#yellow-green-icon&quot;);">
+                                            <svg class="dots-track" xmlns="http://www.w3.org/2000/svg" width="12" height="100%" style="border-radius: 1000em;">
+                                                <defs>
+                                                    <pattern id="vertical-circle-pattern" patternUnits="userSpaceOnUse" width="12" height="24">
+                                                        <circle cx="6" cy="6" r="6" fill="#fff"></circle>
+                                                    </pattern>
+                                                    <mask id="yellow-green-vertical-mask">
+                                                        <rect fill="url(#vertical-circle-pattern)" width="12" height="9999"></rect>
+                                                    </mask>
+                                                    <linearGradient id="yellow-green-vertical-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                                        <stop offset="0%" stop-color="#F1BF7A"></stop>
+                                                        <stop offset="100%" stop-color="#9BCC9A"></stop>
+                                                    </linearGradient>
+                                                </defs>
+                                                <rect fill="url(#yellow-green-vertical-gradient)" mask="url(#yellow-green-vertical-mask)" x="0" y="0" width="12" height="100%" style="animation: move-dots-vertical-forwards 2000ms linear 0s infinite normal none running;"></rect>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="column small-12 large-10 xlarge-8">
+                                        <div class="pillar-content">
+                                            <div class="section-heading black">
+                                                <h4 class="heading">Why blockchain ?</h4><span class="line"></span></div>
+                                            <p class="description">Blockchain is at the core of this portal - Allow users to keep their data private during the whole process.</p>
+                                            <div class="row">
+                                                <div class="column small-12 large-6">
+                                                    <div class="card" style="pointer-events: none;">
+                                                        <div class="card-content">
+                                                            <div class="header">
+                                                                <p class="subtitle">Blockchain</p>
+                                                                <h5 class="heading">Immutable</h5>
+                                                            </div>
+                                                            <p class="content">
+                                                                It cannot be deleted/changed.
+                                                                Block is timestamp, secured through cryptography and
+                                                                linked to previous block in the chain.
+                                                            </p>
+                                                        </div>
+                                                        <ul class="links"></ul>
+                                                    </div>
+                                                </div>
+                                                <div class="column small-12 large-6">
+                                                    <div class="card" style="pointer-events: none;">
+                                                        <div class="card-content">
+                                                            <div class="header">
+                                                                <p class="subtitle">Blockchain</p>
+                                                                <h5 class="heading">Permissioned</h5>
+                                                            </div>
+                                                            <p class="content">
+                                                                Controlling access and identity management are key in permissioned network.
+                                                                Cryptographic membership cards represent their identity and
+                                                                grants access to see the transactions that pertain to them.
+                                                            </p>
+                                                        </div>
+                                                        <ul class="links"></ul>
+                                                    </div>
+                                                </div>
+                                                <div class="column small-12 large-6">
+                                                    <div class="card" style="pointer-events: none;">
+                                                        <div class="card-content">
+                                                            <div class="header">
+                                                                <p class="subtitle">Blockchain</p>
+                                                                <h5 class="heading">Against Fraud</h5>
+                                                            </div>
+                                                            <p class="content">
+                                                                Fraud isn't a problem one can ignore.
+                                                                In addition to being costly, decreases employee morale and create an unstable business environment
+                                                                as well as undermine ones business and consumer relationship. 
+                                                                Use blockchain transparency to take a stand in business network.
+                                                            </p>
+                                                        </div>
+                                                        <ul class="links"></ul>
+                                                    </div>
+                                                </div>
+                                                <div class="column small-12 large-6">
+                                                    <div class="card" style="pointer-events: none;">
+                                                        <div class="card-content">
+                                                            <div class="header">
+                                                                <p class="subtitle">Blockchain</p>
+                                                                <h5 class="heading">Optimize Ecosystems</h5>
+                                                            </div>
+                                                            <p class="content">
+                                                                Facilitating transactions with suppliers, partners and
+                                                                customers helps streamline business processes and transactions.
+                                                            </p>
+                                                        </div>
+                                                        <ul class="links"></ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pillar row">
+                                    <div class="column large-2 xlarge-offset-1">
+                                        <div class="icon-dots">
+                                            <svg width="0" height="0" xmlns="http://www.w3.org/2000/svg">
+                                                <defs>
+                                                    <filter id="green-blue-icon" color-interpolation-filters="sRGB">
+                                                        <feColorMatrix type="matrix" values="0 0 0 0 0.6078431372549019
+                         0 0 0 0 0.8
+                         0 0 0 0 0.6039215686274509
+                         0 0 0 1 0"></feColorMatrix>
+                                                    </filter>
+                                                </defs>
+                                            </svg><img src="https://openmined.org/static/media/lock.3f882e31.svg" class="icon green" alt="Secure" style="filter: url(&quot;#green-blue-icon&quot;);">
+                                            <svg class="dots-track" xmlns="http://www.w3.org/2000/svg" width="12" height="100%" style="border-radius: 1000em;">
+                                                <defs>
+                                                    <pattern id="vertical-circle-pattern" patternUnits="userSpaceOnUse" width="12" height="24">
+                                                        <circle cx="6" cy="6" r="6" fill="#fff"></circle>
+                                                    </pattern>
+                                                    <mask id="green-blue-vertical-mask">
+                                                        <rect fill="url(#vertical-circle-pattern)" width="12" height="9999"></rect>
+                                                    </mask>
+                                                    <linearGradient id="green-blue-vertical-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                                        <stop offset="0%" stop-color="#9BCC9A"></stop>
+                                                        <stop offset="100%" stop-color="#62A4AE"></stop>
+                                                    </linearGradient>
+                                                </defs>
+                                                <rect fill="url(#green-blue-vertical-gradient)" mask="url(#green-blue-vertical-mask)" x="0" y="0" width="12" height="100%" style="animation: move-dots-vertical-forwards 2000ms linear 0s infinite normal none running;"></rect>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="column small-12 large-10 xlarge-8">
+                                        <div class="pillar-content">
+                                            <div class="section-heading black">
+                                                <h4 class="heading"></h4>
+                                                <span class="line"></span>
+                                            </div>
+                                            <p class="description">Authentic accounts of Organisations, Labs, Users which can be traced back to their origin.</p>
+                                            <div class="row">
+                                                <div class="column small-12 large-6">
+                                                    <div class="card" style="pointer-events: none;">
+                                                        <div class="card-content">
+                                                            <div class="header">
+                                                                <p class="subtitle"></p>
+                                                                <h5 class="heading"></h5>
+                                                            </div>
+                                                            <p class="content">Complete privacy of users documents, Each document is encrypted with users keys. No relationship can be drawn from different certificates of same user, organisation or Labs.</p>
+                                                        </div>
+                                                        <ul class="links"></ul>
+                                                    </div>
+                                                </div>
+                                                <div class="column small-12 large-6">
+                                                    <div class="card" style="pointer-events: none;">
+                                                        <div class="card-content">
+                                                            <div class="header">
+                                                                <p class="subtitle"></p>
+                                                                <h5 class="heading"></h5>
+                                                            </div>
+                                                            <p class="content">No relationship can be drawn from different certificates of same user, organisation or Labs. Complete privacy of users documents, Each document is encrypted with users keys. </p>
+                                                        </div>
+                                                        <ul class="links"></ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pillar row">
+                                    <div class="column large-2 xlarge-offset-1">
+                                        <div class="icon-dots">
+                                            <svg width="0" height="0" xmlns="http://www.w3.org/2000/svg">
+                                                <defs>
+                                                    <filter id="blue-black-icon" color-interpolation-filters="sRGB">
+                                                        <feColorMatrix type="matrix" values="0 0 0 0 0.3843137254901961
+                         0 0 0 0 0.6431372549019608
+                         0 0 0 0 0.6823529411764706
+                         0 0 0 1 0"></feColorMatrix>
+                                                    </filter>
+                                                </defs>
+                                            </svg><img src="https://openmined.org/static/media/nodes.03aa67b0.svg" class="icon blue" alt="Governance" style="filter: url(&quot;#blue-black-icon&quot;);">
+                                            <svg class="dots-track" xmlns="http://www.w3.org/2000/svg" width="12" height="100%" style="border-radius: 1000em;">
+                                                <defs>
+                                                    <pattern id="vertical-circle-pattern" patternUnits="userSpaceOnUse" width="12" height="24">
+                                                        <circle cx="6" cy="6" r="6" fill="#fff"></circle>
+                                                    </pattern>
+                                                    <mask id="blue-black-vertical-mask">
+                                                        <rect fill="url(#vertical-circle-pattern)" width="12" height="9999"></rect>
+                                                    </mask>
+                                                    <linearGradient id="blue-black-vertical-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                                        <stop offset="0%" stop-color="#62A4AE"></stop>
+                                                        <stop offset="100%" stop-color="#333333"></stop>
+                                                    </linearGradient>
+                                                </defs>
+                                                <rect fill="url(#blue-black-vertical-gradient)" mask="url(#blue-black-vertical-mask)" x="0" y="0" width="12" height="100%" style="animation: move-dots-vertical-forwards 2000ms linear 0s infinite normal none running;"></rect>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="column small-12 large-10 xlarge-8">
+                                        <div class="pillar-content">
+                                            <div class="section-heading black">
+                                                <h4 class="heading"></h4><span class="line"></span>
+                                            </div>
+                                            <p class="description">No relationship can be drawn from different certificates of same user, organisation or Labs.</p>
+                                            <div class="row">
+                                                <div class="column small-12 large-6">
+                                                    <div class="card" style="pointer-events: none;">
+                                                        <div class="card-content">
+                                                            <div class="header">
+                                                                <p class="subtitle"></p>
+                                                                <h5 class="heading"></h5>
+                                                            </div>
+                                                            <p class="content">
+                                                                Authentic accounts of Organisations, Labs, Users which can be traced back to their origin.
+                                                                Authentic accounts of Organisations, Labs, Users which can be traced back to their origin.
+                                                                Authentic accounts of Organisations, Labs, Users which can be traced back to their origin.
+                                                            </p>
+                                                        </div>
+                                                        <ul class="links"></ul>
+                                                    </div>
+                                                </div>
+                                                <div class="column small-12 large-6">
+                                                    <div class="card" style="pointer-events: none;">
+                                                        <div class="card-content">
+                                                            <div class="header">
+                                                                <p class="subtitle"></p>
+                                                                <h5 class="heading"></h5>
+                                                            </div>
+                                                            <p class="content">
+                                                                No relationship can be drawn from different certificates of same user, organisation or Labs.
+                                                                No relationship can be drawn from different certificates of same user, organisation or Labs.
+                                                                No relationship can be drawn from different certificates of same user, organisation or Labs.
+                                                            </p>
+                                                        </div>
+                                                        <ul class="links"></ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="process" class="section-padding">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="column small-12 xlarge-10 xlarge-offset-1">
+                                        <div class="section-heading white">
+                                            <h3 class="heading">How it Works</h3><span class="line"></span>
+                                            <!-- <a class="button image-button white" href="https://www.youtube.com/watch?v=sXFmKquiVnk" target="_blank" rel="noopener noreferrer"><img src="https://openmined.org/static/media/youtube.4172e238.svg" alt="Watch Intro"><span>Watch Intro</span></a> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step-content row">
+                                    <div class="column small-12 large-6 xlarge-4 xlarge-offset-1">
+                                        <div class="info">
+                                            <h5 class="heading">1. Accounts</h5>
+                                            <p class="description">The concerned user, organisation or lab has to contact their parent organisation for their account.
+                                                The primary details will be their email, phone number, pancard and orgnization name. Other information includes their GST, TAN etc.</p>
+                                        </div>
+                                    </div>
+                                    <div class="column small-12 large-6 xlarge-5 xlarge-offset-1">
+                                        <div class="graph">
+                                            <style>
+                                                @keyframes move-dots-horizontal-forwards {
+                                                    from {
+                                                        transform: translateX(0px);
+                                                    }
+                                                    to {
+                                                        transform: translateX(24px);
+                                                    }
+                                                }
+                                            </style>
+                                            <style>
+                                                @keyframes move-dots-horizontal-backwards {
+                                                    from {
+                                                        transform: translateX(24px);
+                                                    }
+                                                    to {
+                                                        transform: translateX(0px);
+                                                    }
+                                                }
+                                            </style>
+                                            <ul class="nodes">
+                                                <li class="node icon scientist active"><img src="https://openmined.org/static/media/logo-square-color.2b2fb62b.svg" class="repo-icon openmined" alt="openmined"></li>
+                                            </ul>
+                                            <div class="dots visible">
+                                                <svg class="dots-track" xmlns="http://www.w3.org/2000/svg" width="100%" height="12" style="border-radius: 1000em;">
+                                                    <defs>
+                                                        <pattern id="horizontal-circle-pattern" patternUnits="userSpaceOnUse" width="24" height="12">
+                                                            <circle cx="6" cy="6" r="6" fill="#fff"></circle>
+                                                        </pattern>
+                                                        <mask id="white-yellow-horizontal-mask">
+                                                            <rect fill="url(#horizontal-circle-pattern)" width="9999" height="12"></rect>
+                                                        </mask>
+                                                        <linearGradient id="white-yellow-horizontal-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                            <stop offset="0%" stop-color="#FFFFFF"></stop>
+                                                            <stop offset="100%" stop-color="#F1BF7A"></stop>
+                                                        </linearGradient>
+                                                    </defs>
+                                                    <rect fill="url(#white-yellow-horizontal-gradient)" mask="url(#white-yellow-horizontal-mask)" x="0" y="0" width="100%" height="12" style="animation: move-dots-horizontal-forwards 1000ms linear 0s infinite normal none running;"></rect>
+                                                </svg>
+                                            </div>
+                                            <ul class="nodes">
+                                                <li class="node has-children small grid active"></li>
+                                                <li class="node has-children big grid active"></li>
+                                                <li class="node icon grid active"><img src="https://openmined.org/static/media/grid.01b839c4.svg" class="repo-icon grid" alt="grid"></li>
+                                                <li class="node has-children big grid active"></li>
+                                                <li class="node has-children small grid active"></li>
+                                            </ul>
+                                            <div class="dots hidden">
+                                              <svg class="dots-track" xmlns="http://www.w3.org/2000/svg" style="border-radius: 1000em;" width="100%" height="12">
+                                                <defs>
+                                                  <pattern id="horizontal-circle-pattern" patternUnits="userSpaceOnUse" width="24" height="12">
+                                                    <circle cx="6" cy="6" r="6" fill="#fff"></circle>
+                                                  </pattern>
+                                                  <mask id="yellow-red-horizontal-mask">
+                                                    <rect fill="url(#horizontal-circle-pattern)" width="9999" height="12"></rect>
+                                                  </mask>
+                                                  <linearGradient id="yellow-red-horizontal-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                    <stop offset="0%" stop-color="#F1BF7A"></stop>
+                                                    <stop offset="100%" stop-color="#C3707C"></stop>
+                                                  </linearGradient>
+                                                </defs>
+                                                <rect style="animation: 1000ms linear 0s infinite normal none running move-dots-horizontal-forwards;" fill="url(#yellow-red-horizontal-gradient)" mask="url(#yellow-red-horizontal-mask)" x="0" y="0" width="100%" height="12"></rect>
+                                              </svg>
+                                              <svg class="dots-track" xmlns="http://www.w3.org/2000/svg" style="border-radius: 1000em;" width="100%" height="12">
+                                                <defs>
+                                                  <pattern id="horizontal-circle-pattern" patternUnits="userSpaceOnUse" width="24" height="12">
+                                                    <circle cx="6" cy="6" r="6" fill="#fff"></circle>
+                                                  </pattern>
+                                                  <mask id="yellow-red-horizontal-mask">
+                                                    <rect fill="url(#horizontal-circle-pattern)" width="9999" height="12"></rect>
+                                                  </mask>
+                                                  <linearGradient id="yellow-red-horizontal-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                    <stop offset="0%" stop-color="#F1BF7A"></stop>
+                                                    <stop offset="100%" stop-color="#C3707C"></stop>
+                                                  </linearGradient>
+                                                </defs>
+                                                <rect style="animation: 1000ms linear 0s infinite normal none running move-dots-horizontal-forwards;" fill="url(#yellow-red-horizontal-gradient)" mask="url(#yellow-red-horizontal-mask)" x="0" y="0" width="100%" height="12"></rect>
+                                              </svg>
+                                              <svg class="dots-track" xmlns="http://www.w3.org/2000/svg" style="border-radius: 1000em;" width="100%" height="12">
+                                                <defs>
+                                                  <pattern id="horizontal-circle-pattern" patternUnits="userSpaceOnUse" width="24" height="12">
+                                                    <circle cx="6" cy="6" r="6" fill="#fff"></circle>
+                                                  </pattern>
+                                                  <mask id="yellow-red-horizontal-mask">
+                                                    <rect fill="url(#horizontal-circle-pattern)" width="9999" height="12"></rect>
+                                                  </mask>
+                                                  <linearGradient id="yellow-red-horizontal-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                    <stop offset="0%" stop-color="#F1BF7A"></stop>
+                                                    <stop offset="100%" stop-color="#C3707C"></stop>
+                                                  </linearGradient>
+                                                </defs>
+                                                <rect style="animation: 1000ms linear 0s infinite normal none running move-dots-horizontal-forwards;" fill="url(#yellow-red-horizontal-gradient)" mask="url(#yellow-red-horizontal-mask)" x="0" y="0" width="100%" height="12"></rect>
+                                              </svg>
+                                            </div>
+                                            <ul class="nodes">
+                                                <li class="node icon mines inactive"><img src="https://openmined.org/static/media/mine.63c4a4b6.svg" class="repo-icon mine" alt="mine"></li>
+                                                <li class="node icon mines inactive"><img src="https://openmined.org/static/media/mine.63c4a4b6.svg" class="repo-icon mine" alt="mine"></li>
+                                                <li class="node icon mines inactive"><img src="https://openmined.org/static/media/mine.63c4a4b6.svg" class="repo-icon mine" alt="mine"></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="step-selector">
+                                <div class="step-progress" style="animation: progress 25s linear 0s infinite normal none running;"></div>
+                                <ul class="step-selector-list">
+                                    <li class="step-item active">Step 1</li>
+                                    <li class="step-item ">Step 2</li>
+                                    <li class="step-item ">Step 3</li>
+                                    <li class="step-item ">Step 4</li>
+                                    <li class="step-item ">Step 5</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="status" class="section-padding">
+                            <div id="github-projects">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="column small-12 xlarge-10 xlarge-offset-1">
+                                            <div class="section-heading black">
+                                                <h3 class="heading">Project Stakeholders</h3><span class="line"></span></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="column small-12 xlarge-10 xlarge-offset-1">
+                                            <div class="projects">
+                                                <div class="project"><img src="https://openmined.org/static/media/grid.01b839c4.svg" class="repo-icon grid" alt="Grid">
+                                                    <div class="info">
+                                                        <h4 class="heading">NABL</h4>
+                                                        <p class="description">To be the world’s leading accreditation body and to enhance stakeholders’ confidence in its services.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="project current"><img src="assets/images/logo_nabh.png" class="repo-icon pysyft" alt="PySyft">
+                                                    <div class="info">
+                                                        <h4 class="heading">QCI</h4>
+                                                        <p class="description">The Quality Council of India (QCI) is a pioneering experiment of the Government of India in setting up organizations in partnership with the Indian industry.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="project"><img src="https://openmined.org/static/media/logo-square-color.2b2fb62b.svg" class="repo-icon unityworker" >
+                                                    <div class="info">
+                                                        <h4 class="heading">Testing Labs</h4>
+                                                        <p class="description">The Application</p>
+                                                    </div>
+                                                </div>
+                                                <div class="project"><img src="https://openmined.org/static/media/logo-square-color.2b2fb62b.svg" class="repo-icon unityworker" >
+                                                    <div class="info">
+                                                        <h4 class="heading">Certification Bodies</h4>
+                                                        <p class="description">The National Accreditation Board for Certification Bodies provides accreditation to Certification and Inspection Bodies based on assessment of their competence as per the Board's criteria and in accordance with International Standards and Guidelines.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="project"><img src="https://openmined.org/static/media/logo-square-color.2b2fb62b.svg" class="repo-icon unityworker" >
+                                                    <div class="info">
+                                                        <h4 class="heading">E-marketplaces</h4>
+                                                        <p class="description">Government eMarketplace (GeM) is the National Public Procurement Portal</p>
+                                                    </div>
+                                                </div>
+                                                <div class="project"><img src="https://openmined.org/static/media/logo-square-color.2b2fb62b.svg" class="repo-icon unityworker" >
+                                                    <div class="info">
+                                                        <h4 class="heading">And Many More...</h4>
+                                                        <p class="description">Blockchain</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
+
 export class APIService {
   token : string
   headers : any
@@ -67,7 +68,7 @@ export class APIService {
 
   submit_OTP(data:any){
       let payload = JSON.stringify(data)
-      console.log(payload)
+      // console.log(payload)
       return this.http.post<any>( this.current_URL+'/accounts/claim_account', payload )
   }
   handleError(error: HttpErrorResponse) {
@@ -93,10 +94,10 @@ export class APIService {
 
   setHeader() {
     let token = localStorage.getItem('token');
-    console.log(token);
+    // console.log(token);
     this.appHeader = new HttpHeaders({'token': ""+token});
     this.appHeader.append({'Content-Type':'application/json'});
-    console.log(token);
+    // console.log(token);
   }
 
   change(data) {
@@ -134,6 +135,7 @@ export class APIService {
   GetDisplayData() {
     this.setHeader();
     const request = new HttpRequest('GET', this.current_URL+'/accounts/display_data', {}, { reportProgress: true, headers: this.appHeader });
+    console.log(request)
     // const request = new HttpRequest('GET', this.UI_JSON+'/display_data.json', {}, { reportProgress: true });
     return this.http.request(request)
   }
