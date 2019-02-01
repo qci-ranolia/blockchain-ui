@@ -10,10 +10,10 @@ table.display tr {
     opacity: 0.8;
 }
 table.display tbody tr:nth-child(odd){
-    background:#f0f0f0
+    background:#f0f0f0;
 }
 table.display tbody tr:nth-child(even){
-    background:#fff
+    background:#fff;
 }
 table.display tr:hover {
     opacity: 1;

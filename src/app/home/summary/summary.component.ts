@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ProjectService } from '../../service/ProjectService';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-summary',
@@ -25,7 +26,11 @@ export class SummaryComponent implements OnInit {
   emt2: any;
   emt3: any;
 
-  constructor(private ProjectService: ProjectService) {
+
+
+  fileUrl;
+
+  constructor(private ProjectService: ProjectService, private sanitizer: DomSanitizer) {
     trail_view: false;
     this.emt1 = this.ProjectService.emitSummary.subscribe(res=>{
       this.showViewAll= false;
@@ -40,7 +45,7 @@ export class SummaryComponent implements OnInit {
       this.arr= [];
       this.header = [];
 
-      // console.log(res);
+      console.log(res);
       this.showSummary = true;
       this.header = res.header;
       this.data = res.data;
@@ -61,18 +66,14 @@ export class SummaryComponent implements OnInit {
         this.showViewAll= true;
       }
       if(this.ProjectService.globalAction === "Receive" ) {
-        // console.log(res);
-
+        console.log(res);
         if(res.data) {
-
           if(res.data.shared_assets_count) {
-
             if(res.data.shared_assets_count>0) {
               this.showViewAll= true;
             }
           }
         }
-
         let tempData =  JSON.parse(this.data);
         if(tempData.to_org_address) {
           this.showViewAll= false;
@@ -88,17 +89,11 @@ export class SummaryComponent implements OnInit {
       }
 
       this.f_headers = res.f_Headers;
-      // console.log(this.f_headers);
-
       this.f_headers = JSON.stringify(this.f_headers);
       let tempArr = JSON.parse(this.f_headers);
-
       for(let x in tempArr) {
         this.tempArray.push(tempArr[x])
       }
-
-      // console.log(this.tempArray);
-
     })
 
     this.emt2 = this.ProjectService.emitHideSummary.subscribe(res=>{
@@ -116,7 +111,11 @@ export class SummaryComponent implements OnInit {
 
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    const data = 'some text';
+    const blob = new Blob([data], { type: 'application/octet-stream' });
+    this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
+  }
 
   viewAll() {
     if(this.ProjectService.globalAction === "Accounts") {
@@ -125,6 +124,7 @@ export class SummaryComponent implements OnInit {
     }
     if(this.ProjectService.globalAction === "Receive") {
       let tempData = JSON.parse(this.data);
+      console.log(tempData)      
       if(tempData.address) {
         // console.log(tempData.address)
         this.ProjectService.viewAllReceiveAssets(tempData.address);

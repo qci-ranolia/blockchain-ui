@@ -171,6 +171,7 @@ export class ProjectService {
         this.displayDataArray = response.data;
         let temp = JSON.stringify(response)
         localStorage.setItem("displayDataArray", ""+temp);
+        // this.emitUserLogin.emit({login:'true', role: role});
         this.emitDisplayData.emit(response);
       } else {
         // console.log("bep 00.00");
@@ -385,7 +386,7 @@ export class ProjectService {
   getSummary(i) {
     this.emitSummary.emit({header:this.tableHeader, data:this.tableData[i], f_Headers: this.f_Headers });
     // let temp = this.tableData.data[i];
-    console.log(this.tableData[i])
+    // console.log(this.tableData[i])
   }
 
   get_Children() {

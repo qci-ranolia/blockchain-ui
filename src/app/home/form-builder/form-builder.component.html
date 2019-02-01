@@ -1,5 +1,5 @@
-<h6 class="mt-4 pl-0 text-left" *ngIf="showForm">{{formName}}</h6>
-<div class="container closed mt-3 col-sm-12 backgroundVisual h60" *ngIf="showForm"><!-- closed -->
+<!-- <h6 class="mt-4 pl-0 text-left" *ngIf="showForm">{{formName}}</h6> -->
+<div class="container closed col-sm-12 backgroundVisual h60" *ngIf="showForm"><!-- closed -->
   <div class="row m-1">
     <!-- <h3 class="mt-3 col-sm-6 pl-0"></h3> -->
     <div class="col-lg-12 col-lg-offset-2 pl-0 pr-0 mt-0">
@@ -13,42 +13,35 @@
           <div class="col-sm-4 h50" *ngFor='let json of jsonArray; let i = index'>
             <label class="col-sm-12 p-0 row ml-0 mr-0" *ngIf="json.type == 'text'">
               <span class="col-sm-5 pl-1 text-left">{{json.name}}</span>
-              <app-input-text class="col-sm-12 p-0" [json]=json  (responseData)="responseData($event)"></app-input-text>
+              <app-input-text class="col-sm-12 p-0" [json]=json (responseData)="responseData($event)"></app-input-text>
             </label>
             <label class="col-sm-12 p-0 row ml-0 mr-0" *ngIf="json.type == 'password'">
               <span class="col-sm-5 pl-1 text-left">{{json.name}}</span>
-              <app-input-password class="col-sm-12 p-0" [json]=json  (responseData)="responseData($event)"></app-input-password>
+              <app-input-password class="col-sm-12 p-0" [json]=json (responseData)="responseData($event)"></app-input-password>
             </label>
             <label class="col-sm-12 p-0 row ml-0 mr-0" *ngIf="json.type == 'email'">
               <span class="col-sm-5 pl-1 text-left">{{json.name}}</span>
-              <app-input-email class="col-sm-12 p-0" [json]=json  (responseData)="responseData($event)"></app-input-email>
+              <app-input-email class="col-sm-12 p-0" [json]=json (responseData)="responseData($event)"></app-input-email>
             </label>
             <label class="col-sm-12 p-0 row ml-0 mr-0" *ngIf="json.type == 'dropdown'">
               <span class="col-sm-5 pl-1 text-left">{{json.name}}</span>
-              <app-input-dropdown class="col-sm-12 p-0" [json]=json  (responseData)="responseData($event)"></app-input-dropdown>
+              <app-input-dropdown class="col-sm-12 p-0" [json]=json (responseData)="responseData($event)"></app-input-dropdown>
             </label>
             <label class="col-sm-12 p-0 row ml-0 mr-0" *ngIf="json.type == 'date'">
               <span class="col-sm-5 pl-1 text-left">{{json.name}}</span>
-              <app-input-date-picker class="col-sm-12 p-0" [json]=json  (responseData)="responseData($event)"></app-input-date-picker>
+              <app-input-date-picker class="col-sm-12 p-0" [json]=json (responseData)="responseData($event)"></app-input-date-picker>
             </label>
             <label class="col-sm-12 p-0 row ml-0 mr-0" *ngIf="json.type == 'file'">
               <!-- <span>{{json.name}}</span> -->
-              <app-input-file-upload class="text-left col-sm-12 p-0" [json]=json  (responseData)="responseData($event)"></app-input-file-upload>
+              <app-input-file-upload class="text-left col-sm-12 p-0" [json]=json (responseData)="responseData($event)"></app-input-file-upload>
             </label>
           </div>
         </div>
         <br />
-
-        <div *ngIf="!hidebutton" >
-          <div class="text-left col-sm-6 mt-5">
-            <button class="ml-1 float-left submit mt-0 mb-0" type="submit" (click)="submitForm()">Submit</button>
-          </div>
+        <div class="text-left col-sm-6 mt-5">
+          <button class="ml-1 float-left submit mt-0 mb-0" type="submit" (click)="submitForm()" *ngIf="!hidebutton">Submit</button>
+          <button class="ml-1 float-left submit mt-0 mb-0" type="submit" *ngIf="hidebutton" style="cursor:wait">Please wait...</button>
         </div>
-
-        <div *ngIf="hidebutton">
-          Just a moment please...
-        </div>
-
         <br />
       </div>
     </div>

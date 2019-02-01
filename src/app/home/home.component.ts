@@ -22,22 +22,24 @@ export class HomeComponent implements OnInit, AfterContentInit {
       this.UI_Info = res;
     });
 
-    $(document).ready(function () {
-      $('#table_id').DataTable({
-        // "fixedHeader":true,
-        "scrollY"   : 380,
-        "paging"    : false,
-        "searching" : false,
-        "ordering"  : false
-      })
+    $(function () {
+      // $('#table_id').DataTable({
+      //   // "fixedHeader":true,
+      //   // "scrollY"   : 380,
+      //   // "paging"    : false,
+      //   // "searching" : false,
+      //   // "ordering"  : false
+      // })
+      console.error('jquery working')
       var trigger = $('.hamburger'),
         overlay = $('.overlay'),
         isClosed = false
       trigger.click(function () {
+        console.log('hamburger before...')
         hamburger_cross()
+        console.log('hamburger after...')
       })
       function hamburger_cross() {
-        // console.log('hamburger triggered')
         if ( isClosed == false ) {
           overlay.hide()
           trigger.removeClass('is-open')
@@ -53,6 +55,21 @@ export class HomeComponent implements OnInit, AfterContentInit {
       $('[data-toggle="offcanvas"]').click(function () {
         $('#wrapper').toggleClass('toggled')
       })
+
+
+
+
+      $('.hamburger').click(function() {
+        alert( "Handler for .click() called." );
+      });
+
+
+
+
+
+
+
+
     })
   }
 

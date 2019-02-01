@@ -26,13 +26,24 @@ export class TableComponent implements OnInit {
   emt2: any;
 
   constructor(private ProjectService: ProjectService) {
-    // console.log(this.tableArray)
+    $(() => {
+      setTimeout(() => {
+        $('#table').DataTable()
+        // alert("e")
+        // this.table_view = $('#table_view').DataTable({
+        //   paging: true,
+        //   searching: false,
+        //   ordering: false,
+        //   scrollY: 335
+        // })
+      }, 1500)
+    })
     this.emt1 = this.ProjectService.emitTable.subscribe(res=>{
       this.f_headers = [];
       this.tempArray = [];
 
       this.heading = this.ProjectService.globalAction;
-      if(this.heading === "Assets") {
+      if(this.heading === "Assets"){
         this.isAssets = true;
       }
       else
@@ -40,6 +51,7 @@ export class TableComponent implements OnInit {
 
       // console.log(res);
       this.showTable= true;
+      // console.log(res)
       this.tableArray= res;
 
       this.f_headers = res.f_Headers;
@@ -53,27 +65,16 @@ export class TableComponent implements OnInit {
       for(let x in tempArr) {
         this.tempArray.push(tempArr[x])
       }
-
       // console.log(this.tempArray);
-
     })
+
     this.emt2 = this.ProjectService.emitHideTable.subscribe(res=>{
       this.showTable = false;
     })
 
-    $(function () {
-      $('#table_view').DataTable()
-      // alert("e")
-      // this.table_view = $('#table_view').DataTable({
-      //   paging: true,
-      //   searching: false,
-      //   ordering: false,
-      //   scrollY: 335
-      // })
-    })
   }
 
-  tableService(m) {
+  tableService(m){
     return this.tempArray[m];
   }
 
@@ -92,16 +93,23 @@ export class TableComponent implements OnInit {
         }
       }
     }
+    const pos = $('#summary').position().top - 53.5 
+    $('html, body').animate({
+      scrollTop: pos+'px'
+    }, 900);
   }
 
   dataService(row, m) {
-    // console.log(i);
+    // console.log(row);
+    // console.log(m);
+    
     row = JSON.stringify(row);
     let parsed = JSON.parse(row);
-
+    // console.log(parsed)
+    
     let arr = [];
-
     for(let x in parsed){
+      // console.log(x)
       arr.push(parsed[x]);
     }
     // console.log(arr);

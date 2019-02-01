@@ -1,4 +1,4 @@
-<h6 class="mt-4 pl-0 text-left" *ngIf="account_display"></h6>
+<!-- <h6 class="mt-4 pl-0 text-left" *ngIf="account_display"></h6> -->
 <div *ngIf="account_display">
   <div *ngIf="account_display">
     <div class="justify-content-center col-sm-12 p-0 row ml-0 mr-0 mt-1">
@@ -25,14 +25,13 @@
               <div class="progress">
                 <div class="progress-bar approved" role="progressbar" [style.width]="amt.per1 +'%'" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
-              <h6 class="text-success mb-3"><small>Claimed: {{amt.per1}}%</small></h6>
+              <h6 class="text-success mb-3"><small>Claimed Accounts: {{amt.per1}}%</small></h6>
             </div>
             <div class="col-sm-10 pl-0 pr-0">
               <div class="progress">
                 <div class="progress-bar failed" role="progressbar" [style.width]="amt.per2 +'%'" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
-              <h6 class="text-danger mb-0"><small>Unclaimed: {{amt.per2}}%</small></h6>
-              <!-- <br class="mb-0"> -->
+              <h6 class="text-danger mb-0"><small>Unclaimed Accounts: {{amt.per2}}%</small></h6>
             </div>
           </div>
         </div>
