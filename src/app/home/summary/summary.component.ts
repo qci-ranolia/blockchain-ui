@@ -26,11 +26,11 @@ export class SummaryComponent implements OnInit {
   emt2: any;
   emt3: any;
 
+  newDesign : boolean = false
 
+  // fileUrl;
 
-  fileUrl;
-
-  constructor(private ProjectService: ProjectService, private sanitizer: DomSanitizer) {
+  constructor(private ProjectService: ProjectService) {
     trail_view: false;
     this.emt1 = this.ProjectService.emitSummary.subscribe(res=>{
       this.showViewAll= false;
@@ -45,7 +45,6 @@ export class SummaryComponent implements OnInit {
       this.arr= [];
       this.header = [];
 
-      console.log(res);
       this.showSummary = true;
       this.header = res.header;
       this.data = res.data;
@@ -66,7 +65,6 @@ export class SummaryComponent implements OnInit {
         this.showViewAll= true;
       }
       if(this.ProjectService.globalAction === "Receive" ) {
-        console.log(res);
         if(res.data) {
           if(res.data.shared_assets_count) {
             if(res.data.shared_assets_count>0) {
@@ -98,24 +96,21 @@ export class SummaryComponent implements OnInit {
 
     this.emt2 = this.ProjectService.emitHideSummary.subscribe(res=>{
       this.showSummary = false;
-      this.trail_view= false;
+      this.trail_view = false;
+      this.newDesign = false
     });
 
     this.emt3 = this.ProjectService.emitTrailView.subscribe(res=>{
+      this.newDesign = true
       this.trail_view = true;
       this.trail_data = res;
       // console.log(this.trail_data);
       // console.log(this.data1);
       // this.displayTrailView(trail_data);
     })
-
   }
 
-  ngOnInit() {
-    const data = 'some text';
-    const blob = new Blob([data], { type: 'application/octet-stream' });
-    this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
-  }
+  ngOnInit() { }
 
   viewAll() {
     if(this.ProjectService.globalAction === "Accounts") {
@@ -161,9 +156,7 @@ export class SummaryComponent implements OnInit {
         [
           {
             type: 'tree',
-
             data: [trail_data],
-
             left: '2%',
             right: '2%',
             top: '8%',
@@ -178,7 +171,6 @@ export class SummaryComponent implements OnInit {
                     }
                 }
             },
-
             symbolSize: 12,
             label: {
               normal: {
@@ -203,14 +195,11 @@ export class SummaryComponent implements OnInit {
             animationDurationUpdate: 750
           }
       ]
-
     };
   }
-
   ngOnDestroy() {
     this.emt1.unsubscribe();
     this.emt3.unsubscribe();
     this.emt2.unsubscribe();
   }
-
 }

@@ -1,16 +1,16 @@
 table.display th {
     height:30px;
     line-height:30px;
-    // color:#fff;
 }
 table.display tr {
     height:30px;
     line-height:30px;
     border-color: #aaa !important;
     opacity: 0.8;
+    min-width: 100%;
 }
 table.display tbody tr:nth-child(odd){
-    background:#f0f0f0;
+    background:#eaeaea;
 }
 table.display tbody tr:nth-child(even){
     background:#fff;
@@ -20,28 +20,50 @@ table.display tr:hover {
     cursor: pointer;
 }
 th.fix-2, td.fix-2 {
-    max-width:8% !important;
-    width:8% !important;
-    padding: 10px 5px;
+    max-width:180px !important;
+    min-width:180px !important;
+    width:180px !important;
+    padding: 8px 3px;
 }
 td div {
     width: 100%;
-    max-width: 100px;
+    max-width: 165px;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp:1;
+    -webkit-line-clamp: 1;
     max-height: 18px;
     line-height: 18px;
     -webkit-box-orient: vertical;
     overflow: hidden;
     font-size: 13px;
 }
-.ovf-xy {
-    overflow:auto;
-    overflow-y:auto;
-    height: 340px;
+.ovf-x {
+    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: auto;
 }
-th.fix{
+
+th.fix, td.fix{
     width:4% !important;
     max-width:4% !important;
+    min-width:4% !important;
+}
+.min-height {
+    height: 340px;
+    thead{
+        z-index: 11;
+        min-width: 100%;
+        width: 100%;
+        background: #fff;
+        border-bottom: 1px solid #135;
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+    }
+    tbody{
+        width: 100%;
+        min-width: 100%;
+        // top: 52px;
+        // height: 290px;
+    }
 }

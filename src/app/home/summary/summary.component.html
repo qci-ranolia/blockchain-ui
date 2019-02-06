@@ -1,5 +1,5 @@
 <h6 class="mt-1 mb-0 p-0 text-left" *ngIf="showSummary">Summary</h6>
-<div class="container closed mt-2 backgroundVisual summary" *ngIf="showSummary" style="overflow-x: auto">
+<div class="container closed mt-2 backgroundVisual summary pb-4" *ngIf="showSummary" style="overflow-x: auto">
     <div class="row m-1" >
         <div class="col-sm-12 pr-0 text-right">
             <button type="button" class="submit d-inline-block" *ngIf="showViewAll" (click)="viewAll()">View All</button>
@@ -7,7 +7,7 @@
             <!-- <br /><br /> -->
         </div>
         <div class="col-sm-12 row m-0 p-0 mt-3">
-            <div class="col-sm-8 p-0">
+            <div class="col-sm-7 p-0">
                 <!-- <a [href]="fileUrl" download="file.txt">DownloadFile</a> -->
                 <!-- <pdf-viewer src="../../../../assets/pdf/1.pdf" [render-text]="true" style="display: block;"></pdf-viewer>       -->
                 <div class="col-sm-12 row mb-2 dyn" *ngFor="let he of header; let m = index ">
@@ -15,48 +15,51 @@
                     <div class="col-sm-8 p-0">{{dataService(m)}}</div>
                 </div>
             </div>
-            <div class="col-sm-4 p-0 text-center">
+            <div class="col-sm-5 p-0 text-center">
                 <div *ngIf="trail_view">
                   <h5>Certificate Trail</h5>
-                      <div *ngIf="trail_data.length" >
+                  <div class="WalkThrough Dashboard-column right-side">
+                      <div class="list ltr" *ngIf="trail_data.length">
+                          <article *ngFor="let data of trail_data; let i = index">
+                              <h5 class="ltr">
+                                <strong *ngIf="data.name">{{data.name}}</strong>
+                                <p class="mt-1 mb-0" *ngIf="data.role">Role : {{data.role}}</p>
+                                <p *ngIf="data.email">Email : {{data.email}}</p>
+                                <p class="mt-1 mb-0" *ngIf="data.time">Time : {{data.time}}</p>
+                                <p *ngIf="data.file_name">Time : {{data.file_name}}</p>
+                                <div *ngIf="data.scope">
+                                    <b>Scope</b>
+                                    <hr>
+                                    <span *ngIf="data.scope.description"> Desc: {{data.scope.description}} <br /> </span>
+                                    <span *ngIf="data.scope.field"> Feild: {{data.scope.field}} <br /> </span>
+                                    <span *ngIf="data.scope.group">Group: {{data.scope.group}} <br /> </span>
+                                    <span *ngIf="data.scope.nature" >Nature: {{data.scope.nature}} <br /> </span>
+                                    <span *ngIf="data.scope.operations" > Opts : {{data.scope.operations}} <br /> </span>
+                                    <span *ngIf="data.scope.sub_group" >Group: {{data.scope.sub_group}} <br /> </span>
+                                </div>
+                              </h5>
+                              <!-- <img src="http://qcin.org/nbqp/knowledge_bank/assets/img/qci.png" style="max-width:80px;" *ngIf="data.role == admin" alt="" />
+                              <img src="../../../assets/images/master.png" *ngIf="data.role == master" alt="" />
+                              <img src="../../../assets/images/lab.png" *ngIf="data.role == lab" alt="" /> -->
+                          </article>
+                      </div>
+                  </div>
+                      <div class="trail" *ngIf="trail_data.length" style="display:none" >
                         <p *ngFor="let data of trail_data; let i = index" >
-                            <span *ngIf="data.name">
-                              <b> {{data.name}} </b> <br>
-                            </span>
-                            <span *ngIf="data.role">
-                              Role : {{data.role}} <br>
-                            </span>
-                            <span *ngIf="data.email">
-                              Email : {{data.email}} <br>
-                            </span>
-                            <span *ngIf="data.time">
-                              Time : {{data.time}} <br>
-                            </span>
-                            <span *ngIf="data.file_name">
-                              File name : {{data.file_name}}<br>
-                            </span>
-                            <span *ngIf="data.scope">
-                              <b>Scope</b>
-                              <hr>
-                                <span *ngIf="data.scope.description" >
-                                  Desc: {{data.scope.description}} <br>
-                                </span>
-                                <span *ngIf="data.scope.field" >
-                                  Feild: {{data.scope.field}} <br>
-                                </span>
-                                <span *ngIf="data.scope.group" >
-                                  Group: {{data.scope.group}} <br>
-                                </span>
-                                <span *ngIf="data.scope.nature" >
-                                  Nature: {{data.scope.nature}} <br>
-                                </span>
-                                <span *ngIf="data.scope.operations" >
-                                  Opts : {{data.scope.operations}} <br>
-                                </span>
-                                <span *ngIf="data.scope.sub_group" >
-                                  Group: {{data.scope.sub_group}} <br>
-                                </span>
-                            </span>
+                          <span *ngIf="data.name"><b> {{data.name}} </b> <br /> </span>
+                          <span *ngIf="data.role">Role : {{data.role}} <br /> </span>
+                          <span *ngIf="data.email">Email : {{data.email}} <br /> </span>
+                          <span *ngIf="data.time"> Time : {{data.time}} <br /> </span>
+                          <span *ngIf="data.file_name"> File name : {{data.file_name}}<br /> </span>
+                          <span *ngIf="data.scope"> <b>Scope</b>
+                            <hr>
+                              <span *ngIf="data.scope.description"> Desc: {{data.scope.description}} <br /> </span>
+                              <span *ngIf="data.scope.field"> Feild: {{data.scope.field}} <br /> </span>
+                              <span *ngIf="data.scope.group">Group: {{data.scope.group}} <br /> </span>
+                              <span *ngIf="data.scope.nature" >Nature: {{data.scope.nature}} <br /> </span>
+                              <span *ngIf="data.scope.operations" > Opts : {{data.scope.operations}} <br /> </span>
+                              <span *ngIf="data.scope.sub_group" >Group: {{data.scope.sub_group}} <br /> </span>
+                          </span>
                         </p>
                       </div>
                 </div>
@@ -65,3 +68,4 @@
     </div>
 </div>
 <br/><br/>
+   

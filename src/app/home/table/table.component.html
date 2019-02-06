@@ -10,9 +10,9 @@
     <div class="justify-content-center col-sm-12 row m-0 tableButtons" style="height:60px" *ngIf="!isAssets">
       <button type="button" class="submit col-sm-2" (click)='createNew()'>+ Create</button>
     </div>
-    <div class="col-lg-12 col-lg-offset-2 pl-0 pr-0 mt-5 mb-3 ovf-xy" *ngIf="show_table">
+    <div class="col-lg-12 col-lg-offset-2 pl-0 pr-0 mt-5 mb-3 min-height ovf-x" *ngIf="show_table">
       <table id="table" class="display col-sm-12 p-0">
-        <thead style="border-bottom: 1px solid #135;">
+        <thead style="border-bottom:3px solid #135;">
           <tr class="text-left">
             <th scope="col" class="col-sm-1 fix">#</th>
             <th scope="col" class="col-sm-1 fix-2" *ngFor="let head of tableArray.header; let m = index">{{tableService(m)}}</th>
@@ -20,7 +20,7 @@
         </thead>
         <tbody>
           <tr class="text-left border-bottom" *ngFor="let row of tableArray.data; let i = index" [class.active]="sIndex === i" (click)="getSummary(i)">
-            <th scope="row" class="col-sm-1 fix">{{i+1}}</th>
+            <td scope="row" class="col-sm-1 fix">{{i+1}}</td>
             <td class="col-sm-1 fix-2" *ngFor="let head of tableArray.header; let m = index">
               <div class="" data-toggle="tooltip" data-placement="top" title="{{dataService(row,m)}}">{{dataService(row,m)}}</div>
             </td>

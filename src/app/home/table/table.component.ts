@@ -1,6 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ProjectService } from '../../service/ProjectService';
-declare var $
+// declare var $
+declare var $: any;
+import 'datatables.net';
+// declare var require: any
+// import 'datatables.net-bs4';
+// var $  = require( 'jquery' );
+// var dt = require( 'datatables.net' )();
 
 @Component({
   selector: 'app-table',
@@ -26,7 +32,7 @@ export class TableComponent implements OnInit {
   emt2: any;
 
   constructor(private ProjectService: ProjectService) {
-    $(() => {
+    $(document).ready(function(){
       setTimeout(() => {
         $('#table').DataTable()
         // alert("e")
@@ -36,7 +42,7 @@ export class TableComponent implements OnInit {
         //   ordering: false,
         //   scrollY: 335
         // })
-      }, 1500)
+      }, 500)
     })
     this.emt1 = this.ProjectService.emitTable.subscribe(res=>{
       this.f_headers = [];
@@ -78,8 +84,7 @@ export class TableComponent implements OnInit {
     return this.tempArray[m];
   }
 
-  ngOnInit() {
-  }
+  ngOnInit(){ }
 
   getSummary(i) {
     // console.log(this.tableArray.data[i]);

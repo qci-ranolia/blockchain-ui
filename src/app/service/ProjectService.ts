@@ -6,7 +6,6 @@ import { HttpEvent, HttpEventType, HttpClient, HttpRequest, HttpErrorResponse } 
 declare var $
 @Injectable()
 export class ProjectService {
-
   tableHeader: any = [];
   tableData: any = [];
   month : any = '2017-10';
@@ -33,7 +32,7 @@ export class ProjectService {
     }
   };
 
-  constructor(private APIService: APIService,private route: ActivatedRoute, private router: Router,) {
+  constructor(private APIService: APIService, private route: ActivatedRoute, private router: Router,) {
     let d = new Date();
     let m = d.getMonth();
     m += 1;
@@ -45,6 +44,9 @@ export class ProjectService {
     }
   }
 
+  emitClaimErr : EventEmitter<any> = new EventEmitter<any>()
+  emitClaimBErr : EventEmitter<any> = new EventEmitter<any>()
+  emitClaimOTPView : EventEmitter<any> = new EventEmitter<any>()
   emitUI : EventEmitter<any> = new EventEmitter<any>();
   emitError:  EventEmitter<any> = new EventEmitter<any>();
   emitTable : EventEmitter<any> = new EventEmitter<any>();
@@ -141,6 +143,34 @@ export class ProjectService {
     });
   }
 
+  sendOTP(data){
+    this.APIService.sendOTP(data).subscribe((event: HttpEvent<any>) =>{
+      let response = this.HttpEventResponse(event)
+      if(response){
+        this.emitClaimOTPView.emit({show:true});
+      } else {
+        this.emitClaimErr.emit({show:true});
+      }
+    }, (err:HttpErrorResponse)=>{
+      this.emitError.emit(err.error.message)
+      this.errorSnack()
+      this.emitClaimErr.emit({show:true});
+    })
+  }
+  submit_OTP(data){
+    this.APIService.submit_OTP(data).subscribe((event: HttpEvent<any>) =>{
+      let response = this.HttpEventResponse(event)
+      if(response){
+        this.router.navigate(['./login']);
+      } else {
+        this.emitClaimBErr.emit({show:true});
+      }
+    }, (err:HttpErrorResponse)=>{
+      this.emitError.emit(err.error.message)
+      this.errorSnack()
+      this.emitClaimBErr.emit({show:true});
+    })
+  }
   getDisplayData(role) {
     this.APIService.GetDisplayData().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
@@ -568,7 +598,7 @@ export class ProjectService {
       console.log(err)
       this.emitError.emit(err.error.message)
       this.errorSnack()
-      console.log(err.error.message)
+      // console.log(err.error.message)
     })
   }
 
@@ -584,7 +614,7 @@ export class ProjectService {
         this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
       } else {
         console.log("bep 10");
-        console.log(response)
+        // console.log(response)
       }
     }, (err)=>{
       this.tableData = [];
@@ -594,7 +624,7 @@ export class ProjectService {
       console.log(err)
       this.emitError.emit(err.error.message)
       this.errorSnack()
-      console.log(err.error.message)
+      // console.log(err.error.message)
     })
   }
 
@@ -610,13 +640,13 @@ export class ProjectService {
 
       } else {
         console.log("bep 13");
-        console.log(response)
+        // console.log(response)
       }
     }, (err)=>{
       console.log(err)
       this.emitError.emit(err.error.message)
       this.errorSnack()
-      console.log(err.error.message)
+      // console.log(err.error.message)
     })
   }
 

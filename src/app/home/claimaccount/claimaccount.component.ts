@@ -36,7 +36,19 @@ export class ClaimaccountComponent implements OnInit {
     }
   }
 
-  constructor( private ProjectService: ProjectService, private location : Location, private _api : APIService, private router: Router ){ }
+  constructor( private ProjectService: ProjectService, private location : Location, private _api : APIService, private router: Router ){
+    this.ProjectService.emitClaimErr.subscribe(res=>{
+      this.hideEnter = false
+      this.otp_view = false    
+    })
+    this.ProjectService.emitClaimBErr.subscribe(res=>{
+      this.hideSubmit = false
+    })
+    this.ProjectService.emitClaimOTPView.subscribe(res=>{
+      this.hideEnter = false
+      this.otp_view = true
+    })
+  }
 
   ngOnInit() { }
 
@@ -45,46 +57,28 @@ export class ClaimaccountComponent implements OnInit {
   }
 
   sendOTP() {
-    // if ( this.email !== null && this.phone_number !== null ) { }
     this.hideEnter = true
-    this._api.sendOTP(this.email,this.phone_number)
-    .pipe(
-      catchError(this._api.handleError)
-    )
-    .subscribe(resp => {
-      if (resp.success){
-        this.otp_view = true
-      } else {
-        this.otp_view = false
-        this.hideEnter = false
-      }
-    })
+    let tmp : any = {
+      email       : this.email,
+      phone_number: this.phone_number
+    }
+    this.ProjectService.sendOTP(tmp)
   }
 
   submit_OTP(){
     this.hideSubmit = true
-    const data = {"pancard":this.pancard,
-      "otp_email":this.otp_email,
-      "otp_mobile":this.otp_mobile,
-      "phone_number":this.phone_number,
-      "email":this.email,
-      "password":this.password,
-      "org_name":this.org_name,
-      "gst_number":this.gst_number,
-      "tan_number":this.tan_number}
-
-    this._api.submit_OTP(data)
-    .pipe(
-      catchError(this._api.handleError)
-    )
-    .subscribe(resp => {
-      if (resp.success){
-        this.router.navigate(['./login']);
-      } else {
-        alert("Error");
-        this.hideSubmit = false
-      }
-    })
+    const data = {
+      "pancard"     : this.pancard,
+      "otp_email"   : this.otp_email,
+      "otp_mobile"  : this.otp_mobile,
+      "phone_number": this.phone_number,
+      "email"       : this.email,
+      "password"    : this.password,
+      "org_name"    : this.org_name,
+      "gst_number"  : this.gst_number,
+      "tan_number"  : this.tan_number
+    }
+    this.ProjectService.submit_OTP(data)
   }
 
 }
