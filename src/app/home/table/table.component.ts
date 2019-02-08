@@ -27,22 +27,17 @@ export class TableComponent implements OnInit {
 
   table_view: any;
   show_table: boolean = true;
-  
+  loaderView: boolean = false;
+
   emt1: any;
   emt2: any;
 
   constructor(private ProjectService: ProjectService) {
-    $(document).ready(function(){
-      setTimeout(() => {
-        $('#table').DataTable()
-        // alert("e")
-        // this.table_view = $('#table_view').DataTable({
-        //   paging: true,
-        //   searching: false,
-        //   ordering: false,
-        //   scrollY: 335
-        // })
-      }, 500)
+    this.ProjectService.emitAssetsNotReceived.subscribe(res=>{
+      this.loaderView = true
+    })
+    this.ProjectService.emitAssetsReceived.subscribe(res=>{
+      this.loaderView = false
     })
     this.emt1 = this.ProjectService.emitTable.subscribe(res=>{
       this.f_headers = [];
@@ -84,7 +79,8 @@ export class TableComponent implements OnInit {
     return this.tempArray[m];
   }
 
-  ngOnInit(){ }
+  ngOnInit(){
+  }
 
   getSummary(i) {
     // console.log(this.tableArray.data[i]);

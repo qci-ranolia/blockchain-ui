@@ -63,7 +63,9 @@ export class ProjectService {
   emitNewFormSummary:  EventEmitter<any> = new EventEmitter<any>();
   emitHideFormBuilder:  EventEmitter<any> = new EventEmitter<any>();
   emitShowSubmitFormButton : EventEmitter<any> = new EventEmitter<any>();
-
+  emitAssetsReceived : EventEmitter<any> = new EventEmitter<any>()
+  emitAssetsNotReceived : EventEmitter<any> = new EventEmitter<any>()
+  
   errorSnack(){
     $('.notification').toggleClass('active')
     setTimeout(() => {
@@ -508,12 +510,13 @@ export class ProjectService {
     this.APIService.Get_Assets().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
       if(response){
-        // console.log(response)
+        this.emitAssetsReceived.emit({show:true})
         this.tableData = response.data;
         this.tableHeader = response.headers;
         this.f_Headers = response.f_headers;
         this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
       } else {
+        this.emitAssetsNotReceived.emit({show:true})
         console.log("bep 08");
       }
     }, (err:HttpErrorResponse)=>{
