@@ -1,152 +1,141 @@
 // Snackbar notifications
 .notification {
-    z-index:99999;
-	max-width:50%;
-	position:fixed;
-	bottom:10%;
-	left:0%;
-	right:0%;
-	margin:0 auto;
-	background:#333;
-	padding:8px 15px;
-	color:#fff;
-	font-size:13px;
-	box-shadow:0 0 25px rgba(33,33,33,0.5);
-	border-radius:3px;
-	transform:translateY(-50%);
-	box-sizing:border-box;
-	animation:0.3s down ease 1; 
-	opacity:0;
-	display:none;
-	border:1px solid #222;
+    z-index: 9999999;
+	width: 100%;
+	position: fixed;
+	top: -50%;
+	margin: 0;
+	background: #ea2a2a;
+	padding: 6px 15px;
+	color: #fff;
+	font-size: 13px;
+	box-shadow: 0 0 25px rgba(33,33,33,0.6);
+	transform: translateY(-50%);
+	box-sizing: border-box;
+	animation: 0.3s down ease 1; 
+	opacity: 0;
+	display: none;
 }
-.notification.active{
-	bottom:10%;
-	left:0%;
-	right:0%;
-	margin:0 auto;
-	opacity:1;
-	animation:0.3s up ease 1;
-	display:inline-block;
+.notification.active {
+	top: 2.4%;
+	margin: 0;
+	opacity: 1;
+	animation: 0.3s up ease 1;
+	display: inline-block;
 }
-.text{
-	height:40px;
-	line-height:40px;
-	padding:0 10px;
-	text-align:center;
-	float:left;
-	background:none;
+.text {
+	height: 30px;
+	line-height: 30px;
+	padding: 0 10px;
 }
-.close{
-	height:40px;
-	width:40px;
-	line-height:40px;
-	border-radius:50%;
-	text-align:center;
-	cursor:pointer;
-	overflow:hidden;
-	float:right;
-	background:rgba(0,0,0,0.1);
-	font-size:12px;
+.close {
+	height: 30px;
+	width: 30px;
+	line-height: 30px;
+	border-radius: 50%;
+	text-align: center;
+	cursor: pointer;
+	overflow: hidden;
+	background: rgba(0,0,0,0.1);
 }
-.ripple::after{
-	content:'';
-	width:0;
-	height:0;
-	position:absolute;
-	top:50%;
-	left:50%;
-	transform:translate(-50%,-50%);
-	border-radius:50%;
-	background:rgba(255,255,255,0.1);
-	display:none;
+.ripple::after {
+	content: '';
+	width: 0;
+	height: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	border-radius: 50%;
+	background: rgba(255,255,255,0.1);
+	display: none;
 }
-.ripple.rect::after{
+.ripple.rect::after {
 	border-radius:0;
 }
-.close .text{
+.close .text {
 	padding:0;
 	text-align:center;
 	width:100%;
 	height:100%;
 }
-.ripple:hover::after{
+.ripple:hover::after {
 	content:'';
 	display:block;
 	width:100%;
 	height:100%;
 	animation:0.7s rip ease 1;
 }
-@keyframes rip{
-	0%{
+@keyframes rip {
+	0% {
 		width:5px;
 		height:5px;
 	}
-	75%{
+	75% {
 		transform:scale(4);
 	}
 }
-@keyframes up{
-	0%{
+@keyframes up {
+	0% {
 		display:none;
-		top:100%;
+		top:-25%;
 		opacity:0;
 	}
-	75%{
-		top:90%;
+	75% {
+		top:0%;
 		opacity:1;
 	}
-	100%{
+	100% {
 		display:block;
 	}
 }
-@keyframes down{
-	0%{
-		top:90%;
+@keyframes down {
+	0% {
+		top:-25%;
 		opacity:1;
 		display:block;
 	}
-	75%{
-		top:150%;
+	75% {
+		top:-50%;
 		opacity:0;
 	}
-	100%{
+	100% {
 		display:block;
 	}
 }
-@keyframes sup{
-	0%{
+@keyframes sup {
+	0% {
 		display:none;
-		top:100%;
+		top:-25%;
 		transform:translateY(0%);
 		opacity:0;
 	}
-	75%{
-		top:100%;
+	75% {
+		top:0%;
 		transform:translateY(-100%);
 		opacity:1;
 	}
-	100%{
+	100% {
 		display:block;
 	}
 }
-@keyframes sdown{
-	0%{
-		top:100%;
+@keyframes sdown {
+	0% {
+		top:-25%;
 		opacity:1;
 		display:block;
 		transform:translateY(-100%);
 	}
-	75%{
-		top:150%;
+	75% {
+		top:-50%;
 		opacity:0;
 		transform:translateY(0%);
 	}
-	100%{
+	100% {
 		display:block;
 	}
 }
-@media only screen and (max-width:560px){
+@media only screen and (max-width:560px) {
 	.notification,.notification.active{
 		width:100%;
 		top:100%;
@@ -155,28 +144,30 @@
 		border-radius:0;
 		animation:0.3s sdown ease 1;
 	}
-	.notification.active{
+	.notification.active {
 		animation:0.3s sup ease 1;
 	}
 }
 
-.fixedwhite {
-	position: fixed;
-	width: 100%;
-	height: 100vh;
-	overflow: hidden;
-	margin: 0;
-	z-index: 9999;
-} .loader {
-	z-index: 99999;
-	border: 16px solid #f3f3f3; /* Light grey */
-	border-top: 16px solid #40dc7e; /* Blue */
-	border-radius: 50%;
-	width: 120px;
-	height: 120px;
-	animation: spin 2s linear infinite;
-}
-@keyframes spin {
-	0% { transform:rotate(0deg); }
-	100% { transform:rotate(360deg); }
-}	
+/*
+	.fixedwhite {
+		position: fixed;
+		width: 100%;
+		height: 100vh;
+		overflow: hidden;
+		margin: 0;
+		z-index: 9999;
+	} .loader {
+		z-index: 99999;
+		border: 16px solid #f3f3f3;
+		border-top: 16px solid #40dc7e;
+		border-radius: 50%;
+		width: 120px;
+		height: 120px;
+		animation: spin 2s linear infinite;
+	}
+	@keyframes spin {
+		0% { transform:rotate(0deg); }
+		100% { transform:rotate(360deg); }
+	}
+*/

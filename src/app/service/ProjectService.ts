@@ -70,7 +70,7 @@ export class ProjectService {
     $('.notification').toggleClass('active')
     setTimeout(() => {
       $('.notification').toggleClass('active')
-    }, 5000 )
+    }, 4500 )
   }
 
   checkLogin() {
@@ -141,7 +141,7 @@ export class ProjectService {
     }, (err:HttpErrorResponse)=>{
       this.emitError.emit(err.error.message)
       this.errorSnack()
-      console.log(err.error.message)
+      // console.log(err.error.message)
     });
   }
 
