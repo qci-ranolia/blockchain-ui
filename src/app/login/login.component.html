@@ -1,4 +1,3 @@
-
   <div class="cont justify-content-center" style="overflow:visible;" *ngIf="!claim">
     <h6 style="margin:0 auto 10px;" class="col-sm-8">Go Back To <a href="" (click)="landingPage()">Landing Page</a></h6>
     <div class="form sign-in col-sm-8" *ngIf="!change_password">
@@ -17,59 +16,5 @@
           <p class="forgot-pass col-sm-12 text-center" (click)="gotoclaim()" style="cursor:pointer">Claim Account ?</p>
         </div>
       </div>
-      <div *ngIf="forgot_password" class="backgroundVisual pb-5">
-        <label>
-          <span>E-mail</span>
-          <input type="email" [(ngModel)]="reset_mail" name="reset_mail" autocomplete="off" />
-        </label>
-        <button type="button" class="submit">Enter</button>
-        <p class="forgot-pass" (click)="close_forgot()" style="cursor:pointer">Go Back</p>
-      </div>
-    </div>
-    <div class="form sign-in pt-0 col-sm-8" *ngIf="change_password">
-      <h2 class="img__text mt-3">Change Password ?</h2><br/>
-      <label>
-        <span>E-mail</span>
-        <input type="email" [(ngModel)]="mail" name="mail" autocomplete="off" />
-      </label>
-      <label>
-        <span>New Password</span>
-        <input type="password" [(ngModel)]="new" name="new" autocomplete="off" />
-      </label>
-      <label>
-        <span>Confirm Password</span>
-        <input type="password" [(ngModel)]="confirm" name="confirm" autocomplete="off" />
-      </label>
-      <button type="button" class="submit" (click)="change()">Change Password</button>
-      <p class="forgot-pass" (click)="close_change()" style="cursor:pointer">Go Back</p>
-    </div>
-  </div>
-  <div class="cont mt-4 justify-content-center d-none" *ngIf="claim" style="height:564px;">
-    <div class="form sign-in pt-1 col-sm-8">
-      <label>4
-        <span>Organisation Name</span>
-        <input type="text" [(ngModel)]="org_name" name="org" autocomplete="off" />
-      </label>
-      <label>
-        <span>Email</span>
-        <input type="email" [(ngModel)]="email" name="email" autocomplete="off" />
-      </label>
-      <label>
-        <span>Pancard</span>
-        <input type="text" [(ngModel)]="pancard" name="pan" autocomplete="off" />
-      </label>
-      <label>
-        <span>GST No.</span>
-        <input type="Text" [(ngModel)]="gst_number" name="gst" autocomplete="off" />
-      </label>
-      <label>
-        <span>TAN No.</span>
-        <input type="text" [(ngModel)]="tan_number" name="tan" autocomplete="off" />
-      </label>
-      <label>
-        <span>Phone No.</span>
-        <input type="text" [(ngModel)]="phone_number" name="phone" autocomplete="off" />
-      </label>
-      <button type="button" class="submit" (click)="claimAcc()">Claim</button>
     </div>
   </div>
