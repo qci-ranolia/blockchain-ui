@@ -85,6 +85,10 @@ export class ProjectService {
     this.router.navigate(['./login']);
   }
 
+  profile(){
+    // this.router.navigate(['./profile'])
+  }
+
   setAction(action: string) {
     this.shareWithAddressData = false;
     this.globalAction = action;
@@ -636,14 +640,11 @@ export class ProjectService {
       let response = this.HttpEventResponse(event)
       if(response){
         // console.log(response)
-
         if(response.success) {
           this.emitTrailView.emit(response.data);
         }
-
       } else {
         console.log("bep 13");
-        // console.log(response)
       }
     }, (err)=>{
       console.log(err)

@@ -49,8 +49,8 @@
             <h6 class="mb-2">{{shared}}</h6>
           </div>
         </div>
-        <div class="col-sm-9 pl-5 pr-0">
-          <div style="height:200px;overflow-y:auto" echarts [options]="option1" class="demo-chart"></div>
+        <div class="col-sm-9 pl-4 pr-0">
+          <div style="height:220px;overflow-y:auto" echarts [options]="option1" class="demo-chart"></div>
         </div>
       </div>
     </div>
@@ -63,28 +63,14 @@
             <h6 class="mb-2">{{received}}</h6>
           </div>
         </div>
-        <div class="col-sm-8 ml-4 pr-0 pt-4" style="top:-25px">
-
-            <div style="height:200px;overflow-y:auto" echarts [options]="option2" class="demo-chart"></div>
-            <!-- <canvas style="height:150px; overflow-y:auto" baseChart
-                    [datasets]="received_graph.barChartData"
-                    [labels]="received_graph.barChartLabels"
-                    [options]="received_graph.barChartOptions"
-                    [legend]="received_graph.barChartLegend"
-                    [chartType]="received_graph.barChartType"
-                    [colors] = "received_graph.lineChartColors"
-                    >
-            </canvas> -->
-
+        <div class="col-sm-9 pl-4 pr-0">
+          <div style="height:220px;overflow-y:auto" echarts [options]="option2" class="demo-chart"></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- <div class="justify-content-center">
-
-  </div> -->
-
+  
   <div class="child float-left col-sm-8 pl-0 pr-0 mt-1 mb-3" *ngIf="graph1_display" >
     <div class="col-sm-12 p-0">
       <div class="backgroundVisual p-2 row m-0">
@@ -92,11 +78,11 @@
         <div>
           <div style="display: block">
             <canvas baseChart
-                    [datasets]="barChartData"
-                    [labels]="barChartLabels"
-                    [options]="barChartOptions"
-                    [legend]="barChartLegend"
-                    [chartType]="barChartType">
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType">
             </canvas>
           </div>
         </div>

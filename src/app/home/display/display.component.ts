@@ -7,7 +7,6 @@ import { ProjectService } from '../../service/ProjectService';
   styleUrls: ['./display.component.scss']
 })
 export class DisplayComponent implements OnInit {
-
   @Input() info:any;
   account_display = false;
   share_asset_display = false;
@@ -29,7 +28,7 @@ export class DisplayComponent implements OnInit {
   received_Count2:any;
   received_graph:{};
   showRefresh:any;
-  chartJSColor = [
+  /* chartJSColor = [
     { // grey
       backgroundColor: 'rgba(255,111,136, 0.47)',
       borderColor: 'rgba(255,76,107, 0.8)',
@@ -54,7 +53,7 @@ export class DisplayComponent implements OnInit {
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     }
-  ];
+  ]; */
   emt1: any;
   emt2: any;
   emt3: any;
@@ -63,7 +62,7 @@ export class DisplayComponent implements OnInit {
    "name": "The Agricultural and Processed Food Products",
    "children": [
     {
-      "name": "The Agricultural and Processed         Food Products Export Development",
+      "name": "The Agricultural and Processed Food Products Export Development",
       "children": [
        {
          "name": "Quality council of India", "value": 3938
@@ -74,7 +73,6 @@ export class DisplayComponent implements OnInit {
   }
 
   constructor(private ProjectService: ProjectService) {
-
     // this.received_graph = {
     //   barChartOptions : {
     //     scaleShowVerticalLines: false,
@@ -89,9 +87,7 @@ export class DisplayComponent implements OnInit {
     //   lineChartColors : this.chartJSColor
     //
     // }
-
     // console.log(this.ProjectService.displayDataArray.data)
-
     // if(!this.ProjectService.displayDataArray.data) {
     //
     //   } else {
@@ -124,44 +120,32 @@ export class DisplayComponent implements OnInit {
       this.ProjectService.getDisplayDataRefresh();
       this.heading = "";
       this.hideAllDisplay();
-
       this.heading = res.action;
-
       if(res.display) {
-
         if(res.display.Account_Display === "true") {
           this.account_display = true;
-
         } if(res.display.Share_Asset_Display === "true") {
           this.share_asset_display = true;
-
         } if(res.display.Receive_Asset_Display === "true") {
           this.receive_asset_display = true;
-
         } if(res.display.Child_Display === "true") {
           this.child_display = true;
-
         } if(res.display.Graph1_Display === "true") {
           this.graph1_display = true;
-
         } if(res.display.Graph2_Display === "true") {
           this.graph2_display = true;
-
         }
       }
     })
 
     this.emt3 = this.ProjectService.emitDisplayData.subscribe(res=>{
       // console.log(res);
-
       if(res.data) {
         if(res.data.accounts) {
-
           if(res.data.accounts.length>0) {
             this.account = res.data.accounts;
           }
         }
-
         this.shared = res.data.assets.count;
         this.assets_Count1 = res.data.assets.self;
         this.assets_Count2 = res.data.assets.other;
@@ -169,13 +153,10 @@ export class DisplayComponent implements OnInit {
         this.received_Count1 = res.data.received.received_assets_count;
         this.received_Count2 = res.data.received.receive_address_count;
         this.child = res.data.child_count;
-
         this.getGraph1();
         this.getGraph2();
       }
-
     })
-
   }
 
   hideAllDisplay() {
@@ -197,174 +178,156 @@ export class DisplayComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.ProjectService.getDisplayDataOnly();
-
     // this.ProjectService.emitDisplayDataFun();
-
     this.ProjectService.getDisplayDataRefresh();
-
-      this.options = {
-        tooltip: {
-              trigger: 'item',
-              triggerOn: 'mousemove'
-          },
-          series:
-          [
-            {
-                type: 'tree',
-
-                data: [this.data],
-
-                left: '2%',
-                right: '2%',
-                top: '8%',
-                symbol: 'emptyCircle',
-                orient: 'vertical',
-                expandAndCollapse: true,
-                leaves: {
-                    label: {
-                        normal: {
-                            position: 'bottom',
-
-                            verticalAlign: 'right',
-                            align: 'center'
-                        }
-                    }
-                },
-
-                symbolSize: 10,
-                label: {
-                  normal: {
-                    position: 'left',
-                    verticalAlign: 'middle',
-                    align: 'right',
-                    fontSize: 13
-                  }
-                },
-                itemStyle:{
-                  color:'#7C90DB',
-                  borderColor:'#7C90DB'
-                },
-                lineStyle:{
-                  color:'#ffa02c',
-                  curveness:0.6
-                },/*
-                tooltip:{
-                  backgroundColor:'rgba(0,0,0,0.7)',
-                  borderColor:'#000'
-                }, */
-                animationDurationUpdate: 750
+    this.options = {
+      tooltip: {
+        trigger: 'item',
+        triggerOn: 'mousemove'
+      },
+      series: [
+        {
+          type: 'tree',
+          data: [this.data],
+          left: '2%',
+          right: '2%',
+          top: '8%',
+          symbol: 'emptyCircle',
+          orient: 'vertical',
+          expandAndCollapse: true,
+          leaves: {
+            label: {
+              normal: {
+                position: 'bottom',
+                verticalAlign: 'right',
+                align: 'center'
+              }
             }
-        ]
-
-      };
-   }
+          },
+          symbolSize: 10,
+          label: {
+            normal: {
+              position: 'left',
+              verticalAlign: 'middle',
+              align: 'right',
+              fontSize: 13
+            }
+          },
+          itemStyle:{
+            color:'#7C90DB',
+            borderColor:'#7C90DB'
+          },
+          lineStyle:{
+            color:'#ffa02c',
+            curveness:0.6
+          },/*
+          tooltip:{
+            backgroundColor:'rgba(0,0,0,0.7)',
+            borderColor:'#000'
+          }, */
+          animationDurationUpdate: 750
+        }
+      ]
+    };
+  }
 
   getGraph1() {
-
-
-        this.option2 = {
-          tooltip: {
-            trigger: 'item',
-            formatter: "{a} <br/>{b}: {c} ({d}%)"
+    this.option2 = {
+      tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b}: {c} ({d}%)"
+      },
+      legend: {
+        bottom: -2,
+        left: 'center',
+        data: ['Assets','Address']
+      },
+      series: [
+        {
+          name: 'Received',
+          type: 'pie',
+          radius: ['50%', '70%'],
+          avoidLabelOverlap: false,
+          color: ['#ff4c6a','#c1c1c1'],
+          label: {
+            normal: {
+              show: false,
+              position: 'center'
+            },
+            emphasis: {
+              show: true,
+              textStyle: {
+                fontSize: '22',
+                fontWeight: 'bold'
+              }
+            }
           },
-          legend: {
-              // orient: 'vertical',
-              // x: 'left',
-              bottom: -2,
-              left: 'center',
-              data: ['Assets','Address']
+          labelLine: {
+            normal: {
+              show: false
+            }
           },
-          series: [
-              {
-                  name:'Received',
-                  type:'pie',
-                  radius: ['50%', '70%'],
-                  avoidLabelOverlap: false,
-                  color: ['#ff4c6a','#c1c1c1'],
-                  label: {
-                      normal: {
-                          show: false,
-                          position: 'center'
-                      },
-                      emphasis: {
-                          show: true,
-                          textStyle: {
-                              fontSize: '30',
-                              fontWeight: 'bold'
-                          }
-                      }
-                  },
-                  labelLine: {
-                      normal: {
-                          show: false
-                      }
-                  },
-                  data:[
-                      {value:this.received_Count1, name:'Assets'},
-                      {value:this.received_Count2, name:'Address'}
-                  ]
-                }
-              ]
-          }
-
+          data: [
+            { value : this.received_Count1, name : 'Assets' },
+            { value : this.received_Count2, name : 'Address' }
+          ]
+        }
+      ]
+    }
   }
 
   getGraph2() {
-
-        this.option1 = {
-          tooltip: {
-            trigger: 'item',
-            formatter: "{a} <br/>{b}: {c} ({d}%)"
+    this.option1 = {
+      tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b}: {c} ({d}%)"
+      },
+      legend: {
+        // orient: 'vertical',
+        // x: 'left',
+        bottom: -2,
+        left: 'center',
+        data: ['Self','Others']
+      },
+      series: [
+        {
+          name:'Shared',
+          type:'pie',
+          radius: ['50%', '70%'],
+          avoidLabelOverlap: false,
+          color: ['#40dc80','#c1c1c1'],
+          label: {
+            normal: {
+              show: false,
+              position: 'center'
+            },
+            emphasis: {
+              show: true,
+              textStyle: {
+                fontSize: '22',
+                fontWeight: 'bold'
+              }
+            }
           },
-          legend: {
-              // orient: 'vertical',
-              // x: 'left',
-              bottom: -2,
-              left: 'center',
-              data: ['Self','Others']
+          labelLine: {
+            normal: {
+              show: false
+            }
           },
-          series: [
-              {
-                  name:'Shared',
-                  type:'pie',
-                  radius: ['50%', '70%'],
-                  avoidLabelOverlap: false,
-                  color: ['#40dc80','#c1c1c1'],
-                  label: {
-                      normal: {
-                          show: false,
-                          position: 'center'
-                      },
-                      emphasis: {
-                          show: true,
-                          textStyle: {
-                              fontSize: '30',
-                              fontWeight: 'bold'
-                          }
-                      }
-                  },
-                  labelLine: {
-                      normal: {
-                          show: false
-                      }
-                  },
-                  data:[
-                      {value:this.assets_Count1, name:'Self'},
-                      {value:this.assets_Count2, name:'Others'}
-                  ]
-                }
-              ]
-          }
-
+          data: [
+            { value : this.assets_Count1, name : 'Self' },
+            { value : this.assets_Count2, name : 'Others' }
+          ]
+        }
+      ]
+    }
   }
 
   ngOnDestroy() {
     this.emt1.unsubscribe();
     this.emt2.unsubscribe();
     this.emt3.unsubscribe();
-
   }
 
 }

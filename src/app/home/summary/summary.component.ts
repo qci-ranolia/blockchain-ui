@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ProjectService } from '../../service/ProjectService';
-import { DomSanitizer } from '@angular/platform-browser';
+// import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-summary',
@@ -9,31 +9,30 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class SummaryComponent implements OnInit {
 
-  @Input() info:any;
+  @Input() info: any;
   header: any = [];
   data: any;
   arr: any = [];
-  showSummary= false;
-  showViewAll= false;
+  showSummary = false;
+  showViewAll = false;
   shareWithAddress = false;
-  shareWithAddressData : any;
-  trail_view= false;
-  options= {};
+  shareWithAddressData: any;
+  trail_view = false;
+  options = {};
   trail_data = [];
   f_headers: any = [];
   tempArray: any = [];
   emt1: any;
   emt2: any;
   emt3: any;
-
-  newDesign : boolean = false
+  newDesign: boolean = false
 
   // fileUrl;
-
-  constructor(private ProjectService: ProjectService) {
+  constructor( private ProjectService: ProjectService ) {
     trail_view: false;
-    this.emt1 = this.ProjectService.emitSummary.subscribe(res=>{
-      this.showViewAll= false;
+    this.emt1 = this.ProjectService.emitSummary.subscribe(res => {
+      // console.log(res)
+      this.showViewAll = false;
       this.shareWithAddress = false;
       this.header = [];
       this.data = [];
@@ -41,8 +40,8 @@ export class SummaryComponent implements OnInit {
       this.trail_data = [];
       this.arr = [];
       this.tempArray = [];
-      this.options= {};
-      this.arr= [];
+      this.options = {};
+      this.arr = [];
       this.header = [];
 
       this.showSummary = true;
@@ -52,55 +51,70 @@ export class SummaryComponent implements OnInit {
       this.data = JSON.stringify(this.data);
       let parsed = JSON.parse(this.data);
 
-      for(let x in parsed){
+      for (let x in parsed) {
         this.arr.push(parsed[x]);
       }
       // console.log(this.header);
-      // console.log(this.data);
-      // console.log(this.arr);
+      console.log(this.data);
 
       let action = this.ProjectService.globalAction;
 
-      if(this.ProjectService.globalAction === "Accounts" ) {
-        this.showViewAll= true;
+      if ( this.ProjectService.globalAction === "Accounts" ) {
+        this.showViewAll = true;
       }
-      if(this.ProjectService.globalAction === "Receive" ) {
-        if(res.data) {
-          if(res.data.shared_assets_count) {
-            if(res.data.shared_assets_count>0) {
-              this.showViewAll= true;
+      if ( this.ProjectService.globalAction === "Receive" ) {
+        if (res.data) {
+          if (res.data.shared_assets_count) {
+            if (res.data.shared_assets_count > 0) {
+              this.showViewAll = true;
             }
           }
         }
-        let tempData =  JSON.parse(this.data);
-        if(tempData.to_org_address) {
-          this.showViewAll= false;
+        let tempData = JSON.parse(this.data);
+        if (tempData.to_org_address) {
+          this.showViewAll = false;
         }
       }
-      if(action === "Assets") {
-        this.shareWithAddress= true;
-        let tempData =  JSON.parse(this.data);
-        if(tempData.address) {
+      if (action === "Assets") {
+        this.shareWithAddress = true;
+        let tempData = JSON.parse(this.data);
+        if (tempData.address) {
           // console.log(tempData.address)
           this.shareWithAddressData = tempData.address;
         }
+        // console.log( 'code here...' )
+        // console.log( parsed.decrypted_url )
+        // console.log( parsed.decryption_key )
+        // var request = new XMLHttpRequest();
+        // request.open('GET', parsed.decrypted_url, true);
+        // request.send(null);
+        // console.log(request)
+        // request.onreadystatechange = function () {
+        //   if (request.readyState === 4 && request.status === 200) {
+        //     var type = request.getResponseHeader('Content-Type');
+        //     // if (type.indexOf("text") !== 1) {
+        //       console.log( request.responseText )
+        //     // return request.responseText;
+        //     // }
+        //   }
+        // }
       }
 
       this.f_headers = res.f_Headers;
       this.f_headers = JSON.stringify(this.f_headers);
       let tempArr = JSON.parse(this.f_headers);
-      for(let x in tempArr) {
+      for (let x in tempArr) {
         this.tempArray.push(tempArr[x])
       }
     })
 
-    this.emt2 = this.ProjectService.emitHideSummary.subscribe(res=>{
+    this.emt2 = this.ProjectService.emitHideSummary.subscribe(res => {
       this.showSummary = false;
       this.trail_view = false;
       this.newDesign = false
     });
 
-    this.emt3 = this.ProjectService.emitTrailView.subscribe(res=>{
+    this.emt3 = this.ProjectService.emitTrailView.subscribe(res => {
       this.newDesign = true
       this.trail_view = true;
       this.trail_data = res;
@@ -113,14 +127,14 @@ export class SummaryComponent implements OnInit {
   ngOnInit() { }
 
   viewAll() {
-    if(this.ProjectService.globalAction === "Accounts") {
+    if (this.ProjectService.globalAction === "Accounts") {
       let temp = JSON.parse(this.data)
       this.ProjectService.viewAll(temp.email);
     }
-    if(this.ProjectService.globalAction === "Receive") {
+    if (this.ProjectService.globalAction === "Receive") {
       let tempData = JSON.parse(this.data);
-      console.log(tempData)      
-      if(tempData.address) {
+      console.log(tempData)
+      if (tempData.address) {
         // console.log(tempData.address)
         this.ProjectService.viewAllReceiveAssets(tempData.address);
       }
@@ -140,7 +154,7 @@ export class SummaryComponent implements OnInit {
   // Only in share assets
   createNewShareForm() {
     this.ProjectService.shareWithAddressData = true;
-    localStorage.setItem("shareWithAddressData", this.shareWithAddressData+"")
+    localStorage.setItem("shareWithAddressData", this.shareWithAddressData + "")
     // console.log(this.ProjectService.navigationData);
     this.ProjectService.createNewFormElements(this.ProjectService.navigationData[2].createForm2);
     this.ProjectService.createNewForm();
@@ -149,10 +163,10 @@ export class SummaryComponent implements OnInit {
   displayTrailView(trail_data) {
     this.options = {
       tooltip: {
-            trigger: 'item',
-            triggerOn: 'mousemove'
-        },
-        series:
+        trigger: 'item',
+        triggerOn: 'mousemove'
+      },
+      series:
         [
           {
             type: 'tree',
@@ -163,13 +177,13 @@ export class SummaryComponent implements OnInit {
             orient: 'vertical',
             expandAndCollapse: true,
             leaves: {
-                label: {
-                    normal: {
-                        position: 'bottom',
-                        verticalAlign: 'center',
-                        align: 'center'
-                    }
+              label: {
+                normal: {
+                  position: 'bottom',
+                  verticalAlign: 'center',
+                  align: 'center'
                 }
+              }
             },
             symbolSize: 12,
             label: {
@@ -180,13 +194,13 @@ export class SummaryComponent implements OnInit {
                 fontSize: 12
               }
             },
-            itemStyle:{
-              color:'#ff4ca6',
-              borderColor:'#ff4ca6'
+            itemStyle: {
+              color: '#ff4ca6',
+              borderColor: '#ff4ca6'
             },
-            lineStyle:{
-              color:'#ff4ca6',
-              curveness:0.9
+            lineStyle: {
+              color: '#ff4ca6',
+              curveness: 0.9
             },/*
             tooltip:{
               backgroundColor:'rgba(0,0,0,0.7)',
@@ -194,7 +208,7 @@ export class SummaryComponent implements OnInit {
             }, */
             animationDurationUpdate: 750
           }
-      ]
+        ]
     };
   }
   ngOnDestroy() {

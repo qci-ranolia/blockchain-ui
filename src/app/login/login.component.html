@@ -1,20 +1,20 @@
-  <div class="cont justify-content-center" style="overflow:visible;" *ngIf="!claim">
-    <h6 style="margin:0 auto 10px;" class="col-sm-8">Go Back To <a href="" (click)="landingPage()">Landing Page</a></h6>
-    <div class="form sign-in col-sm-8" *ngIf="!change_password">
-      <div *ngIf="!forgot_password" class="backgroundVisual pb-5">
-        <h2 class="img__text pt-4">Welcome </h2><br />
-        <label>
-          <span>Email</span>
-          <input type="email"  [(ngModel)]="email" name="email" autocomplete="off" />
-        </label>
-        <label>
-          <span>Password</span>
-          <input type="password" [(ngModel)]="password" name="password" autocomplete="off" />
-        </label>
-        <button type="button" class="submit" (click)="login()">Sign In</button>
-        <div class="row m-0">
-          <p class="forgot-pass col-sm-12 text-center" (click)="gotoclaim()" style="cursor:pointer">Claim Account ?</p>
-        </div>
+<div class="cont justify-content-center" style="overflow:visible;" *ngIf="!claim">
+  <h6 style="margin:0 auto 10px;" class="col-sm-8">Go Back To <a href="" (click)="landingPage()">Landing Page</a></h6>
+  <div class="form sign-in col-sm-8" *ngIf="!change_password">
+    <div *ngIf="!forgot_password" class="backgroundVisual pb-5">
+      <h2 class="img__text pt-4">Welcome </h2><br />
+      <label>
+        <span>Email</span>
+        <input type="email"  [(ngModel)]="email" name="email" autocomplete="off" />
+      </label>
+      <label>
+        <span>Password</span>
+        <input type="password" [(ngModel)]="password" name="password" autocomplete="off" />
+      </label>
+      <button type="button" class="submit" (click)="login()">Sign In</button>
+      <div class="row m-0">
+        <p class="forgot-pass col-sm-12 text-center" (click)="gotoclaim()" style="cursor:pointer">Claim Account ?</p>
       </div>
     </div>
   </div>
+</div>

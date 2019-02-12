@@ -38,6 +38,7 @@ import { LandingComponent } from './landing/landing.component';
 
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { ProfileComponent } from './home/profile/profile.component';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     InputFileUploadComponent,
     InputDatePickerComponent,
     DisplayComponent,
-    LandingComponent
+    LandingComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

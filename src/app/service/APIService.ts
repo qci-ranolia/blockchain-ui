@@ -20,7 +20,7 @@ export class APIService {
   localURL: string = 'http://192.168.15.139:8000';
   proURL2: string = 'http://13.233.242.93:8000';
   // current_URL : string = this.localURL;
-  current_URL : string = this.proURL2;
+  current_URL : string =  this.proURL2 // this.localURL; 
   Header: any;
   appHeader: any = new HttpHeaders({ 'Autherization'  : 'true' });
 
@@ -30,6 +30,7 @@ export class APIService {
     this.ser(uname,pwd)
     .subscribe(resp => {console.log(resp)})
   }
+  
   ser( uname : string, pwd : string ):Observable<HttpResponse<any>>{
     let tmp : any = { email : uname, password : pwd }
     let data = JSON.stringify(tmp)
@@ -38,7 +39,7 @@ export class APIService {
       catchError(this.handleError)
     )
   }
-
+  
   claimAcc(org_name : string, email : string,pancard : string,gst_number : string,tan_number : string,phone_number : string){
     let tmp : any = {
       org_name    : org_name,
@@ -56,7 +57,6 @@ export class APIService {
     .subscribe(resp => {console.log(resp)})
   }
 
-
   sendOTP(tmp:any){
     let data = JSON.stringify(tmp)
     const request = new HttpRequest('POST', this.current_URL+'/accounts/get_otp', data)
@@ -68,6 +68,7 @@ export class APIService {
       const request = new HttpRequest('POST', this.current_URL+'/accounts/claim_account', payload)
       return this.http.request(request)
   }
+
   handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.error('Frontend:', error)

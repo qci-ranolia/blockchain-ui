@@ -44,10 +44,15 @@ export class HomeComponent implements OnInit, AfterContentInit {
       this.isClosed = false
     }
   }
+
   logout(){
-    if (window.confirm(" Are you sure to logout? ")) {
+    if ( window.confirm(" Are you sure to logout? ") ) {
       this.ProjectService.logout();
     }
+  }
+
+  profile(){
+    this.ProjectService.profile();
   }
 
   ngAfterContentInit() {

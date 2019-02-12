@@ -633,18 +633,10 @@ div.navigation li {
   }
 }
 .fa-power-off {
-  font-size:15px;
-  padding:8px;
-  box-shadow:0px 0px 5px 0px $theme-1 - #080808;
-  border:1px solid $theme-1 - #000;
-  border-color: transparent;
-  box-sizing:border-box;
-  border-radius:8px;
+  font-size:14px;
   box-sizing: border-box;
   cursor:pointer;
-  color:#40dcb2;
-  margin-left: 12px;
-  &:hover {
+  /* &:hover {
     @include transition(all .2s ease-in);
     box-shadow:none;
     border:1px solid $theme-1 - #040504;
@@ -653,7 +645,7 @@ div.navigation li {
     @include transition(all .2s ease-in);
     box-shadow:0px 0px 5px 0px inset $theme-1 - #080808;
     border:1px solid $theme-1 - #040504;
-  }
+  } */
 }
 
 $inputW: 260px;

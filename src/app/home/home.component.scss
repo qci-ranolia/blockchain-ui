@@ -1,0 +1,40 @@
+.b {
+    transition: all 150ms ease 50ms;
+    // border: 1px solid #40dcb2;
+    box-sizing: border-box;
+    padding: 4px 12px;
+    opacity: 0.6;
+    cursor: pointer;
+    position: relative;
+    &:hover{
+        transition: all 150ms ease 50ms;
+        opacity: 1;
+        .s{
+        transition: all 150ms ease 50ms;
+        display: block;
+        }
+    }
+}
+.s {
+    box-sizing: border-box;
+    opacity: 1;
+    transition: all 150ms ease 50ms;
+    display: none;
+    position: absolute;
+    top: 33px;
+    left: 0;
+    background: #fff;
+    // border: 1px solid #ccc;
+    // height: 100px;
+    box-shadow: 2px 2px 4px #ccc;
+    // padding: 10px;
+    width: 100%;
+    ul {
+    transition: all 150ms ease 50ms;
+    list-style: none;
+        li:hover {
+            transition: all 150ms ease 50ms;
+            background: #f6f6f6;
+        }
+    }
+}

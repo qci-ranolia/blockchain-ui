@@ -80,6 +80,7 @@ export class TableComponent implements OnInit {
   }
 
   ngOnInit(){
+    console.log('init')
   }
 
   getSummary(i) {
@@ -131,6 +132,7 @@ export class TableComponent implements OnInit {
   ngOnDestroy() {
     this.emt1.unsubscribe();
     this.emt2.unsubscribe();
+
   }
 
 }

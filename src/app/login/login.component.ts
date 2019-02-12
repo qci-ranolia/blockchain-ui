@@ -47,6 +47,14 @@ export class LoginComponent {
     this._api.loginuser( this.username, this.password )
     localStorage.setItem('userEmail', this.username);
   } */
+
+  /* $("#login-button").click(function(event){
+    event.preventDefault();
+  
+    $('form').fadeOut(500);
+    $('.wrapper').addClass('form-success');
+  }) */
+
   landingPage(){
     this.router.navigate(['./']);
   }
