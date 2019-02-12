@@ -25,7 +25,7 @@ export class SummaryComponent implements OnInit {
   emt1: any;
   emt2: any;
   emt3: any;
-
+  showFileButton= false;
   newDesign : boolean = false
 
   // fileUrl;
@@ -48,6 +48,7 @@ export class SummaryComponent implements OnInit {
       this.showSummary = true;
       this.header = res.header;
       this.data = res.data;
+
       // json to array
       this.data = JSON.stringify(this.data);
       let parsed = JSON.parse(this.data);
@@ -58,6 +59,7 @@ export class SummaryComponent implements OnInit {
       // console.log(this.header);
       // console.log(this.data);
       // console.log(this.arr);
+      console.log(parsed);
 
       let action = this.ProjectService.globalAction;
 
@@ -79,6 +81,9 @@ export class SummaryComponent implements OnInit {
       }
       if(action === "Assets") {
         this.shareWithAddress= true;
+        if(parsed.decrypted_url) {
+          this.showFileButton = true;
+        }
         let tempData =  JSON.parse(this.data);
         if(tempData.address) {
           // console.log(tempData.address)
@@ -97,7 +102,8 @@ export class SummaryComponent implements OnInit {
     this.emt2 = this.ProjectService.emitHideSummary.subscribe(res=>{
       this.showSummary = false;
       this.trail_view = false;
-      this.newDesign = false
+      this.newDesign = false;
+      this.showFileButton= false;
     });
 
     this.emt3 = this.ProjectService.emitTrailView.subscribe(res=>{
@@ -112,6 +118,12 @@ export class SummaryComponent implements OnInit {
 
   ngOnInit() { }
 
+  viewFile() {
+    let parsed = JSON.parse(this.data);
+    console.log(parsed.decrypted_url);
+    this.ProjectService.getFileData(parsed.decrypted_url);
+  }
+
   viewAll() {
     if(this.ProjectService.globalAction === "Accounts") {
       let temp = JSON.parse(this.data)
@@ -119,7 +131,7 @@ export class SummaryComponent implements OnInit {
     }
     if(this.ProjectService.globalAction === "Receive") {
       let tempData = JSON.parse(this.data);
-      console.log(tempData)      
+      console.log(tempData)
       if(tempData.address) {
         // console.log(tempData.address)
         this.ProjectService.viewAllReceiveAssets(tempData.address);

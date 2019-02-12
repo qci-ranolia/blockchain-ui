@@ -4,6 +4,8 @@
         <div class="col-sm-12 pr-0 text-right">
             <button type="button" class="submit d-inline-block" *ngIf="showViewAll" (click)="viewAll()">View All</button>
             <button type="button" class="submit d-inline-block" (click)='createNewShareForm()' *ngIf="shareWithAddress">+ Share</button>
+            <br>
+            <button type="button" class="submit d-inline-block" (click)='viewFile()' *ngIf="shareWithAddress">View File</button>
             <!-- <br /><br /> -->
         </div>
         <div class="col-sm-12 row m-0 p-0 mt-3">
@@ -68,4 +70,3 @@
     </div>
 </div>
 <br/><br/>
-   

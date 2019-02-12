@@ -19,8 +19,8 @@ export class APIService {
   proURL: string = 'http://13.233.29.111:8000';
   localURL: string = 'http://192.168.15.139:8000';
   proURL2: string = 'http://13.233.242.93:8000';
-  // current_URL : string = this.localURL;
-  current_URL : string = this.proURL2;
+  current_URL : string = this.localURL;
+  // current_URL : string = this.proURL2;
   Header: any;
   appHeader: any = new HttpHeaders({ 'Autherization'  : 'true' });
 
@@ -197,6 +197,11 @@ export class APIService {
     let params = new HttpParams().set('address', address);
     const request = new HttpRequest('GET', this.current_URL+'/assets/trail', { reportProgress: true, params: params, headers: this.appHeader });
     return this.http.request(request)
+  }
+
+  GetFileData(url) {
+    let temp  = this.http.get(url, {responseType: 'text'});
+    return temp
   }
 
 }

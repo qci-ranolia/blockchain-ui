@@ -65,7 +65,7 @@ export class ProjectService {
   emitShowSubmitFormButton : EventEmitter<any> = new EventEmitter<any>();
   emitAssetsReceived : EventEmitter<any> = new EventEmitter<any>()
   emitAssetsNotReceived : EventEmitter<any> = new EventEmitter<any>()
-  
+
   errorSnack(){
     $('.notification').toggleClass('active')
     setTimeout(() => {
@@ -650,7 +650,16 @@ export class ProjectService {
       this.emitError.emit(err.error.message)
       this.errorSnack()
       // console.log(err.error.message)
-    })
+    });
+  }
+
+  getFileData(url) {
+    this.APIService.GetFileData(url).subscribe((res) =>{
+      console.log(res)
+
+    }, (err)=>{
+      console.log(err);
+    });
   }
 
 }

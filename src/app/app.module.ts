@@ -35,10 +35,8 @@ import { DisplayComponent } from './home/display/display.component';
 import { ChartsModule } from 'ng2-charts';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { LandingComponent } from './landing/landing.component';
-
-import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
-
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -74,7 +72,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     ChartsModule,
     NgxEchartsModule,
     NgxExtendedPdfViewerModule,
-    PdfViewerModule
+    PdfViewerModule,
   ],
   providers: [
     AuthGuard,
