@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ProjectService } from '../../service/ProjectService';
-// import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-summary',
@@ -25,10 +25,12 @@ export class SummaryComponent implements OnInit {
   emt1: any;
   emt2: any;
   emt3: any;
-  newDesign: boolean = false
+  showFileButton= false;
+  newDesign : boolean = false
 
+  png: any;
   // fileUrl;
-  constructor( private ProjectService: ProjectService ) {
+  constructor( private ProjectService: ProjectService, private _sanitizer: DomSanitizer ) {
     trail_view: false;
     this.emt1 = this.ProjectService.emitSummary.subscribe(res => {
       // console.log(res)
@@ -47,6 +49,7 @@ export class SummaryComponent implements OnInit {
       this.showSummary = true;
       this.header = res.header;
       this.data = res.data;
+
       // json to array
       this.data = JSON.stringify(this.data);
       let parsed = JSON.parse(this.data);
@@ -54,11 +57,8 @@ export class SummaryComponent implements OnInit {
       for (let x in parsed) {
         this.arr.push(parsed[x]);
       }
-      // console.log(this.header);
-      console.log(this.data);
-
+      // console.log(parsed);
       let action = this.ProjectService.globalAction;
-
       if ( this.ProjectService.globalAction === "Accounts" ) {
         this.showViewAll = true;
       }
@@ -75,29 +75,28 @@ export class SummaryComponent implements OnInit {
           this.showViewAll = false;
         }
       }
-      if (action === "Assets") {
-        this.shareWithAddress = true;
-        let tempData = JSON.parse(this.data);
-        if (tempData.address) {
-          // console.log(tempData.address)
+      if(action === "Assets") {
+        this.shareWithAddress= true;
+        if(parsed.decrypted_url) {
+          this.showFileButton = true;
+        }
+        let tempData =  JSON.parse(this.data);
+        if(tempData.address) {
           this.shareWithAddressData = tempData.address;
         }
-        // console.log( 'code here...' )
-        // console.log( parsed.decrypted_url )
-        // console.log( parsed.decryption_key )
-        // var request = new XMLHttpRequest();
-        // request.open('GET', parsed.decrypted_url, true);
-        // request.send(null);
-        // console.log(request)
-        // request.onreadystatechange = function () {
-        //   if (request.readyState === 4 && request.status === 200) {
-        //     var type = request.getResponseHeader('Content-Type');
-        //     // if (type.indexOf("text") !== 1) {
-        //       console.log( request.responseText )
-        //     // return request.responseText;
-        //     // }
-        //   }
-        // }
+        // console.log(parsed.decrypted_url)
+        // console.log(parsed.decrypted_data)
+        // console.log(parsed.decryption_key)
+        // this.ProjectService.getUrlData(parsed.decrypted_url)
+
+        // // Use the decodedData instead of the base64 one
+        // var blob = new Blob([parsed.decrypted_data], {type: 'image/png'});
+        // console.log(blob)
+        // // // It should work properly
+        // var file = new File([blob], 'file.png', {type: "image/png"});
+        // this.png = file.name
+        // console.log(this.png)
+        // this.png = this._sanitizer.bypassSecurityTrustUrl(`${'data:image/png;base64,' + parsed.decrypted_data}`); //'data:image/png;base64,' + parsed.decrypted_data
       }
 
       this.f_headers = res.f_Headers;
@@ -111,7 +110,8 @@ export class SummaryComponent implements OnInit {
     this.emt2 = this.ProjectService.emitHideSummary.subscribe(res => {
       this.showSummary = false;
       this.trail_view = false;
-      this.newDesign = false
+      this.newDesign = false;
+      this.showFileButton= false;
     });
 
     this.emt3 = this.ProjectService.emitTrailView.subscribe(res => {
@@ -126,6 +126,12 @@ export class SummaryComponent implements OnInit {
 
   ngOnInit() { }
 
+  viewFile() {
+    let parsed = JSON.parse(this.data);
+    console.log(parsed.decrypted_url);
+    this.ProjectService.getFileData(parsed.decrypted_url);
+  }
+
   viewAll() {
     if (this.ProjectService.globalAction === "Accounts") {
       let temp = JSON.parse(this.data)
@@ -134,7 +140,7 @@ export class SummaryComponent implements OnInit {
     if (this.ProjectService.globalAction === "Receive") {
       let tempData = JSON.parse(this.data);
       console.log(tempData)
-      if (tempData.address) {
+      if(tempData.address) {
         // console.log(tempData.address)
         this.ProjectService.viewAllReceiveAssets(tempData.address);
       }

@@ -4,6 +4,8 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpEvent, HttpEventType, HttpClient, HttpRequest, HttpErrorResponse } from '@angular/common/http';
 declare var $
+var aesjs = require('aes-js');
+
 @Injectable()
 export class ProjectService {
   tableHeader: any = [];
@@ -65,7 +67,7 @@ export class ProjectService {
   emitShowSubmitFormButton : EventEmitter<any> = new EventEmitter<any>();
   emitAssetsReceived : EventEmitter<any> = new EventEmitter<any>()
   emitAssetsNotReceived : EventEmitter<any> = new EventEmitter<any>()
-  
+
   errorSnack(){
     $('.notification').toggleClass('active')
     setTimeout(() => {
@@ -424,6 +426,22 @@ export class ProjectService {
     // let temp = this.tableData.data[i];
     // console.log(this.tableData[i])
   }
+  getUrlData(i){
+    var request = new XMLHttpRequest();
+    request.open('GET', i , true);
+    request.send(null);
+    request.onreadystatechange = function () {
+      if ( request.readyState === 4 && request.status === 200 ) {
+        var type = request.getResponseHeader('Content-Type');
+        // console.log(request)
+        // if ( type.indexOf("text") !== 1 ) {
+          // console.log( request.responseText )
+          // return this.http.request(request.responseText);
+        // }
+      }
+    }
+  }
+
 
   get_Children() {
     // this.emitHideSummary.emit({display:"false"});
@@ -651,7 +669,16 @@ export class ProjectService {
       this.emitError.emit(err.error.message)
       this.errorSnack()
       // console.log(err.error.message)
-    })
+    });
+  }
+
+  getFileData(url) {
+    this.APIService.GetFileData(url).subscribe((res) =>{
+      console.log(res)
+
+    }, (err)=>{
+      console.log(err);
+    });
   }
 
 }

@@ -14,15 +14,15 @@ export class APIService {
   opts : any
   request : any
 
-  projectURL: string = '../assets/APIData/';
-  UI_JSON: string = '../assets/UI_JSON/';
-  proURL: string = 'http://13.233.29.111:8000';
-  localURL: string = 'http://192.168.15.139:8000';
-  proURL2: string = 'http://13.233.242.93:8000';
+  projectURL: string = '../assets/APIData/'
+  UI_JSON: string = '../assets/UI_JSON/'
+  proURL: string = 'http://13.233.29.111:8000'
+  localURL: string = 'http://192.168.15.139:8000'
+  proURL2: string = 'http://13.233.242.93:8000'
   // current_URL : string = this.localURL;
-  current_URL : string =  this.proURL2 // this.localURL; 
-  Header: any;
-  appHeader: any = new HttpHeaders({ 'Autherization'  : 'true' });
+  current_URL : string = this.proURL2; //this.localURL;
+  Header: any
+  appHeader: any = new HttpHeaders({ 'Autherization'  : 'true' })
 
   constructor(private http: HttpClient) {}
 
@@ -31,7 +31,7 @@ export class APIService {
     .subscribe(resp => {console.log(resp)})
   }
   
-  ser( uname : string, pwd : string ):Observable<HttpResponse<any>>{
+  ser( uname: string, pwd: string ):Observable<HttpResponse<any>>{
     let tmp : any = { email : uname, password : pwd }
     let data = JSON.stringify(tmp)
     return this.http.post<any>( this.current_URL+'users/login', data )
@@ -40,7 +40,7 @@ export class APIService {
     )
   }
   
-  claimAcc(org_name : string, email : string,pancard : string,gst_number : string,tan_number : string,phone_number : string){
+  claimAcc( org_name : string, email : string, pancard : string, gst_number : string, tan_number : string, phone_number : string ){
     let tmp : any = {
       org_name    : org_name,
       email       : email,
@@ -198,6 +198,12 @@ export class APIService {
     let params = new HttpParams().set('address', address);
     const request = new HttpRequest('GET', this.current_URL+'/assets/trail', { reportProgress: true, params: params, headers: this.appHeader });
     return this.http.request(request)
+  }
+
+  GetFileData(url) {
+    let temp  = this.http.get(url, {responseType: 'text'});
+    console.log(temp)
+    return temp
   }
 
 }

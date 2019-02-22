@@ -5,11 +5,11 @@
         <a class="navbar-brand"><img src="http://qcin.org/images/qci-logo.jpg" style="width:47%;" /></a>
         <div class="col-sm-5 float-right text-right">
             <div class="d-inline-block b">
-                <!-- <i class="fa fa-user-o" aria-hidden="true"></i>&nbsp; -->{{email_user}}
+                <i class="fa fa-user" aria-hidden="true"></i>&nbsp;{{email_user}}
                 <!-- <i class="fa fa-power-off" (click)="logout()"></i> -->
                 <div class="s pt-3 pb-3 text-muted">
                     <ul class="pl-0 pt-2 text-left mb-0">
-                        <li class="pb-2 pt-2 pl-3 pr-3" (click)="profile()"><i class="fa fa-user" (click)="profile()"></i>&nbsp;&nbsp;Profile</li>
+                        <!-- <li class="pb-2 pt-2 pl-3 pr-3" (click)="profile()"><i class="fa fa-user" (click)="profile()"></i>&nbsp;&nbsp;Profile</li> -->
                         <li class="pb-2 pt-2 pl-3 pr-3" (click)="logout()"><i class="fa fa-power-off"></i>&nbsp;&nbsp;Logout</li>
                     </ul>
                 </div>
@@ -33,7 +33,7 @@
         <!-- <svg width=”100%” height=”1200" class=”mySvg” (click)=”check($event)” version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"></svg> -->
         {{ProjectService.globalAction}}
         <app-form-builder></app-form-builder>
-        <app-profile></app-profile><!-- [info]=UI_Info-->
+        <!-- <app-profile></app-profile>[info]=UI_Info -->
         <app-search-bar [info]=UI_Info></app-search-bar>
         <app-display [info]=UI_Info ></app-display>
         <app-table class="row ml-0 mr-0 mb-0 mt-1 col-sm-12 p-0" [info]=UI_Info ></app-table>

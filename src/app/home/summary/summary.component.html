@@ -4,6 +4,9 @@
         <div class="col-sm-12 pr-0 text-right">
             <button type="button" class="submit d-inline-block" *ngIf="showViewAll" (click)="viewAll()">View All</button>
             <button type="button" class="submit d-inline-block" (click)='createNewShareForm()' *ngIf="shareWithAddress">+ Share</button>
+            <br>
+            <!-- <button type="button" class="submit d-inline-block" (click)='viewFile()' *ngIf="shareWithAddress">View File</button> -->
+            <!-- <br /><br /> -->
         </div>
         <!-- ---------X---------X----------------X-------X---------------X-----------X------- -->
         <!-- ---------X---------X----------------X-------X---------------X-----------X------- -->
@@ -16,6 +19,7 @@
                     <div class="col-sm-4 p-0" ><strong>{{tableService(m)}}</strong></div>
                     <div class="col-sm-8 p-0">{{dataService(m)}}</div>
                 </div>
+                <!-- <img [src]="png" /> -->
             </div>
             <div class="col-sm-5 p-0 text-center">
                 <div *ngIf="trail_view">
@@ -67,4 +71,3 @@
     </div>
 </div>
 <br/><br/>
-   
