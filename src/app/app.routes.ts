@@ -8,6 +8,7 @@ import { ClaimaccountComponent } from './home/claimaccount/claimaccount.componen
 import { CreateassetComponent } from './home/createasset/createasset.component';
 import { LoginComponent } from './login/login.component';
 import { LandingComponent } from './landing/landing.component';
+import { MultipleFileUploadComponent } from './multiple-file-upload/multiple-file-upload.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent ,canActivate: [AuthGuard]},
@@ -16,6 +17,7 @@ export const routes: Routes = [
   { path: 'claimaccount', component: ClaimaccountComponent },
   { path: 'createasset', component: CreateassetComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'upload', component: MultipleFileUploadComponent },
   { path: '', component: LandingComponent },
   { path: '**', redirectTo:'' }
 ]

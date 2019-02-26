@@ -720,3 +720,126 @@ input {
 // @media screen {
 //   @import '../node_modules/bootstrap/scss/bootstrap';
 // }
+
+
+
+// file-pond scss
+file-pond {
+  background: rgba(255,255,255,1);
+  display: inline-block;
+  width: 68%;
+  margin: 1%;
+  padding: 1%;
+  border-radius: 4px;
+  min-height: 96vh;
+  float: left;
+  box-shadow: 0 2px 12px 0 #dfe3eb;
+  & input.filepond--browser {
+    position: relative;
+    top: 12px;
+  }
+  & .filepond--hopper{
+    height:auto !important;
+    position: relative;
+    & .filepond--assistant{
+      position: absolute;
+      bottom: -25%;
+      width: 100%;
+      background: #fff;
+      padding: 1%;
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+  & .filepond--drop-label{
+    border: 1px dashed #ccc;
+    background: #f8f8f8;
+    height: 100px;
+    line-height: 50px;
+    color: #bcbcbc;
+    border-radius: 4px;
+    font-size: 26px;
+    position: relative;
+    top: 30px;
+  }
+  & .filepond--list-scroller{
+    height: 60vh;
+    border-top: 1px dashed #aaa;
+    overflow: hidden;
+    overflow-y: auto;
+  }
+}
+ul.filepond--list {
+  width:100%;
+  padding: 1%;
+  font-size: 14px;
+  & li {
+    width:100%;
+    height:auto !important;
+    display: inline;
+    & fieldset.filepond--file-wrapper {
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 15px;
+      & legend {
+        display: none;
+      }
+    }
+    & div {
+      width:100%;
+      & .filepond--action-remove-item{
+        background: rgb(255, 70, 70);
+        color: #fff;
+        border-radius: 30px;
+        width: 30px;
+        text-align: center;
+        padding: 0;
+        height: 30px;
+        line-height: 24px;
+        float: left;
+        display: block;
+        cursor: pointer;
+      }
+      & button {
+        // float: right;
+        display: none;
+      }
+    }
+    & .filepond--file{
+      height: 50px;
+      padding: 1%;
+    } 
+    & .filepond--file-info{
+      width: 70%;
+      float: right;
+      margin-right: 10%;
+      & .filepond--file-info-sub {
+        float: right;
+        font-weight: bold;
+      }
+    }
+    & div.filepond--file-status{
+      float: right;
+      width: 80%;
+      & span.filepond--file-status-main{
+        color:#f44;
+        font-weight: bold;
+        float: left;
+      }
+      & span.filepond--file-status-sub{
+        display: block;
+        font-weight: bold;
+        clear: both;
+      }
+    }
+  }
+}
+.sumbmitMultiple{
+  width: 29%;
+  float: left;
+  // border-radius: 4px;
+  // box-shadow: 0 2px 12px 0 #dfe3eb;
+  // background: rgba(255,255,255,1);
+  display: inline;
+  margin: 1% 1% 1% 0;
+  padding: 1%;
+}

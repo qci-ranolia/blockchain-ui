@@ -39,6 +39,11 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { ProfileComponent } from './home/profile/profile.component';
 
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { MultipleFileUploadComponent } from './multiple-file-upload/multiple-file-upload.component';
+
+import { FilePondModule, registerPlugin } from 'ngx-filepond';
+import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
+registerPlugin(FilePondPluginFileValidateType);
 
 @NgModule({
   declarations: [
@@ -61,7 +66,8 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
     InputDatePickerComponent,
     DisplayComponent,
     LandingComponent,
-    ProfileComponent
+    ProfileComponent,
+    MultipleFileUploadComponent
   ],
   imports: [
     BrowserModule,
@@ -76,6 +82,7 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
     NgxEchartsModule,
     NgxExtendedPdfViewerModule,
     PdfViewerModule,
+    FilePondModule
   ],
   providers: [
     AuthGuard,
