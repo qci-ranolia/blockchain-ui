@@ -11,7 +11,10 @@ The classic file input element we'll enhance to a file pond
 <div class="mainUpload">
     <!--header Area only-->
     <nav class="navbar sticky-top QCI-Variant pl-5 pr-5 pt-2 pb-2">
-        <a class="navbar-brand text-white" href="#">&#123; Upload &#125;</a>
+        <div class="col-sm-12 row m-0 p-0">
+            <a class="col-2 p-0 navbar-brand text-white m-0" href="#">&#123; Upload &#125;</a>
+            <div class="col-8 p-0 textToshow text-white text-center" *ngIf="!isTextToShow">{{textToShowHere}}</div>        
+        </div>
     </nav>
     <!--body Area only-->
     <div class="uploadBody">
@@ -21,17 +24,29 @@ The classic file input element we'll enhance to a file pond
             <button class="d-block col-sm-12 p-4 text-muted bg-light" (click)="fileBrowse()">{{fileBrowseText}}</button>
         </div>
         <!--ShowFileNameArea row -->
-        <div class="ShowFileNameArea pl-5 pr-5 pt-2 pb-2" *ngIf="isFilesPresent">
-            <!-- <div class="col-sm-12 row ml-0 mr-0 fileDescRow bg-light" *ngFor="let file of filesArr; let i = index">
+        <div class="ShowFileNameArea pl-5 pr-5 pt-2 pb-5 mb-2" *ngIf="isFilesPresent">
+            <div class="col-sm-12 row ml-0 mr-0 text-primary">
+                <div class="col-1">Sr. no.</div>
+                <div class="col-9">File Name</div>
+                <!-- <div class="col-2 text-right">Action/s</div> -->
+            </div>
+            <div class="col-sm-12 row ml-0 mr-0 fileDescRow bg-light" *ngFor="let file of filesArr; let i = index">
                 <div class="col-1">{{i+1}}</div>
-                <div class="col-9">{{file.files.name}}</div>
-                <span class="col-2 text-right"><i class="fa fa-window-close bg-light text-dark" aria-hidden="true" (click)="removeFile(i)"></i></span>
-            </div> -->
+                <div class="col-9">{{file.name}}</div>
+                <!-- <div class="col-2 text-right"><i class="fa fa-window-close bg-light text-dark" aria-hidden="true" (click)="removeFile(i)"></i></div> -->
+            </div>
+        </div>
+        <div class="ShowFileNameArea p-5 text-center" *ngIf="!isFilesPresent">
+            <h1 class="text-muted m-5 p-5">No files added. Please browse!</h1>
         </div>
     </div>
 
     <!--footer area only-->
     <nav class="navbar fixed-bottom QCI-Variant pl-5 pr-5 pt-2 pb-2">
-        <a class="navbar-brand text-white" href="#">&#123; Fixed bottom &#125;</a>
+        <div class="col-sm-12 row m-0" *ngIf="!isUploadActivated">
+            <input #text class="col-4 text-dark" type="text" (change)="onULRAdded()" />
+            <button class="col-4 text-white" (click)="upload()">{{fileUploadText}}</button>            
+        </div>
+        <!-- <a class="navbar-brand text-white" href="#">&#123; Fixed bottom &#125;</a> -->
     </nav>
 </div>
