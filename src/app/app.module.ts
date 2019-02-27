@@ -41,9 +41,9 @@ import { ProfileComponent } from './home/profile/profile.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { MultipleFileUploadComponent } from './multiple-file-upload/multiple-file-upload.component';
 
-import { FilePondModule, registerPlugin } from 'ngx-filepond';
-import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
-registerPlugin(FilePondPluginFileValidateType);
+// import { FilePondModule, registerPlugin } from 'ngx-filepond';
+// import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
+// registerPlugin(FilePondPluginFileValidateType);
 
 @NgModule({
   declarations: [
@@ -81,8 +81,8 @@ registerPlugin(FilePondPluginFileValidateType);
     ChartsModule,
     NgxEchartsModule,
     NgxExtendedPdfViewerModule,
-    PdfViewerModule,
-    FilePondModule
+    PdfViewerModule/* ,
+    FilePondModule */
   ],
   providers: [
     AuthGuard,

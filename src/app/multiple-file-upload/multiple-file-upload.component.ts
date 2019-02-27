@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { BloomFilter } from 'bloom-filters'
 
 @Component({
   selector: 'app-multiple-file-upload',
@@ -7,30 +8,48 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 
 export class MultipleFileUploadComponent implements OnInit {
-  @ViewChild('myPond') myPond: any;
-  pondOptions = {
-    class: 'my-filepond',
-    multiple: true,
-    labelIdle: 'Drop files here ...',
-    acceptedFileTypes: '.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/pdf'
+  @ViewChild('file') file
+  public files: Set<File> = new Set()
+  fileBrowseText = 'Browse';
+  isFilesPresent : boolean = false;
+  filesArr : any = new Object()
+  fileNames = []
+  // constructor() { }
+  
+  
+  fileBrowse() {
+    this.file.nativeElement.click()
   }
 
-  pondFiles = []
+  onFilesAdded() {
+    const files: { [key: string]: File } = this.file.nativeElement.files
+    let length : any = files.length
+    for (let key in files) {
+      if (!isNaN(parseInt(key))) {
+        this.filesArr.push( key, files[key])
+        console.log(this.filesArr)
 
-  pondHandleInit() {
-    console.log('FilePond has initialised', this.myPond);
+        // for (let i = 0; i < length; i++){
+        //   console.log(files[key].name)
+        //   // console.log(files[key])
+        // }
+        // console.log(files[key])
+      }
+    }
+    // var uniqueNames = this.fileNames.filter(function(name, index, array) {
+    //   return index === array.indexOf(name)
+    // })
+    
+    // this.fileNames = uniqueNames
+    // console.log(this.files)
+    // console.log(this.fileNames)
+    this.isFilesPresent = true
   }
 
-  pondHandleAddFile(event: any) {
-    console.log(event)
-    const formData = new FormData();
-    // formData.append(event);
-    console.log(formData)
-
+  removeFile(i){
+    // this.file.nativeElement.files.splice(this.file.nativeElement.files[i])
+    console.log(this.file.nativeElement.files)
   }
-
-  // constructor() {
-  // }
 
   ngOnInit() {
   }

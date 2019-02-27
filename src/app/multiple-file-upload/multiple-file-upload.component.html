@@ -2,7 +2,36 @@
 The classic file input element we'll enhance to a file pond
 -->
 <!-- <input type="file" class="filepond" name="filepond" multiple data-max-file-size="3MB" data-max-files="3" /> -->
-
 <!-- file upload itself is disabled in this pen -->
-<file-pond #myPond [options]="pondOptions" [files]="pondFiles" (oninit)="pondHandleInit()" (onaddfile)="pondHandleAddFile($event)"></file-pond>
-<div class="sumbmitMultiple">content...</div>
+<!-- <file-pond #myPond [options]="pondOptions" [files]="pondFiles" (oninit)="pondHandleInit()" (onaddfile)="pondHandleAddFile($event)"></file-pond>
+<div class="sumbmitMultiple">content...</div> -->
+
+
+<!--Create main div parent-->
+<div class="mainUpload">
+    <!--header Area only-->
+    <nav class="navbar sticky-top QCI-Variant pl-5 pr-5 pt-2 pb-2">
+        <a class="navbar-brand text-white" href="#">&#123; Upload &#125;</a>
+    </nav>
+    <!--body Area only-->
+    <div class="uploadBody">
+        <!--Add file row -->
+        <div class="addFiles m-5 text-center">
+            <input type="file" #file style="display: none" accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/pdf" (change)="onFilesAdded()" multiple />
+            <button class="d-block col-sm-12 p-4 text-muted bg-light" (click)="fileBrowse()">{{fileBrowseText}}</button>
+        </div>
+        <!--ShowFileNameArea row -->
+        <div class="ShowFileNameArea pl-5 pr-5 pt-2 pb-2" *ngIf="isFilesPresent">
+            <!-- <div class="col-sm-12 row ml-0 mr-0 fileDescRow bg-light" *ngFor="let file of filesArr; let i = index">
+                <div class="col-1">{{i+1}}</div>
+                <div class="col-9">{{file.files.name}}</div>
+                <span class="col-2 text-right"><i class="fa fa-window-close bg-light text-dark" aria-hidden="true" (click)="removeFile(i)"></i></span>
+            </div> -->
+        </div>
+    </div>
+
+    <!--footer area only-->
+    <nav class="navbar fixed-bottom QCI-Variant pl-5 pr-5 pt-2 pb-2">
+        <a class="navbar-brand text-white" href="#">&#123; Fixed bottom &#125;</a>
+    </nav>
+</div>
