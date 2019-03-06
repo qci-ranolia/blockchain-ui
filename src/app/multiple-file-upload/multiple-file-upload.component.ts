@@ -3,7 +3,6 @@ import { BloomFilter } from 'bloom-filters'
 import { forkJoin, Observable, Subject } from 'rxjs'
 import { HttpClient, HttpRequest, HttpEventType, HttpResponse } from '@angular/common/http'
 
-
 @Component({
   selector: 'app-multiple-file-upload',
   templateUrl: './multiple-file-upload.component.html',
@@ -18,7 +17,7 @@ export class MultipleFileUploadComponent implements OnInit {
   fileUploadText = 'Upload';
   isFilesPresent : boolean = false;
   isTextToShow : boolean = true;
-  isUploadActivated : boolean = false;
+  isUploadActivated : boolean = true;
   textToShowHere: any
   filesArr : any = new Array()
   fileNames = []
@@ -30,9 +29,7 @@ export class MultipleFileUploadComponent implements OnInit {
   uploading = false
   uploadSuccessful = false
 
-  constructor(private httpClient: HttpClient) {
-    
-  }
+  constructor( private httpClient: HttpClient ) { }
   
   fileBrowse() {
     this.file.nativeElement.click()
@@ -61,6 +58,7 @@ export class MultipleFileUploadComponent implements OnInit {
   // removeFile(i){
   //   console.log(this.filesArr)
   // }
+
   onULRAdded(){
     if ( (this.text.nativeElement.value).length !== 18 ){
       this.isTextToShow = false
@@ -75,8 +73,7 @@ export class MultipleFileUploadComponent implements OnInit {
 
   upload() {
     // if everything was uploaded already, just close the dialog
-    if (this.uploadSuccessful) {
-      
+    if ( this.uploadSuccessful ) {
       ////////////// return this.dialogRef.close()
     }
     // set the component state to "uploading"
@@ -112,26 +109,25 @@ export class MultipleFileUploadComponent implements OnInit {
 
   newFunction(files: Set<File>): { [key: string]: Observable<number> }{
     // create a const to capture/record status of file
-    console.log(this.files)
     const status = {}
     // for each files
     files.forEach(file => {
-      console.log(file)
       const formData: FormData = new FormData()
-      formData.append('file', file, file.name)
-      const req = new HttpRequest('POST', 'this.URL', formData, {
-        reportProgress: true
-      })
-      const progress = new Subject<number>()
-      this.httpClient.request(req).subscribe(event => {
-        if (event.type === HttpEventType.UploadProgress) {
-          const percentDone = Math.round(100 * event.loaded / event.total)
-          progress.next(percentDone)
-        } else if (event instanceof HttpResponse) {
-          progress.complete()
-        }
-      })
-      status[file.name] = { progress: progress.asObservable() }
+      formData.append('file', file)
+      console.log(formData)
+      // const req = new HttpRequest('POST', 'this.URL', formData, {
+      //   reportProgress: true
+      // })
+      // const progress = new Subject<number>()
+      // this.httpClient.request(req).subscribe(event => {
+      //   if (event.type === HttpEventType.UploadProgress) {
+      //     const percentDone = Math.round(100 * event.loaded / event.total)
+      //     progress.next(percentDone)
+      //   } else if (event instanceof HttpResponse) {
+      //     progress.complete()
+      //   }
+      // })
+      // status[file.name] = { progress: progress.asObservable() }
     })
     return status
   }

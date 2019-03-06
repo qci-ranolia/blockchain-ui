@@ -8,6 +8,9 @@ import 'datatables.net';
 // var $  = require( 'jquery' );
 // var dt = require( 'datatables.net' )();
 
+import { gcm } from 'node-gcm'
+
+
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',

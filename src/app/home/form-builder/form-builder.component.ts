@@ -6,6 +6,7 @@ import { ProjectService } from '../../service/ProjectService';
   templateUrl: './form-builder.component.html',
   styleUrls: ['./form-builder.component.scss']
 })
+
 export class FormBuilderComponent implements OnInit {
 
   showForm = false;
@@ -68,21 +69,16 @@ export class FormBuilderComponent implements OnInit {
   }
 
   responseData(data: any) {
-
     let exists = false;
     let pos = null;
-
     // console.log(data);
     // console.log(this.responseArray);
     // check if responseArray is empty
-    if(this.responseArray.length>0) {
-
-      for(let i = 0; i<this.responseArray.length; i++) {
-
+    if( this.responseArray.length > 0 ) {
+      for( let i = 0; i < this.responseArray.length; i++ ) {
         //check if response id exists, then update response
         // if response already exits, update value
-        if(this.responseArray[i].id == data.id ) {
-
+        if( this.responseArray[i].id == data.id ) {
           exists = true;
           pos = i;
           break;
@@ -94,7 +90,6 @@ export class FormBuilderComponent implements OnInit {
       // console.log(this.responseArray);
       exists = true;
     }
-
     if(exists) {
       if(pos) {
         this.responseArray[pos].value = data.value;

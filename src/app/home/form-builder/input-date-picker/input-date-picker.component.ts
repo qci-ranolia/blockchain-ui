@@ -5,6 +5,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   templateUrl: './input-date-picker.component.html',
   styleUrls: ['./input-date-picker.component.scss']
 })
+
 export class InputDatePickerComponent implements OnInit {
 
   @Input() json:any;

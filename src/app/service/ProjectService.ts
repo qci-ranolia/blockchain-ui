@@ -77,14 +77,14 @@ export class ProjectService {
 
   checkLogin() {
     let login = localStorage.getItem('login');
-    if(login === 'true') {
-      this.router.navigate(['./home']);
+    if( login === 'true' ) {
+      this.router.navigate(['./home'])
     }
   }
 
   logout() {
     localStorage.clear();
-    this.router.navigate(['./login']);
+    this.router.navigate(['./login'])
   }
 
   profile(){
