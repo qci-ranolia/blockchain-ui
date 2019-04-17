@@ -122,12 +122,12 @@ export class TableComponent implements OnInit {
   }
 
   createNew() {
+    console.log(this.ProjectService.navigationData);
     this.ProjectService.createNewForm();
   }
 
   // only in share assets
   createNewIssueForm() {
-    // console.log(this.ProjectService.navigationData);
     this.ProjectService.createNewFormElements(this.ProjectService.navigationData[2].createForm)
     this.ProjectService.createNewForm();
   }

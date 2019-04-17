@@ -17,8 +17,7 @@ export class CreateassetComponent implements OnInit {
     // console.log(shaObj)
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   refresh() : void {
     this.location.back()

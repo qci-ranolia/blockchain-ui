@@ -3,6 +3,7 @@ import { ProjectService } from '../service/ProjectService';
 import { APIService } from '../service/APIService';
 import { Router } from '@angular/router';
 declare var $
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-login',
@@ -36,9 +37,9 @@ export class LoginComponent {
     }
   }
 
-  constructor(private ProjectService: ProjectService, private router: Router, private _api:APIService ) {
+  constructor( private ProjectService: ProjectService, private router: Router, private _api:APIService ) {
     this.ProjectService.checkLogin()
-    this.ProjectService.emitUserLogin.subscribe((res)=>{
+    this.ProjectService.emitUserLogin.subscribe((res) => {
       this.router.navigate(['home/'])
     })
   }
@@ -87,6 +88,7 @@ export class LoginComponent {
       this.ProjectService.change(temp)
     } else alert ("Password does not match. Try again!")
   }
+
   login() {
     let formData = new FormData();
     formData.append('email',this.email);

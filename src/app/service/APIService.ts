@@ -14,19 +14,21 @@ export class APIService {
   opts : any
   request : any
 
-  projectURL: string = '../assets/APIData/'
-  UI_JSON: string = '../assets/UI_JSON/'
-  proURL: string = 'http://13.233.29.111:8000'
-  localURL: string = 'http://192.168.15.139:8000'
-  proURL2: string = 'http://13.233.242.93:8000'
+  projectURL : string = '../assets/APIData/'
+  UI_JSON : string = '../assets/UI_JSON/'
+  proURL : string = 'http://13.233.29.111:8000'
+  localURL : string = 'http://192.168.15.139:8000'
+  priyankURL : string = 'http://192.168.15.221:8000'
+  proURL2 : string = 'http://13.233.242.93:8000'
+  newUrl : string = 'http://13.233.125.160:8000'
   // current_URL : string = this.localURL;
-  current_URL : string = this.proURL2; //this.localURL;
-  Header: any
-  appHeader: any = new HttpHeaders({ 'Autherization'  : 'true' })
+  current_URL : string = this.newUrl /* this.priyankURL; */ /* this.proURL; */ // this.localURL;
+  Header : any
+  appHeader : any = new HttpHeaders({ 'Autherization' : 'true' })
 
-  constructor(private http: HttpClient) {}
+  constructor( private http: HttpClient ) {}
 
-  loginuser(uname : string, pwd : string){
+  /* loginuser(uname : string, pwd : string){
     this.ser(uname,pwd)
     .subscribe(resp => {console.log(resp)})
   }
@@ -34,11 +36,11 @@ export class APIService {
   ser( uname: string, pwd: string ):Observable<HttpResponse<any>>{
     let tmp : any = { email : uname, password : pwd }
     let data = JSON.stringify(tmp)
-    return this.http.post<any>( this.current_URL+'users/login', data )
+    return this.http.post<any>( this.current_URL+'accounts/users/login', data )
     .pipe(
       catchError(this.handleError)
     )
-  }
+  } */
   
   claimAcc( org_name : string, email : string, pancard : string, gst_number : string, tan_number : string, phone_number : string ){
     let tmp : any = {
@@ -59,13 +61,13 @@ export class APIService {
 
   sendOTP(tmp:any){
     let data = JSON.stringify(tmp)
-    const request = new HttpRequest('POST', this.current_URL+'/accounts/get_otp', data)
+    const request = new HttpRequest('POST', this.current_URL+'/accounts/helper/get_otp', data)
     return this.http.request(request)
   }
 
   submit_OTP(data:any){
       let payload = JSON.stringify(data)
-      const request = new HttpRequest('POST', this.current_URL+'/accounts/claim_account', payload)
+      const request = new HttpRequest('POST', this.current_URL+'/accounts/float/claim_account', payload)
       return this.http.request(request)
   }
 
@@ -97,9 +99,17 @@ export class APIService {
     return this.http.request(request)
   }
 
+  awsUrl(data){
+    // this.http.get(data).subscribe(data => {
+    //   console.log(data)
+    // })
+    const request = new HttpRequest('GET', data, {}, {reportProgress:true})
+    return this.http.request(request)
+  }
+
   Login(data) {
     data = JSON.stringify(data);
-    const request = new HttpRequest('POST', this.current_URL+"/users/login", data , { reportProgress: true, headers: this.appHeader });
+    const request = new HttpRequest('POST', this.current_URL+"/accounts/users/login", data , { reportProgress: true, headers: this.appHeader });
     return this.http.request(request)
   }
 
@@ -125,51 +135,50 @@ export class APIService {
 
   GetDisplayData() {
     this.setHeader();
-    const request = new HttpRequest('GET', this.current_URL+'/accounts/display_data', {}, { reportProgress: true, headers: this.appHeader });
-    console.log(request)
+    const request = new HttpRequest('GET', this.current_URL+'/accounts/helper/display_data', {}, { reportProgress: true, headers: this.appHeader });
     // const request = new HttpRequest('GET', this.UI_JSON+'/display_data.json', {}, { reportProgress: true });
     return this.http.request(request)
   }
 
   Get_Organization_Accounts() {
     this.setHeader();
-    const request = new HttpRequest('GET', this.current_URL+'/accounts/get_organization_account', { reportProgress: true, headers: this.appHeader });
+    const request = new HttpRequest('GET', this.current_URL+'/accounts/organization/get_organization_account', { reportProgress: true, headers: this.appHeader });
     return this.http.request(request)
   }
 
   Get_Float_Accounts() {
     this.setHeader();
-    const request = new HttpRequest('GET', this.current_URL+'/accounts/get_float_accounts', { reportProgress: true, headers: this.appHeader });
+    const request = new HttpRequest('GET', this.current_URL+'/accounts/float/get_float_accounts', { reportProgress: true, headers: this.appHeader });
     return this.http.request(request)
   }
 
   Get_Children() {
     this.setHeader();
-    const request = new HttpRequest('GET', this.current_URL+'/accounts/get_children', { reportProgress: true, headers: this.appHeader });
+    const request = new HttpRequest('GET', this.current_URL+'/accounts/child/get_children', { reportProgress: true, headers: this.appHeader });
     return this.http.request(request)
   }
 
   Get_Assets() {
     this.setHeader();
-    const request = new HttpRequest('GET', this.current_URL+'/assets/assets', { reportProgress: true, headers: this.appHeader });
+    const request = new HttpRequest('GET', this.current_URL+'/assets/create_asset/assets', { reportProgress: true, headers: this.appHeader });
     return this.http.request(request)
   }
 
   Get_Claim_Accounts() {
     this.setHeader();
-    const request = new HttpRequest('GET', this.current_URL+'/accounts/claim_account', { reportProgress: true, headers: this.appHeader });
+    const request = new HttpRequest('GET', this.current_URL+'/accounts/float/claim_account', { reportProgress: true, headers: this.appHeader });
     return this.http.request(request)
   }
 
   Search_By_Address(data) {
     let params = new HttpParams().set('address', data);
-    const request = new HttpRequest('GET', this.current_URL+'/accounts/address', { reportProgress: true, params: params, headers: this.appHeader });
+    const request = new HttpRequest('GET', this.current_URL+'/accounts/helper/address', { reportProgress: true, params: params, headers: this.appHeader });
     return this.http.request(request)
   }
 
   Get_Receive_Assets() {
     this.setHeader();
-    const request = new HttpRequest('GET', this.current_URL+'/assets/receive_assets', { reportProgress: true, headers: this.appHeader });
+    const request = new HttpRequest('GET', this.current_URL+'/assets/receive_asset/receive_assets', { reportProgress: true, headers: this.appHeader });
     return this.http.request(request)
   }
 
@@ -182,27 +191,27 @@ export class APIService {
   ViewAll(email) {
     this.setHeader();
     let params = new HttpParams().set('email', email);
-    const request = new HttpRequest('GET', this.current_URL+'/accounts/float_accounts_on_address', { reportProgress: true, params: params, headers: this.appHeader });
+    const request = new HttpRequest('GET', this.current_URL+'/accounts/float/float_accounts_on_address', { reportProgress: true, params: params, headers: this.appHeader });
     return this.http.request(request)
   }
 
   View_All_Receive_Assets(address) {
     this.setHeader();
     let params = new HttpParams().set('receive_address', address);
-    const request = new HttpRequest('GET', this.current_URL+'/assets/shared_on_receive_assets', { reportProgress: true, params: params, headers: this.appHeader });
+    const request = new HttpRequest('GET', this.current_URL+'/assets/receive_asset/shared_on_receive_assets', { reportProgress: true, params: params, headers: this.appHeader });
     return this.http.request(request)
   }
 
   Get_Trail(address) {
     this.setHeader();
     let params = new HttpParams().set('address', address);
-    const request = new HttpRequest('GET', this.current_URL+'/assets/trail', { reportProgress: true, params: params, headers: this.appHeader });
+    const request = new HttpRequest('GET', this.current_URL+'/assets/share_asset/trail', { reportProgress: true, params: params, headers: this.appHeader });
     return this.http.request(request)
   }
 
   GetFileData(url) {
     let temp  = this.http.get(url, {responseType: 'text'});
-    console.log(temp)
+    // console.log(temp)
     return temp
   }
 

@@ -58,6 +58,8 @@ export class FormBuilderComponent implements OnInit {
         this.jsonArray =  this.ProjectService.formElements.formElements;
         this.formName =  this.ProjectService.formElements.formName;
         this.formSubmitUrl = this.ProjectService.formElements.formSubmitUrl;
+        // console.log(this.formSubmitUrl)
+        // console.log(this.ProjectService.formElements.formSubmitUrl)
         this.showForm = true;
       } else {
         this.showForm = false;
@@ -122,7 +124,7 @@ export class FormBuilderComponent implements OnInit {
 
     // console.log(responseData);
     // console.log(this.responseArray);
-    // console.log(this.formSubmitUrl);
+    console.log(this.formSubmitUrl);
     this.ProjectService.submitForm(responseData, this.formSubmitUrl);
 
   }

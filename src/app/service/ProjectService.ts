@@ -94,8 +94,8 @@ export class ProjectService {
   setAction(action: string) {
     this.shareWithAddressData = false;
     this.globalAction = action;
-    console.log(this.globalAction);
-    console.log(this.navigationData);
+    // console.log(this.globalAction);
+    // console.log(this.navigationData);
     for(let i = 0; i< this.navigationData.length; i++) {
       if(action === this.navigationData[i].data) {
         this.emitNavData.emit({"action":action, "display": this.navigationData[i].Display})
@@ -105,7 +105,7 @@ export class ProjectService {
   }
 
   HttpEventResponse(event) {
-    console.log(event)
+    // console.log(event)
     switch (event.type) {
       case HttpEventType.Sent:
         // console.log('Request started');
@@ -126,12 +126,13 @@ export class ProjectService {
   login(data){
     this.APIService.Login(data).subscribe((event: HttpEvent<any>) => {
       let response = this.HttpEventResponse(event)
+      // console.error(response)
       if(response){
         if(response.authorization){
           let role = ""+response.role;
           let token = ""+response.authorization;
           let parent_role = ""+response.parent_role;
-          console.log("Authorization Token => "+token);
+          // console.log("Authorization Token => "+token);
           localStorage.setItem('login',"true");
           localStorage.setItem('role', role);
           localStorage.setItem('token', token);
@@ -141,14 +142,14 @@ export class ProjectService {
           // get data for display first then emit login
           // this.emitUserLogin.emit({login:'true', role: role});
         } else {
-          console.log("Authorization Failed");
+          // console.log("Authorization Failed");
         }
       }
-    }, (err:HttpErrorResponse)=>{
+    }, (err: HttpErrorResponse) => {
       this.emitError.emit(err.error.message)
       this.errorSnack()
-      // console.log(err.error.message)
-    });
+      console.log(err)
+    })
   }
 
   sendOTP(data){
@@ -182,22 +183,21 @@ export class ProjectService {
   getDisplayData(role) {
     this.APIService.GetDisplayData().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
+      // console.log(response)
       if(response){
-        // console.log(response)
         this.displayDataArray = response.data;
         let temp = JSON.stringify(response)
         localStorage.setItem("displayDataArray", ""+temp);
         this.emitUserLogin.emit({login:'true', role: role});
       } else {
         this.displayDataArray = response;
-        // console.log("bep 00.00");
       }
     }, (err:HttpErrorResponse)=>{
       this.checkToken(err);
-      console.log("Error 4");
+      // console.log("Error 4");
       this.emitError.emit(err.error.message)
       this.errorSnack()
-      console.log(err.error.message);
+      // console.log(err.error.message);
     })
   }
 
@@ -216,10 +216,10 @@ export class ProjectService {
       }
     }, (err:HttpErrorResponse)=>{
       this.checkToken(err);
-      console.log("Error 4");
+      // console.log("Error 4");
       this.emitError.emit(err.error.message)
       this.errorSnack()
-      console.log(err.error.message);
+      // console.log(err.error.message);
     })
   }
 
@@ -243,14 +243,29 @@ export class ProjectService {
     }, (err:HttpErrorResponse)=>{
       this.emitError.emit(err.error.message)
       this.errorSnack()
-      console.log(err.error.message)
+      // console.log(err.error.message)
     });
+  }
+
+  awsUrl(data){
+    console.log(data)
+    // this.APIService.awsUrl(data).subscribe((event: HttpEvent<any>) => {
+    //   let response = this.HttpEventResponse(event)
+    //   console.log(response)
+    //   if(response){
+    //     // console.log(response)
+    //   } else console.log(response)
+    // }, (err:HttpErrorResponse)=>{
+    //   this.emitError.emit(err.error.message)
+    //   this.errorSnack()
+    //   // console.log(err.error.message)
+    // })
   }
 
   getUI(){
     let role = localStorage.getItem('role');
     let parent_role = localStorage.getItem('parent_role');
-    // console.log(role)
+    console.log(role)
     if(role==="ADMIN"){
       this.get_admin_ui(role, null);
     }
@@ -286,8 +301,8 @@ export class ProjectService {
   }
 
   createNewFormElements(formElement: any) {
-    this.formElements = formElement
     // console.log(this.formElements)
+    this.formElements = formElement
   }
 
   checkToken(res) {
@@ -305,13 +320,13 @@ export class ProjectService {
       if(response){
         this.emitUI.emit({role:parent_role, child:role, data:response})
       } else {
-        console.log("bep 01");
+        // console.log("bep 01");
       }
     }, (err)=>{
-      console.log("Error 2");
+      // console.log("Error 2");
       this.emitError.emit(err.error.message)
       this.errorSnack()
-      console.log(err);
+      // console.log(err);
     });
   }
 
@@ -321,13 +336,13 @@ export class ProjectService {
       if(response){
         this.emitUI.emit({role:parent_role, child:role, data:response})
       } else {
-        console.log("bep 02");
+        // console.log("bep 02");
       }
     }, (err:HttpErrorResponse)=>{
-      console.log("Error 2");
+      // console.log("Error 2");
       this.emitError.emit(err.error.message)
       this.errorSnack()
-      console.log(err.error.message);
+      // console.log(err.error.message);
     });
   }
 
@@ -337,13 +352,13 @@ export class ProjectService {
       if(response){
         this.emitUI.emit({role:parent_role, child:role, data:response})
       } else {
-        console.log("bep 03");
+        // console.log("bep 03");
       }
     }, (err:HttpErrorResponse)=>{
-      console.log("Error 2");
+      // console.log("Error 2");
       this.emitError.emit(err.error.message)
       this.errorSnack()
-      console.log(err.error.message);
+      // console.log(err.error.message);
     });
   }
 
@@ -353,14 +368,14 @@ export class ProjectService {
       if(response){
         this.emitUI.emit({role:parent_role, child:role, data:response})
       } else {
-        console.log("bep 04");
+        // console.log("bep 04");
       }
     }, (err:HttpErrorResponse)=>{
       this.checkToken(err);
-      console.log("Error 2");
+      // console.log("Error 2");
       this.emitError.emit(err.error.message)
       this.errorSnack()
-      console.log(err.error.message);
+      // console.log(err.error.message);
     });
   }
 
@@ -378,7 +393,7 @@ export class ProjectService {
         this.f_Headers = response.f_headers;
         this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
       } else {
-        console.log("bep 05");
+        // console.log("bep 05");
       }
     }, (err:HttpErrorResponse)=>{
       this.tableData = [];
@@ -386,10 +401,10 @@ export class ProjectService {
       this.f_Headers = [];
       this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
       this.checkToken(err);
-      console.log("Error 3");
+      // console.log("Error 3");
       this.emitError.emit(err.error.message)
       this.errorSnack()
-      console.log(err.error.message);
+      // console.log(err.error.message);
     })
   }
 
@@ -406,7 +421,7 @@ export class ProjectService {
         this.f_Headers = response.f_headers;
         this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
       } else {
-        console.log("bep 06");
+        // console.log("bep 06");
       }
     }, (err:HttpErrorResponse)=>{
       this.tableData = [];
@@ -414,34 +429,18 @@ export class ProjectService {
       this.f_Headers = [];
       this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
       this.checkToken(err);
-      console.log("Error 4");
+      // console.log("Error 4");
       this.emitError.emit(err.error.message)
       this.errorSnack()
-      console.log(err.error.message);
+      // console.log(err.error.message);
     })
   }
-
+  
   getSummary(i) {
     this.emitSummary.emit({header:this.tableHeader, data:this.tableData[i], f_Headers: this.f_Headers });
     // let temp = this.tableData.data[i];
-    // console.log(this.tableData[i])
+    console.log(this.tableData[i])
   }
-  getUrlData(i){
-    var request = new XMLHttpRequest();
-    request.open('GET', i , true);
-    request.send(null);
-    request.onreadystatechange = function () {
-      if ( request.readyState === 4 && request.status === 200 ) {
-        var type = request.getResponseHeader('Content-Type');
-        // console.log(request)
-        // if ( type.indexOf("text") !== 1 ) {
-          // console.log( request.responseText )
-          // return this.http.request(request.responseText);
-        // }
-      }
-    }
-  }
-
 
   get_Children() {
     // this.emitHideSummary.emit({display:"false"});
@@ -456,7 +455,7 @@ export class ProjectService {
         this.f_Headers = response.f_headers;
         this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
       } else {
-        console.log("bep 06");
+        // console.log("bep 06");
       }
     }, (err:HttpErrorResponse)=>{
       this.tableData = [];
@@ -464,10 +463,10 @@ export class ProjectService {
       this.f_Headers = [];
       this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
       this.checkToken(err);
-      console.log("Error 5");
+      // console.log("Error 5");
       this.emitError.emit(err.error.message)
       this.errorSnack()
-      console.log(err.error.message);
+      // console.log(err.error.message);
     })
   }
 
@@ -516,14 +515,14 @@ export class ProjectService {
         // console.log(response.headers)
         this.emitSummary.emit({header:response.headers, data:response.data, f_Headers: this.f_Headers});
       } else {
-        console.log("bep 07");
+        // console.log("bep 07");
       }
     }, (err:HttpErrorResponse)=>{
       this.checkToken(err);
-      console.log("Error 6");
+      // console.log("Error 6");
       this.emitError.emit(err.error.message)
       this.errorSnack()
-      console.log(err.error.message);
+      // console.log(err.error.message);
     });
   }
 
@@ -531,6 +530,7 @@ export class ProjectService {
     this.dashboardElements({table:0,summary:0,search:0, form:0, display:1});
     this.APIService.Get_Assets().subscribe((event: HttpEvent<any>) =>{
       let response = this.HttpEventResponse(event)
+      // console.log(response)
       if(response){
         this.emitAssetsReceived.emit({show:true})
         this.tableData = response.data;
@@ -539,7 +539,7 @@ export class ProjectService {
         this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
       } else {
         this.emitAssetsNotReceived.emit({show:true})
-        console.log("bep 08");
+        // console.log("bep 08");
       }
     }, (err:HttpErrorResponse)=>{
       this.tableData = [];
@@ -547,10 +547,10 @@ export class ProjectService {
       this.f_Headers = [];
       this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
       this.checkToken(err);
-      console.log("Error 7");
+      // console.log("Error 7");
       this.emitError.emit(err.error.message)
       this.errorSnack()
-      console.log(err.error.message);
+      // console.log(err.error.message);
     })
   }
 
@@ -565,13 +565,13 @@ export class ProjectService {
         // this.tableHeader = response.headers;
         // this.emitTable.emit({header: this.tableHeader, data:this.tableData})
       } else {
-        console.log("bep 09");
+        // console.log("bep 09");
       }
     }, (err)=>{
-      console.log(err);
+      // console.log(err);
       this.emitError.emit(err.error.message)
       this.errorSnack()
-      console.log(err.error.message);
+      // console.log(err.error.message);
       this.emitShowSubmitFormButton.emit({show:true});
     });
   }
@@ -586,19 +586,18 @@ export class ProjectService {
         this.tableHeader = response.headers;
         this.f_Headers = response.f_headers;
         this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
-
       } else {
-        console.log("bep 08");
+        // console.log("bep 08");
       }
     }, (err)=>{
       this.tableData = [];
       this.tableHeader = [];
       this.f_Headers = [];
       this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
-      console.log(err)
+      // console.log(err)
       this.emitError.emit(err.error.message)
       this.errorSnack()
-      console.log(err.error.message)
+      // console.log(err.error.message)
     })
   }
 
@@ -613,14 +612,14 @@ export class ProjectService {
         this.f_Headers = response.f_headers;
         this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
       } else {
-        console.log("bep 09");
+        // console.log("bep 09");
       }
     }, (err)=>{
       this.tableData = [];
       this.tableHeader = [];
       this.f_Headers = [];
       this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
-      console.log(err)
+      // console.log(err)
       this.emitError.emit(err.error.message)
       this.errorSnack()
       // console.log(err.error.message)
@@ -638,7 +637,7 @@ export class ProjectService {
         this.f_Headers = response.f_headers;
         this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
       } else {
-        console.log("bep 10");
+        // console.log("bep 10");
         // console.log(response)
       }
     }, (err)=>{
@@ -646,7 +645,7 @@ export class ProjectService {
       this.tableHeader = [];
       this.f_Headers = [];
       this.emitTable.emit({header: this.tableHeader, data:this.tableData, f_Headers: this.f_Headers})
-      console.log(err)
+      // console.log(err)
       this.emitError.emit(err.error.message)
       this.errorSnack()
       // console.log(err.error.message)
@@ -662,10 +661,10 @@ export class ProjectService {
           this.emitTrailView.emit(response.data);
         }
       } else {
-        console.log("bep 13");
+        // console.log("bep 13");
       }
     }, (err)=>{
-      console.log(err)
+      // console.log(err)
       this.emitError.emit(err.error.message)
       this.errorSnack()
       // console.log(err.error.message)
@@ -674,10 +673,9 @@ export class ProjectService {
 
   getFileData(url) {
     this.APIService.GetFileData(url).subscribe((res) =>{
-      console.log(res)
-
+      // console.log(res)
     }, (err)=>{
-      console.log(err);
+      // console.log(err);
     });
   }
 
